@@ -3,7 +3,7 @@ layout: post
 title: New Blog Who Dis
 published: true
 ---
-After years of using one blog, then using a number of different blogs, then not blogging at all, I I'm now blogging once more. Currently, the plan is to focus on [mesa](https://www.mesa3d.org) code that I'm working on, specifically (at least for now) [zink](https://www.collabora.com/news-and-blog/blog/2018/10/31/introducing-zink-opengl-implementation-vulkan/) code.
+After years of using one blog, then using a number of different blogs, then not blogging at all, I'm now blogging once more. Currently, the plan is to focus on [mesa](https://www.mesa3d.org) code that I'm working on, specifically (at least for now) [zink](https://www.collabora.com/news-and-blog/blog/2018/10/31/introducing-zink-opengl-implementation-vulkan/) code.
 
 **TL;DR:** Zink is a driver that translates OpenGL to Vulkan at runtime. It is not as fast as OpenGL, and it will never be as fast, but ideally it will be "fast enough" that it can be used for general purpose GL support, enabling driver authors for new and existing hardware to focus exclusively on supporting Vulkan rather than requiring separate drivers for both APIs.
 
