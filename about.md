@@ -2,14 +2,17 @@
 layout: page
 title: About
 permalink: /about/
+published: true
 ---
 
-Some information about you!
+My name is Mike Blumenkrantz, and I do code super good. Eventually. I heard people think you write better code if you blog about it, so I'm here to do the gym equivalent of posting my mirror flexing on Insta.
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+After completing a degree in Philosophy, I fell into a deep hole of Open Source contributions and have been trying to escape ever since. I've done work on EFL/Enlightenment, the Servo browser, Wayland protocol specifications, ccache, and Mesa drivers among other things.
 
-### Contact me
+Also I tried Javascript once but never finished the project I was working on.
 
-[email@domain.com](mailto:email@domain.com)
+### Contact
+* zmike on Freenode IRC
+* [michael.blumenkrantz at gmail.com](mailto:michael.blumenkrantz at gmail.com)
