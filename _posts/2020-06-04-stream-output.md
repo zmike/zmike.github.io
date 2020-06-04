@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## To Begin...
 Stream output is another name for `xfb` closer to the driver level. Inside mesa (and gallium), we'll commonly see different types related to `struct pipe_stream_output_*` which provide info about how the `xfb` info is output to its corresponding buffers.
