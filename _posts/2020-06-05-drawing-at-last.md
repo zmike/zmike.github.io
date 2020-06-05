@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Quick Runthrough
 This `xfb` blog series has gone on for a while now, and it'd be great if it ended soon. Unfortunately, there's a lot of corner cases which are being found by piglit, and the work and fixing continue.
