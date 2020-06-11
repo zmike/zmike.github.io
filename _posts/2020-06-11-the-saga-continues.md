@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## More Fixes
 Yesterday I covered the problems related to handling `gl_PointSize` during the `SPIR-V` conversion. But there were still more problems to overcome.
