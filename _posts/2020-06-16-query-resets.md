@@ -1,5 +1,6 @@
 ---
 published: true
+comments: true
 ---
 ## To start with
 
