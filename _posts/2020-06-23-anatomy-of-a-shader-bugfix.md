@@ -125,3 +125,70 @@ Indeed, it seems that Zink is ignoring the offset here.
 
 ## Fixing
 Armed with the knowledge that a `txf` instruction is involved, a quick search through `nir_to_spirv.c` reveals the `emit_tex()` function as a likely starting point, as it's where `txf` is handled.
+
+Some excerpts follow:
+
+```c
+   for (unsigned i = 0; i < tex->num_srcs; i++) {
+      switch (tex->src[i].src_type) {
+      case nir_tex_src_coord:
+         if (tex->op == nir_texop_txf ||
+             tex->op == nir_texop_txf_ms)
+            coord = get_src_int(ctx, &tex->src[i].src);
+         else
+            coord = get_src_float(ctx, &tex->src[i].src);
+         coord_components = nir_src_num_components(tex->src[i].src);
+         break;
+
+      case nir_tex_src_offset:
+         offset = get_src_int(ctx, &tex->src[i].src);
+         break;
+```
+Here the code iterates through the inputs for the command and then takes action based on their type. In particular, I've cut out the `coord` and `offset` inputs, as that's where the issue lies. The implementation is translating the `nir_src` values (which represent "some value" at runtime) into `SpvId` values (which also represent "some value" at runtime), so this is okay.
+
+Let's scroll down a bit:
+```c
+   if (tex->op == nir_texop_txf ||
+       tex->op == nir_texop_txf_ms) {
+      SpvId image = spirv_builder_emit_image(&ctx->builder, image_type, load);
+      result = spirv_builder_emit_image_fetch(&ctx->builder, dest_type,
+                                              image, coord, lod, sample);
+   } else {
+      result = spirv_builder_emit_image_sample(&ctx->builder,
+                                               actual_dest_type, load,
+                                               coord,
+                                               proj != 0,
+                                               lod, bias, dref, dx, dy,
+                                               offset);
+   }
+```
+And here's the problem. The `txf` instruction isn't handling the offset at all, while other instructions (which map to e.g., [OpImageSampleImplicitLod](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#OpImageSampleImplicitLod)) are passing it along as a parameter.
+
+The fix in this case is to check [OpIAdd](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#OpIAdd), which does indeed permit addition of vectors, and so the block can be changed to:
+
+```c
+   if (tex->op == nir_texop_txf ||
+       tex->op == nir_texop_txf_ms) {
+      SpvId image = spirv_builder_emit_image(&ctx->builder, image_type, load);
+      if (offset)
+         coord = emit_binop(ctx, SpvOpIAdd,
+                            /* 'coord_bitsize' here comes from adding
+                            
+                               coord_bitsize = nir_src_bit_size(tex->src[i].src);
+                               
+                               to the 'nir_tex_src_coord' switch case in the first block
+                             */
+                            get_ivec_type(ctx, coord_bitsize, coord_components),
+                            coord, offset);
+      result = spirv_builder_emit_image_fetch(&ctx->builder, dest_type,
+                                              image, coord, lod, sample);
+   } else {
+      result = spirv_builder_emit_image_sample(&ctx->builder,
+                                               actual_dest_type, load,
+                                               coord,
+                                               proj != 0,
+                                               lod, bias, dref, dx, dy,
+                                               offset);
+   }
+```
+This emits an addition instruction for the `coord` and `offset` vectors and passes the new `coord` value to the `spirv_builder_emit_image_fetch()` function, and now the issue is resolved.
