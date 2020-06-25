@@ -15,7 +15,7 @@ Today let's go through the process for fixing an issue in this pipeline, as dete
 
 Now there's a massive list of tests with pass/fail results. Clicking on the results of any test will provide more detail, just like this:
 
-![shot-2020-06-23_15-35-31.png]({{site.baseurl}}/_posts/shot-2020-06-23_15-35-31.png)
+![piglit-result-2020-06-23_15-35-31.png]({{site.url}}/assets/piglit-result-2020-06-23_15-35-31.png)
 
 In this case, `spec@glsl-1.30@execution@fs-texelfetchoffset-2d` is failing. What does that mean?
 
