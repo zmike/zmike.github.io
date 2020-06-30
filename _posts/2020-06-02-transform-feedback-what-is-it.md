@@ -17,7 +17,7 @@ Critical terminology for this post:
 
 ## Now that we're all experts...
 
-The goal has been to get this feature working in Zink so that we can slap on an **OpenGL 3.0 Support** sticker, as it's the only remaining item on the workboard. Original support was written by David Airlie ca. 2018, but it was a rough proof of concept that had bitrotted considerably over the years, as all code languishing in [old WIP branches](https://gitlab.freedesktop.org/kusma/mesa/-/commits/zink-old-gl3/) must. My mission, which was my first ever mission in Zink-land, was to rebase this work onto current master and then smooth it out for more general usage. What followed was weeks of intermittent staring and boggling at various parts of the mesa codebase, diffs of old patches, OpenGL and Vulkan specs, and also getting some expert-level tutoring in a few matters from more experienced members of the mesa community.
+The goal has been to get this feature working in Zink so that we can slap on an **OpenGL 3.0 Support** sticker, as it's the only remaining item on the workboard. Original support was written by David Airlie ca. 2018, but it was a rough proof of concept that had bitrotted considerably over the years, as all code languishing in [old WIP branches](https://gitlab.freedesktop.org/kusma/mesa/-/commits/zink-old-gl3/) must. My mission, which was my first ever mission in Zink-land, was to rebase this work onto current HEAD and then smooth it out for more general usage. What followed was weeks of intermittent staring and boggling at various parts of the mesa codebase, diffs of old patches, OpenGL and Vulkan specs, and also getting some expert-level tutoring in a few matters from more experienced members of the mesa community.
 
 ## The process
 
