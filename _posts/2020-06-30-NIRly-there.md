@@ -50,13 +50,13 @@ In fact, there's a number of problems with this.
 Over in `zink_compiler.c`, Zink runs a `nir_lower_uniforms_to_ubo` pass on shaders. What this pass does is:
 * rewrites all `load_uniform` instructions as `load_ubo` instructions for the UBO bound to 0, which works with Gallium's merging of all non-block uniforms into UBO with binding point 0 (which is what's currently handled by Zink)
 * adds the variable for a UBO with binding point 0 if there's any `load_uniform` instructions
-* increments the binding points (and load instructions) of all existing UBOs by 1
+* increments the binding points (and load instructions) of all pre-existing UBOs by 1
 * uses a specified multiplier to rewrite the offset values specified by the converted `load_ubo` instructions which were previously `load_uniform`
 
 But then there's a problem: what happens when this pass gets run when there's no non-block uniforms? Well, the answer is just as expected:
 * ~~rewrites all `load_uniform` instructions as `load_ubo` instructions for the UBO bound to 0, which works with Gallium's merging of all non-block uniforms into UBO with binding point 0 (which is what's currently handled by Zink)~~
 * ~~adds the variable for a UBO with binding point 0 if there's any `load_uniform` instructions~~
-* increments the binding points (and load instructions) of all existing UBOs by 1
+* increments the binding points (and load instructions) of all pre-existing UBOs by 1
 * ~~uses a specified multiplier to rewrite the offset values specified by the converted `load_ubo` instructions which were previously `load_uniform`~~
 
 So now, in `emit_load_ubo()` above, that `ctx->ubos[const_block_index->u32]` is actually going to translate to `ctx->ubos[1]` in the case of a shader without any uniforms. Unfortunately, here's the function which declares the UBO variables:
