@@ -112,6 +112,8 @@ Specifically:
 Indeed, this is zero-indexed, which means all the UBO access for a shader with no uniforms is going to fail because all the UBO load instructions are using a block index that's off by one.
 
 ## Solved
-As is my way, I slapped some `if (!shader->num_uniforms)` flex tape on running the zink_compiler `nir_lower_uniforms_to_ubo` pass in order to avoid potentially breaking the pass's other usage over in TGSI by changing the pass itself, and now the problem is solved.
+As is my way, I slapped some `if (!shader->num_uniforms)` flex tape on running the zink_compiler `nir_lower_uniforms_to_ubo` pass in order to avoid potentially breaking the pass's other usage over in TGSI by changing the pass itself, and now the problem is solved. The `assert()` can now be removed.
 
 Yes, sometimes there's all this work, and analyzing, and debugging, and blogging, and the end result is a sweet, sweet zero/null check.
+
+Tune in next time when I again embark on a journey that definitely, in no way, results in more flex tape being used.
