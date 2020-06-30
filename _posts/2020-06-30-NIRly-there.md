@@ -116,4 +116,4 @@ As is my way, I slapped some `if (!shader->num_uniforms)` flex tape on running t
 
 Yes, sometimes there's all this work, and analyzing, and debugging, and blogging, and the end result is a sweet, sweet zero/null check.
 
-Tune in next time when I again embark on a journey that definitely, in no way, results in more flex tape being used.
+Tune in next time when I again embark on a journey that definitely, in no way results in more flex tape being used.
