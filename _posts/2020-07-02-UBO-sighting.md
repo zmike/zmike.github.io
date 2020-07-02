@@ -82,7 +82,7 @@ This is it for loading the UBO, but now those loaded values need to be stored, a
 
 Instead, a solution which handles both cases would be to use the `OpAccessChain` to loop over each individual component that needs to be loaded, Then these loaded values can be reassembled into a composite at the end.
 
-# More code
+## More code
 The end result looks like this:
 ```c
 static void
@@ -175,4 +175,7 @@ emit_load_ubo(struct ntv_context *ctx, nir_intrinsic_instr *intr)
 ```
 But wait! Perhaps some avid reader is now considering how many load operations are potentially being added by this method if the original instruction was intended to load an entire `vec4`. Surely some optimizing can be done here?
 
-One of the great parts about `ntv` is that there's not much need to optimize anything in advance here. Getting things working is usually "good enough", and the reason for that is once again `NIR`. While it's true that loading a `vec4` member of a UBO from this code does generate four `load_ubo` instructions, these instructions will get automatically optimized back to a single load by a `nir_lower_io` pass by the underlying driver, which means spending any effort pre-optimizing here is wasted time.
+One of the great parts about `ntv` is that there's not much need to optimize anything in advance here. Getting things working is usually "good enough", and the reason for that is once again `NIR`. While it's true that loading a `vec4` member of a UBO from this code does generate four `load_ubo` instructions, these instructions will get automatically optimized back to a single `load_ubo` by a `nir_lower_io` pass triggered from the underlying Vulkan driver, which means spending any effort pre-optimizing here is wasted time.
+
+## Moving on
+ARB_uniform_buffer_object is done now, so look forward to new topics again.
