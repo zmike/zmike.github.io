@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## ARB_arrays_of_arrays
 
