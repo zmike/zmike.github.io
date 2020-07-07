@@ -50,7 +50,7 @@ I rushed to the pipeline creation to check out the `depthClampEnable` value of [
 
 I checked `depthTestEnable` and `depthCompareOp` from [VkPipelineDepthStencilStateCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDepthStencilStateCreateInfo.html) in the same place. All fine there too.
 
-[vkCmdSetViewport](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewport.html) seemed a possible candidate too, but `minDepth` and `maxDepth` were set with `0.75` and `0.0` as they should be.
+[vkCmdSetViewport](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewport.html) seemed a possible candidate as well, but `minDepth` and `maxDepth` were set with `0.75` and `0.0` as they should be.
 
 Maybe this was some weirdness going on with the shader handling? It seemed unlikely, but I wanted to cover all the bases. I fired up a quick printf shader with:
 ```glsl
