@@ -48,7 +48,7 @@ Contrary to my expectations, this quad got rendered instead of discarded. But wh
 ## Examining
 I rushed to the pipeline creation to check out the `depthClampEnable` value of [VkPipelineRasterizationStateCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRasterizationStateCreateInfo.html). It was enabled.
 
-I checked out `depthTestEnable` and `depthCompareOp` from [VkPipelineDepthStencilStateCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDepthStencilStateCreateInfo.html) in the same place. All fine there too.
+I checked `depthTestEnable` and `depthCompareOp` from [VkPipelineDepthStencilStateCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineDepthStencilStateCreateInfo.html) in the same place. All fine there too.
 
 [vkCmdSetViewport](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdSetViewport.html) seemed a possible candidate too, but `minDepth` and `maxDepth` were set with `0.75` and `0.0` as they should be.
 
