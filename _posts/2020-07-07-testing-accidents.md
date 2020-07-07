@@ -56,9 +56,9 @@ Maybe this was some weirdness going on with the shader handling? It seemed unlik
 ```glsl
 gl_FragColor = vec4(gl_FragCoord.z - 1.0, 0.0, 1.0, 1.0);
 ```
-The idea was to verify that the depth was a value that should be clamped.
+The idea was to verify that the depth was a value that would be clamped.
 
-What I got was a nice, purple square.
+What I got was a nice, purple square, which was also what I expected.
 
 ## ANV then
 At some point, it's important to consider the possibility that this was a driver bug.
