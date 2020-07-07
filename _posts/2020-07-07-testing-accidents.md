@@ -54,7 +54,7 @@ I checked `depthTestEnable` and `depthCompareOp` from [VkPipelineDepthStencilSta
 
 Maybe this was some weirdness going on with the shader handling? It seemed unlikely, but I wanted to cover all the bases. I fired up a quick printf shader with:
 ```glsl
-gl_FragColor = vec4(gl_FragCoord.z - 1.0, 0.0, 1.0, 1.0);
+gl_FragColor = vec4(gl_FragCoord.z - 0.75, 0.0, 1.0, 1.0);
 ```
 The idea was to verify that the depth was a value that would be clamped.
 
