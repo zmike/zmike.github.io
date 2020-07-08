@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## A quick break
 I've been blogging pretty in-depth about Zink and related code for a while, so let's do a quick roundup with some future blog post spoilers.
@@ -28,4 +28,3 @@ It's been over a month of daily posts, so again, here are 3 goals for this blog 
 This is coincidentally the only documentation for some of the mesa APIs that I'm blogging about.
 * Show readers who maybe have strong coding/graphics backgrounds but haven't done driver development that drivers aren't some kind of black box code that's *too hard* for hobbyists to jump into
 * Also possibly describe some problem-solving strategies and implementation handling that might be useful
-
