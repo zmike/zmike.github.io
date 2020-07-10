@@ -17,3 +17,5 @@ Alright, but what does that mean? Sure, I can chuck a null handle into a descrip
 Near as I can tell, the answer is to actually [search](https://lmgtfy.com/?q=VK_EXT_robustness2) for the extension name, then read the [diff of the commit](https://github.com/KhronosGroup/Vulkan-Docs/commit/5789d98a3fb3e02beb2f92aab5dd4b87d648cfc2) which officially adds the extension to the spec.
 
 Compare this to OpenGL, where I can check out something like [ARB_timer_query](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_timer_query.txt) and see exactly what parts of the existing spec the extension is modifying and how they're being changed.
+
+Maybe I'm missing something here; I've only been working on Zink for a bit over a month, so I'm certainly not going to claim to be an expert, but this feels like a huge step backwards in documentation comprehensiveness.
