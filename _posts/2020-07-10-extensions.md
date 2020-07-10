@@ -3,12 +3,12 @@ published: false
 ---
 ## Something different
 
-Usually I cover in-depth looks at various chunks of code I've been working on, but today it's going to be a more traditional, style of modern blogging: memes and complaining.
+Usually I cover in-depth looks at various chunks of code I've been working on, but today it's going to be a more traditional style of modern blogging: memes and complaining.
 
 I do a lot of work using Vulkan extensions. Feels like every other day I'm throwing another one into Zink (like when I had to add [VK_EXT_calibrated_timestamps](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_EXT_calibrated_timestamps.html) today for timer queries). To that end, I spend a lot of time reading the spec for extensions, though usually I prefer the man pages since they don't throw my browser on the ground and leave it a twitchy mess like the main spec page does:
 [![chrome](https://pics.me.me/my-8gb-of-ram-taskmanager-rg-chumanity-gone26-one-chrome-tab-38468921.png)](https://pics.me.me/)
 
-The problem with extensions and the spec is that they each have their own section, which is the same as the man page entry, and that's it. Extensions also modify the base text of the spec, but there's no clear way to know (that I've seen, anyway) what else is modified based on the entry that the extension gets.
+The problem with extensions and the spec is that extensions each have their own section, which is the same as the man page entry, and that's it. Extensions also modify the base text of the spec, but there's no clear way to know (that I've seen, anyway) what else is modified based on the entry that the extension gets.
 
 As an example, check out [VK_EXT_robustness2](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_EXT_robustness2.html). This blurb for the spec clearly says *This extension also adds support for "null descriptors", where VK_NULL_HANDLE can be used instead of a valid handle. Accesses to null descriptors have well-defined behavior, and don’t rely on robustness.*
 
