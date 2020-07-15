@@ -39,3 +39,45 @@ What followed, in this case, a lot of wrangling existing query code to remove as
  }
 ```
 All time values from the gpu are returned in "ticks", which are a unit decided by the underlying driver. Applications using Zink want nanoseconds, however, so this needs to be converted.
+
+## Side Query
+But then also there's the case where a timestamp can be retrieved directly, for example:
+```c
+glGetInteger64v(GL_TIMESTAMP, &time);
+```
+In Zink and other gallium drivers, this uses either a `struct pipe_screen` or `struct pipe_context` hook:
+```c
+   /**
+    * Query a timestamp in nanoseconds. The returned value should match
+    * PIPE_QUERY_TIMESTAMP. This function returns immediately and doesn't
+    * wait for rendering to complete (which cannot be achieved with queries).
+    */
+   uint64_t (*get_timestamp)(struct pipe_screen *);
+
+
+   /**
+    * Query a timestamp in nanoseconds.  This is completely equivalent to
+    * pipe_screen::get_timestamp() but takes a context handle for drivers
+    * that require a context.
+    */
+   uint64_t (*get_timestamp)(struct pipe_context *);
+```
+The current implementation looks like:
+```c
+static uint64_t
+zink_get_timestamp(struct pipe_context *pctx)
+{
+   struct zink_screen *screen = zink_screen(pctx->screen);
+   uint64_t timestamp, deviation;
+   assert(screen->have_EXT_calibrated_timestamps);
+   VkCalibratedTimestampInfoEXT cti = {};
+   cti.sType = VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT;
+   cti.timeDomain = VK_TIME_DOMAIN_DEVICE_EXT;
+   screen->vk_GetCalibratedTimestampsEXT(screen->dev, 1, &cti, &timestamp, &deviation);
+   timestamp_to_nanoseconds(screen, &timestamp);
+   return timestamp;
+}
+```
+Using the `VK_EXT_calibrated_timestamps` functionality from earlier, this is very simple and straightforward, unlike software implementations of `ARB_gpu_shader_fp64`.
+
+It's a bit of a leap forward, but that's another [GL 3.3](https://gitlab.freedesktop.org/mesa/mesa/-/issues/3246) feature done.
