@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Last of the Vertex Processors
 
