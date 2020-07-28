@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Variable Lists
 Today I'm going to briefly go over a big-ish API change that's taking place as a result of a [MR from Jason Ekstrand](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/5966).
@@ -33,4 +33,3 @@ Thus, the zink loops like `nir_foreach_variable(var, &s->uniforms)` look like `n
 
 ## Further Improvements
 At some point after this lands, it'll be useful to go through the places in zink where variable iterating occurs and try to combine iterations, as each variable list iteration now iterates over every type of variable, so ideally that should be reduced to a single loop that handles all the things that each separate type-iteration used to handle in order to keep things `lightweight`.
-
