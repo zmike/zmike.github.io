@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## How Do Mesa Versions Work?
 
