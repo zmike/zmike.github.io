@@ -9,7 +9,7 @@ Again.
 
 But this time is different. This time I'm going to be looking into a specific test format, namely piglit shader tests.
 
-Shader tests in piglit are tests which are passed through the `shader_runner` binary, which parses `.shader_test` files to automatically generate tests based on GLSL without requiring any actual GL code. This makes writing tests easy, and, more importantly for my own use case, it makes debugging them easier.
+Shader tests in piglit are tests which are passed through piglit's undocumented `shader_runner` binary, which parses `*.shader_test` files at runtime to automatically produce tests based on GLSL without requiring any actual GL code and only minimal boilerplate. This makes writing tests easy, and, more importantly for my own use case, it makes debugging them easier.
 
 ## An Example
 ```
@@ -42,18 +42,18 @@ draw rect -1 -1 2 2
 // read back the color buffer at [0.0, 0.0] (bottom left) and compare against rgb(0.0, 1.0, 0.0)
 relative probe rect rgb (0.0, 0.0, 0.5, 0.5) (0.0, 1.0, 0.0)
 ```
-Here's an extremely simple example with a passthrough vertex shader (i.e., `gl_Position = piglit_vertex;`) which draws a full-fb rectangle based on the color passed in as a uniform value and then reads back the color in the middle of the fb to check that it's green.
+Here's an extremely simple example with a passthrough vertex shader (i.e., `gl_Position = piglit_vertex;`) which draws a full-framebuffer rectangle based on the color passed in as a uniform value and then reads back the color in the middle of the fb to check that it's green.
 
 ## Debugging
 The great part of shader tests like these is that they're very simple to debug in a visual way. For example, if the above test was failing, I'd have a number of easy ways to narrow down where the problem was:
-* replace `c` in the output color with a constant value to see if the color is being drawn correctly
+* replace `c` in the output color with a constant value to ensure that uniform loading isn't an issue
 * change the first two components of the `probe` command's coordinates to see if perhaps the failure is from the read failing in the specified location in the color buffer
-* change the size of the rectangle being drawn in the event that it isn't as large as it should be
+* change the size of the rectangle being drawn in the event that it isn't as large as it should be to verify that the driver isn't using some hardcoded value here
 
 And through all of this, no rebuilding is necessary; I can just make my edits and then `shader_runner` will generate the test at runtime.
 
 ## More Complicated
-Yes, they can get a bit more complex as well. For example, here's one that I was using while working on dynamic UBO indexing:
+Shader tests can get a bit more complex as well. For example, here's another "basic" one that I was using while working on dynamic UBO indexing:
 ```
 # This test verifies that dynamically uniform indexing of sampler arrays
 # in the fragment shader behaves correctly.
@@ -134,9 +134,13 @@ This test again uses a passthrough vertex shader, outputting the color from one 
  * **black**              RGBA color to be used for "black" tiles
  * **white**              RGBA color to be used for "white" tiles
  
- Each `draw` command then draws a rectangle in a different corner of the framebuffer, sampling from a texture with a different color, which produces:
+Each `draw` command then draws a rectangle in a different corner of the framebuffer, sampling from a texture with a different color, which produces:
 ![arb_gpu_shader5-sampler_array_indexing-fs-simple.png]({{site.url}}/assets/arb_gpu_shader5-sampler_array_indexing-fs-simple.png)
 
 While I was getting this to work, I had a couple options available to me so that I could break down the test and run it in smaller pieces:
 * eliminate all but the first texture, draw, and probe calls for simpler shader output
-* use a constant array index to verify that arrays of samplers work
+* use a constant array index to verify that arrays of samplers were working
+
+
+
+In summary, shader tests are an easy-to-read, easy-to-debug test format, and 
