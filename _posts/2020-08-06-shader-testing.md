@@ -135,5 +135,8 @@ This test again uses a passthrough vertex shader, outputting the color from one 
  * **white**              RGBA color to be used for "white" tiles
  
  Each `draw` command then draws a rectangle in a different corner of the framebuffer, sampling from a texture with a different color, which produces:
- 
- 
+![arb_gpu_shader5-sampler_array_indexing-fs-simple.png]({{site.url}}/assets/arb_gpu_shader5-sampler_array_indexing-fs-simple.png)
+
+While I was getting this to work, I had a couple options available to me so that I could break down the test and run it in smaller pieces:
+* eliminate all but the first texture, draw, and probe calls for simpler shader output
+* use a constant array index to verify that arrays of samplers work
