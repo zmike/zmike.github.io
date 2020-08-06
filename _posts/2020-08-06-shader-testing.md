@@ -141,6 +141,9 @@ While I was getting this to work, I had a couple options available to me so that
 * eliminate all but the first texture, draw, and probe calls for simpler shader output
 * use a constant array index to verify that arrays of samplers were working
 
+Combined with visual inspection of the test output, this made the process a relative snap.
 
+## In Summary
+Piglit's shader tests are an easy-to-read, easy-to-debug test format, and it's a format that's just won my coveted Preferred Test Format award for excellence in every category that matters.
 
-In summary, shader tests are an easy-to-read, easy-to-debug test format, and 
+Remember: working on driver-level code isn't scary unless you need documentation.
