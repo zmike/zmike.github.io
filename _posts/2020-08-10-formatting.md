@@ -49,4 +49,32 @@ Each of these correspond to types of usages, with the hook that the created reso
 # Problem
 As always, this is a problem for zink, mainly because the usage passed before resource creation [doesn't always match the actual usage](https://gitlab.freedesktop.org/mesa/mesa/-/issues/3404). For example, a resource created with just `PIPE_BIND_SAMPLER_VIEW` may eventually use `PIPE_BIND_RENDER_TARGET` and vice versa.
 
-This is very common, as `u_blitter` requires `PIPE_BIND_SAMPLER_VIEW` and also many piglit tests will draw an image with `PIPE_BIND_SAMPLER_VIEW` and then use it as a framebuffer attachment, aka `PIPE_BIND_RENDER_TARGET`.
+This is very common, as `u_blitter` uses `PIPE_BIND_SAMPLER_VIEW` for blitting, and also many piglit tests will draw an image with `PIPE_BIND_SAMPLER_VIEW` and then use it as a framebuffer attachment, aka `PIPE_BIND_RENDER_TARGET`.
+
+The problem here is that Vulkan is a very specific API, and so at no point is it possible to "add" usage capabilities later. Furthermore, it's also the case that drivers may support either color attachment **or** sampler usage but not both.
+
+There's two specific parts of zink that this affects:
+* resource creation, where the usage bits need to be set for every possible usage so that the underlying driver allocates the right memory
+* blitting/copying, where it's necessary to know the underlying driver's capabilities for a format in order to be able to choose the right method for the transfer
+
+## Solutions-ish
+For the first item, the solution is simple-ish:
+```c
+/* apparently gallium thinks this is the jack-of-all-trades bind type */
+if (templ->bind & PIPE_BIND_SAMPLER_VIEW)
+   bci.usage |= VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT |
+                VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT |
+                VK_BUFFER_USAGE_STORAGE_BUFFER_BIT |
+                VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT |
+                VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT |
+                VK_BUFFER_USAGE_INDEX_BUFFER_BIT |
+                VK_BUFFER_USAGE_VERTEX_BUFFER_BIT |
+                VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT;
+```
+Yes, for this case the simple fix is to just set every possible usage bit. Is it the "most correct" way? Maybe. But gallium just doesn't give enough information at this point due to deficiencies in the OpenGL spec which allow objects to sort of just be used for whatever.
+
+For the second item, things get messy.
+
+Some gallium drivers (e.g., iris) check for 3-component (i.e., RGB instead of RGBA) with `PIPE_BIND_SAMPLER_VIEW` and then claim they're unsupported so that gallium will provide a 4-component image. This sort of works for zink, except that then there's an extra component and so various Vulkan codepaths are now receiving an extra n-bits per block, which breaks everything.
+
+I haven't really dug into the issue any further than this, but it's an interesting problem, so I thought I'd blog about it.
