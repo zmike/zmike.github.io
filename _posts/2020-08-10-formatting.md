@@ -51,10 +51,10 @@ As always, this is a problem for zink, mainly because the usage passed before re
 
 This is very common, as `u_blitter` uses `PIPE_BIND_SAMPLER_VIEW` for blitting, and also many piglit tests will draw an image with `PIPE_BIND_SAMPLER_VIEW` and then use it as a framebuffer attachment, aka `PIPE_BIND_RENDER_TARGET`.
 
-The problem here is that Vulkan is a very specific API, and so at no point is it possible to "add" usage capabilities later. Furthermore, it's also the case that drivers may support either color attachment **or** sampler usage but not both.
+The problem here is that Vulkan is a very specific API, and so at no point is it possible to "add" usage capabilities later. Furthermore, it's also the case that drivers may support either color attachment **or** sampler usage for a given format but not both.
 
 There's two specific parts of zink that this affects:
-* resource creation, where the usage bits need to be set for every possible usage so that the underlying driver allocates the right memory
+* resource creation, where the usage bits need to be set for the right usages so that the underlying driver allocates the right memory
 * blitting/copying, where it's necessary to know the underlying driver's capabilities for a format in order to be able to choose the right method for the transfer
 
 ## Solutions-ish
@@ -75,6 +75,6 @@ Yes, for this case the simple fix is to just set every possible usage bit. Is it
 
 For the second item, things get messy.
 
-Some gallium drivers (e.g., iris) check for 3-component (i.e., RGB instead of RGBA) with `PIPE_BIND_SAMPLER_VIEW` and then claim they're unsupported so that gallium will provide a 4-component image. This sort of works for zink, except that then there's an extra component and so various Vulkan codepaths are now receiving an extra n-bits per block, which breaks everything.
+Some gallium drivers (e.g., iris) check for 3-component (i.e., RGB instead of RGBA) with `PIPE_BIND_SAMPLER_VIEW` and then claim no support so that gallium will provide a 4-component image. This sort of works for zink, except that then there's an extra component and so various Vulkan codepaths are now receiving an extra n-bits per block, which breaks everything.
 
 I haven't really dug into the issue any further than this, but it's an interesting problem, so I thought I'd blog about it.
