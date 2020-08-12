@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## enum pipe_format
 One thing that's everywhere in mesa (at least outside of mesa core) is `enum pipe_format`. This enum is used to describe image formats. The general way that it works is that there's a hook in `struct pipe_screen`:
