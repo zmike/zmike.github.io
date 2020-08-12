@@ -16,7 +16,7 @@ One thing that's everywhere in mesa (at least outside of mesa core) is `enum pip
                                 unsigned storage_sample_count,
                                 unsigned bindings );
 ```
-Each gallium driver implements this hook, and then gallium queries the driver before creating a resource using a given format.
+Each gallium driver implements this hook, and then gallium queries the driver before creating a resource using a given format and then also before using a created resource in various ways.
 
 # PIPE_BIND
 Of particular note in this hook is the `bindings` parameter, which specifies the way(s) that the resource will be used. These values are defined as:
