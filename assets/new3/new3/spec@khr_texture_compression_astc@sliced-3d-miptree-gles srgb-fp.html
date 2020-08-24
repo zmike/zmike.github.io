@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>spec@khr_texture_compression_astc@sliced-3d-miptree-gles srgb-fp - Details</title>
+    <link rel="stylesheet" href="../result.css">
+  </head>
+  <body>
+    <h1>Results for spec@khr_texture_compression_astc@sliced-3d-miptree-gles srgb-fp</h1>
+    <h2>Overview</h2>
+    <div>
+      <p><b>Result:</b> fail</p>
+    </div>
+    <p><a href="../index.html">Back to summary</a></p>
+    <h2>Details</h2>
+    <table>
+      <tr>
+        <th>Detail</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Returncode</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td>0:00:00.480987</td>
+      </tr>
+      <tr>
+        <td>Stdout</td>
+        <td>
+          <pre>Probe at (155,45)
+  Expected: 0.980392 0.980392 0.980392 1.000000
+  Observed: 0.992157 0.992157 0.992157 1.000000
+piglit: error: Slice: 0, Miplevel: 0
+Probe at (77,23)
+  Expected: 0.992157 0.992157 0.992157 1.000000
+  Observed: 0.980392 0.980392 0.980392 1.000000
+piglit: error: Slice: 0, Miplevel: 1
+Probe at (39,11)
+  Expected: 0.992157 0.992157 0.992157 1.000000
+  Observed: 0.980392 0.980392 0.980392 1.000000
+piglit: error: Slice: 0, Miplevel: 2
+piglit: error: Mode: ldrs Block: 5x5.
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Stderr</td>
+        <td>
+          <pre>INTEL-MESA: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Environment</td>
+        <td>
+          <pre>PIGLIT_SOURCE_DIR=&#34;/home/zmike/src/piglit&#34; PIGLIT_PLATFORM=&#34;mixed_glx_egl&#34;</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Command</td>
+        <td>
+          <pre>/home/zmike/src/piglit/bin/khr_compressed_astc-sliced-3d-miptree_gles3 -subtest srgb-fp -auto -fbo</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>dmesg</td>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+    </table>
+    <p><a href="../index.html">Back to summary</a></p>
+  </body>
+</html>

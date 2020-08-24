@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>spec@mesa_shader_integer_functions@execution@built-in-functions@vs-imulextended-nonuniform - Details</title>
+    <link rel="stylesheet" href="../result.css">
+  </head>
+  <body>
+    <h1>Results for spec@mesa_shader_integer_functions@execution@built-in-functions@vs-imulextended-nonuniform</h1>
+    <h2>Overview</h2>
+    <div>
+      <p><b>Result:</b> pass</p>
+    </div>
+    <p><a href="../index.html">Back to summary</a></p>
+    <h2>Details</h2>
+    <table>
+      <tr>
+        <th>Detail</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Returncode</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td>0:00:00.413810</td>
+      </tr>
+      <tr>
+        <td>Stdout</td>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Stderr</td>
+        <td>
+          <pre>INTEL-MESA: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+
+Mesa 20.3.0-devel implementation error: fp64 software impl compile failed:
+0:43(10): error: GLSL 3.30 is not supported. Supported versions are: 1.10, 1.20, 1.30, 1.00 ES, and 3.00 ES
+
+source:
+/*
+ * The implementations contained in this file are heavily based on the
+ * implementations found in the Berkeley SoftFloat library. As such, they are
+ * licensed under the same 3-clause BSD license:
+ *
+ * License for Berkeley SoftFloat Release 3e
+ *
+ * John R. Hauser
+ * 2018 January 20
+ *
+ * The following applies to the whole of SoftFloat Release 3e as well as to
+ * each source file individually.
+ *
+ * Copyright 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 The Regents of the
+ * University of California.  All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice,
+ *     this list of conditions, and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions, and the following disclaimer in the
+ *     documentation and/or other materials provided with the distribution.
+ *
+ *  3. Neither the name of the University nor the names of its contributors
+ *     may be used to endorse or promote products derived from this software
+ *     without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS &#34;AS IS&#34;, AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+#version 330
+#extension GL_ARB_gpu_shader_int64 : enable
+#extension GL_ARB_shader_bit_encoding : enable
+#extension GL_EXT_shader_integer_mix : enable
+#extension GL_MESA_shader_integer_functions : enable
+
+#pragma warning(off)
+
+/* Software IEEE floating-point rounding mode.
+ * GLSL spec section &#34;4.7.1 Range and Precision&#34;:
+ * The rounding mode cannot be set and is undefined.
+ * But here, we are able to define the rounding mode at the compilation time.
+ */
+#define FLOAT_ROUND_NEAREST_EVEN    0
+#define FLOAT_ROUND_TO_ZERO         1
+#define FLOAT_ROUND_DOWN            2
+#define FLOAT_ROUND_UP              3
+#define FLOAT_ROUNDING_MODE         FLOAT_ROUND_NEAREST_EVEN
+
+/* Relax propagation of NaN.  Binary operations with a NaN source will still
+ * produce a NaN result, but it won&#39;t follow strict IEEE rules.
+ */
+#define RELAXED_NAN_PROPAGATION
+
+/* Absolute value of a Float64 :
+ * Clear the sign bit
+ */
+uint64_t
+__fabs64(uint64_t __a)
+{
+   uvec2 a = unpackUint2x32(__a);
+   a.y &amp;= 0x7FFFFFFFu;
+   return packUint2x32(a);
+}
+
+/* Returns 1 if the double-precision floating-point value `a&#39; is a NaN;
+ * otherwise returns 0.
+ */
+bool
+__is_nan(uint64_t __a)
+{
+   uvec2 a = unpackUint2x32(__a);
+   return (0xFFE00000u &lt;= (a.y&lt;&lt;1)) &amp;&amp;
+      ((a.x != 0u) || ((a.y &amp; 0x000FFFFFu) != 0u));
+}
+
+/* Negate value of a Float64 :
+ * Toggle the sign bit
+ */
+uint64_t
+__fneg64(uint64_t __a)
+{
+   uvec2 a = unpackUint2x32(__a);
+   a.y ^= (1u &lt;&lt; 31);
+   return packUint2x32(a);
+}
+
+uint64_t
+__fsign64(uint64_t __a)
+{
+   uvec2 a = unpackUint2x32(__a);
+   uvec2 retval;
+   retval.x = 0u;
+   retval.y = mix((a.y &amp; 0x80000000u) | 0x3FF00000u, 0u, (a.y &lt;&lt; 1 | a.x) == 0u);
+   return packUint2x32(retval);
+}
+
+/* Returns the fraction bits of the double-precision floating-point value `a&#39;.*/
+uint
+__extractFloat64FracLo(uint64_t a)
+{
+   return unpackUint2x32(a).x;
+}
+
+uint
+__extractFloat64FracHi(uint64_t a)
+{
+   return unpack
+Please report at https://gitlab.freedesktop.org/mesa/mesa/-/issues
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Environment</td>
+        <td>
+          <pre>PIGLIT_SOURCE_DIR=&#34;/home/zmike/src/piglit&#34; PIGLIT_PLATFORM=&#34;mixed_glx_egl&#34;</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Command</td>
+        <td>
+          <pre>/home/zmike/src/piglit/bin/shader_runner /home/zmike/src/piglit/tests/spec/mesa_shader_integer_functions/execution/built-in-functions/vs-imulExtended-nonuniform.shader_test -auto -fbo</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>dmesg</td>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+    </table>
+    <p><a href="../index.html">Back to summary</a></p>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>spec@arb_texture_multisample@fb-completeness@2 - Details</title>
+    <link rel="stylesheet" href="../result.css">
+  </head>
+  <body>
+    <h1>Results for spec@arb_texture_multisample@fb-completeness@2</h1>
+    <h2>Overview</h2>
+    <div>
+      <p><b>Result:</b> pass</p>
+    </div>
+    <p><a href="../index.html">Back to summary</a></p>
+    <h2>Details</h2>
+    <table>
+      <tr>
+        <th>Detail</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Returncode</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td>0:00:00.155272</td>
+      </tr>
+      <tr>
+        <td>Stdout</td>
+        <td>
+          <pre>Testing fbo completeness for config &#39;single_msaa_color&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,1 fixed=1
+Sample 0 position 0.75 0.75
+Sample 1 position 0.25 0.25
+Testing fbo completeness for config &#39;msaa_mrt_color&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,1 fixed=1
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT1 samples=2 dims=64,64,1 fixed=1
+Sample 0 position 0.75 0.75
+Sample 1 position 0.25 0.25
+Testing fbo completeness for config &#39;msaa_mixed_texture_and_renderbuffer&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,1 fixed=1
+  Att target=GL_RENDERBUFFER att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,1 fixed=1
+Sample 0 position 0.75 0.75
+Sample 1 position 0.25 0.25
+Testing fbo completeness for config &#39;mixed_msaa_and_plain&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,1 fixed=1
+  Att target=GL_RENDERBUFFER att=GL_COLOR_ATTACHMENT1 samples=0 dims=64,64,1 fixed=1
+Testing fbo completeness for config &#39;msaa_mrt_color_nofixed&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,1 fixed=0
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT1 samples=2 dims=64,64,1 fixed=0
+Sample 0 position 0.75 0.75
+Sample 1 position 0.25 0.25
+Testing fbo completeness for config &#39;mix_fixedmode&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,1 fixed=1
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT1 samples=2 dims=64,64,1 fixed=0
+Testing fbo completeness for config &#39;mix_fixedmode_with_renderbuffer&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,1 fixed=0
+  Att target=GL_RENDERBUFFER att=GL_COLOR_ATTACHMENT1 samples=2 dims=64,64,1 fixed=1
+Testing fbo completeness for config &#39;msaa_depth&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_DEPTH_ATTACHMENT samples=2 dims=64,64,1 fixed=1
+Sample 0 position 0.75 0.75
+Sample 1 position 0.25 0.25
+Testing fbo completeness for config &#39;msaa_depth_stencil&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_DEPTH_ATTACHMENT samples=2 dims=64,64,1 fixed=1
+Sample 0 position 0.75 0.75
+Sample 1 position 0.25 0.25
+Testing fbo completeness for config &#39;msaa_classic_stencil&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,1 fixed=1
+  Att target=GL_RENDERBUFFER att=GL_STENCIL_ATTACHMENT samples=2 dims=64,64,1 fixed=1
+Sample 0 position 0.75 0.75
+Sample 1 position 0.25 0.25
+Testing fbo completeness for config &#39;msaa_color_layer&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE_ARRAY att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,2 fixed=1
+Sample 0 position 0.75 0.75
+Sample 1 position 0.25 0.25
+Testing fbo completeness for config &#39;msaa_color_nonzero_layer&#39;
+  Att target=GL_TEXTURE_2D_MULTISAMPLE_ARRAY att=GL_COLOR_ATTACHMENT0 samples=2 dims=64,64,2 fixed=1
+Sample 0 position 0.75 0.75
+Sample 1 position 0.25 0.25
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Stderr</td>
+        <td>
+          <pre>INTEL-MESA: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Environment</td>
+        <td>
+          <pre>PIGLIT_SOURCE_DIR=&#34;/home/zmike/src/piglit&#34; PIGLIT_PLATFORM=&#34;mixed_glx_egl&#34;</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Command</td>
+        <td>
+          <pre>/home/zmike/src/piglit/bin/arb_texture_multisample-fb-completeness 2 -auto -fbo</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>dmesg</td>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+    </table>
+    <p><a href="../index.html">Back to summary</a></p>
+  </body>
+</html>

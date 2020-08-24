@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>spec@oes_compressed_etc1_rgb8_texture@basic - Details</title>
+    <link rel="stylesheet" href="../result.css">
+  </head>
+  <body>
+    <h1>Results for spec@oes_compressed_etc1_rgb8_texture@basic</h1>
+    <h2>Overview</h2>
+    <div>
+      <p><b>Result:</b> pass</p>
+    </div>
+    <p><a href="../index.html">Back to summary</a></p>
+    <h2>Details</h2>
+    <table>
+      <tr>
+        <th>Detail</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Returncode</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td>0:00:00.552350</td>
+      </tr>
+      <tr>
+        <td>Stdout</td>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Stderr</td>
+        <td>
+          <pre>INTEL-MESA: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(incompatible format = GL_ETC1_RGB8_OES, type = GL_UNSIGNED_BYTE)
+Mesa: User error: GL_INVALID_ENUM in glCopyTexImage2D(internalFormat=GL_ETC1_RGB8_OES)
+Mesa: User error: GL_INVALID_OPERATION in glTexSubImage2D(invalid texture level 0)
+Mesa: User error: GL_INVALID_OPERATION in glCopyTexSubImage2D(invalid texture level 0)
+Mesa: User error: GL_INVALID_OPERATION in glCompressedTexSubImage2D(invalid texture level 0)
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Environment</td>
+        <td>
+          <pre>PIGLIT_SOURCE_DIR=&#34;/home/zmike/src/piglit&#34; PIGLIT_PLATFORM=&#34;mixed_glx_egl&#34;</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Command</td>
+        <td>
+          <pre>/home/zmike/src/piglit/bin/oes_compressed_etc1_rgb8_texture-basic -auto -fbo</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>dmesg</td>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+    </table>
+    <p><a href="../index.html">Back to summary</a></p>
+  </body>
+</html>

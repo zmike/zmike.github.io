@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>shaders@glsl-uniform-out-of-bounds-2 - Details</title>
+    <link rel="stylesheet" href="../result.css">
+  </head>
+  <body>
+    <h1>Results for shaders@glsl-uniform-out-of-bounds-2</h1>
+    <h2>Overview</h2>
+    <div>
+      <p><b>Result:</b> pass</p>
+    </div>
+    <p><a href="../index.html">Back to summary</a></p>
+    <h2>Details</h2>
+    <table>
+      <tr>
+        <th>Detail</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Returncode</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td>0:00:00.172393</td>
+      </tr>
+      <tr>
+        <td>Stdout</td>
+        <td>
+          <pre>active uniforms 2
+array &#39;v&#39; active elements 2
+array &#39;m&#39; active elements 2
+trying bogus location 4
+trying bogus location 65537
+trying bogus location -2
+trying bogus location 5
+trying bogus location 65538
+trying bogus location -3
+trying bogus location 6
+trying bogus location 65539
+trying bogus location -4
+trying bogus location 7
+trying bogus location 65540
+trying bogus location -5
+trying bogus location 8
+trying bogus location 65541
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Stderr</td>
+        <td>
+          <pre>INTEL-MESA: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=4)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=4)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=4)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=65537)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=65537)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=65537)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=-2)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=-2)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=-2)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=5)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=5)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=5)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=65538)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=65538)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=65538)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=-3)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=-3)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=-3)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=6)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=6)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=6)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=65539)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=65539)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=65539)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=-4)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=-4)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=-4)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=7)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=7)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=7)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=65540)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=65540)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=65540)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=-5)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=-5)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=-5)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=8)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=8)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=8)
+Mesa: User error: GL_INVALID_OPERATION in glUniform(location=65541)
+Mesa: User error: GL_INVALID_OPERATION in glUniformMatrix(location=65541)
+Mesa: User error: GL_INVALID_OPERATION in glGetUniform(location=65541)
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Environment</td>
+        <td>
+          <pre>PIGLIT_SOURCE_DIR=&#34;/home/zmike/src/piglit&#34; PIGLIT_PLATFORM=&#34;mixed_glx_egl&#34;</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Command</td>
+        <td>
+          <pre>/home/zmike/src/piglit/bin/glsl-uniform-out-of-bounds-2 -auto -fbo</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>dmesg</td>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+    </table>
+    <p><a href="../index.html">Back to summary</a></p>
+  </body>
+</html>

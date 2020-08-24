@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>spec@ext_packed_depth_stencil@depth_stencil texture - Details</title>
+    <link rel="stylesheet" href="../result.css">
+  </head>
+  <body>
+    <h1>Results for spec@ext_packed_depth_stencil@depth_stencil texture</h1>
+    <h2>Overview</h2>
+    <div>
+      <p><b>Result:</b> pass</p>
+    </div>
+    <p><a href="../index.html">Back to summary</a></p>
+    <h2>Details</h2>
+    <table>
+      <tr>
+        <th>Detail</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Returncode</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td>0:00:00.141327</td>
+      </tr>
+      <tr>
+        <td>Stdout</td>
+        <td>
+          <pre>Testing glTexImage with GL_DEPTH_STENCIL...
+Done.
+
+Testing glTexImage with GL_DEPTH24_STENCIL8...
+Done.
+
+Testing glTexStorage with GL_DEPTH_STENCIL...
+Done.
+
+Testing glTexStorage with GL_DEPTH24_STENCIL8...
+Done.
+
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Stderr</td>
+        <td>
+          <pre>INTEL-MESA: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+
+Mesa: User error: GL_INVALID_OPERATION in glTexImage3D(bad target for texture)
+Mesa: User error: GL_INVALID_OPERATION in glTexImage3D(bad target for texture)
+Mesa: User error: GL_INVALID_ENUM in glTexStorage1D(internalformat = GL_DEPTH_STENCIL)
+Mesa: User error: GL_INVALID_ENUM in glTexStorage2D(internalformat = GL_DEPTH_STENCIL)
+Mesa: User error: GL_INVALID_ENUM in glTexStorage3D(internalformat = GL_DEPTH_STENCIL)
+Mesa: User error: GL_INVALID_ENUM in glTexStorage2D(internalformat = GL_DEPTH_STENCIL)
+Mesa: User error: GL_INVALID_OPERATION in glTexStorage3D(bad target for texture)
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Environment</td>
+        <td>
+          <pre>PIGLIT_SOURCE_DIR=&#34;/home/zmike/src/piglit&#34; PIGLIT_PLATFORM=&#34;mixed_glx_egl&#34;</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Command</td>
+        <td>
+          <pre>/home/zmike/src/piglit/bin/ext_packed_depth_stencil-depth-stencil-texture -auto -fbo</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>dmesg</td>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+    </table>
+    <p><a href="../index.html">Back to summary</a></p>
+  </body>
+</html>

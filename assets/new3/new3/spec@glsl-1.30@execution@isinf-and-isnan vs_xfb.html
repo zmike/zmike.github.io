@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>spec@glsl-1.30@execution@isinf-and-isnan vs_xfb - Details</title>
+    <link rel="stylesheet" href="../result.css">
+  </head>
+  <body>
+    <h1>Results for spec@glsl-1.30@execution@isinf-and-isnan vs_xfb</h1>
+    <h2>Overview</h2>
+    <div>
+      <p><b>Result:</b> pass</p>
+    </div>
+    <p><a href="../index.html">Back to summary</a></p>
+    <h2>Details</h2>
+    <table>
+      <tr>
+        <th>Detail</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Returncode</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td>0:00:01.249144</td>
+      </tr>
+      <tr>
+        <td>Stdout</td>
+        <td>
+          <pre>    expression    expect isinf isnan sign  &gt;0?      value        delta
+           1000.0 finite false false    1  true         1000            0 OK
+         1000.0+z finite false false    1  true         1000            0 OK
+          -1000.0 finite false false   -1 false        -1000            0 OK
+        -1000.0+z finite false false   -1 false        -1000            0 OK
+            u_inf   +Inf  true false    1  true          inf         -nan OK
+      exp(1000.0)   +Inf  true false    1  true          inf         -nan OK
+    exp(1000.0+z)   +Inf  true false    1  true          inf         -nan OK
+      u_minus_inf   -Inf  true false   -1 false         -inf         -nan OK
+     -exp(1000.0)   -Inf  true false   -1 false         -inf         -nan OK
+   -exp(1000.0+z)   -Inf  true false   -1 false         -inf         -nan OK
+            u_nan    NaN false  true    1 false          nan          nan OK
+          0.0/0.0    NaN false  true    0 false         -nan          nan OK
+              z/z    NaN false  true   -1 false         -nan         -nan OK
+u_inf/u_minus_inf    NaN false  true   -1 false         -nan         -nan OK
+          z*u_inf    NaN false  true   -1 false         -nan         -nan OK
+u_inf+u_minus_inf    NaN false  true   -1 false         -nan         -nan OK
+        log(-1.0)    NaN false  true    0 false         -nan          nan OK
+      log(-1.0+z)    NaN false  true   -1 false         -nan         -nan OK
+       sqrt(-1.0)    NaN false  true    0 false         -nan          nan OK
+     sqrt(-1.0+z)    NaN false  true   -1 false         -nan         -nan OK
+clamp(u_nan, 0.0, 1.0) finite false false    0 false            0            0 OK
+min(u_two, u_nan) finite false false    1  true            2            0 OK
+max(u_two, u_nan) finite false false    1  true            2            0 OK
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Stderr</td>
+        <td>
+          <pre>INTEL-MESA: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
+
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Environment</td>
+        <td>
+          <pre>PIGLIT_SOURCE_DIR=&#34;/home/zmike/src/piglit&#34; PIGLIT_PLATFORM=&#34;mixed_glx_egl&#34;</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Command</td>
+        <td>
+          <pre>/home/zmike/src/piglit/bin/isinf-and-isnan vs_xfb -auto -fbo</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>dmesg</td>
+        <td>
+          <pre></pre>
+        </td>
+      </tr>
+    </table>
+    <p><a href="../index.html">Back to summary</a></p>
+  </body>
+</html>
