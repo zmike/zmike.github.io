@@ -141,7 +141,7 @@ nir_variable *pushconst = nir_variable_create(nir, nir_var_shader_in,
                                               glsl_struct_type(fields, 2, "struct", false), "pushconst");
 pushconst->data.location = VARYING_SLOT_VAR0;
 ```
-Next up, creating a variable to represent the push constant for the TCS stage that's going to be injected. SPIRV is always explicit about variable sizes, so it's important that everything match up 
+Next up, creating a variable to represent the push constant for the TCS stage that's going to be injected. SPIRV is always explicit about variable sizes, so it's important that everything match up with the size and offset in the push constant that's being emitted. The inner level value will be first in the push constant layout, so this has offset 0, and the outer level will be second, so this has an offset of `sizeof(gl_TessLevelInner)`, which is known to be 8.
 ```c
 nir_intrinsic_instr *load_inner = nir_intrinsic_instr_create(b.shader, nir_intrinsic_load_push_constant);
 load_inner->src[0] = nir_src_for_ssa(nir_imm_int(&b, offsetof(struct zink_push_constant, default_inner_level)));
@@ -167,10 +167,28 @@ for (unsigned i = 0; i < 4; i++) {
    nir_deref_instr *store_idx = nir_build_deref_array_imm(&b, nir_build_deref_var(&b, gl_TessLevelOuter), i);
    nir_store_deref(&b, store_idx, nir_channel(&b, &load_outer->dest.ssa, i), 0xff);
 }
+```
+Finally, the push constant data can be set to the created variables. Each variable needs two parts:
+* loading the push constant data
+* storing the loaded data to the variable
 
+Each load of the push constant data requires a base and a range along with a single source value. The base and the source are both the offset of the value being loaded (referenced from `struct zink_push_constant`), and the range is the size of the value, which is constant based on the variable.
 
+Using the same mechanic as the first intrinsic instruction that was created, each intrinsic is created and has its destination value initialized based on the size and number of components of the type being loaded (first load 2 values, then 4 values). A `src` is created based on the struct offset, which determines the offset at which data will be loaded, and the instruction is inserted using the `nir_builder`.
+
+Following this, the loaded value is then dereferenced for each array member and stored component-wise into the actual `gl_TessLevel*` variable.
+```c
 nir->info.tess.tcs_vertices_out = vertices_per_patch;
 nir_validate_shader(nir, "created");
 
 pushconst->data.mode = nir_var_mem_push_const;
 ```
+At last, the finishing touches. The `vertices_per_patch` value is set so that SPIRV can process the shader, and the shader is then validated by NIR to ensure that I didn't screw anything up.
+
+And then the push constant gets its variable type swizzled to being a push constant so that `ntv` can special case it. This is [very illegal](https://www.youtube.com/watch?v=I7Tps0M-l64&hd=1), and so it has to happen at the point when absolutely no other NIR passes will be run on the shader or everything will explode.
+
+But it's totally safe, I promise.
+
+With all this done, the only remaining step is to set up the push constant [in the Vulkan pipeline](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#descriptorsets-push-constants), which is trivial by comparison.
+
+The TCS is picked up automatically after being jammed into the existing shader stages, and everything works like it should.
