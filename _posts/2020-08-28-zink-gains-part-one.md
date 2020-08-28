@@ -3,17 +3,17 @@ published: false
 ---
 ## A Different Friday
 
-Taking a break from talking about all this crazy feature nonsense, let's get into some optimization. Specifically, why have some of these piglit tests been taking so damn long to run?
+Taking a break from talking about all this crazy feature nonsense, let's get back to things that actually matter. Like gains. Specifically, why have some of these piglit tests been taking so damn long to run?
 
 A great example of this is `spec@!opengl 2.0@tex3d-npot`.
 
-Mesa 20.3:
+**Mesa 20.3:**
 `MESA_LOADER_DRIVER_OVERRIDE=zink bin/tex3d-npot   24.65s user 83.38s system 73% cpu 2:27.31 total`
 
-Mesa `zmike/zink-wip`:
+**Mesa zmike/zink-wip:**
 `MESA_LOADER_DRIVER_OVERRIDE=zink bin/tex3d-npot   6.09s user 5.07s system 48% cpu 23.122 total`
 
-Yes, currently some changes I've done allow this test to complete in **16% of the time** that it requires in the released version of Mesa. How did this happen?
+Yes, currently some changes I've done allow this test to pass in **16% of the time** that it requires in the released version of Mesa. How did this happen?
 
 ## Speed Loop
 The core of the problem at present is zink's reliance on explicit fencing without enough info to know when to actually wait on a fence, as is vaguely referenced in [this ticket](https://gitlab.freedesktop.org/mesa/mesa/-/issues/2966), though the specific test case there still has yet to be addressed. In short, here's the problem codepath that's being hit for the above test:
@@ -26,24 +26,8 @@ zink_transfer_map(struct pipe_context *pctx,
                   const struct pipe_box *box,
                   struct pipe_transfer **transfer)
 {
-   struct zink_context *ctx = zink_context(pctx);
-   struct zink_screen *screen = zink_screen(pctx->screen);
-   struct zink_resource *res = zink_resource(pres);
-
-   struct zink_transfer *trans = slab_alloc(&ctx->transfer_pool);
-   if (!trans)
-      return NULL;
-
-   memset(trans, 0, sizeof(*trans));
-   pipe_resource_reference(&trans->base.resource, pres);
-
-   trans->base.resource = pres;
-   trans->base.level = level;
-   trans->base.usage = usage;
-   trans->base.box = *box;
-
-   void *ptr;
-   if (pres->target == PIPE_BUFFER) {
+  ...
+  if (pres->target == PIPE_BUFFER) {
       if (usage & PIPE_TRANSFER_READ) {
          /* need to wait for rendering to finish
           * TODO: optimize/fix this to be much less obtrusive
@@ -66,7 +50,7 @@ Regardless of whether the resource in question even has pending writes.
 
 Or whether it's ever had anything written to it at all.
 
-This patch was added at my request to fix up a huge number of test cases we were seeing that failed due to cases of write -> read on a texture without waiting for the write to complete, and it was added with the understanding that at some time in the future it would be improved to both ensure synchronization and not incur such a massive performance hit.
+This patch was added at my request to fix up a huge number of test cases we were seeing that failed due to cases of write -> read on without waiting for the write to complete, and it was added with the understanding that at some time in the future it would be improved to both ensure synchronization and not incur such a massive performance hit.
 
 That time has passed, and we are now in the future.
 
@@ -125,7 +109,7 @@ zink_fence_finish(struct zink_screen *screen, struct zink_fence *fence,
    return success;
 }
 ```
-Not much to see here. I've made some additions:
+Not much to see here. Normal fence stuff. I've made some additions:
 ```c
 static inline void
 fence_remove_resource_access(struct zink_fence *fence, struct zink_resource *res)
@@ -139,8 +123,6 @@ zink_fence_finish(struct zink_screen *screen, struct zink_fence *fence,
 {
    bool success = vkWaitForFences(screen->dev, 1, &fence->fence, VK_TRUE,
                                   timeout_ns) == VK_SUCCESS;
-   if (success && fence->active_queries)
-      zink_prune_queries(screen, fence);
    if (success) {
       if (fence->active_queries)
          zink_prune_queries(screen, fence);
@@ -184,6 +166,7 @@ zink_transfer_map(struct pipe_context *pctx,
                   struct pipe_transfer **transfer)
 {
    ...
+   struct zink_resource *res = zink_resource(pres);
    uint32_t batch_uses = get_resource_usage(res);
    if (pres->target == PIPE_BUFFER) {
       if ((usage & PIPE_TRANSFER_READ && batch_uses >= ZINK_RESOURCE_ACCESS_WRITE) ||
@@ -199,7 +182,7 @@ zink_transfer_map(struct pipe_context *pctx,
 * If the transfer_map is for reading, only wait for rendering if the resource has pending writes
 * If the transfer_map is for writing, wait if the resource has any pending usage
 
-When this resource usage flagging is properly applied to all types of resources, huge performance gains abound even despite how simple it is. For the above test case, flagging the sampler view resources with read-only access continues to ensure their lifetimes while enabling them to be concurrently read from while draw commands are still pending, which yields the improvements to the `tex3d-npot` test case above.
+When this resource usage flagging is properly applied to all types of resources, huge performance gains abound even despite how simple it is. For the above test case, flagging the sampler view resources with read-only access continues to ensure their lifetimes while enabling them to be concurrently read from when draw commands are still pending, which yields the improvements to the `tex3d-npot` test case above.
 
 ## Future Gains
 I'm always on the lookout for some gains, so I've already done and flagged some future work to be done here as well:
