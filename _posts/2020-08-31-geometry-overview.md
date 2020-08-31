@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## At Last, Geometry Shaders
 
