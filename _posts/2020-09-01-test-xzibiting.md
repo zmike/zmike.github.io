@@ -1,7 +1,7 @@
 ---
 published: false
 ---
-## Benchmark While You Test
+## Benchmarking vs Testing
 
 Just a quick post for today to talk about a small project I undertook this morning.
 
@@ -11,7 +11,7 @@ It's practically all I do when I'm not dumping my random wip code by the trucklo
 
 The problem with this approach is that it doesn't leave much time for performance improvements. How can I possibly have time to run benchmarks if I'm already spending all my time running tests?
 
-# Motivation
+## Motivation
 As one of the greatest bench markers of all time once said, [**If you want to turn a vision into reality, you have to give 100% and never stop believing in your dream**](https://www.goodreads.com/quotes/1038255-if-you-want-to-turn-a-vision-into-reality-you).
 
 Thus I decided to look for those gains while I ran tests.
@@ -20,6 +20,7 @@ Piglit already possesses facilities for providing HTML summaries of all tests (s
 
 Until now.
 
+## The Future Is Here
 With [my latest MR](https://gitlab.freedesktop.org/mesa/piglit/-/merge_requests/375), the HTML view can show off those big gains (or losses) that have been quietly accumulating through all these high volume sets of unit tests:
 
 ![piglit-timing.png]({{site.url}}/assets/piglit-timing.png)
