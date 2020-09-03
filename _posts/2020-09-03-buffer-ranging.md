@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## A Quick Optimization
 
@@ -55,7 +55,7 @@ Lots of places. Here's a quick list:
 * resource unmap and flush hooks
 
 ## Some Numbers
-The tests are still running to see what happens here, but I found some interesting improvements using my piglit timediff display after rebasing my branch yesterday:
+The tests are still running to see what happens here, but I found some interesting improvements using my piglit timediff display after rebasing my branch yesterday for the first time in a bit and running the tests again overnight:
 
 ![piglit-dmat.png]({{site.url}}/assets/piglit-dmat.png)
 
