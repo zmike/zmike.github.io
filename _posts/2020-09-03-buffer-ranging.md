@@ -53,3 +53,10 @@ Lots of places. Here's a quick list:
 * `struct pipe_context::copy_region`
 * `struct pipe_context::create_stream_output_target`
 * resource unmap and flush hooks
+
+## Some Numbers
+The tests are still running to see what happens here, but I found some interesting improvements using my piglit timediff display after rebasing my branch yesterday:
+
+![piglit-dmat.png]({{site.url}}/assets/piglit-dmat.png)
+
+I haven't made any changes to this codepath myself (that I'm aware of), so it looks like I've pulled in some improvement that's massively cutting down the time required for the codepath that handles implicit 32bit -> 64bit conversions, and timediff picked it up.
