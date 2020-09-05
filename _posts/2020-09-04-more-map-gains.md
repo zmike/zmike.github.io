@@ -23,5 +23,6 @@ The reason this fence continued to be needed comes down to barrier usage for des
 
 Instead, `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL` can be used for sampler images since they're read-only. This differs from `VK_IMAGE_LAYOUT_GENERAL` in that `VK_IMAGE_LAYOUT_GENERAL` contains both read and write—not what's actually going on in this case given that sampler images are read-only.
 
-
+## No Other Results
+I'd planned to post more timediffs from some piglit results, but I hit some weird i915 bugs and so the tests have yet to complete after ~14 hours. More to come next week.
 
