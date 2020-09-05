@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## The Optimizations Continue
 [Optimizing transfer_map](https://gitlab.freedesktop.org/mesa/mesa/-/issues/2966) is one of the first issues I created, and it's definitely one of the most important, at least as it pertains to unit tests. So many unit tests perform reads on buffers that it's crucial to ensure no unnecessary flushing or stalling is happening here.
@@ -25,4 +25,3 @@ Instead, `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL` can be used for sampler imag
 
 ## No Other Results
 I'd planned to post more timediffs from some piglit results, but I hit some weird i915 bugs and so the tests have yet to complete after ~14 hours. More to come next week.
-
