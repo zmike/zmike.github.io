@@ -61,7 +61,7 @@ This is the future, so I'm now using Eric Anholt's [recent helper function](http
 static bool
 lower_draw_params_instr(nir_builder *b, nir_instr *in, void *data)
 {
-   if (in->type == nir_instr_type_intrinsic)
+   if (in->type != nir_instr_type_intrinsic)
       return false;
    nir_intrinsic_instr *instr = nir_instr_as_intrinsic(in);
    if (instr->intrinsic != nir_intrinsic_load_base_vertex)
