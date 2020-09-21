@@ -9,7 +9,7 @@
     <h1>Results for spec@arb_gl_spirv@execution@ssbo@matrix@complex</h1>
     <h2>Overview</h2>
     <div>
-      <p><b>Result:</b> crash</p>
+      <p><b>Result:</b> fail</p>
     </div>
     <p><a href="../index.html">Back to summary</a></p>
     <h2>Details</h2>
@@ -20,16 +20,21 @@
       </tr>
       <tr>
         <td>Returncode</td>
-        <td>-6</td>
+        <td>1</td>
       </tr>
       <tr>
         <td>Time</td>
-        <td>0:00:00.648799</td>
+        <td>0:00:00.901848</td>
       </tr>
       <tr>
         <td>Stdout</td>
         <td>
-          <pre></pre>
+          <pre>Running on SPIR-V mode
+Probe color at (0,0)
+  Expected: 0 255 0 255
+  Observed: 255 0 0 255
+Test failure on line 702
+</pre>
         </td>
       </tr>
       <tr>
@@ -37,7 +42,6 @@
         <td>
           <pre>INTEL-MESA: warning: Performance support disabled, consider sysctl dev.i915.perf_stream_paranoid=0
 
-shader_runner: ../src/intel/vulkan/anv_nir_apply_pipeline_layout.c:384: lower_res_index_intrinsic: Assertion `bind_layout-&gt;dynamic_offset_index &lt; MAX_DYNAMIC_BUFFERS&#39; failed.
 </pre>
         </td>
       </tr>
