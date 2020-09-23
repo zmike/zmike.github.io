@@ -27,6 +27,7 @@ The biggest problem was figuring out how to get anywhere with so many draw calls
 There was a lot going on. This was by far the biggest thing I'd had to fix, and it's much more difficult to debug a game-like application than it is a unit test. With that said, and since there's not actually any documentation about "What do I do if some of my frame isn't drawing with color?" for people working on drivers, here were some of the things I looked into:
 
 * Disabling Depth Testing
+
 Just to check. On IRIS, which is my reference for these types of things, the change gave some neat results:
 
 ![heaven-nodepth.png]({{site.url}}/assets/heaven-nodepth.png)
@@ -36,11 +37,13 @@ How bout that.
 On zink, I got the same thing, except there was no color, and it wasn't very interesting.
 
 * Checking sampler resources for depth buffers
+
 On an #executive suggestion, I looked into whether a z/s buffer had snuck into my sampler buffers and was thus providing bogus pixel data.
 
 It hadn't.
 
 * Checking Fragment Shader Outputs
+
 This was a runtime version of my usual shader debugging, wherein I try to isolate the pixels in a region to a specific color based on a conditional, which then lets me determine which path in the shader is broken. To do this, I added a helper function in `ntv`:
 ```c
 static SpvId
@@ -76,11 +79,13 @@ Thus, I could set my environment in gdb with e.g., `set env TEST_SHADER=GLSL271`
 But ultimately, even though I did find the shaders that were being used for the more general material draws, this ended up being another dead end.
 
 * Verifying Blend States
+
 This took me the longest since I had to figure out a way to match up the Dr. Render states to the runtime states that I could see. I eventually settled on adding breakpoints based on index buffer size, as the chart provided by Dr. Render had this in the vertex state, which made things simple.
 
 But alas, zink was doing all the right blending too.
 
 * Complaining
+
 As usual, this was my last resort, but it was also my most powerful weapon that I couldn't abuse too frequently, lest people come to the conclusion that I don't actually know what I'm doing.
 
 Which I do.
