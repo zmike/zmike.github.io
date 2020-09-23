@@ -119,7 +119,7 @@ lower_dual_blend(nir_shader *shader)
    return progress;
 }
 ```
-In short, D3D expects to blend two inputs based on their locations, but in Vulkan and OpenGL, the blending is based on index. So here, I've just changed the location of `gl_FragData[1]` to match `gl_FragData[0]` and then incremented the index, because [Fragment outputs identified with an Index of zero are directed to the first input of the blending unit associated with the corresponding Location. Outputs identified with an Index of one are directed to the second input of the corresponding blending unit](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#interfaces-fragmentoutput).
+In short, D3D expects to blend two outputs based on their locations, but in Vulkan and OpenGL, the blending is based on index. So here, I've just changed the location of `gl_FragData[1]` to match `gl_FragData[0]` and then incremented the index, because [Fragment outputs identified with an Index of zero are directed to the first input of the blending unit associated with the corresponding Location. Outputs identified with an Index of one are directed to the second input of the corresponding blending unit](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#interfaces-fragmentoutput).
 
 And now nice things can be had:
 
