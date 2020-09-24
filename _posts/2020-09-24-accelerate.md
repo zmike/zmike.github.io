@@ -169,6 +169,8 @@ What happened next was shocking:
 
 ![endpost1.png]({{site.url}}/assets/bench1/endpost1.png)
 
+18 fps.
+
 It was a sudden 20% fps gain, but it was only the beginning.
 
 More on this tomorrow.
