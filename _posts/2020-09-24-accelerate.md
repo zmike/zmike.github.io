@@ -161,4 +161,4 @@ What happened next was shocking:
 
 ![endpost1.png]({{site.url}}/bench1/endpost1.png)
 
-But it was only the beginning.
+It was a 20% fps gain, but it was only the beginning.
