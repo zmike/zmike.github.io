@@ -13,7 +13,7 @@ But I wanted a break, and I wanted to learn some new parts of the graphics pipel
 
 For the moment, I've been focusing on the Unigine Heaven benchmark since there's tons of room for improvement, though I'm planning to move on from that once I get bored and/or hit a wall. Here's my starting point, which is taken from the patch in my branch with the summary `zink: add batch flag to determine if batch is currently in renderpass`, some 300ish patches ahead of the main branch's tip:
 
-![start.png]({{site.url}}/bench1/start.png)
+![start.png]({{site.url}}/assets/bench1/start.png)
 
 This is running as `./heaven_x64 -project_name Heaven -data_path ../ -engine_config ../data/heaven_4.0.cfg -system_script heaven/unigine.cpp -sound_app openal -video_app opengl -video_multisample 0 -video_fullscreen 0 -video_mode 3 -extern_define ,RELEASE,LANGUAGE_EN,QUALITY_LOW,TESSELLATION_DISABLED -extern_plugin ,GPUMonitor`, and I'm going to be posting screenshots from roughly the same point in the demo as I progress to gauge progress.
 
@@ -90,7 +90,7 @@ index a9418430bb7..f07ae658115 100644
  ```
  Amazing, I know. Let's see how much the fps changes:
  
- ![norp.png]({{site.url}}/bench1/norp.png)
+ ![norp.png]({{site.url}}/assets/bench1/norp.png)
  
  Wait a minute. That's basically within the margin of error! It is actually a consistent 1-2 fps gain, even a little more in some other parts, but it seemed like it should've been more now that all the command buffers are being gloriously saturated, right?
  
@@ -142,7 +142,7 @@ It was at this moment that a dim spark flickered to life, reminding me of the [i
 
 Let's see what happens when I add those patches in:
 
-![nofence.png]({{site.url}}/bench1/nofence.png)
+![nofence.png]({{site.url}}/assets/bench1/nofence.png)
 
 Well. I expected a huge performance win here, but it seems that we still can't fully utilize all these changes. Every time descriptors are updated, the batch ends up hitting that arbitrary 1000 descriptor set limit, and then it submits the command buffer, so there's still multiple batches being used for each frame.
 
@@ -159,7 +159,7 @@ That's when I decided to do some desk curls.
 
 What happened next was shocking:
 
-![endpost1.png]({{site.url}}/bench1/endpost1.png)
+![endpost1.png]({{site.url}}/assets/bench1/endpost1.png)
 
 It was a sudden 20% fps gain, but it was only the beginning.
 
