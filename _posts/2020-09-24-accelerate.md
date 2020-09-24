@@ -15,7 +15,7 @@ For the moment, I've been focusing on the Unigine Heaven benchmark since there's
 
 ![start.png]({{site.url}}/assets/bench1/start.png)
 
-This is running as `./heaven_x64 -project_name Heaven -data_path ../ -engine_config ../data/heaven_4.0.cfg -system_script heaven/unigine.cpp -sound_app openal -video_app opengl -video_multisample 0 -video_fullscreen 0 -video_mode 3 -extern_define ,RELEASE,LANGUAGE_EN,QUALITY_LOW,TESSELLATION_DISABLED -extern_plugin ,GPUMonitor`, and I'm going to be posting screenshots from roughly the same point in the demo as I progress to gauge progress.
+This is 14 fps running as `./heaven_x64 -project_name Heaven -data_path ../ -engine_config ../data/heaven_4.0.cfg -system_script heaven/unigine.cpp -sound_app openal -video_app opengl -video_multisample 0 -video_fullscreen 0 -video_mode 3 -extern_define ,RELEASE,LANGUAGE_EN,QUALITY_LOW,TESSELLATION_DISABLED -extern_plugin ,GPUMonitor`, and I'm going to be posting screenshots from roughly the same point in the demo as I progress to gauge progress.
 
 Is this an amazing way to do a benchmark?
 
@@ -88,13 +88,15 @@ index a9418430bb7..f07ae658115 100644
     return batch;
  }
  ```
- Amazing, I know. Let's see how much the fps changes:
+Amazing, I know. Let's see how much the fps changes:
  
- ![norp.png]({{site.url}}/assets/bench1/norp.png)
+![norp.png]({{site.url}}/assets/bench1/norp.png)
  
- Wait a minute. That's basically within the margin of error! It is actually a consistent 1-2 fps gain, even a little more in some other parts, but it seemed like it should've been more now that all the command buffers are being gloriously saturated, right?
+Wait a minute. That's basically within the margin of error!
+
+It is actually a consistent 1-2 fps gain, even a little more in some other parts, but it seemed like it should've been more now that all the command buffers are being gloriously saturated, right?
  
- Well, not exactly. Here's a fun bit of code from the descriptor updating function:
+Well, not exactly. Here's a fun bit of code from the descriptor updating function:
  
  ```c
 struct zink_batch *batch = zink_batch_rp(ctx);
@@ -144,7 +146,7 @@ Let's see what happens when I add those patches in:
 
 ![nofence.png]({{site.url}}/assets/bench1/nofence.png)
 
-Well. I expected a huge performance win here, but it seems that we still can't fully utilize all these changes. Every time descriptors are updated, the batch ends up hitting that arbitrary 1000 descriptor set limit, and then it submits the command buffer, so there's still multiple batches being used for each frame.
+Well. I expected a huge performance win here, but it seems that we still can't fully utilize all these changes and are still stuck at 15 fps. Every time descriptors are updated, the batch ends up hitting that arbitrary 1000 descriptor set limit, and then it submits the command buffer, so there's still multiple batches being used for each frame.
 
 ## Getting Mad
 So naturally, I tried increasing the limit.
