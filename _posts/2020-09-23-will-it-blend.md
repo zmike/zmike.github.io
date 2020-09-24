@@ -8,7 +8,7 @@ For the past few days, I've been trying to fix a troublesome bug. Specifically, 
 Thus I embarked on adventure.
 
 ## First: The Problem
-![heaven-pre.png]({{site.url}}/assets/heaven-pre.png)
+[![heaven-pre.png]({{site.url}}/assets/heaven-pre.png)]({{site.url}}/assets/heaven-pre.png)
 
 This was the starting point. The thing ran just fine, but without valid frames drawn, it's hard to call it a test of very much other than how many bugs I can pack into a single frame.
 
@@ -18,7 +18,7 @@ Naturally I assumed that this was going to be some bug in zink's handling of som
 
 I had no idea what the problem was. I phoned [Dr. Render](https://renderdoc.org), as we all do when facing issues like this, and I was told that I had problems.
 
-![heaven-renderdoc.png]({{site.url}}/assets/heaven-renderdoc.png)
+[![heaven-renderdoc.png]({{site.url}}/assets/heaven-renderdoc.png)]({{site.url}}/assets/heaven-renderdoc.png)
 
 Lots of problems.
 
@@ -30,7 +30,7 @@ There was a lot going on. This was by far the biggest thing I'd had to fix, and 
 
 Just to check. On IRIS, which is my reference for these types of things, the change gave some neat results:
 
-![heaven-nodepth.png]({{site.url}}/assets/heaven-nodepth.png)
+[![heaven-nodepth.png]({{site.url}}/assets/heaven-nodepth.png)]({{site.url}}/assets/heaven-nodepth.png)
 
 How bout that.
 
@@ -74,7 +74,7 @@ if (s->info.stage == MESA_SHADER_FRAGMENT) {
 ```
 Thus, I could set my environment in gdb with e.g., `set env TEST_SHADER=GLSL271` and then zink would swap the output of the fragment shader named `GLSL271` to RED, which let me determine what various shaders were being used for. When I found the shader used for the lamps, things got LIT:
 
-![heaven-lamps.png]({{site.url}}/assets/heaven-lamps.png)
+[![heaven-lamps.png]({{site.url}}/assets/heaven-lamps.png)]({{site.url}}/assets/heaven-lamps.png)
 
 But ultimately, even though I did find the shaders that were being used for the more general material draws, this ended up being another dead end.
 
@@ -123,6 +123,6 @@ In short, D3D expects to blend two outputs based on their locations, but in Vulk
 
 And now nice things can be had:
 
-![heaven-post.png]({{site.url}}/assets/heaven-post.png)
+[![heaven-post.png]({{site.url}}/assets/heaven-post.png)]({{site.url}}/assets/heaven-post.png)
 
 Tune in tomorrow when I strap zink to a rocket and begin counting down to blastoff.
