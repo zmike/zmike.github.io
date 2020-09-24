@@ -64,6 +64,7 @@ This is a lot to take in, so I'll cut to some conclusions that I drew from these
   * sure would be a disaster if someone were to try removing them
 * probably we could do some disk caching for pipeline objects so that successive runs of applications could use pre-baked objects and avoid needing to create any
 * descriptor set allocation is going to be a massive performance hit for any application which does lots of draws per frame since each draw command allocates its own (huge) descriptor set
+* the 1000 descriptor set limit is going to be hit constantly for for any application which does lots of draws per frame
 
 There's a lot more I could go into here, but this is already a lot.
 
