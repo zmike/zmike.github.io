@@ -3,13 +3,13 @@ published: true
 ---
 ## Finally, Performance
 
-For a long time now, I've been writing about various work I've done in the course of getting to GL 4.6. This has generally been feature implementation work, with an occasional side of bug hunting and fixing, and so I haven't been too concerned about performance.
+For a long time now, I've been writing about various work I've done in the course of getting to GL 4.6. This has generally been feature implementation work with an occasional side of bug hunting and fixing and so I haven't been too concerned about performance.
 
 I'm not done with feature work. There's still tons of things missing that I'm planning to work on.
 
 I'm not done with bug hunting or fixing. There's still tons of bugs (like how currently `spec@!opengl 1.1@streaming-texture-leak` ooms my system and crashes all the other tests trying to run in parallel) that I'm going to fix.
 
-But I wanted a break, and I wanted to learn some new parts of the driver instead of just slapping more extensions in.
+But I wanted a break, and I wanted to learn some new parts of the graphics pipeline instead of just slapping more extensions in.
 
 For the moment, I've been focusing on the Unigine Heaven benchmark since there's tons of room for improvement, though I'm planning to move on from that once I get bored and/or hit a wall. Here's my starting point, which is taken from the patch in my branch with the summary `zink: add batch flag to determine if batch is currently in renderpass`, some 300ish patches ahead of the main branch's tip:
 
