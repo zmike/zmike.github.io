@@ -142,7 +142,7 @@ zink_flush(struct pipe_context *pctx,
 Oh. So really every time zink "finishes" a frame in this benchmark (which has already stalled hundreds of times up to this point), it then waits on that frame to finish instead of letting things outside the driver worry about that.
 
 ## Borrowing Code
-It was at this moment that a dim spark flickered to life, reminding me of the [in-progress MR from Antonio Caggiano](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/6188) for caching surfaces on batches. In particular, it reminded me that his series has a patch which removes the above monstrosity.
+It was at this moment that a dim spark flickered to life in my memories, reminding me of the [in-progress MR from Antonio Caggiano](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/6188) for caching surfaces on batches. In particular, it reminded me that his series has a patch which removes the above monstrosity.
 
 Let's see what happens when I add those patches in:
 
