@@ -54,7 +54,7 @@ This is a lot to take in, so I'll cut to some conclusions that I drew from these
 * each sequential draw after the fourth one causes explicit fence waiting
   * batches must reset their state before being reused, and prior to this they wait on their fence
   * there are 4 batches
-  * this means that any time a frame contains more draws, zink is pausing to wait for batches to finish so it can get a valid command buffer to use
+  * this means that any time a frame contains more than 4 draws, zink is pausing to wait for batches to finish so it can get a valid command buffer to use
   * the Heaven benchmark contains hundreds of draw commands per frame
   * yikes
 * definitely there could be better barrier usage
