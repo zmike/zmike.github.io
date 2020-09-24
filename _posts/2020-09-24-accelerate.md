@@ -94,7 +94,7 @@ Amazing, I know. Let's see how much the fps changes:
  
 ![norp.png]({{site.url}}/assets/bench1/norp.png)
  
-Wait a minute. That's basically within the margin of error!
+15?! Wait a minute. That's basically within the margin of error!
 
 It is actually a consistent 1-2 fps gain, even a little more in some other parts, but it seemed like it should've been more now that all the command buffers are being gloriously saturated, right?
  
