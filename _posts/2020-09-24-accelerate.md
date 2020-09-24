@@ -146,6 +146,7 @@ Let's see what happens when I add those patches in:
 
 Well. I expected a huge performance win here, but it seems that we still can't fully utilize all these changes. Every time descriptors are updated, the batch ends up hitting that arbitrary 1000 descriptor set limit, and then it submits the command buffer, so there's still multiple batches being used for each frame.
 
+## Getting Mad
 So naturally, I tried increasing the limit.
 
 Then I increased it again.
@@ -156,5 +157,8 @@ And now I had exactly one flush per frame, but my fps was still fixed at a measl
 
 That's when I decided to do some desk curls.
 
-## Descriptors
-Once I was sufficiently pumped up, I decided to wade into descriptor updating once more, as it was clear to me that there were problems here.
+What happened next was shocking:
+
+![endpost1.png]({{site.url}}/bench1/endpost1.png)
+
+But it was only the beginning.
