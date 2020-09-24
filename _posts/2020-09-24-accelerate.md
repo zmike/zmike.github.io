@@ -39,6 +39,7 @@ In order to figure out the most significant performance improvements for zink, i
 * each batch, upon reaching 1000 descriptor sets, will automatically submit its command buffer and cycle to the next batch
 * each batch has 1 fence
 * each batch, before being reused, waits on its fence and then resets its state
+* each batch, during its state reset, destroys all its allocated descriptor sets
 * renderpasses are started and ended on a given batch as needed
 * renderpasses, when ended, trigger queue submission for the given command buffer
 * renderpasses allocate their descriptor set on-demand just prior to the actual `vkCmdBeginRenderPass` call
