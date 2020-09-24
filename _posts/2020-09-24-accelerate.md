@@ -148,7 +148,11 @@ Let's see what happens when I add those patches in:
 
 ![nofence.png]({{site.url}}/assets/bench1/nofence.png)
 
-Well. I expected a huge performance win here, but it seems that we still can't fully utilize all these changes and are still stuck at 15 fps. Every time descriptors are updated, the batch ends up hitting that arbitrary 1000 descriptor set limit, and then it submits the command buffer, so there's still multiple batches being used for each frame.
+15.
+
+Again.
+
+I expected a huge performance win here, but it seems that we still can't fully utilize all these changes and are still stuck at 15 fps. Every time descriptors are updated, the batch ends up hitting that arbitrary 1000 descriptor set limit, and then it submits the command buffer, so there's still multiple batches being used for each frame.
 
 ## Getting Mad
 So naturally, I tried increasing the limit.
