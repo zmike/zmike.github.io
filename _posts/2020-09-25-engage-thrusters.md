@@ -68,10 +68,10 @@ I decided to change things up a bit here.
 
 ```mermaid
 stateDiagram
+[*] --> create generic descriptorset layout for batch
 [*] --> start batch
 start batch --> begin renderpass
-begin renderpass --> create generic descriptorset layout for batch
-create generic descriptorset layout for batch -> allocate descriptorsets for batch
+begin renderpass --> allocate descriptorsets for batch
 allocate descriptorsets for batch --> draw
 draw --> end renderpass
 end renderpass --> begin renderpass
@@ -85,11 +85,11 @@ batch is reset -> start batch
 This is the current way of things. My plan was something more like this:
 ```mermaid
 stateDiagram
+[*] --> create specific descriptorset layout for program
 [*] --> start batch
 start batch --> begin renderpass
-begin renderpass --> create specific descriptorset layout for program
-create specific descriptorset layout for program -> allocate descriptorsets for program
-allocate descriptorsets for program --> draw
+begin renderpass --> get descriptorset from program
+get descriptorset from program --> draw
 draw --> end renderpass
 end renderpass --> begin renderpass
 end renderpass --> submit batch
@@ -99,3 +99,20 @@ reset batch --> return used descriptorsets to their programs
 reset batch --> batch is reset
 batch is reset -> start batch
 ```
+Where `get descriptorset from program` would look something like:
+```mermaid
+stateDiagram
+[*] --> create hash for current descriptor state
+create hash for current descriptor state -> check program's descriptorset cache for matching set
+check program's descriptorset cache for matching set --> match found
+match found --> return descriptor set
+check program's descriptorset cache for matching set --> match not found
+match not found --> check for unused set
+check for unused set --> unused set found
+unused set found --> associate set with descriptor state
+associate set with descriptor state --> return descriptor set
+check for unused set --> unused set not found
+unused set not found --> allocate new set
+allocate new set --> associate set with descriptor state
+```
+In this way, I'd get to conserve some sets and reuse them across draw calls even between different command buffers since I could track whether they were in use and avoid modifying them in any way.
