@@ -65,3 +65,17 @@ Now that I'd unblocked that bottleneck, I went back to the list and checked the 
 * the 1000 descriptor set limit is going to be hit constantly for for any application which does lots of draws per frame
 
 I decided to change things up a bit here.
+
+```mermaid
+stateDiagram
+[*] --> start batch
+start batch --> begin renderpass
+begin renderpass --> allocate descriptorsets
+allocate descriptorsets --> draw
+draw --> end renderpass
+end renderpass --> begin renderpass
+end renderpass --> submit batch
+submit batch --> batch finishes
+batch finishes --> reset batch
+reset batch -> start batch
+
