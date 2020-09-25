@@ -95,9 +95,9 @@ And now that I've cleared up any misunderstandings there, I'm not ashamed to say
 I wasn't wrong.
 
 ## The Magic Of Dual Blending
-It turns out that the Heaven benchmark is buggy and expects the D3D semantics for dual blending, which is why mesa knows this and informs drivers that they need to enable workarounds if they have the need.
+It turns out that the Heaven benchmark is buggy and expects the D3D semantics for dual blending, which is why mesa knows this and informs drivers that they need to enable workarounds if they have the need, specifically `dual_color_blend_by_location=true` which informs the driver that it needs to adjust the `Location` and `Index` of `gl_FragData[1]` from D3D semantics to OpenGL/Vulkan.
 
-As usual, the folks at Intel with their encyclopedic knowledge of how I needed to make my code better were quick to point out the exact problem, which then just left me with the relatively simple tasks of:
+As usual, the folks at Intel with their encyclopedic knowledge were quick to point out the exact problem, which then just left me with the relatively simple tasks of:
 * hooking zink up to the driconf build
 * checking driconf at startup so zink can get info on these application workarounds/overrides
 * adding shader keys for forcing the dual blending workaround
