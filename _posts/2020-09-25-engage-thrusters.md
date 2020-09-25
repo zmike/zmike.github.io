@@ -70,12 +70,14 @@ I decided to change things up a bit here.
 stateDiagram
 [*] --> start batch
 start batch --> begin renderpass
-begin renderpass --> allocate descriptorsets
-allocate descriptorsets --> draw
+begin renderpass --> create generic descriptorset layout for program
+create generic descriptorset layout for program -> allocate descriptorsets for batch
+allocate descriptorsets for batch --> draw
 draw --> end renderpass
 end renderpass --> begin renderpass
 end renderpass --> submit batch
 submit batch --> batch finishes
 batch finishes --> reset batch
 reset batch -> start batch
-
+```
+This is the current way of things. My plan was something more like this:
