@@ -115,4 +115,4 @@ check for unused set --> unused set not found
 unused set not found --> allocate new set
 allocate new set --> associate set with descriptor state
 ```
-In this way, I'd get to conserve some sets and reuse them across draw calls even between different command buffers since I could track whether they were in use and avoid modifying them in any way.
+In this way, I'd get to conserve some sets and reuse them across draw calls even between different command buffers since I could track whether they were in use and avoid modifying them in any way. I'd also get to remove any tracking for descriptorset usage on batches, thereby removing possible queue submissions there.
