@@ -70,14 +70,32 @@ I decided to change things up a bit here.
 stateDiagram
 [*] --> start batch
 start batch --> begin renderpass
-begin renderpass --> create generic descriptorset layout for program
-create generic descriptorset layout for program -> allocate descriptorsets for batch
+begin renderpass --> create generic descriptorset layout for batch
+create generic descriptorset layout for batch -> allocate descriptorsets for batch
 allocate descriptorsets for batch --> draw
 draw --> end renderpass
 end renderpass --> begin renderpass
 end renderpass --> submit batch
 submit batch --> batch finishes
 batch finishes --> reset batch
-reset batch -> start batch
+reset batch --> reset descriptor pool for batch
+reset descriptor pool for batch --> batch is reset
+batch is reset -> start batch
 ```
 This is the current way of things. My plan was something more like this:
+```mermaid
+stateDiagram
+[*] --> start batch
+start batch --> begin renderpass
+begin renderpass --> create specific descriptorset layout for program
+create specific descriptorset layout for program -> allocate descriptorsets for program
+allocate descriptorsets for program --> draw
+draw --> end renderpass
+end renderpass --> begin renderpass
+end renderpass --> submit batch
+submit batch --> batch finishes
+batch finishes --> reset batch
+reset batch --> return used descriptorsets to their programs
+reset batch --> batch is reset
+batch is reset -> start batch
+```
