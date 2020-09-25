@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Performance 2.0
 
