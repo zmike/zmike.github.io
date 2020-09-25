@@ -88,7 +88,7 @@ But alas, zink was doing all the right blending too.
 
 As usual, this was my last resort, but it was also my most powerful weapon that I couldn't abuse too frequently, lest people come to the conclusion that I don't actually know what I'm doing.
 
-Which I do.
+Which I definitely do.
 
 And now that I've cleared up any misunderstandings there, I'm not ashamed to say that I went to #intel-3d to complain that Dr. Render wasn't giving me any useful draw output for most of the draws under IRIS. If even zink can get some pixels out of a draw, then a more compliant driver like IRIS shouldn't be having issues here.
 
