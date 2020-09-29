@@ -1,7 +1,7 @@
 ---
 published: true
 ---
-## But No, I'm not
+## But No, I'm Not
 
 Just a quick post today to summarize a few exciting changes I've made today.
 
