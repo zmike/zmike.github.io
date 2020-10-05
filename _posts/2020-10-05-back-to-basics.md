@@ -44,7 +44,7 @@ The idea behind the latter version of the implementation that I linked is as fol
   * for all resources used by the binding:
     * add tracking for the underlying resource(s) for lifetime management
     * flag a pipeline barrier for the resource(s) based on usage*
-* fill in the [VkWriteDescriptorSet](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSet.html) struct for the binding
+  * fill in the [VkWriteDescriptorSet](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkWriteDescriptorSet.html) struct for the binding
 
 \*Then merge and deduplicate all the accumulated pipeline barriers and apply only those which induce a layout or access change in the resource to avoid over-applying barriers.
 
