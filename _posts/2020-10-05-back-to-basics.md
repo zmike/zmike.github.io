@@ -204,18 +204,29 @@ zink_batch_add_desc_set(struct zink_batch *batch, struct zink_program *pg, struc
 ```
 Similar to all the other batch<->object tracking, this stores the given descriptor set into a `set`, but in this case the set is itself stored as the data in a hash table keyed with the program, which provides both objects for use during batch reset:
 ```c
-hash_table_foreach(batch->programs, entry) {
-   struct zink_program *pg = (struct zink_program*)entry->key;
-   struct set *desc_sets = (struct set*)entry->data;
-   set_foreach(desc_sets, sentry) {
-      struct zink_descriptor_set *zds = (void*)sentry->key;
-      /* reset descriptor pools when no batch is using this program to avoid
-       * having some inactive program hogging a billion descriptors
-       */
-      pipe_reference(&zds->reference, NULL);
-      zink_program_invalidate_desc_set(pg, zds);
-   }
-   _mesa_set_destroy(desc_sets, NULL);
+void
+zink_reset_batch(struct zink_context *ctx, struct zink_batch *batch)
+{
+   struct zink_screen *screen = zink_screen(ctx->base.screen);
+   batch->descs_used = 0;
+
+   // cmdbuf hasn't been submitted before
+   if (!batch->submitted)
+      return;
+
+   zink_fence_finish(screen, &ctx->base, batch->fence, PIPE_TIMEOUT_INFINITE);
+   hash_table_foreach(batch->programs, entry) {
+      struct zink_program *pg = (struct zink_program*)entry->key;
+      struct set *desc_sets = (struct set*)entry->data;
+      set_foreach(desc_sets, sentry) {
+         struct zink_descriptor_set *zds = (void*)sentry->key;
+         /* reset descriptor pools when no batch is using this program to avoid
+          * having some inactive program hogging a billion descriptors
+          */
+         pipe_reference(&zds->reference, NULL);
+         zink_program_invalidate_desc_set(pg, zds);
+      }
+      _mesa_set_destroy(desc_sets, NULL);
 ```
 And this function is called:
 ```c
