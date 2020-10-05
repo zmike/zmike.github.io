@@ -136,7 +136,7 @@ If this program has no descriptors at all, then this whole thing can become a no
 ```
 Then there's just the usual Vulkan semantics of storing values to the struct and passing it to the [Create](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCreateDescriptorSetLayout.html) function.
 
-But back in the context of moving descriptor pool creation to the program, this is actually the perfect place to jam the creation code in since all the information about descriptor types is already here. Here's what that looks like:
+But back in the context of moving descriptor pool creation to the program, this is actually the perfect place to jam the pool creation code in since all the information about descriptor types is already here. Here's what that looks like:
 
 ```c
 VkDescriptorPoolSize sizes[6] = {};
