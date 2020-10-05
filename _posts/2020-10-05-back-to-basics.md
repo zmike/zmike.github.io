@@ -51,7 +51,7 @@ The idea behind the latter version of the implementation that I linked is as fol
 As I mentioned in a previous post, zink then applies these descriptors to a newly-allocated, max-size descriptor set object from an allocator pool located on the batch object. Every time a draw command is triggered, a new [VkDescriptorSet](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkDescriptorSet.html) is allocated and updated using these steps.
 
 ## First Level Refactoring Target
-As I touched on briefly in a previous post, the first change to make here in improving descriptor handling is to move the descriptor pools to the program objects. This lets zink create smaller descriptor sets which are likely going to end up using less memory than these giant ones. Here's the code used for creating descriptor sets prior to refactoring:
+As I touched on briefly in a previous post, the first change to make here in improving descriptor handling is to move the descriptor pools to the program objects. This lets zink create smaller descriptor pools which are likely going to end up using less memory than these giant ones. Here's the code used for creating descriptor pools prior to refactoring:
 ```c
 #define ZINK_BATCH_DESC_SIZE 1000
 VkDescriptorPoolSize sizes[] = {
