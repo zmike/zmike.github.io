@@ -47,7 +47,7 @@ util_dynarray_foreach(&res->desc_set_refs, struct zink_resource **, ref) {
       **ref = NULL;
 }
 ```
-If the reference I pushed earlier is still pointing to this resource, I can unset the pointer, and this will get picked up during future descriptor updates to flag the set as not-cached, requiring that it be updated. Since a resource can't be destroyed while a set is in use, this is also safe for the associated descriptor set's lifetime.
+If the reference I pushed earlier is still pointing to this resource, I can unset the pointer, and this will get picked up during future descriptor updates to flag the set as not-cached, requiring that it be updated. Since a resource won't ever be destroyed while a set is in use, this is also safe for the associated descriptor set's lifetime.
 
 And since there's no hashing or tree traversals involved, this is incredibly fast.
 
