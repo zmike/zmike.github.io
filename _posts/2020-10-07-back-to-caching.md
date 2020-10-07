@@ -58,4 +58,8 @@ Thus, a second-level cache, AKA the B cache, which would store not-used sets tha
 * the `check program cache for matching set` has now been expanded to two lookups in case a matching set isn't *active* but is still configured and valid in the B cache
 * the `check program for unused set` block in the above diagram will now cannibalize a valid *inactive* set from the B cache rather than allocate a new set
 
-The last of these items is a bit annoying, but ultimately the B cache can end up having hundreds of members at various points, and iterating through it to try and find a set that's been invalidated ends up being impractical just based on the random distribution of sets across the table. Thus, a quick iteration through a few items to see if the set-finder gets lucky, otherwise it's clobbering time.
+The last of these items is a bit annoying, but ultimately the B cache can end up having hundreds of members at various points, and iterating through it to try and find a set that's been invalidated ends up being impractical just based on the random distribution of sets across the table. Also, I only set the resource-based invalidation up to null the resource pointer, so finding an invalid set would mean walking through the resource array of each set in the cache. Thus, a quick iteration through a few items to see if the set-finder gets lucky, otherwise it's clobbering time.
+
+And this brought me up to about 24fps, which was still down a bit from the mind-blowing 27-28fps I was getting with just the bucket allocator, but it turns out that caching starts to open up other avenues for sizable optimizations.
+
+Which I'll get to in future posts.
