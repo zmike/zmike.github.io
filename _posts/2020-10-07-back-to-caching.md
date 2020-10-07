@@ -52,7 +52,7 @@ If the reference I pushed earlier is still pointing to this resource, I can unse
 And since there's no hashing or tree traversals involved, this is incredibly fast.
 
 ## Second-level Caching
-At this point, I'd created two categories for descriptor sets: *active* sets, which were the ones in use in a command buffer, and *inactive* sets, which were the ones that weren't currently in use, with sets being pushed into the *inactive* category once they were no longer used by any command buffers. This ended up being a bit of a waste, however, as I had lots of "inactive" sets that were still valid but unreachable since I was using an array for storing these as well as the newly-bucket-allocated sets.
+At this point, I'd created two categories for descriptor sets: *active* sets, which were the ones in use in a command buffer, and *inactive* sets, which were the ones that weren't currently in use, with sets being pushed into the *inactive* category once they were no longer used by any command buffers. This ended up being a bit of a waste, however, as I had lots of *inactive* sets that were still valid but unreachable since I was using an array for storing these as well as the newly-bucket-allocated sets.
 
 Thus, a second-level cache, AKA the B cache, which would store not-used sets that had at one point been valid. I'm still not doing any sort of checking of sets which may have been invalidated by resource destruction, so the B cache isn't quite as useful as it could be. Also:
 * the `check program cache for matching set` has now been expanded to two lookups in case a matching set isn't *active* but is still configured and valid in the B cache
