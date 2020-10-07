@@ -38,7 +38,7 @@ zink_resource_desc_set_add(struct zink_resource *res, struct zink_descriptor_set
    util_dynarray_append(&res->desc_set_refs, struct zink_resource**, &zds->resources[idx]);
 }
 ```
-This function associates a resource with a given descriptor set at the specified index (based on pipeline state). And then it pushes that pointer from the descriptor set's C-array of resources into an array on the resource.
+This function associates a resource with a given descriptor set at the specified index (based on pipeline state). And then it pushes a reference that pointer from the descriptor set's C-array of resources into an array on the resource.
 
 Later, during resource destruction, I can then walk the array of pointers like this:
 ```c
