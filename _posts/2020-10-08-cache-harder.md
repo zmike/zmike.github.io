@@ -68,8 +68,10 @@ Clearly, updating the sampler descriptors (`update_sampler_descriptors()`) is ta
 
 Each of these three had clear ways they could be optimized, and I'm going to speed through that and more in my next post.
 
-But now, a **challenge** to all the Vulkan experts reading along. In this last section, I've briefly covered some refactoring work for descriptor updates. It's possible to determine the solution to my question without reading through any of the linked code, but you have the code available to you nonetheless.
+But now, a **challenge** to all the Vulkan experts reading along. In this last section, I've briefly covered some refactoring work for descriptor updates.
 
-With this in mind: what is the significant performance regression that I've introduced in the course of this refactoring?
+What is the significant performance regression that I've introduced in the course of this refactoring?
+
+It's possible to determine the solution to my question without reading through any of the linked code, but you have the code available to you nonetheless.
 
 Until next time.
