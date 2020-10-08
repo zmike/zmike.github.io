@@ -38,4 +38,16 @@ What I am going to talk about, however, is the amount of hashing and lookups tha
  
 Let's take a look at some [flamegraphs](http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html).
  
- [![meme-update_descriptors.png]({{site.url}}/assets/meme-update_descriptors.png)]({{site.url}}/assets/meme-update_descriptors.png)
+[![split.png]({{site.url}}/assets/desc_profiling1/split.png)]({{site.url}}/assets/desc_profiling1/split.png)
+ 
+This is, among other things, a view of the juggernaut `update_descriptors()` function that I linked earlier in the week. At the time of splitting the descriptor sets, it's over 50% of the driver's `pipe_context::draw_vbo` hook, which is decidedly not great.
+
+So I optimized harder.
+
+The leftmost block just above `update_descriptors` is hashing that's done to update the descriptor state for cache management. There wasn't much point in recalculating the descriptor state hash on every draw since there's plenty of draws where the states remain unchanged. To try and improve this, I moved to a context-based descriptor state tracker, where each `pipe_context` hook to change active descriptors would invalidate the corresponding descriptor state, and then `update_descriptors()` could just scan through all the states to see which ones needed to be recalculated.
+
+[![states.png]({{site.url}}/assets/desc_profiling1/states.png)]({{site.url}}/assets/desc_profiling1/states.png)
+
+The largest block above `update_descriptors()` on the right side is the new calculator function for descriptor states. It's actually a bit more intensive than the old method, but again, this is much more easily optimized than the previous hashing which was scattered throughout a giant 400 line function.
+
+First, I added even faster access to reusing descriptor sets. This is as simple as an array of sets on the program struct that can have their hash values directly compared to the current descriptor state that's needed, avoiding lookups through potentially huge hash tables.
