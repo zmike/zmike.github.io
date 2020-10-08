@@ -36,7 +36,7 @@ I'm not going to talk about hash performance. Mesa uses [xxhash](https://github.
 
 What I am going to talk about, however, is the amount of hashing and lookups that I was doing.
  
-Let's take a look at some [flamegraphs](http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html).
+Let's take a look at some [flamegraphs](http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html) for the scene that I was showing in my fps screenshots.
  
 [![split.png]({{site.url}}/assets/desc_profiling1/split.png)]({{site.url}}/assets/desc_profiling1/split.png)
  
@@ -55,3 +55,21 @@ Next, while I was in the area, I added even faster access to reusing descriptor 
 [![last_set.png]({{site.url}}/assets/desc_profiling1/last_set.png)]({{site.url}}/assets/desc_profiling1/last_set.png)
 
 Not much to see here since this isn't really where any of the performance bottleneck was occurring.
+
+## ETOOMUCHHASH
+Let's skip ahead a bit. I finally refactored `update_descriptors()` into smaller functions to update and bind descriptor sets in a loop prior to applying barriers and issuing the eventual draw command, shaking up the graph quite a bit:
+
+[![split_update_descriptors.png]({{site.url}}/assets/desc_profiling1/split_update_descriptors.png)]({{site.url}}/assets/desc_profiling1/split_update_descriptors.png)
+
+Clearly, updating the sampler descriptors (`update_sampler_descriptors()`) is taking a huge amount of time. The three large blocks above it are:
+* [add_transition()](https://gitlab.freedesktop.org/zmike/mesa/-/blob/blog-20201008/src/gallium/drivers/zink/zink_draw.c#L223), which is a function for accumulating and merging memory barriers for resources using a hash table
+* [bind_descriptors()](https://gitlab.freedesktop.org/zmike/mesa/-/blob/blog-20201008/src/gallium/drivers/zink/zink_draw.c#L272), which calls [vkUpdateDescriptorSets](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkUpdateDescriptorSets.html) and [vkCmdBindDescriptorSets](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdBindDescriptorSets.html)
+* [handle_image_descriptor()](https://gitlab.freedesktop.org/zmike/mesa/-/blob/blog-20201008/src/gallium/drivers/zink/zink_draw.c#L467), which is a helper for setting up sampler/image descriptors
+
+Each of these three had clear ways they could be optimized, and I'm going to speed through that and more in my next post.
+
+But now, a **challenge** to all the Vulkan experts reading along. In this last section, I've briefly covered some refactoring work for descriptor updates. It's possible to determine this without reading through any of the linked code, but you have the code available to you nonetheless.
+
+With this in mind: what is the significant performance regression that I've introduced in the course of this refactoring?
+
+Until next time.
