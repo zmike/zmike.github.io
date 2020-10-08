@@ -18,7 +18,7 @@ I needed to increase the efficiency of the cache to make it worthwhile, so I dec
 ## Deep Cuts
 What this amounted to was to split the giant, all-encompassing descriptor set, which included UBOs, samplers, SSBOs, and shader images, into separate sets such that each type of descriptor would be isolated from changes in the other descriptors between draws.
 
-Thus, I now had four distinct descriptor pools for each program, and I was producing and binding four descriptor sets for every draw. I also changed the shader compiler a bit to always bind shader resources to the newly-split sets as well as created some dummy descriptor sets since it's illegal to bind sets to a command buffer with non-sequential indices, but it was mostly easy work. It seemed like a great plan, or at least one that had a lot of potential for more optimizations based on it. As far as direct performance increases from the split, UBO descriptors would be constantly changing, but maybe...
+Thus, I now had four distinct descriptor pools for each program, and I was producing and binding up to four descriptor sets for every draw. I also changed the shader compiler a bit to always bind shader resources to the newly-split sets as well as created some dummy descriptor sets since it's illegal to bind sets to a command buffer with non-sequential indices, but it was mostly easy work. It seemed like a great plan, or at least one that had a lot of potential for more optimizations based on it. As far as direct performance increases from the split, UBO descriptors would be constantly changing, but maybe...
 
 Well, the patch is pretty big (8 files changed, 766 insertions(+), 450 deletions(-)), but in the end, I was still stuck around 23 fps.
 
