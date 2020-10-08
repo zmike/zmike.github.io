@@ -50,4 +50,8 @@ The leftmost block just above `update_descriptors` is hashing that's done to upd
 
 The largest block above `update_descriptors()` on the right side is the new calculator function for descriptor states. It's actually a bit more intensive than the old method, but again, this is much more easily optimized than the previous hashing which was scattered throughout a giant 400 line function.
 
-First, I added even faster access to reusing descriptor sets. This is as simple as an array of sets on the program struct that can have their hash values directly compared to the current descriptor state that's needed, avoiding lookups through potentially huge hash tables.
+Next, while I was in the area, I added even faster access to reusing descriptor sets. This is as simple as an array of sets on the program struct that can have their hash values directly compared to the current descriptor state that's needed, avoiding lookups through potentially huge hash tables.
+
+[![last_set.png]({{site.url}}/assets/desc_profiling1/last_set.png)]({{site.url}}/assets/desc_profiling1/last_set.png)
+
+Not much to see here since this isn't really where any of the performance bottleneck was occurring.
