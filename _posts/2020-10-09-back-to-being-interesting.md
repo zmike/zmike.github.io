@@ -20,7 +20,7 @@ I had high hopes for this, and it was quick and easy to add in, but ultimately e
 That was fine, since what I was really shooting for was a result more like this:
 [![pipeline_hash.png]({{site.url}}/assets/desc_profiling1/pipeline_hash.png)]({{site.url}}/assets/desc_profiling1/pipeline_hash.png)
 
-The hierarchy of the previously-expensive pipeline hash usage has completely collapsed now, and it's basically nonexistent. This was achieved through a series of five patches:
+The hierarchy of the previously-expensive pipeline hash usage has completely collapsed now, and it's basically nonexistent. This was achieved through a series of five patches which:
 * move the [tessellation levels](https://www.khronos.org/opengl/wiki/Tessellation_Control_Shader#Built-in_outputs) for TCS output out of the pipeline state since these have no relation and I don't know why I put them there to begin with
 * use the bitmasks for vertex divisors and buffers to much more selectively hash the large (32) [VkVertexInputBindingDivisorDescriptionEXT](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDivisorDescriptionEXT.html) and [VkVertexInputBindingDescription](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkVertexInputBindingDescription.html) arrays in the pipeline state instead of always hashing the full array
 * also only hash the vertex buffer state if we don't have [VK_EXT_extended_dynamic_state](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_EXT_extended_dynamic_state.html) support, which lets that be removed from the pipeline creation altogether
