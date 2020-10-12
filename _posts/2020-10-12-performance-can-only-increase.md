@@ -219,6 +219,22 @@ Let's check all the changes out in the flamegraph:
 
 This last bit has shaved off another big chunk of CPU usage overall, bringing `update_descriptors()` from 11.4% to 9.32%. Descriptor state updating is down from 0.718% to 0.601% from the pre-hashing as well, though this wasn't exactly a huge target to hit.
 
-Just for nostalgia, here's the starting point from just after I'd split the descriptor types into different sets and we all thought 27fps was a lot:
+Just for nostalgia, here's the starting point from just after I'd split the descriptor types into different sets and we all thought 27fps with descriptor set caching was a lot:
 [![split.png]({{site.url}}/assets/desc_profiling1/split.png)]({{site.url}}/assets/desc_profiling1/split.png)
+
+But now zink is up another 25% performance to a steady **34fps**:
+[![heaven.png]({{site.url}}/assets/desc_profiling1/heaven.png)]({{site.url}}/assets/desc_profiling1/heaven.png)
+
+And I did it in only four blog posts.
+
+## But Then, The Future
+Looking forward, there's still some easy work that can be done here.
+
+For starters, I'd probably improve descriptor states a little such that I also had a flag anytime the batch cycled. This would enable me to add batch-tracking for resources/samplers/sampler_views more reliably when was actually necessary vs trying to add it every time, which ends up being a significant perf hit from all the lookups. I imagine that'd make a huge part of the remaining `update_descriptors()` usage disappear.
+[![future-lookups.png]({{site.url}}/assets/desc_profiling1/future-lookups.png)]({{site.url}}/assets/desc_profiling1/future-lookups.png)
+
+There's also, as ever, the pipeline hashing, which can further be reduced by adding more dynamic state handling, which would remove more values from the pipeline state and thus reduce the amount of hashing required.
+[![future-pipeline.png]({{site.url}}/assets/desc_profiling1/future-pipeline.png)]({{site.url}}/assets/desc_profiling1/future-pipeline.png)
+
+I'd probably investigate doing some resource caching to keep a bucket of destroyed resources around for faster reuse since there's a fair amount of that going on.
 
