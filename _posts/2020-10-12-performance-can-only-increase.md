@@ -111,4 +111,114 @@ In this case, each sampler descriptor hash was the size of a [VkDescriptorImageI
 Instead, I changed things around to do some pre-hashing:
 [![](https://mermaid.ink/img/eyJjb2RlIjoic3RhdGVEaWFncmFtXG5bKl0gLS0-IHMxXG5zMSAtLT4gczJcbnMyIC0tPiBzM1xuczMgLS0-IHM0XG5zNCAtLT4gczVcbnM1IC0tPiBzNlxuc3RhdGUgXCJjcmVhdGUgc2FtcGxlciBhbmQgc2FtcGxlciB2aWV3XCIgYXMgczFcbnN0YXRlIFwiY3JlYXRlIGRlc2NyaXB0b3IgaGFzaCBmb3Igc2FtcGxlciBhbmQgc2FtcGxlciB2aWV3XCIgYXMgczJcbnN0YXRlIFwicG9zc2libHkgaW52YWxpZGF0ZSBzYW1wbGVyIGRlc2NyaXB0b3Igc3RhdGVzXCIgYXMgczNcbnN0YXRlIFwiemlua19kcmF3X3Zib1wiIGFzIHM0XG5zdGF0ZSBcInVwZGF0ZV9kZXNjcmlwdG9yc1wiIGFzIHM1XG5zdGF0ZSBcInJlaGFzaCBzYW1wbGVyIHN0YXRlcyB1c2luZyBwcmUtaGFzaGVkIHZhbHVlc1wiIGFzIHM2XG4iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCIsInRoZW1lVmFyaWFibGVzIjp7ImJhY2tncm91bmQiOiJ3aGl0ZSIsInByaW1hcnlDb2xvciI6IiNFQ0VDRkYiLCJzZWNvbmRhcnlDb2xvciI6IiNmZmZmZGUiLCJ0ZXJ0aWFyeUNvbG9yIjoiaHNsKDgwLCAxMDAlLCA5Ni4yNzQ1MDk4MDM5JSkiLCJwcmltYXJ5Qm9yZGVyQ29sb3IiOiJoc2woMjQwLCA2MCUsIDg2LjI3NDUwOTgwMzklKSIsInNlY29uZGFyeUJvcmRlckNvbG9yIjoiaHNsKDYwLCA2MCUsIDgzLjUyOTQxMTc2NDclKSIsInRlcnRpYXJ5Qm9yZGVyQ29sb3IiOiJoc2woODAsIDYwJSwgODYuMjc0NTA5ODAzOSUpIiwicHJpbWFyeVRleHRDb2xvciI6IiMxMzEzMDAiLCJzZWNvbmRhcnlUZXh0Q29sb3IiOiIjMDAwMDIxIiwidGVydGlhcnlUZXh0Q29sb3IiOiJyZ2IoOS41MDAwMDAwMDAxLCA5LjUwMDAwMDAwMDEsIDkuNTAwMDAwMDAwMSkiLCJsaW5lQ29sb3IiOiIjMzMzMzMzIiwidGV4dENvbG9yIjoiIzMzMyIsIm1haW5Ca2ciOiIjRUNFQ0ZGIiwic2Vjb25kQmtnIjoiI2ZmZmZkZSIsImJvcmRlcjEiOiIjOTM3MERCIiwiYm9yZGVyMiI6IiNhYWFhMzMiLCJhcnJvd2hlYWRDb2xvciI6IiMzMzMzMzMiLCJmb250RmFtaWx5IjoiXCJ0cmVidWNoZXQgbXNcIiwgdmVyZGFuYSwgYXJpYWwiLCJmb250U2l6ZSI6IjE2cHgiLCJsYWJlbEJhY2tncm91bmQiOiIjZThlOGU4Iiwibm9kZUJrZyI6IiNFQ0VDRkYiLCJub2RlQm9yZGVyIjoiIzkzNzBEQiIsImNsdXN0ZXJCa2ciOiIjZmZmZmRlIiwiY2x1c3RlckJvcmRlciI6IiNhYWFhMzMiLCJkZWZhdWx0TGlua0NvbG9yIjoiIzMzMzMzMyIsInRpdGxlQ29sb3IiOiIjMzMzIiwiZWRnZUxhYmVsQmFja2dyb3VuZCI6IiNlOGU4ZTgiLCJhY3RvckJvcmRlciI6ImhzbCgyNTkuNjI2MTY4MjI0MywgNTkuNzc2NTM2MzEyOCUsIDg3LjkwMTk2MDc4NDMlKSIsImFjdG9yQmtnIjoiI0VDRUNGRiIsImFjdG9yVGV4dENvbG9yIjoiYmxhY2siLCJhY3RvckxpbmVDb2xvciI6ImdyZXkiLCJzaWduYWxDb2xvciI6IiMzMzMiLCJzaWduYWxUZXh0Q29sb3IiOiIjMzMzIiwibGFiZWxCb3hCa2dDb2xvciI6IiNFQ0VDRkYiLCJsYWJlbEJveEJvcmRlckNvbG9yIjoiaHNsKDI1OS42MjYxNjgyMjQzLCA1OS43NzY1MzYzMTI4JSwgODcuOTAxOTYwNzg0MyUpIiwibGFiZWxUZXh0Q29sb3IiOiJibGFjayIsImxvb3BUZXh0Q29sb3IiOiJibGFjayIsIm5vdGVCb3JkZXJDb2xvciI6IiNhYWFhMzMiLCJub3RlQmtnQ29sb3IiOiIjZmZmNWFkIiwibm90ZVRleHRDb2xvciI6ImJsYWNrIiwiYWN0aXZhdGlvbkJvcmRlckNvbG9yIjoiIzY2NiIsImFjdGl2YXRpb25Ca2dDb2xvciI6IiNmNGY0ZjQiLCJzZXF1ZW5jZU51bWJlckNvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IiOiJyZ2JhKDEwMiwgMTAyLCAyNTUsIDAuNDkpIiwiYWx0U2VjdGlvbkJrZ0NvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IyIjoiI2ZmZjQwMCIsInRhc2tCb3JkZXJDb2xvciI6IiM1MzRmYmMiLCJ0YXNrQmtnQ29sb3IiOiIjOGE5MGRkIiwidGFza1RleHRMaWdodENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dERhcmtDb2xvciI6ImJsYWNrIiwidGFza1RleHRPdXRzaWRlQ29sb3IiOiJibGFjayIsInRhc2tUZXh0Q2xpY2thYmxlQ29sb3IiOiIjMDAzMTYzIiwiYWN0aXZlVGFza0JvcmRlckNvbG9yIjoiIzUzNGZiYyIsImFjdGl2ZVRhc2tCa2dDb2xvciI6IiNiZmM3ZmYiLCJncmlkQ29sb3IiOiJsaWdodGdyZXkiLCJkb25lVGFza0JrZ0NvbG9yIjoibGlnaHRncmV5IiwiZG9uZVRhc2tCb3JkZXJDb2xvciI6ImdyZXkiLCJjcml0Qm9yZGVyQ29sb3IiOiIjZmY4ODg4IiwiY3JpdEJrZ0NvbG9yIjoicmVkIiwidG9kYXlMaW5lQ29sb3IiOiJyZWQiLCJsYWJlbENvbG9yIjoiYmxhY2siLCJlcnJvckJrZ0NvbG9yIjoiIzU1MjIyMiIsImVycm9yVGV4dENvbG9yIjoiIzU1MjIyMiIsImNsYXNzVGV4dCI6IiMxMzEzMDAiLCJmaWxsVHlwZTAiOiIjRUNFQ0ZGIiwiZmlsbFR5cGUxIjoiI2ZmZmZkZSIsImZpbGxUeXBlMiI6ImhzbCgzMDQsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlMyI6ImhzbCgxMjQsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSIsImZpbGxUeXBlNCI6ImhzbCgxNzYsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNSI6ImhzbCgtNCwgMTAwJSwgOTMuNTI5NDExNzY0NyUpIiwiZmlsbFR5cGU2IjoiaHNsKDgsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNyI6ImhzbCgxODgsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSJ9fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoic3RhdGVEaWFncmFtXG5bKl0gLS0-IHMxXG5zMSAtLT4gczJcbnMyIC0tPiBzM1xuczMgLS0-IHM0XG5zNCAtLT4gczVcbnM1IC0tPiBzNlxuc3RhdGUgXCJjcmVhdGUgc2FtcGxlciBhbmQgc2FtcGxlciB2aWV3XCIgYXMgczFcbnN0YXRlIFwiY3JlYXRlIGRlc2NyaXB0b3IgaGFzaCBmb3Igc2FtcGxlciBhbmQgc2FtcGxlciB2aWV3XCIgYXMgczJcbnN0YXRlIFwicG9zc2libHkgaW52YWxpZGF0ZSBzYW1wbGVyIGRlc2NyaXB0b3Igc3RhdGVzXCIgYXMgczNcbnN0YXRlIFwiemlua19kcmF3X3Zib1wiIGFzIHM0XG5zdGF0ZSBcInVwZGF0ZV9kZXNjcmlwdG9yc1wiIGFzIHM1XG5zdGF0ZSBcInJlaGFzaCBzYW1wbGVyIHN0YXRlcyB1c2luZyBwcmUtaGFzaGVkIHZhbHVlc1wiIGFzIHM2XG4iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCIsInRoZW1lVmFyaWFibGVzIjp7ImJhY2tncm91bmQiOiJ3aGl0ZSIsInByaW1hcnlDb2xvciI6IiNFQ0VDRkYiLCJzZWNvbmRhcnlDb2xvciI6IiNmZmZmZGUiLCJ0ZXJ0aWFyeUNvbG9yIjoiaHNsKDgwLCAxMDAlLCA5Ni4yNzQ1MDk4MDM5JSkiLCJwcmltYXJ5Qm9yZGVyQ29sb3IiOiJoc2woMjQwLCA2MCUsIDg2LjI3NDUwOTgwMzklKSIsInNlY29uZGFyeUJvcmRlckNvbG9yIjoiaHNsKDYwLCA2MCUsIDgzLjUyOTQxMTc2NDclKSIsInRlcnRpYXJ5Qm9yZGVyQ29sb3IiOiJoc2woODAsIDYwJSwgODYuMjc0NTA5ODAzOSUpIiwicHJpbWFyeVRleHRDb2xvciI6IiMxMzEzMDAiLCJzZWNvbmRhcnlUZXh0Q29sb3IiOiIjMDAwMDIxIiwidGVydGlhcnlUZXh0Q29sb3IiOiJyZ2IoOS41MDAwMDAwMDAxLCA5LjUwMDAwMDAwMDEsIDkuNTAwMDAwMDAwMSkiLCJsaW5lQ29sb3IiOiIjMzMzMzMzIiwidGV4dENvbG9yIjoiIzMzMyIsIm1haW5Ca2ciOiIjRUNFQ0ZGIiwic2Vjb25kQmtnIjoiI2ZmZmZkZSIsImJvcmRlcjEiOiIjOTM3MERCIiwiYm9yZGVyMiI6IiNhYWFhMzMiLCJhcnJvd2hlYWRDb2xvciI6IiMzMzMzMzMiLCJmb250RmFtaWx5IjoiXCJ0cmVidWNoZXQgbXNcIiwgdmVyZGFuYSwgYXJpYWwiLCJmb250U2l6ZSI6IjE2cHgiLCJsYWJlbEJhY2tncm91bmQiOiIjZThlOGU4Iiwibm9kZUJrZyI6IiNFQ0VDRkYiLCJub2RlQm9yZGVyIjoiIzkzNzBEQiIsImNsdXN0ZXJCa2ciOiIjZmZmZmRlIiwiY2x1c3RlckJvcmRlciI6IiNhYWFhMzMiLCJkZWZhdWx0TGlua0NvbG9yIjoiIzMzMzMzMyIsInRpdGxlQ29sb3IiOiIjMzMzIiwiZWRnZUxhYmVsQmFja2dyb3VuZCI6IiNlOGU4ZTgiLCJhY3RvckJvcmRlciI6ImhzbCgyNTkuNjI2MTY4MjI0MywgNTkuNzc2NTM2MzEyOCUsIDg3LjkwMTk2MDc4NDMlKSIsImFjdG9yQmtnIjoiI0VDRUNGRiIsImFjdG9yVGV4dENvbG9yIjoiYmxhY2siLCJhY3RvckxpbmVDb2xvciI6ImdyZXkiLCJzaWduYWxDb2xvciI6IiMzMzMiLCJzaWduYWxUZXh0Q29sb3IiOiIjMzMzIiwibGFiZWxCb3hCa2dDb2xvciI6IiNFQ0VDRkYiLCJsYWJlbEJveEJvcmRlckNvbG9yIjoiaHNsKDI1OS42MjYxNjgyMjQzLCA1OS43NzY1MzYzMTI4JSwgODcuOTAxOTYwNzg0MyUpIiwibGFiZWxUZXh0Q29sb3IiOiJibGFjayIsImxvb3BUZXh0Q29sb3IiOiJibGFjayIsIm5vdGVCb3JkZXJDb2xvciI6IiNhYWFhMzMiLCJub3RlQmtnQ29sb3IiOiIjZmZmNWFkIiwibm90ZVRleHRDb2xvciI6ImJsYWNrIiwiYWN0aXZhdGlvbkJvcmRlckNvbG9yIjoiIzY2NiIsImFjdGl2YXRpb25Ca2dDb2xvciI6IiNmNGY0ZjQiLCJzZXF1ZW5jZU51bWJlckNvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IiOiJyZ2JhKDEwMiwgMTAyLCAyNTUsIDAuNDkpIiwiYWx0U2VjdGlvbkJrZ0NvbG9yIjoid2hpdGUiLCJzZWN0aW9uQmtnQ29sb3IyIjoiI2ZmZjQwMCIsInRhc2tCb3JkZXJDb2xvciI6IiM1MzRmYmMiLCJ0YXNrQmtnQ29sb3IiOiIjOGE5MGRkIiwidGFza1RleHRMaWdodENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dENvbG9yIjoid2hpdGUiLCJ0YXNrVGV4dERhcmtDb2xvciI6ImJsYWNrIiwidGFza1RleHRPdXRzaWRlQ29sb3IiOiJibGFjayIsInRhc2tUZXh0Q2xpY2thYmxlQ29sb3IiOiIjMDAzMTYzIiwiYWN0aXZlVGFza0JvcmRlckNvbG9yIjoiIzUzNGZiYyIsImFjdGl2ZVRhc2tCa2dDb2xvciI6IiNiZmM3ZmYiLCJncmlkQ29sb3IiOiJsaWdodGdyZXkiLCJkb25lVGFza0JrZ0NvbG9yIjoibGlnaHRncmV5IiwiZG9uZVRhc2tCb3JkZXJDb2xvciI6ImdyZXkiLCJjcml0Qm9yZGVyQ29sb3IiOiIjZmY4ODg4IiwiY3JpdEJrZ0NvbG9yIjoicmVkIiwidG9kYXlMaW5lQ29sb3IiOiJyZWQiLCJsYWJlbENvbG9yIjoiYmxhY2siLCJlcnJvckJrZ0NvbG9yIjoiIzU1MjIyMiIsImVycm9yVGV4dENvbG9yIjoiIzU1MjIyMiIsImNsYXNzVGV4dCI6IiMxMzEzMDAiLCJmaWxsVHlwZTAiOiIjRUNFQ0ZGIiwiZmlsbFR5cGUxIjoiI2ZmZmZkZSIsImZpbGxUeXBlMiI6ImhzbCgzMDQsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlMyI6ImhzbCgxMjQsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSIsImZpbGxUeXBlNCI6ImhzbCgxNzYsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNSI6ImhzbCgtNCwgMTAwJSwgOTMuNTI5NDExNzY0NyUpIiwiZmlsbFR5cGU2IjoiaHNsKDgsIDEwMCUsIDk2LjI3NDUwOTgwMzklKSIsImZpbGxUeXBlNyI6ImhzbCgxODgsIDEwMCUsIDkzLjUyOTQxMTc2NDclKSJ9fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
-In this way, I could have a single 32bit value representing the sampler view that persisted for its lifetime, and a pair of 32bit values for the sampler (since I still need to potentially toggle between linear and nearest filtering). This ends up being a maximum of 12bytes to hash, which is almost 50% less. It's not a huge change in the flamegraph, but it's possibly an interesting factoid.
+In this way, I could have a single 32bit value representing the sampler view that persisted for its lifetime, and a pair of 32bit values for the sampler (since I still need to potentially toggle between linear and nearest filtering) that I can select between. This ends up being 8bytes to hash, which is over 50% less. It's not a huge change in the flamegraph, but it's possibly an interesting factoid. Also, as the layouts will always be the same for these descriptors, that member can safely be omitted from the original sampler_view hash.
+
+## Set Usage
+Another vaguely interesting tidbit is profiling zink's usage of mesa's `set` implementation, which is used to ensure that various objects are only added to a given batch a single time. Historically the pattern for use in zink has been something like:
+```c
+if (!_mesa_set_search(set, value)) {
+   do_something();
+   _mesa_set_add(set, value);
+}
+```
+This is not ideal, as it ends up performing two lookups in the `set` for cases where the value isn't already present. A much better practice is:
+```c
+bool found = false;
+_mesa_set_search_and_add(set, value, &found);
+if (!found)
+    do_something();
+```
+In this way, the lookup is only done once, which ends up being huge for large sets.
+
+## For My Final Trick
+I was now holding steady at **33fps**, but there was a tiny bit more performance to squeeze out of descriptor updating when I began to analyze how much looping was being done. This is a general overview of all the loops in `update_descriptors()` for each type of descriptor at the time of my review:
+* loop for all shader stages
+  * loop for all bindings in the shader
+    * in sampler and image bindings, loop for all resourecs in the binding
+* loop for all resources in descriptor set
+* loop for all barriers to be applied in descriptor set
+
+This was a lot of looping, and it was especially egregious in the final component of my refactored `update_descriptors():
+```c
+static bool
+write_descriptors(struct zink_context *ctx, struct zink_descriptor_set *zds, unsigned num_wds, VkWriteDescriptorSet *wds,
+                 unsigned num_resources, struct zink_descriptor_resource *resources, struct set *persistent,
+                 bool is_compute, bool cache_hit)
+{
+   bool need_flush = false;
+   struct zink_batch *batch = is_compute ? &ctx->compute_batch : zink_curr_batch(ctx);
+   struct zink_screen *screen = zink_screen(ctx->base.screen);
+   assert(zds->desc_set);
+   unsigned check_flush_id = is_compute ? 0 : ZINK_COMPUTE_BATCH_ID;
+   for (int i = 0; i < num_resources; ++i) {
+      assert(num_resources <= zds->pool->num_resources);
+
+      struct zink_resource *res = resources[i].res;
+      if (res) {
+         need_flush |= zink_batch_reference_resource_rw(batch, res, resources[i].write) == check_flush_id;
+         if (res->persistent_maps)
+            _mesa_set_add(persistent, res);
+      }
+      /* if we got a cache hit, we have to verify that the cached set is still valid;
+       * we store the vk resource to the set here to avoid a more complex and costly mechanism of maintaining a
+       * hash table on every resource with the associated descriptor sets that then needs to be iterated through
+       * whenever a resource is destroyed
+       */
+      assert(!cache_hit || zds->resources[i] == res);
+      if (!cache_hit)
+         zink_resource_desc_set_add(res, zds, i);
+   }
+   if (!cache_hit && num_wds)
+      vkUpdateDescriptorSets(screen->dev, num_wds, wds, 0, NULL);
+   for (int i = 0; zds->pool->num_descriptors && i < util_dynarray_num_elements(&zds->barriers, struct zink_descriptor_barrier); ++i) {
+      struct zink_descriptor_barrier *barrier = util_dynarray_element(&zds->barriers, struct zink_descriptor_barrier, i);
+      zink_resource_barrier(ctx, NULL, barrier->res,
+                            barrier->layout, barrier->access, barrier->stage);
+   }
+
+   return need_flush;
+}
+```
+This function iterates over all the resourecs in a descriptor set, tagging them for batch usage and persistent mapping, adding references for the descriptor set to the resource as I previously delved into. Then it iterates over the barriers and applies them.
+
+But why was I iterating over all the resources and then over all the barriers when every resource will always have a barrier for the descriptor set, even if it ends up getting filtered out based on previous usage?
+
+It just doesn't make sense.
+
+So I refactored this a bit, and now there's only one loop:
+```c
+static bool
+write_descriptors(struct zink_context *ctx, struct zink_descriptor_set *zds, unsigned num_wds, VkWriteDescriptorSet *wds,
+                 struct set *persistent, bool is_compute, bool cache_hit)
+{
+   bool need_flush = false;
+   struct zink_batch *batch = is_compute ? &ctx->compute_batch : zink_curr_batch(ctx);
+   struct zink_screen *screen = zink_screen(ctx->base.screen);
+   assert(zds->desc_set);
+   unsigned check_flush_id = is_compute ? 0 : ZINK_COMPUTE_BATCH_ID;
+
+   if (!cache_hit && num_wds)
+      vkUpdateDescriptorSets(screen->dev, num_wds, wds, 0, NULL);
+   for (int i = 0; zds->pool->num_descriptors && i < util_dynarray_num_elements(&zds->barriers, struct zink_descriptor_barrier); ++i) {
+      struct zink_descriptor_barrier *barrier = util_dynarray_element(&zds->barriers, struct zink_descriptor_barrier, i);
+      if (barrier->res->persistent_maps)
+         _mesa_set_add(persistent, barrier->res);
+      need_flush |= zink_batch_reference_resource_rw(batch, barrier->res, zink_resource_access_is_write(barrier->access)) == check_flush_id;
+      zink_resource_barrier(ctx, NULL, barrier->res,
+                            barrier->layout, barrier->access, barrier->stage);
+   }
+
+   return need_flush;
+}
+```
+This actually has the side benefit of reducing the required looping even further, as barriers get merged based on access and stages, meaning that though there may be `N` resources used by a given set used by `M` stages, it's possible that the looping here might be reduced to only `N` rather than `N * M` since all barriers might be consolidated.
+
+## In Closing
+Let's check all the changes out in the flamegraph:
+[![final.png]({{site.url}}/assets/desc_profiling1/final.png)]({{site.url}}/assets/desc_profiling1/final.png)
+
+This last bit has shaved off another big chunk of CPU usage overall, bringing `update_descriptors()` from 11.4% to 9.32%. Descriptor state updating is down from 0.718% to 0.601% from the pre-hashing as well, though this wasn't exactly a huge target to hit.
+
+Just for nostalgia, here's the starting point from just after I'd split the descriptor types into different sets and we all thought 27fps was a lot:
+[![split.png]({{site.url}}/assets/desc_profiling1/split.png)]({{site.url}}/assets/desc_profiling1/split.png)
+
