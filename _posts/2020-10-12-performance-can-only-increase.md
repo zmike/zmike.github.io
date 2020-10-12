@@ -30,7 +30,7 @@ handle_image_descriptor(struct zink_screen *screen, struct zink_resource *res, e
                         VkImageLayout layout, unsigned *num_image_info, VkDescriptorImageInfo *image_info, struct zink_sampler_state *sampler,
                         VkBufferView *null_view, VkImageView imageview, bool do_set)
 ```
-First, yes, there's a lot of parameters. There's a lot of them, including `VkBufferView *null_view`, which is a pointer to a stack array that's initialized as containing `VK_NULL_HANDLE`. As this struct must be initialized with a pointer to an array, it's important that the stack variable used doesn't go out of scope, so it has to be passed in like this or else this functionality can't be broken out in this way.
+First, yes, there's a lot of parameters. There's a lot of them, including `VkBufferView *null_view`, which is a pointer to a stack array that's initialized as containing `VK_NULL_HANDLE`. As `VkDescriptorImageInfo` must be initialized with a pointer to an array for texel buffers, it's important that the stack variable used doesn't go out of scope, so it has to be passed in like this or else this functionality can't be broken out in this way.
 ```c
 {
     if (!res) {
