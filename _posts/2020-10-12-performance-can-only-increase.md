@@ -179,7 +179,7 @@ write_descriptors(struct zink_context *ctx, struct zink_descriptor_set *zds, uns
    return need_flush;
 }
 ```
-This function iterates over all the resourecs in a descriptor set, tagging them for batch usage and persistent mapping, adding references for the descriptor set to the resource as I previously delved into. Then it iterates over the barriers and applies them.
+This function iterates over all the resources in a descriptor set, tagging them for batch usage and persistent mapping, adding references for the descriptor set to the resource as I previously delved into. Then it iterates over the barriers and applies them.
 
 But why was I iterating over all the resources and then over all the barriers when every resource will always have a barrier for the descriptor set, even if it ends up getting filtered out based on previous usage?
 
