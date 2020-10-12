@@ -227,6 +227,8 @@ But now zink is up another 25% performance to a steady **34fps**:
 
 And I did it in only four blog posts.
 
+For anyone interested, I've also put up a [branch](https://gitlab.freedesktop.org/zmike/mesa/-/tree/blog-20201012) corresponding to the final flamegraph along with the [perf data]({{site.url}}/assets/desc_profiling1/perf.data), which I've been using [hotspot](https://github.com/KDAB/hotspot) to view.
+
 ## But Then, The Future
 Looking forward, there's still some easy work that can be done here.
 
