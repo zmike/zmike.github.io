@@ -138,7 +138,7 @@ I was now holding steady at **33fps**, but there was a tiny bit more performance
 * loop for all resources in descriptor set
 * loop for all barriers to be applied in descriptor set
 
-This was a lot of looping, and it was especially egregious in the final component of my refactored `update_descriptors():
+This was a lot of looping, and it was especially egregious in the final component of my refactored `update_descriptors()`:
 ```c
 static bool
 write_descriptors(struct zink_context *ctx, struct zink_descriptor_set *zds, unsigned num_wds, VkWriteDescriptorSet *wds,
