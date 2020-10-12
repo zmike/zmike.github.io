@@ -237,4 +237,10 @@ There's also, as ever, the pipeline hashing, which can further be reduced by add
 [![future-pipeline.png]({{site.url}}/assets/desc_profiling1/future-pipeline.png)]({{site.url}}/assets/desc_profiling1/future-pipeline.png)
 
 I'd probably investigate doing some resource caching to keep a bucket of destroyed resources around for faster reuse since there's a fair amount of that going on.
+[![future-resource.png]({{site.url}}/assets/desc_profiling1/future-resource.png)]({{site.url}}/assets/desc_profiling1/future-resource.png)
 
+Ultimately though, the CPU time in use by zink is unlikely to see any other huge decreases (unless I'm missing something especially obvious or clever) without more major architectural changes, which will end up being a bigger project that takes more than just a week of blog posting to finish. As such, I've once again turned my sights to unit test pass rates and related issues, since there's still a lot of work to be done there.
+
+I've fixed another 500ish piglit tests over the past few days, bringing zink up past 92% pass rate, and I'm hopeful I can get that number up even higher in the near future.
+
+Stay tuned for more updates on all things zink and Mike.
