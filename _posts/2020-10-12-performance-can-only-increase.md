@@ -134,7 +134,7 @@ In this way, the lookup is only done once, which ends up being huge for large se
 I was now holding steady at **33fps**, but there was a tiny bit more performance to squeeze out of descriptor updating when I began to analyze how much looping was being done. This is a general overview of all the loops in `update_descriptors()` for each type of descriptor at the time of my review:
 * loop for all shader stages
   * loop for all bindings in the shader
-    * in sampler and image bindings, loop for all resourecs in the binding
+    * in sampler and image bindings, loop for all resources in the binding
 * loop for all resources in descriptor set
 * loop for all barriers to be applied in descriptor set
 
