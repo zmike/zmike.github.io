@@ -5,7 +5,7 @@ published: false
 
 A rare Saturday post because I spent so much time this week intending to blog and then somehow not getting around to it. Let's get to the status updates, and then I'm going to dive into the more interesting of the things I worked on over the past few days.
 
-Zink has just hit another big milestone that I've just invented: as of now, my branch is now **passing 97% of piglit tests** up through GL 4.6 and ES 3.2, and a huge improvement from earlier in the week when I was only at around 92%. That's just over 1000 failure cases remaining out of ~41,000 tests. For perspective, a table.
+Zink has just hit another big milestone that I've just invented: as of now, my branch is **passing 97% of piglit tests** up through GL 4.6 and ES 3.2, and it's a huge improvement from earlier in the week when I was only at around 92%. That's just over 1000 failure cases remaining out of ~41,000 tests. For perspective, a table.
 
 | |IRIS|zink-mainline|zink-wip|
 |-|---|---|---|
@@ -40,7 +40,7 @@ Yes, it's been at least a week since I last wrote about a NIR pass, so it's past
 Going into this, the idea here is to perform the following operations within the vertex shader:
 * find all `deref` operations; `deref` is used to access variables for input and output, and so it's guaranteed that any 64bit input will first have a `deref`
 * create a second variable (hereafter `B`) of size `double` (for `dvec3`) or `dvec2` (for `dvec4`) to represent the second half of the value
-* alter the size of the input variable (hereafter `A`) and its `deref` instruction (hereafter `A_deref`) type to `dvec2`; this aligns the variable (and its subsequent load) to the `vec4` boundary, which enables it to be correctly read from a single location slot
+* alter the size of the original input variable (hereafter `A`) and its `deref` instruction (hereafter `A_deref`) type to `dvec2`; this aligns the variable (and its subsequent load) to the `vec4` boundary, which enables it to be correctly read from a single location slot
 * create a second `deref` instruction for `B` (hereafter `B_deref`)
 * find the `load_deref` instruction for `A_deref` (hereafter `A_load`)
 * alter the number of components for `A_load` to 2, matching its new `dvec2` size
