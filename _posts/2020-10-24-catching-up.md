@@ -141,4 +141,4 @@ Since this is all SSA, the NIR helpers can be used to trivially rewrite all the 
 ```
 Progress has occurred, so the pass returns true to reflect that.
 
-And now those large attributes are loaded as expected, and everything is great.
+Now those large attributes are loaded according to Vulkan spec, and everything is great because, as expected, ANV has no bugs here.
