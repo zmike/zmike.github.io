@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Counting
 I keep saying this, but I feel like I'm progressively getting further away from the original goal of this blog, which was to talk about actual code that I'm writing and not just create great graphics memes. So today it's once again a return to the roots and the code that I had intended to talk about yesterday.
