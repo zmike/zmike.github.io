@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## In Many Forms
 
