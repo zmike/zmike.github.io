@@ -26,4 +26,7 @@ Thus began the day-long process of rewriting the tc implementation to a much-imp
 
 This simplified the code a bit in other ways after the rewrite, as the gallium/tc fence objects were now entirely independent. The one small catch was that zink fences get recycled, meaning that in theory a gallium/tc fence could have a reference to a zink fence that it no longer was managing, but this was simple enough to avoid by gating all tc fence functionality on a comparison between its stored fence id and the id of the fence that it had a reference to. If they failed to match, the gallium/tc fence had already completed.
 
-## 
+## Stability++
+Things seem like they're in better shape now with regards to stability. It's become more challenging than ever to debug the driver with threading enabled, but that's just one of the benefits that threads provide.
+
+Next time I'll begin a series on how to get a mesa driver from less than 1fps to native performance in RPCS3.
