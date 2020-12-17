@@ -49,3 +49,8 @@ In pseudocode, the ARGB path looks something like this:
 The original swizzle is composed with the alpha-reversing swizzle to generate a swizzle that translates the resource's internal ARGB data into RGBA data (or vice versa) like the Vulkan driver is expecting it to be.
 
 From there, the only restriction is that this emulation is prohibited in texel buffers due to there not being a direct method of applying a swizzle to that codepath. Sure, I could do the swizzle in the shader as a variant, but then this leads to more shader variants and more pipeline objects, so it's simpler to just claim no support here and let gallium figure things out using other codepaths.
+
+## Progress?
+Would this be enough to get some frames moving?
+
+Find out tomorrow in the conclusion to this SGC miniseries.
