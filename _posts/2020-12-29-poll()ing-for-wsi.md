@@ -21,7 +21,7 @@ Indeed, due to quirks in the protocol/xserver, XPresent idle events can be recei
 
 [![scumbag-xorg.png]({{site.url}}/assets/scumbag-xorg.png)]({{site.url}}/assets/scumbag-xorg.png)
 
-In apps like SuperTuxKart, this results in insane flickering sure to be unsafe for anyone with epillepsy due to always rendering over the current frame before it's finished being presented.
+In apps like SuperTuxKart, this results in insane flickering due to always rendering over the current frame before it's finished being presented.
 
 ## Return Of The Poll
 To solve this problem, a wise, reclusive ghostwriter took time off from being at his local pub to offer me a suggestion:
