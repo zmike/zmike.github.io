@@ -11,7 +11,7 @@ This is an extremely challenging project, however, and some work needs to be don
 ## Swapchain Strikes Back
 Any swapchain master is already well acquainted with the mechanism by which images are displayed on the screen, but the gist of it for anyone unfamiliar is that there's N image resources that are swapped back and forth (2 for double-buffered, 3 for triple-buffered, ...). An image being rendered to is a *backbuffer*, and an image being displayed is a *frontbuffer*.
 
-Ideally, a frontbuffer shouldn't be drawn to while it's in the process of being presented since such an action obliterates the app's useefulness. The knowledge of exactly when a resource is done presenting is gained through WSI. On Xorg, however, it's a bit tricky, to say the least. DRI3 is intended to address the underlying problems there with the XPresent extension, and the Mesa DRI frontend utilizes this to determine when an image is safe to use.
+Ideally, a frontbuffer shouldn't be drawn to while it's in the process of being presented since such an action obliterates the app's usefulness. The knowledge of exactly when a resource is done presenting is gained through WSI. On Xorg, however, it's a bit tricky, to say the least. DRI3 is intended to address the underlying problems there with the XPresent extension, and the Mesa DRI frontend utilizes this to determine when an image is safe to use.
 
 All this is great, and I'm sure it works terrifically in other cases, but zink is not like other cases. Zink lacks WSI integration. Under Xorg, this means it relies entirely on the DRI frontend to determine when it's safe to start rendering onto an image resource.
 
