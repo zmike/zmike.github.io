@@ -193,7 +193,7 @@ Some time ago, noted Gallium professor Marek Olšák authored a [series](https:/
 
 The purpose of this is specifically to eliminate complex conditionals resulting from uniform data, so the detection NIR pass specifically looks for conditionals which use only constants and uniform data as the sources. Something like `if (uniform_variable_expression)` then becomes `if (constant_value_expression)` which can then be optimized out, greatly simplifying the eventual shader instructions.
 
-Looking at the above NIR, this seems like a good target for inlining as well, so I took my hatchet to the detection pass and added in support for the `bcsel` and `fcsel` ALU ops. The results are good, to say the least:
+Looking at the above NIR, this seems like a good target for inlining as well, so I took my hatchet to the detection pass and added in support for the `bcsel` and `fcsel` ALU ops when their result sources were the results of intrinsics, e.g., loads. The results are good to say the least:
 
 ```
 shader: MESA_SHADER_FRAGMENT
@@ -224,3 +224,5 @@ impl main {
 }
 ```
 The second `load_ubo` here is using the inlined uniform data to determine that it needs to load the `0` index, greatly reducing the shader's complexity.
+
+This still needs a bit of tuning, but I'm hoping to get it finalized soonish.
