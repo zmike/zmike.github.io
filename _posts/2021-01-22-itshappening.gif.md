@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Return of the Blog
 
