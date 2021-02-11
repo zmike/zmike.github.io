@@ -23,6 +23,8 @@ Things are much simpler now, however. `PROTON_DUMP_DEBUG_COMMANDS` enables dumpi
 
 The problem now is that I'd attached a debugger to the in-wine process, which is just a sandbox for the Windows API. What I actually wanted was to attach to the wine process itself so I could see what was going on in the driver.
 
-`gdb --pid=$(pidof WolfNewOrder_x64.exe)` ended up what I needed, but this was complicated by the fact that I had to attach before the game crashed and without triggering the steam error reporter. So in the end, I had to attach using the proton script, then while it was paused, attach to the outer process for driver debugging. But then also I had to attach to the outer process after zink
+`gdb --pid=$(pidof WolfNewOrder_x64.exe)` ended up what I needed, but this was complicated by the fact that I had to attach before the game crashed and without triggering the steam error reporter. So in the end, I had to attach using the proton script, then while it was paused, attach to the outer process for driver debugging. But then also I had to attach to the outer process after zink was loaded, so it was a real struggle.
 
-After cluelessly asking around in the DXVK discord, @Herbert helpfully provided a gdb python
+Then, as per usual, another problem: I had no symbols loaded because proton runs a static binary. After cluelessly asking around in the DXVK discord, @Herbert helpfully provided a gdb python script for proton in-process debugging that I was able to [repurpose for my needs](https://gist.github.com/zmike/4a8059403ce1e330a9fcdff79d214fbd). The gist (haha) of the script is that it scans /proc/$pid/maps and then manually loads the required library files.
+
+At last, I had attached to the game, I had symbols, and I could see that I was hitting a zink assert I'd added to catch int overflows. A quick one-liner to change the order of a calculation fixed that, and now I'm on to an entirely new class of bugs.
