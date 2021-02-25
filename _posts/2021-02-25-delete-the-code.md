@@ -67,7 +67,7 @@ Truly this is a pivotal revelation, one that can induce many days of deep thinki
 
 Today I present the latest in zink code deletion: a NIR pass that deletes all the broken variables and makes new ones.
 
-[![bender.png]({{site.url}}/assets/bender.png)]({{site.url}}/assets/bender.png)
+[![bender.jpg]({{site.url}}/assets/bender.jpg)]({{site.url}}/assets/bender.jpg)
 
 Let's get into it.
 
