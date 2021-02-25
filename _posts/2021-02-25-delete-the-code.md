@@ -7,7 +7,7 @@ For a long time, I've [tried](https://gitlab.freedesktop.org/mesa/mesa/-/merge_r
 
 Really, I have.
 
-But the bottom line is that, at least for gallium-based drivers, they're garbage. They're so unreliable that it's only by sheer luck (and a considerable amount of it) that zink has worked at all until this point.
+But the bottom line is that, at least for gallium-based drivers, they're unusable. They're so unreliable that it's only by sheer luck (and a considerable amount of it) that zink has worked at all until this point.
 
 Don't believe me? Here's a list of just some of the hacks that are currently in use by zink to handle support for these descriptor types, along with the reason(s) why they're needed:
 
