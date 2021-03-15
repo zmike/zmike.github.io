@@ -22,9 +22,9 @@ Lots.
 
 * Some number of patches landed
   * zink is now **conformant** for the enhanced layouts tests in CTS (KHR-GL46.enhanced_layouts*)
-* Mesa 21.0 is going out (has already gone out? I'm bad at time) with GL 4.6 and ES 3.1 enabled in zink
+* Mesa 21.0 is going out (has already gone out? I'm bad at time) with GL 4.1 enabled in zink
   * enjoy crashes and GPU hangs in style with a driver that nobody else is using!
 * Definitely other stuff that's good and useful but isn't in the scope of this post
 
 ## Easing Back In
-Monday's post is going to be back to the usual. In fact, I'm going to be posting about some query-related stuff, and now that I've said it, I can't back out.
+Tomorrow's post is going to be back to the usual. In fact, I'm going to be posting about some tc-related stuff, and now that I've said it, I can't back out.
