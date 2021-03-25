@@ -17,7 +17,7 @@ Here's where I started on piglit's `drawoverhead` test under Lavapipe:
    5, DrawElements ( 1 VBO| 8 UBO|  8 Tex) w/ no state change,                  583, 38.4%
   ```
   
-Nothing too incredible. Modern CPUs with a discrete GPU should be pulling upwards of 15,000k draws/s, and 10% of that is sort of okay.jpg.
+Nothing too incredible. Modern CPUs with a discrete GPU should be pulling upwards of 15,000k draws/s, and hitting 10% of that is sort of okay.jpg.
 
 ## Pipe Faster!
 But what if I implemented my Mesa multidraw extensions in Lavapipe?
@@ -57,6 +57,3 @@ A 3.5x performance boost in `drawoverhead` seemed pretty good, and it also cut m
 
 ## Pipe Fight!
 After my recent Swiftshader misadventure, wherein I discovered that it's missing (at least) transform feedback and conditional render extension support, meaning that it can't be used to create a legitimate GL 3.0+ context, esoteric rendering expert Dave Airlie [took benchmarking matters into his own hands](https://airlied.blogspot.com/2021/03/sketchy-vulkan-benchmarks-lavapipe-vs.html) today to battle it out against the other name-brand Vulkan CPU renderer. The results were shocking.
-
-
-  
