@@ -41,7 +41,7 @@ Yup, that's a 100% perf increase.
 ## Pipe Beyond Space And Time!
 But then I thought to myself: What if LLVMpipe could also handle me dumping all this info in?
 
-[![](http://img.youtube.com/vi/kVdlBxdqv8s/0.jpg)](http://www.youtube.com/watch?v=kVdlBxdqv8s "that's right")
+[![](http://img.youtube.com/vi/kVdlBxdqv8s/0.jpg)](http://www.youtube.com/watch?v=kVdlBxdqv8s)
 
 Indeed, by spending way too much time rewriting and refactoring deep Mesa internals, I have gone to the place beyond:
 ```
