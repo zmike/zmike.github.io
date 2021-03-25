@@ -7,7 +7,7 @@ It's no secret that CPU renderers are slower than GPU renderers. But at the same
 
 So I've spent some time today doing some rewrites in the \*pipe section of mesa, and let's just say that the pipe was good with zink before, but it's much, much better now.
 
-Here's where I started on piglit's `drawoverhead` test:
+Here's where I started on piglit's `drawoverhead` test under Lavapipe:
 ```
    #, Test name                                              ,    Thousands draws/s, Difference vs the 1st
    1, DrawElements ( 1 VBO| 0 UBO|  0    ) w/ no state change,                 1517, 100.0%
@@ -17,6 +17,9 @@ Here's where I started on piglit's `drawoverhead` test:
    5, DrawElements ( 1 VBO| 8 UBO|  8 Tex) w/ no state change,                  583, 38.4%
   ```
   
+  Nothing too incredible. Modern CPUs with a discrete GPU should be pulling upwards of 15,000k draws/s, and 10% of that is sort of okay.jpg.
+
+But what if I implemented my Mesa multidraw extensions in Lavapipe?
   
-  
+  https://www.youtube.com/watch?v=kVdlBxdqv8s
   
