@@ -56,4 +56,6 @@ Indeed, by spending way too much time rewriting and refactoring deep Mesa intern
 A 3.5x performance boost in `drawoverhead` seemed pretty good, and it also cut my GLES3 CTS runtime by about 20%, so I think I'm done here for now.
 
 ## Pipe Fight!
-After my recent Swiftshader misadventure, wherein I discovered that it's missing (at least) transform feedback and conditional render extension support, meaning that it can't be used to create a legitimate GL 3.0+ context, esoteric rendering expert Dave Airlie [took benchmarking matters into his own hands](https://airlied.blogspot.com/2021/03/sketchy-vulkan-benchmarks-lavapipe-vs.html) today to battle it out against the other name-brand Vulkan CPU renderer. The results were shocking.
+After my recent Swiftshader misadventure, wherein I discovered that it's missing (at least) transform feedback and conditional render extension support, meaning that it can't be used to create a legitimate GL 3.0+ context, esoteric rendering expert Dave Airlie [took benchmarking matters into his own hands](https://airlied.blogspot.com/2021/03/sketchy-vulkan-benchmarks-lavapipe-vs.html) today to battle it out against the other name-brand Vulkan CPU renderer.
+
+The results were shocking.
