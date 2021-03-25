@@ -43,7 +43,7 @@ But then I thought to myself: What if LLVMpipe could also handle me dumping all 
 
 [![](http://img.youtube.com/vi/kVdlBxdqv8s/0.jpg)](http://www.youtube.com/watch?v=kVdlBxdqv8s)
 
-Indeed, by spending way too much time rewriting and refactoring deep Mesa internals, I have gone to the place beyond:
+Indeed, by spending way too much time rewriting and refactoring deep Mesa internals, I have gone beyond:
 ```
    #, Test name                                              ,    Thousands draws/s, Difference vs the 1st
    1, DrawElements ( 1 VBO| 0 UBO|  0    ) w/ no state change,                 5273, 100.0%
