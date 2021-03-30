@@ -11,3 +11,10 @@ Lazy descriptors worked out great, and I'm sure many of you have grown to enjoy 
 
 Well, times have changed, and this message will no longer fill your terminal by default after today's (20210330) zink-wip snapshot.
 
+## Modes
+New today is the `ZINK_DESCRIPTORS` environment variable, supporting three modes of operation:
+* `auto` - the default, which attempts to detect system capabilities and use caching with templated updates
+* `lazy` - the mode we all know and love from the past few months
+* `notemplates` - this is the old-style caching mechanism
+
+`auto` mode moves zink one step closer to my eventual goal, which is to be able to use driconf to do application-based mode changes to disable caching for apps which never reuse resources. Also potentially useful would be the ability to dynamically disable caching on a pipeline-by-pipeline basis while an application is running if too many cache misses are detected.
