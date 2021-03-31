@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Do As I Say, Not As Zink Does
 Today, a brief post and lamentation.
