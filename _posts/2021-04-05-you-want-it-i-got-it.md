@@ -9,7 +9,7 @@ I've heard some speculation about zink's future regarding features. Specifically
 
 So you want features is what you're saying.
 
-Let's see where things stand after the weekend:
+Let's see where things stand in today's zink-wip snapshot:
 * **GL_OES_tessellation_shader**, **GL_OES_gpu_shader5** - this is a [mesamatrix bug](https://github.com/MightyCreak/mesamatrix/issues/193); zink can't reach GL 4.0 without supporting them, so obviously they are supported
 * **GL_ARB_bindless_texture** - the final boss
 * **GL_ARB_cl_event** - not (yet) supported by mesa
@@ -63,10 +63,12 @@ Let's see where things stand after the weekend:
 * **GLX_ARB_robustness_share_group_isolation** - not supported by mesa
 * **GL_EXT_shader_group_vote** - done
 * **GL_EXT_multisampled_render_to_texture** - TODO
-* **GL_EXT_color_buffer_half_float¶** - TODO
+* **GL_EXT_color_buffer_half_float** - TODO
 * **GL_EXT_depth_bounds_test** - done
 
-By my calculations, that's 11 `TODO`s, 10 `not supported`s, 2 `advanced blend`, and 1 `final boss`, a total of 24 out-of-version-extensions not yet implemented out of 54, meaning that 30 are done, tying with i965 and second only to RadeonSI at 33.
+By my calculations, that's 11 `TODO`, 10 `not supported`, 2 `advanced blend`, and 1 `final boss`, a total of 24 out-of-version-extensions not yet implemented out of 54, meaning that 30 are done, tying with i965 and second only to RadeonSI at 33.
+
+New in today's snapshot: **GL_ARB_fragment_shader_interlock**, **GL_ARB_sparse_buffer**, **GL_ARB_sample_locations**, **GL_ARB_shader_ballot**, **GL_ARB_shader_clock**, **GL_ARB_texture_filter_minmax**
 
 ## Cross-referencing
 Writing blog posts like this is easy, but you know what's not easy?
@@ -74,3 +76,6 @@ Writing blog posts like this is easy, but you know what's not easy?
 Writing good blog posts.
 
 And new to the blogging game is the one, the only, [Bas Nieuwenhuizen of RADV founding fame](https://basnieuwenhuizen.nl/)! If you're at all curious about how drivers actually work, his is definitely a site to follow, as he's already gone much deeper into explaining my [RPCS3 memcpy fail](https://basnieuwenhuizen.nl/the-catastrophe-of-reading-from-vram/) than I ever did.
+
+## Tomorrow
+Is sparse buffer implementation 101. I've said it, so now the blog post has to happen.
