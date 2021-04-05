@@ -7,7 +7,7 @@ After last week's post touting the "final" features being added to the upcoming 
 
 I've heard some speculation about zink's future regarding features. Specifically regarding all the [mesamatrix](https://mesamatrix.net/) features that aren't green-ified for zink yet.
 
-So you want features, is what you're saying.
+So you want features is what you're saying.
 
 Let's see where things stand after the weekend:
 * **GL_OES_tessellation_shader**, **GL_OES_gpu_shader5** - this is a [mesamatrix bug](https://github.com/MightyCreak/mesamatrix/issues/193); zink can't reach GL 4.0 without supporting them, so obviously they are supported
@@ -68,4 +68,9 @@ Let's see where things stand after the weekend:
 
 By my calculations, that's 11 `TODO`s, 10 `not supported`s, 2 `advanced blend`, and 1 `final boss`, a total of 24 out-of-version-extensions not yet implemented out of 54, meaning that 30 are done, tying with i965 and second only to RadeonSI at 33.
 
+## Cross-referencing
+Writing blog posts like this is easy, but you know what's not easy?
 
+Writing good blog posts.
+
+And new to the blogging game is the one, the only, [Bas Nieuwenhuizen of RADV founding fame](https://basnieuwenhuizen.nl/)! If you're at all curious about how drivers actually work, his is definitely a site to follow, as he's already gone much deeper into explaining my [RPCS3 memcpy fail](https://basnieuwenhuizen.nl/the-catastrophe-of-reading-from-vram/) than I ever did.
