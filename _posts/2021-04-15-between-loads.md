@@ -88,3 +88,5 @@ return f;
 ```
 
 Thus, alpha blending is a passthrough operation from the `src` component, and for color blending, the `dest` component is always one or zero. This yields correct results in piglit's `spec@arb_texture_float@fbo-blending-formats` test, and also potentially enables the hardware to employ some optimizations to reduce the burden of blending.
+
+Exciting.
