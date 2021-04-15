@@ -49,7 +49,7 @@ Let's look at `VK_BLEND_OP_ADD` as a very simple example. The spec defines this 
 
 `As0 × Sa + Ad × Da`
 
-That's alpha-of-source times source-alpha-blend-factor plus alpha-of-dest times dest-alpha-blend-factor yielding the resulting pixel color that gets written to the attachment.
+That's alpha-of-src times src-alpha-blend-factor plus alpha-of-dest times dest-alpha-blend-factor yielding the resulting pixel color that gets written to the attachment.
 
 But what if the dest value is expected to always one, and the actual buffer is always zero because its alpha channel is never written?
 
@@ -86,3 +86,5 @@ if (f == VK_BLEND_FACTOR_DST_ALPHA)
    return VK_BLEND_FACTOR_ONE;
 return f;
 ```
+
+Thus, alpha blending is a passthrough operation from the `src` component, and for color blending, the `dest` component is always one or zero. This yields correct results in piglit's `spec@arb_texture_float@fbo-blending-formats` test, and also potentially enables the hardware to employ some optimizations to reduce the burden of blending.
