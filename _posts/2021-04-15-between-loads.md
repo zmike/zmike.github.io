@@ -28,4 +28,8 @@ The big Mesa 21.1 branchpoint happened yesterday, and I'm pretty pleased with th
 * Tough to say, honestly, since this is effectively a version of zink that is, to me, 5-6 months old with a few other patches sprinkled in here and there
 
 And here's the zink-wip roundup from the past however long since I did the last one:
-* I [doubled blending performance](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/10180) in many cases by fixing an incredibly old TODO item regarding using linear tiled images for scanout; this is in the 21.1 release solely to avoid super embarrassing numbers on Phoronix benchmarks. Yeah, I'm talking to you.
+* I [doubled blending performance](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/10180) in many cases by fixing an incredibly old TODO item regarding using linear tiled images for scanout; this got rushed into the 21.1 release solely to avoid super embarrassing numbers on Phoronix benchmarks.
+
+Yeah, I'm talking to you.
+
+* 
