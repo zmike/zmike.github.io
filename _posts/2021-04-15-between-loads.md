@@ -32,4 +32,57 @@ And here's the zink-wip roundup from the past however long since I did the last 
 
 Yeah, I'm talking to you.
 
-* 
+* I fixed a ton of bugs. Like, actually a ton. [Tomb Raider](https://store.steampowered.com/app/203160/Tomb_Raider/) went from an all-you-can-crash buffet to...well, I'll leave it as a fun surprise for anyone feeling especially intrepid, but it's definitely playable. So are things that use queries. Don't ask.
+
+* There's totally some other stuff, but I'm too fried to remember it.
+
+## The Real Post
+Everything up there was just fluff, but this is where the post gets real.
+
+Zink supports formats with alpha-to-one, e.g., RGBX, BGRX, and even (on zink-wip, very illegal) XRGB and XBGR. This is handy for 24bit visuals, such as (probably) all your windows in Xorg. But the method by which these formats are supported comes with its own issues, part of which I'd fixed some time ago in my quest to reduce GPU overhead, and the other part I discovered more recently.
+
+In zink, an alpha-to-one format is just the equivalent format with alpha. So RGBX is just RGBA. This is due to Vulkan not having format equivalents for these types; when sampling from them, a swizzle is applied to force the alpha channel to the maximum value, which yields the correct result.
+
+But what happens when an RGBX framebuffer attachment is used in a blending operation?
+
+Let's look at `VK_BLEND_OP_ADD` as a very simple example. The spec defines this operation as:
+
+`As0 × Sa + Ad × Da`
+
+That's alpha-of-source times source-alpha-blend-factor plus alpha-of-dest times dest-alpha-blend-factor yielding the resulting pixel color that gets written to the attachment.
+
+But what if the dest value is expected to always one, and the actual buffer is always zero because its alpha channel is never written?
+
+Such is the case with RGBX and the like, and so more steps are required here for full emulation.
+
+## The Real Roundup
+Here's how I went about solving the issue.
+
+First, framebuffer attachments have to be monitored when they're updated, and any time an alpha-to-one attachment is bound, I set a bitflag for it in the pipeline state. This then triggers a pipeline update for the blend state at the time of draw, where I apply clamping to the appropriate blend factors like so:
+
+```c
+if (state->zero_alpha_attachments) {
+   for (unsigned i = 0; i < state->num_attachments; i++) {
+      blend_att[i] = state->blend_state->attachments[i];
+      if (state->zero_alpha_attachments & BITFIELD_BIT(i)) {
+         blend_att[i].dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO;
+         blend_att[i].srcColorBlendFactor = clamp_zero_blend_factor(blend_att[i].srcColorBlendFactor);
+         blend_att[i].dstColorBlendFactor = clamp_zero_blend_factor(blend_att[i].dstColorBlendFactor);
+      }
+   }
+   blend_state.pAttachments = blend_att;
+} else
+   blend_state.pAttachments = state->blend_state->attachments;
+```
+
+For any of the attachments in the bitfield, three clamps are performed:
+* `dstAlphaBlendFactor` is clamped to zero, because there will never be any contribution from the dest component of alpha blending
+* `srcColorBlendFactor` and `dstColorBlendFactor` are both clamped using the following check:
+
+```c
+if (f == VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA)
+   return VK_BLEND_FACTOR_ZERO;
+if (f == VK_BLEND_FACTOR_DST_ALPHA)
+   return VK_BLEND_FACTOR_ONE;
+return f;
+```
