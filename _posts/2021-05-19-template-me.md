@@ -176,3 +176,5 @@ static void si_draw_vbo(struct pipe_context *ctx,
       }
 ```
 Note that the hardware version parts are templated, as is the `HAS_TESS` conditional, enabling it to be skipped entirely if there's no tessellation shader active.
+
+With techniques like this, it's no surprise that RadeonSI is the driver to beat in performance and low overhead. The latest zink-wip snapshots include similar work, skipping considerable amounts of the draw dispatch when possible, and (hopefully) lowering the CPU overhead of the draw dispatch.
