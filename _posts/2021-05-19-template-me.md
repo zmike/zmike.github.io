@@ -94,3 +94,85 @@ static inline void si_select_draw_vbo(struct si_context *sctx)
 }
 ```
 Thus the parameters are pulled directly from the context, and the function can be called whenever the draw function pointer needs to be updated, such as when new shaders are bound or primitive discard is enabled.
+
+## Result
+The result is that now the draw dispatch can be fully optimized for the codepath required by the active hardware and graphics pipeline, reducing the CPU overhead and making the draw code the tiniest bit faster. For example, here's just the top part of the templated function:
+
+```c
+template <chip_class GFX_VERSION, si_has_tess HAS_TESS, si_has_gs HAS_GS, si_has_ngg NGG,
+          si_has_prim_discard_cs ALLOW_PRIM_DISCARD_CS>
+static void si_draw_vbo(struct pipe_context *ctx,
+                        const struct pipe_draw_info *info,
+                        unsigned drawid_offset,
+                        const struct pipe_draw_indirect_info *indirect,
+                        const struct pipe_draw_start_count_bias *draws,
+                        unsigned num_draws)
+{
+   /* Keep code that uses the least number of local variables as close to the beginning
+    * of this function as possible to minimize register pressure.
+    *
+    * It doesn't matter where we return due to invalid parameters because such cases
+    * shouldn't occur in practice.
+    */
+   struct si_context *sctx = (struct si_context *)ctx;
+
+   /* Recompute and re-emit the texture resource states if needed. */
+   unsigned dirty_tex_counter = p_atomic_read(&sctx->screen->dirty_tex_counter);
+   if (unlikely(dirty_tex_counter != sctx->last_dirty_tex_counter)) {
+      sctx->last_dirty_tex_counter = dirty_tex_counter;
+      sctx->framebuffer.dirty_cbufs |= ((1 << sctx->framebuffer.state.nr_cbufs) - 1);
+      sctx->framebuffer.dirty_zsbuf = true;
+      si_mark_atom_dirty(sctx, &sctx->atoms.s.framebuffer);
+      si_update_all_texture_descriptors(sctx);
+   }
+
+   unsigned dirty_buf_counter = p_atomic_read(&sctx->screen->dirty_buf_counter);
+   if (unlikely(dirty_buf_counter != sctx->last_dirty_buf_counter)) {
+      sctx->last_dirty_buf_counter = dirty_buf_counter;
+      /* Rebind all buffers unconditionally. */
+      si_rebind_buffer(sctx, NULL);
+   }
+
+   si_decompress_textures(sctx, u_bit_consecutive(0, SI_NUM_GRAPHICS_SHADERS));
+   si_need_gfx_cs_space(sctx, num_draws);
+
+   /* If we're using a secure context, determine if cs must be secure or not */
+   if (GFX_VERSION >= GFX9 && unlikely(radeon_uses_secure_bos(sctx->ws))) {
+      bool secure = si_gfx_resources_check_encrypted(sctx);
+      if (secure != sctx->ws->cs_is_secure(&sctx->gfx_cs)) {
+         si_flush_gfx_cs(sctx, RADEON_FLUSH_ASYNC_START_NEXT_GFX_IB_NOW |
+                               RADEON_FLUSH_TOGGLE_SECURE_SUBMISSION, NULL);
+      }
+   }
+
+   if (HAS_TESS) {
+      struct si_shader_selector *tcs = sctx->shader.tcs.cso;
+
+      /* The rarely occuring tcs == NULL case is not optimized. */
+      bool same_patch_vertices =
+         GFX_VERSION >= GFX9 &&
+         tcs && info->vertices_per_patch == tcs->info.base.tess.tcs_vertices_out;
+
+      if (sctx->same_patch_vertices != same_patch_vertices) {
+         sctx->same_patch_vertices = same_patch_vertices;
+         sctx->do_update_shaders = true;
+      }
+
+      if (GFX_VERSION == GFX9 && sctx->screen->info.has_ls_vgpr_init_bug) {
+         /* Determine whether the LS VGPR fix should be applied.
+          *
+          * It is only required when num input CPs > num output CPs,
+          * which cannot happen with the fixed function TCS. We should
+          * also update this bit when switching from TCS to fixed
+          * function TCS.
+          */
+         bool ls_vgpr_fix =
+            tcs && info->vertices_per_patch > tcs->info.base.tess.tcs_vertices_out;
+
+         if (ls_vgpr_fix != sctx->ls_vgpr_fix) {
+            sctx->ls_vgpr_fix = ls_vgpr_fix;
+            sctx->do_update_shaders = true;
+         }
+      }
+```
+Note that the hardware version parts are templated, as is the `HAS_TESS` conditional, enabling it to be skipped entirely if there's no tessellation shader active.
