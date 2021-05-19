@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Using Power For Evil
 
