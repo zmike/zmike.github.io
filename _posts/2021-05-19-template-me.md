@@ -83,3 +83,14 @@ This calls through a series of functions, ultimately reaching `si_init_draw_vbo`
 Once initialized, there's an inline function used to set the current function pointer:
 
 ```c
+static inline void si_select_draw_vbo(struct si_context *sctx)
+{
+   sctx->b.draw_vbo = sctx->draw_vbo[sctx->chip_class - GFX6]
+                                    [!!sctx->shader.tes.cso]
+                                    [!!sctx->shader.gs.cso]
+                                    [sctx->ngg]
+                                    [si_compute_prim_discard_enabled(sctx)];
+   assert(sctx->b.draw_vbo);
+}
+```
+Thus the parameters are pulled directly from the context, and the function can be called whenever the draw function pointer needs to be updated, such as when new shaders are bound or primitive discard is enabled.
