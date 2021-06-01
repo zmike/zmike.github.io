@@ -35,4 +35,8 @@ Thus a shader gets cached based on its text representation, enabling matching sh
 
 Oops.
 
-The problem in this case was that I was just jamming all the pipelines into a single file
+The problem in this case was that I was just jamming all the pipelines into a single file, written once at program exit, and expecting the Vulkan driver to figure things out.
+
+But what if the program didn't exit cleanly? Or what if the write failed for some reason?
+
+In short, the pipeline cache was mostly being written as a big block of garbage data. Not very useful.
