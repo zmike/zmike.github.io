@@ -40,3 +40,8 @@ The problem in this case was that I was just jamming all the pipelines into a si
 But what if the program didn't exit cleanly? Or what if the write failed for some reason?
 
 In short, the pipeline cache was mostly being written as a big block of garbage data. Not very useful.
+
+## Next-Level Caching Technique
+Clearly I needed to reeducate myself in the ways of managing a cache, something that, in my former life as a GUI expert I did routinely, but that I could no longer comprehend now that I only spoke bitfields and command buffers.
+
+I sought out the reclusive Timothy Arceri, a well-known sage in many esoteric, arcane arts, and, as I recall it, purveyor of great wisdom such as (paraphrased because the original text has been lost to the ages): **We Both Know The GLSL Compiler Uniform Block Code Is Unfathomable, Why Do You Insist On Attempting To Modify It?**
