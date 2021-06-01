@@ -5,7 +5,7 @@ published: false
 
 Specifically when it's right outside my house and starts at 5:30AM with heavy machinery moving around.
 
-With this said, I'm overdue for a post, and if I don't set a good example by continuing to blog, why would anyone else? PS. BAS IT'S TIME.
+With this said, I'm overdue for a post, and if I don't set a good example by continuing to blog, why would anyone else? PS. [BAS](https://basnieuwenhuizen.nl/) IT'S TIME.
 
 Let's see what's on the agenda:
 * ~~handwaving about C++ draw templates~~
