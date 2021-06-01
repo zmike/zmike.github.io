@@ -70,4 +70,4 @@ Because we're all big Vulkan adults, we do big Vulkan pipeline caches instead of
 
 This has the added benefit of providing all the state variants for a given shader pipeline, saving additional lookups and ensuring that all the potential compiled pipelines are available at once. Furthermore, because there's a (very) short delay between knowing what shaders are grouped together and needing the actual compiled pipeline, I can dump this all into a thread and handle the lookup while I update descriptors #2021 ASYNC THREADS++++++ BAYBEEEEEE.
 
-But also, _also_, the one thing to absolutely not ever forget or else it'll be really embarrassing is to ensure that you add your driver's sha1 hash to your disk cache lookup, otherwise the whole thing explodes and @tarceri will frown down upon you.
+But also, *also*, the one thing to absolutely not ever forget or else it'll be really embarrassing is to ensure that you add your driver's sha1 hash to your disk cache lookup, otherwise the whole thing explodes and @tarceri will frown down upon you.
