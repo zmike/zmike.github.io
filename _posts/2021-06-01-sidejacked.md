@@ -50,8 +50,14 @@ The answers I received from my sojourn were swift and concise:
 
 Stop that. Fossilize caching wasn't meant to work that way.
 
-My thoughts whirling, confidence badly shaken, I returned from the summit of the mountain and dashed my heretical cache implementation against the solid foundation of `git rebase -i`. What had I been thinking?
+My thoughts whirling, confidence badly shaken, I stumbled and fell from the summit of the mountain and dashed my heretical cache implementation against the solid foundation of `git rebase -i`.
+
+What had I been thinking?
 
 It was back to the charts for me, and this time I had a number of different goals:
 * go back to multi-file caching (since it's the only option)
-* 
+* smaller caches
+* more frequent updates
+* fully async
+
+Turns out this wasn't actually as hard as expected?
