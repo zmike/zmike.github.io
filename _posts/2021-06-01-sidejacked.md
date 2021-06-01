@@ -22,3 +22,12 @@ If you're a long-time zink connoisseur, or if you're just a casual reader of the
 But did you know that it doesn't actually do anything?
 
 Indeed, it was to my chagrin that, upon diving back into my slapdash pipeline cache implementation, I discovered that it was doing absolutely nothing. And this was a different nothing than the time that I didn't actually pass the cache back to the vulkan driver! Yes, this was the nothing of *I have a cache, why am I still compiling a hundred pipelines per frame?* that the occasional lucky developer runs into every now and again.
+
+But hwhy? Who would do such a thing?
+
+[![spideymeme.jpg]({{site.url}}/assets/spideymeme.jpg)]({{site.url}}/assets/spideymeme.jpg)
+
+Past recriminations aside, how does a shader/pipeline cache work, anyway? The gist of it is this:
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoic3RhdGVEaWFncmFtLXYyXG5zMTogSGF2ZSBzaGFkZXIgZnJvbSBhcHBcbnMyOiBTZXJpYWxpemUgdG8gTklSIHRleHRcbnMzOiBDb21wdXRlIFNIQTEgaGFzaFxuczQ6IFVzZSBoYXNoIGZvciBjYWNoZSBsb29rdXBcbnM1OiBDYWNoZSBoaXRcbnM3OiBDYWNoZSBtaXNzXG5zNjogSGF2ZSBjb21waWxlZCBzaGFkZXJcbnM4OiBDb21waWxlIG5ldyBzaGFkZXJcbiAgICBbKl0gLS0-IHMxXG4gICAgczEgLS0-IHMyXG4gICAgczIgLS0-IHMzXG4gICAgczMgLS0-IHM0XG4gICAgczQgLS0-IHM1XG4gICAgczQgLS0-IHM3XG4gICAgczUgLS0-IHM2XG4gICAgczcgLS0-IHM4XG4gICAgczggLS0-IHM2IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoic3RhdGVEaWFncmFtLXYyXG5zMTogSGF2ZSBzaGFkZXIgZnJvbSBhcHBcbnMyOiBTZXJpYWxpemUgdG8gTklSIHRleHRcbnMzOiBDb21wdXRlIFNIQTEgaGFzaFxuczQ6IFVzZSBoYXNoIGZvciBjYWNoZSBsb29rdXBcbnM1OiBDYWNoZSBoaXRcbnM3OiBDYWNoZSBtaXNzXG5zNjogSGF2ZSBjb21waWxlZCBzaGFkZXJcbnM4OiBDb21waWxlIG5ldyBzaGFkZXJcbiAgICBbKl0gLS0-IHMxXG4gICAgczEgLS0-IHMyXG4gICAgczIgLS0-IHMzXG4gICAgczMgLS0-IHM0XG4gICAgczQgLS0-IHM1XG4gICAgczQgLS0-IHM3XG4gICAgczUgLS0-IHM2XG4gICAgczcgLS0-IHM4XG4gICAgczggLS0-IHM2IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
+
