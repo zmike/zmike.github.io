@@ -22,7 +22,7 @@ If you're a long-time zink connoisseur, or if you're just a casual reader of the
 
 But did you know that it doesn't actually do anything at present?
 
-Indeed, it was to my chagrin that, upon diving back into my slapdash pipeline cache implementation, I discovered that it was doing absolutely nothing. And this was a different nothing than the time that I didn't actually pass the cache back to the vulkan driver! Yes, this was the nothing of *I have a cache, why am I still compiling a hundred pipelines per frame?* that the occasional lucky developer runs into every now and again.
+Indeed, it was to my chagrin that, upon diving back into my slapdash pipeline cache implementation, I discovered that it was doing absolutely nothing. And this was a different nothing than that one time that I didn't actually pass the cache back to the vulkan driver! Yes, this was the nothing of *I have a cache, why am I still compiling a hundred pipelines per frame?* that the occasional lucky developer runs into every now and again.
 
 But hwhy? Who would do such a thing?
 
