@@ -20,7 +20,7 @@ In a word: lots.
 Here's the rundown.
 
 ## The Rundown
-The 20210517 zink-wip snapshot is the bigest one in history. I say this with no exaggeration.
+The 20210517 zink-wip snapshot is the biggest one in history. I say this with no exaggeration.
 
 Changes since the last snapshot include:
 * an imperial units (and I measured this precisely) fuckton of general driver overhead reduction
