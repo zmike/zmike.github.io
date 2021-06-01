@@ -27,7 +27,12 @@ But hwhy? Who would do such a thing?
 
 [![spideymeme.jpg]({{site.url}}/assets/spideymeme.jpg)]({{site.url}}/assets/spideymeme.jpg)
 
-Past recriminations aside, how does a shader/pipeline cache work, anyway? The gist of it is this:
+Past recriminations aside, how does a shader/pipeline cache work, anyway? The gist of it in most Mesa drivers is this:
 
 [![](https://mermaid.ink/img/eyJjb2RlIjoic3RhdGVEaWFncmFtLXYyXG5zMTogSGF2ZSBzaGFkZXIgZnJvbSBhcHBcbnMyOiBTZXJpYWxpemUgdG8gTklSIHRleHRcbnMzOiBDb21wdXRlIFNIQTEgaGFzaFxuczQ6IFVzZSBoYXNoIGZvciBjYWNoZSBsb29rdXBcbnM1OiBDYWNoZSBoaXRcbnM3OiBDYWNoZSBtaXNzXG5zNjogSGF2ZSBjb21waWxlZCBzaGFkZXJcbnM4OiBDb21waWxlIG5ldyBzaGFkZXJcbiAgICBbKl0gLS0-IHMxXG4gICAgczEgLS0-IHMyXG4gICAgczIgLS0-IHMzXG4gICAgczMgLS0-IHM0XG4gICAgczQgLS0-IHM1XG4gICAgczQgLS0-IHM3XG4gICAgczUgLS0-IHM2XG4gICAgczcgLS0-IHM4XG4gICAgczggLS0-IHM2IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoic3RhdGVEaWFncmFtLXYyXG5zMTogSGF2ZSBzaGFkZXIgZnJvbSBhcHBcbnMyOiBTZXJpYWxpemUgdG8gTklSIHRleHRcbnMzOiBDb21wdXRlIFNIQTEgaGFzaFxuczQ6IFVzZSBoYXNoIGZvciBjYWNoZSBsb29rdXBcbnM1OiBDYWNoZSBoaXRcbnM3OiBDYWNoZSBtaXNzXG5zNjogSGF2ZSBjb21waWxlZCBzaGFkZXJcbnM4OiBDb21waWxlIG5ldyBzaGFkZXJcbiAgICBbKl0gLS0-IHMxXG4gICAgczEgLS0-IHMyXG4gICAgczIgLS0-IHMzXG4gICAgczMgLS0-IHM0XG4gICAgczQgLS0-IHM1XG4gICAgczQgLS0-IHM3XG4gICAgczUgLS0-IHM2XG4gICAgczcgLS0-IHM4XG4gICAgczggLS0-IHM2IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
+Thus a shader gets cached based on its text representation, enabling matching shaders across programs to use the same cache entry. After noting the success of Steam's fossilize-based single file cache, I decided to use a single file for zink's shader cache.
+
+Oops.
+
+The problem in this case was that I was just jamming all the pipelines into a single file
