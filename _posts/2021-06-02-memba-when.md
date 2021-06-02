@@ -52,3 +52,11 @@ So now context B's submit thread is dumping cmdbuf 4's triangles into the GPU, t
 **Will any drivers care?**
 
 Magic 8-ball says no, no drivers care about this and everything still works fine. That's cool and interesting, but probably it'd be better to not do that.
+
+The problem here is two problems:
+* the queue submission thread is context-based when it should be screen based
+* cmdbufs get an id when they start recording, not when they get submitted
+
+The first problem is easy to fix: just deduplicate the thread and move the struct member.
+
+The second one is trickier because everything in zink relies on cmdbufs getting an id as soon as they become active. This is done so that any resources written to by a given cmdbuf can have their usage tracked for synchronization purposes, e.g., reading back a buffer only after all its writes have landed.
