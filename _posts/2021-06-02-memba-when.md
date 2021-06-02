@@ -61,7 +61,7 @@ The first problem is easy to fix: just deduplicate the thread and move the struc
 
 The second one is trickier because everything in zink relies on cmdbufs getting an id as soon as they become active. This is done so that any resources written to by a given cmdbuf can have their usage tracked for synchronization purposes, e.g., reading back a buffer only after all its writes have landed.
 
-The problem is further complicated by zink not having a great API barrier between directly accessing the "usage" for a resource and the value itself, by which I mean parts of the codebase directly reading the integer value vs having an API to wrap it; the latter would enable replacing the mechanism with whatever I wanted, so I decided to start by creating such a wrapper:
+The problem is further complicated by zink not having a great API barrier between directly accessing the "usage" for a resource and the value itself, by which I mean parts of the codebase directly reading the integer value vs having an API to wrap it; the latter would enable replacing the mechanism with whatever I wanted, so I decided to start by creating such a wrapper based on this:
 
 ```c
 struct zink_batch_usage {
@@ -70,4 +70,4 @@ struct zink_batch_usage {
 };
 ```
 
-This is the existing struct but now with a bool value indicating that this cmdbuf is still recording. Each cmdbuf batch now has this sub-struct inlined onto it, and resources in zink can take references (pointers) to a specific cmdbuf's usage struct. Because batches are never destroyed, this means the wrapper API can always dereference the struct to determine how to synchronize the usage: if it's unflushed, it can flush or sync the flush thread; if it's real, pending usage, it can safely wait on that usage as a timeline value and guarantee monotonic ordering.
+This is the existing `struct zink_batch_usage` but now with a bool value indicating that this cmdbuf is still recording. Each cmdbuf batch now has this sub-struct inlined onto it, and resources in zink can take references (pointers) to a specific cmdbuf's usage struct. Because batches are never destroyed, this means the wrapper API can always dereference the struct to determine how to synchronize the usage: if it's unflushed, it can flush or sync the flush thread; if it's real, pending usage, it can safely wait on that usage as a timeline value and guarantee monotonic ordering.
