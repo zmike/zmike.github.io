@@ -53,6 +53,7 @@ So now context B's submit thread is dumping cmdbuf 4's triangles into the GPU, t
 
 Magic 8-ball says no, no drivers care about this and everything still works fine. That's cool and interesting, but probably it'd be better to not do that.
 
+## This Time It's Definitely Fixed
 The problem here is two problems:
 * the queue submission thread is context-based when it should be screen based
 * cmdbufs get an id when they start recording, not when they get submitted
@@ -71,3 +72,39 @@ struct zink_batch_usage {
 ```
 
 This is the existing `struct zink_batch_usage` but now with a bool value indicating that this cmdbuf is yet to be flushed. Each cmdbuf batch now has this sub-struct inlined onto it, and resources in zink can take references (pointers) to a specific cmdbuf's usage struct. Because batches are never destroyed, this means the wrapper API can always dereference the struct to determine how to synchronize the usage: if it's unflushed, it can flush or sync the flush thread; if it's real, pending usage, it can safely wait on that usage as a timeline value and guarantee monotonic ordering.
+
+```c
+bool
+zink_screen_usage_check_completion(struct zink_screen *screen, const struct zink_batch_usage *u)
+{
+   if (!zink_batch_usage_exists(u))
+      return true;
+   if (zink_batch_usage_is_unflushed(u))
+      return false;
+
+   return zink_screen_batch_id_wait(screen, u->usage, 0);
+}
+
+bool
+zink_batch_usage_check_completion(struct zink_context *ctx, const struct zink_batch_usage *u)
+{
+   if (!zink_batch_usage_exists(u))
+      return true;
+   if (zink_batch_usage_is_unflushed(u))
+      return false;
+   return zink_check_batch_completion(ctx, u->usage);
+}
+
+void
+zink_batch_usage_wait(struct zink_context *ctx, const struct zink_batch_usage *u)
+{
+   if (!zink_batch_usage_exists(u))
+      return;
+   if (zink_batch_usage_is_unflushed(u))
+      zink_fence_wait(&ctx->base);
+   else
+      zink_wait_on_batch(ctx, u->usage);
+}
+```
+
+Now things render exactly the same, but with a truly monotonic queue underneath that's conformant to specifications.
