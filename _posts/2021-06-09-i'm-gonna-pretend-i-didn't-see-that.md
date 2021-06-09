@@ -43,3 +43,7 @@ The textures are "deleted", yes, but because they're in use, the driver can't ac
 At present, mainline zink uses a hammer-and-nail methodology that I came up with last year: the total amount of GPU memory in use by resources in a given cmdbuf is tracked, and that amount is tracked per-context. If the in-use context memory exceeds a threshold of the total VRAM, the driver stalls, thereby freeing up all the resources that are in use so they can be recycled into new ones.
 
 There's a number of problems with this approach, but the biggest one is that it fails to account for cases like a AAA game that just uses as much memory as it can in order to optimize performance/resolution/graphics. I discovered such a case some time ago while running Tomb Raider, and then I set out to improve things since it was costing me about 10% of my perf on the title screen.
+
+The annoying part of this problem is that the piglit test is a very uncommon case, and it's tricky to handle it in a way that doesn't also impact other cases which appear similar but need to not get memory-clamped. As a result, it's tough to really do anything based on "overall" memory usage.
+
+In the end, what I decided on was using the per-cmdbuf memory usage counter to trigger a check for completed cmdbufs on submit, iterating over all the pending ones to check whether they've completed, resetting them and freeing associated resources when possible.
