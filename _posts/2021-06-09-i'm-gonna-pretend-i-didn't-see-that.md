@@ -46,4 +46,4 @@ There's a number of problems with this approach, but the biggest one is that it 
 
 The annoying part of this problem is that the piglit test is a very uncommon case, and it's tricky to handle it in a way that doesn't also impact other cases which appear similar but need to not get memory-clamped. As a result, it's tough to really do anything based on "overall" memory usage.
 
-In the end, what I decided on was using the per-cmdbuf memory usage counter to trigger a check for completed cmdbufs on submit, iterating over all the pending ones to check whether they've completed, resetting them and freeing associated resources when possible.
+In the end, what I decided on was using the per-cmdbuf memory usage counter to trigger a check for completed cmdbufs on submit, iterating over all the pending ones to check whether they've completed, resetting them and freeing associated resources when possible. This yields good memory reclaiming behavior for problem cases while leaving games like Tomb Raider untouched and definitely not deadlocking or anything like that.
