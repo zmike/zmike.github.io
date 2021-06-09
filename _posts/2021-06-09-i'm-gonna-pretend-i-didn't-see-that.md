@@ -23,3 +23,18 @@ I'm not going to say any of these things.
 
 What I am going to do is talk about a new oom handler I've been working on to handle the dreaded `spec@!opengl 1.1@streaming-texture-leak` case from piglit.
 
+## The Case
+This test is annoying in that it is effectively a test of a driver's ability to throttle itself when an app is generating and using $infinity textures without ever explicitly triggering a flush.
+
+In short, it's:
+```c
+for (i = 0; i < 5000; i++) {
+   glGenTextures(1, &texture);
+   glBindTexture(GL_TEXTURE_2D, texture);
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TEX_SIZE, TEX_SIZE, 0, GL_RGBA, GL_UNSIGNED_BYTE, tex_buffer);
+   piglit_draw_rect_tex(0, 0, piglit_width, piglit_height, 0, 0, 1, 1);
+   glDeleteTextures(1, &texture);
+}
+```
+
+The textures are "deleted", yes, but because they're in use, the driver can't actually delete them at this point of call, meaning that they can only be deleted once they are no longer in use by the GPU.
