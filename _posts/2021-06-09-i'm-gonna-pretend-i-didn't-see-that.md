@@ -37,4 +37,9 @@ for (i = 0; i < 5000; i++) {
 }
 ```
 
-The textures are "deleted", yes, but because they're in use, the driver can't actually delete them at this point of call, meaning that they can only be deleted once they are no longer in use by the GPU.
+The textures are "deleted", yes, but because they're in use, the driver can't actually delete them at this point of call, meaning that they can only truly be deleted once they are no longer in use by the GPU. At some iteration, this will begin to oom the GPU, and the driver will have to determine how to handle things.
+
+## The Zink Case
+At present, mainline zink uses a hammer-and-nail methodology that I came up with last year: the total amount of GPU memory in use by resources in a given cmdbuf is tracked, and that amount is tracked per-context. If the in-use context memory exceeds a threshold of the total VRAM, the driver stalls, thereby freeing up all the resources that are in use so they can be recycled into new ones.
+
+There's a number of problems with this approach, but the biggest one is that it fails to account for cases like a AAA game that just uses as much memory as it can in order to optimize performance/resolution/graphics.
