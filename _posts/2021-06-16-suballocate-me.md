@@ -53,4 +53,4 @@ At a high level, here's an overview of aux/pb:
 
 There's more under the hood, but it mostly boils down to filling in the interface functions to manage detecting whether resources are busy or can be reclaimed for reuse. The actual caching/reclaiming/reusing are all handled by aux/pb, meaning I was free to go about breaking everything with all the leftover time that I had.
 
-Cultured users of zink-wip can now enjoy massively improved performance (and have already been enjoying itfor the past month) in many apps. The rest of you get to sit around and watch while I [bang my head against CI while ajax showers me with memes](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11391).
+Cultured users of zink-wip can now enjoy massively improved performance (and have already been enjoying it for the past month) in many apps. The rest of you get to sit around and watch while I [bang my head against CI while ajax showers me with memes](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11391).
