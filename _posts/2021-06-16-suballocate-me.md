@@ -27,4 +27,20 @@ In a 32bit process, the amount of address space available is limited to 4GB, reg
 
 In short, the game crashes.
 
-In Vulkan, and just generally in driver work, it's important to keep allocation sizes aligned to the preference of the hardware for a given usage; this amounts to [minMemoryMapAlignment](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceLimits.html), which is 4096bytes on many drivers. Similarly, `vkGetBufferMemoryRequirements` and `vkGetImageMemoryRequirements` return aligned memory sizes, so even if only 64bytes are needed, 4096bytes must still be allocated. This ends up wasting tons of memory when an app is allocating lots of smaller regions, and it's further wasting address space since Vulkan prohibits memory from being mapped multiple times, meaning that each 64byte buffer is wasting an additional 4032bytes of address space.
+In Vulkan, and just generally in driver work, it's important to keep allocation sizes aligned to the preference of the hardware for a given usage; this amounts to [minMemoryMapAlignment](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPhysicalDeviceLimits.html), which is 4096bytes on many drivers. Similarly, `vkGetBufferMemoryRequirements` and `vkGetImageMemoryRequirements` return aligned memory sizes, so even if only 64bytes are needed, 4096bytes must still be allocated—4032 bytes unused. This ends up wasting tons of memory when an app is allocating lots of smaller regions, and it's further wasting address space since Vulkan prohibits memory from being mapped multiple times, meaning that each 64byte buffer is wasting an additional 4032bytes of address space.
+
+
+While 4k of memory may seem like a small amount, and why would anyone ever need more than 256kb memory anyway, these allocations all add up, fast enough that zink runs out of address space in a 32bit game like Tomb Raider within a couple minutes.
+
+Playable?
+
+Probably not.
+
+## The Solution, As Always
+If you're working in Mesa, you basically have two options when you come across a new problem: delete some code or copy some code. It's not often that I come across an issue which can't be resolved by one of the two.
+
+In this case, I had known [for quite a while](https://gitlab.freedesktop.org/mesa/mesa/-/issues/4293) that the solution was going to be copying some code.  Thus I entered the realm of Gallium's **aux/pipebuffer**, a fearsome component that had only been leveraged by one driver.
+
+[![zink_bo.png]({{site.url}}/assets/zink_bo.png)]({{site.url}}/assets/zink_bo.png)
+
+Yup, it was time to throw more galaxybrain.jpg code into the blender and see what came out. Ultimately, I was able to repurpose a lot of the core calculation code for sizing allocations, which saved me from having to do any kind of thinking or maffs. This let me cut down my suballocator implementation to a little under 700 lines, leaving much, much, much more space for ~~bugs~~activities.
