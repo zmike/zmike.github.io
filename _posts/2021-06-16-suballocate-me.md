@@ -39,8 +39,17 @@ Probably not.
 ## The Solution, As Always
 If you're working in Mesa, you basically have two options when you come across a new problem: delete some code or copy some code. It's not often that I come across an issue which can't be resolved by one of the two.
 
-In this case, I had known [for quite a while](https://gitlab.freedesktop.org/mesa/mesa/-/issues/4293) that the solution was going to be copying some code.  Thus I entered the realm of Gallium's **aux/pipebuffer**, a fearsome component that had only been leveraged by one driver.
+In this case, I had known [for quite a while](https://gitlab.freedesktop.org/mesa/mesa/-/issues/4293) that the solution was going to be copying some code.  Thus I entered the realm of Gallium's awesome **auxilliary/pipebuffer**, a fearsome component that had only been leveraged by one driver.
 
 [![zink_bo.png]({{site.url}}/assets/zink_bo.png)]({{site.url}}/assets/zink_bo.png)
 
 Yup, it was time to throw more galaxybrain.jpg code into the blender and see what came out. Ultimately, I was able to repurpose a lot of the core calculation code for sizing allocations, which saved me from having to do any kind of thinking or maffs. This let me cut down my suballocator implementation to a little under 700 lines, leaving much, much, much more space for ~~bugs~~activities.
+
+At a high level, here's an overview of aux/pb:
+* call `pb_cache_init` to set up a memory cache
+* initialize slab allocators with `pb_slabs_init`
+* when allocating a new resource, determine if it can be slab allocated; if yes, use `pb_slab_alloc` to reuse/reclaim a slab allocation, otherwise manually allocate new memory
+* when destroying a resource, use `pb_reference_with_winsys`
+
+There's more under the hood, but it mostly boils down to filling in the interface functions to manage detecting whether resources are busy or can be reclaimed for reuse. The actual caching/reclaiming/reusing are all handled by aux/pb, meaning I was free to go about breaking everything with all the leftover time that I had.
+
