@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## BREAKING: THIS IS NO LONGER A ZINK BLOG
 
