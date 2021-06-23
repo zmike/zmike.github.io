@@ -27,7 +27,7 @@ Interested?
 
 ![](https://media.giphy.com/media/CaiVJuZGvR8HK/giphy.gif)
 
-## Coming Soon (Maybe, And Also Maybe Requiring Some Early 2000s-era Elbow Grease From Anyone Wanting To Try): Source Games On Gallium Nine
+## Coming Soon (Maybe, And Also Maybe Requiring Some Early 2000s-era Elbow Grease From Anyone Wanting To Try): Native Linux Source Games On Gallium Nine
 
 We did it.
 
