@@ -19,8 +19,10 @@ Well, for today's blog it's RadeonSI, the reference implementation of a Gallium 
 
 And **Why is this?**, I can hear you all asking.
 
-What if I told you that this screenshot with 10% higher FPS is also Portal 2 with VSync disabled on RadeonSI:
+What if I told you that this screenshot with 10% higher FPS is also Portal 2 with VSync disabled on RadeonSI using one trick that graphics developers WON'T TELL YOU:
 
 [![portal2-nine-title.png]({{site.url}}/assets/portal2-nine-title.png)]({{site.url}}/assets/portal2-nine-title.png)
+
+Interested?
 
 ![](https://media.giphy.com/media/CaiVJuZGvR8HK/giphy.gif)
