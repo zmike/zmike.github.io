@@ -29,7 +29,9 @@ Interested?
 
 ## Coming Soon (Maybe, And Also Maybe Requiring Some Early 2000s-era Elbow Grease From Anyone Wanting To Try): Source Games On Gallium Nine
 
-We did it. By assembling an elite team of people with a few minutes to spare here and there over the past week, including:
+We did it.
+
+By assembling an elite team of individuals with a few minutes to spare here and there over the past week, including:
 * Josh Ashton, expert spammer of 🐸 emojis
 * Axel Davy, expert struct packer
 * Me, expert blogger
