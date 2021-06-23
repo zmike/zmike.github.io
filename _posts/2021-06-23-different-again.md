@@ -40,6 +40,6 @@ Is your Portal 2 in-game FPS sad and barely even 500 like this screenshot?
 
 [![portal2-ingame.png]({{site.url}}/assets/portal2-ingame.png)]({{site.url}}/assets/portal2-ingame.png)
 
-Why not jack it up to **twice that amount**\* with riced out, GPU-fan-shredding technology that Mesa Gallium drivers have been shipping for years?
+Why not jack it up to **TWICE THAT NUMBER**\* with riced out, GPU-fan-shredding technology that Mesa Gallium drivers have been shipping for years?
 
 [![portal2-nine-ingame.png]({{site.url}}/assets/portal2-nine-ingame.png)]({{site.url}}/assets/portal2-nine-ingame.png)
