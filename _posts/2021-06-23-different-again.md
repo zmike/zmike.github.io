@@ -37,7 +37,7 @@ By assembling an elite team of individuals with a few minutes to spare here and 
 * Me, expert blogger
 * Is Such A Thing Even Possible? Why Yes, Yes It Is.
 
-it is now (technically) possible to run DXVK-compatible Source Engine games through Gallium's Nine state tracker.
+it is now (technically) possible to run DXVK-compatible Source Engine games through Gallium's Nine state tracker, providing a native D3D9 runtime.
 
 Is your Portal 2 in-game FPS sad and barely even 500 like this screenshot?
 
