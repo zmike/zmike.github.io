@@ -49,3 +49,5 @@ Why not jack it up to more than **TWICE THAT NUMBER**\* with riced out, GPU-fan-
 
 ## Disclaimer*
 This post does not represent any form of official statement or address from Valve and is only a small project that was started out of boredom while I waited for CTS runs to finish.
+
+This post also does not make any claims or statements regarding performance on other drivers, or performance comparisons using alternative graphics emulation layers, though whew, *it sure would be interesting to see what those kinds of numbers looked like*!
