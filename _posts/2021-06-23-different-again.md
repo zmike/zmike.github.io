@@ -26,3 +26,20 @@ What if I told you that this screenshot with 10% higher FPS is also Portal 2 wit
 Interested?
 
 ![](https://media.giphy.com/media/CaiVJuZGvR8HK/giphy.gif)
+
+## Coming Soon (Maybe, And Also Maybe Requiring Some Early 2000s-era Elbow Grease From Anyone Wanting To Try): Source Games On Gallium Nine
+
+We did it. By assembling an elite team of:
+* Josh Ashton, expert spammer of 🐸 emojis
+* Axel Davy, expert struct packer
+* Me, expert blogger
+
+It is now (technically) possible to run DXVK-compatible Source Engine games through Gallium's Nine state tracker.
+
+Is your Portal 2 in-game FPS sad and barely even 500 like this screenshot?
+
+[![portal2-ingame.png]({{site.url}}/assets/portal2-ingame.png)]({{site.url}}/assets/portal2-ingame.png)
+
+Why not jack it up to **twice that amount**\* with riced out, GPU-fan-shredding technology that Mesa Gallium drivers have been shipping for years?
+
+[![portal2-nine-ingame.png]({{site.url}}/assets/portal2-nine-ingame.png)]({{site.url}}/assets/portal2-nine-ingame.png)
