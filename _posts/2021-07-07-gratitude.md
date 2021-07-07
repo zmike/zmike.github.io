@@ -18,7 +18,7 @@ To that end, you've got your usual corporate powerpoint slide of community roles
 * reviewers
 * whatever other buzzwords are currently relevant
 
-In Mesa, the *maintainer* and *developer* roles are mostly synonymous among core contributors: these are the people who write the code that gets posted about on all the news sites.
+In Mesa, the *maintainer* and *developer* roles are mostly the same among core contributors: these are the people who write the code that gets posted about on all the news sites.
 
 The *reviewer* is a bit more mysterious though. Who are reviewers, and what separates them from the others?
 
@@ -42,7 +42,7 @@ The manager at a company sees this and thinks "I'll send this up the chain. We s
 
 The casual reader sees this and says "Wow, Patches is awesome! Without Patches, I probably couldn't even play Fororantwatch on my Linux gaming desktop!"
 
-But how do the patches that Patches writes get merged into the release? Unless Patches works exclusively in one of the undermaintained areas of the project, in which case it's unlikely that their work is being widely used, the odds are that someone's pulling a huge lift on the review side to enable all of those patches into the repository.
+But how do the patches that Patches writes get merged into the release? Unless Patches works exclusively in one of the undermaintained areas of the project, in which case it's unlikely that their work is being widely used, the odds are that someone's pulling a huge lift on the review side to enable all of those patches landing into the repository.
 
 This is the job of the reviewer.
 
