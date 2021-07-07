@@ -10,4 +10,12 @@ Let's talk about open source. No, Open Source. The idea of it.
 ## How Does Open Source Work?
 Those of you who are veterans are rolling your eyes. Another post about the glory of Open Source.
 
-The thing about Open Source is that it's 
+The thing about Open Source is that it's sort of whatever you make of it. At its core, it's about getting people together to solve a problem—community building. Whether that community is large or small, the goal is the same: write some quality software.
+
+To that end, you've got your usual corporate powerpoint slide of community roles:
+* maintainers
+* developers
+* reviewers
+* whatever other buzzwords are currently relevant
+
+In Mesa, the *maintainer* and *developer* roles are mostly synonymous
