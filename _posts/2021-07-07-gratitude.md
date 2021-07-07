@@ -38,6 +38,6 @@ This, of course, assumes they get feedback at all.
 ## Balance
 Too often on news sites (and in certain corporate metrics) you'll see something like "Patches McCodesAlot, working for GreatCodingCompany, authored the most code changes for this release cycle (9001 patches), which is over 100x more than the next highest contributor.
 
-The manager at the company sees this and thinks "I'll send this up the chain. We should poach Patches so we can have greater control over this project which underpins our entire business strategy."
+The manager at the company sees this and thinks "I'll send this up the chain. We should poach Patches so we can have greater control over this project which underpins our entire business strategy. Also it'll make my powerpoint pie charts look rad."
 
 The casual reader sees this and says "Wow, Patches is awesome! Without Patches, I probably couldn't even play Fororantwatch on my Linux gaming desktop!"
