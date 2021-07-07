@@ -3,7 +3,7 @@ published: false
 ---
 ## The Unsung Heroes
 
-This is going to be less of a technical post and more of a *have you thought about* post. With that said, I think this is more important than the average post here, meaning that expectations should be set somewhere between *I need to stop everything else I'm doing until I finish reading* and *this is the most important event in my life*.
+This is going to be less of a technical post and more of a *have you thought about* post from me personally. With that said, I think this is more important than the average post here, meaning that expectations should be set somewhere between *I need to stop everything else I'm doing until I finish reading* and *this is the most important event in my life*.
 
 Let's talk about open source. No, Open Source. The idea of it.
 
@@ -51,19 +51,21 @@ As this Mesa release cycle starts to wind down, I hope that readers of this blog
 
 At the time of this post, this is what the top 10 reviewers managed to accomplish over the past few months:
 
-|Number of Reviews|Reviewer Name|
-|---|---|
-|91|Erik Faye-Lund |
-|94|Samuel Pitoiset |
-|99|Alejandro Piñeiro |
-|115|Kenneth Graunke |
-|116|Bas Nieuwenhuizen |
-|121|Lionel Landwerlin |
-|128|Adam Jackson |
-|140|Marek Olšák |
-|176|Jason Ekstrand |
-|300|Dave Airlie |
+|Number of Reviews|Reviewer Name|Corporate Affiliation|
+|---|---|---|
+|91|Erik Faye-Lund|Collabora|
+|94|Samuel Pitoiset|Valve|
+|99|Alejandro Piñeiro|Igalia|
+|115|Kenneth Graunke|Intel|
+|116|Bas Nieuwenhuizen|Hobbyist (technically)|
+|121|Lionel Landwerlin|Intel|
+|128|Adam Jackson|Red Hat|
+|140|Marek Olšák|AMD|
+|176|Jason Ekstrand|Intel|
+|300|Dave Airlie|Red Hat|
 
 Summed up, that's over 1300 patches reviewed! For perspective, that's around 30% of all the patches in this release, and it's about 70% of the **total** number of patches that zink has received in the course of its existence.
 
 Looking at it another way though, this is over 1300 patches that other people wrote which were able to land because these people took the time to look over the proposed changes—to triple-check the parachutes, as it were.
+
+So thanks, Mesa reviewers. The project wouldn't exist without all of you (and your generous employers, who should be blasting these metrics in the press when they talk about being good Open Source citizens).
