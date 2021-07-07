@@ -23,3 +23,21 @@ In Mesa, the *maintainer* and *developer* roles are mostly synonymous among core
 The *reviewer* is a bit more mysterious though. Who are reviewers, and what separates them from the others?
 
 ## WD-40
+Reviewers are the grease that makes the project work. There's really no other way of saying it.
+
+Outside of a few components of Mesa that are effectively the wild west, without any form of oversight or approval needed for changes to be landed, every driver and utility in the tree requires that changes undergo review before they land. This means that each and every patch which affects code or build has to have a person stop everything else they're doing and physically scroll through each patch, line-by-line, then add a *Reviewed-by* or *Acked-by* tag.
+
+If you're unclear as to the meanings of these tags, consider it like you're going skydiving with someone you've never met before who has been in charge of preparing your parachute:
+* **Reviewed-by** means "I triple-checked your parachute as well as your reserve, and I'm as certain as a human is capable of being that everything is how it should be"
+* **Acked-by** means "Hey, I grabbed this already-packed parachute off the hanger and gave it a once-over; you'll probably be fine"
+
+It's then up to the developer to decide whether to merge the code based on the feedback given to them by the reviewer.
+
+This, of course, assumes they get feedback at all.
+
+## Balance
+Too often on news sites (and in certain corporate metrics) you'll see something like "Patches McCodesAlot, working for GreatCodingCompany, authored the most code changes for this release cycle (9001 patches), which is over 100x more than the next highest contributor.
+
+The manager at the company sees this and thinks "I'll send this up the chain. We should poach Patches so we can have greater control over this project."
+
+The casual reader sees this and says "Wow, Patches is awesome! Without Patches, I probably couldn't even play Fororantwatch on my Linux gaming desktop!"
