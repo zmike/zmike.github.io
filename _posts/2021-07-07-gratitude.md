@@ -57,7 +57,7 @@ At the time of this post, this is what the top 10 reviewers managed to accomplis
 |94|Samuel Pitoiset|Valve|
 |99|Alejandro Piñeiro|Igalia|
 |115|Kenneth Graunke|Intel|
-|116|Bas Nieuwenhuizen|Hobbyist (technically)|
+|116|Bas Nieuwenhuizen|[Blogger](https://basnieuwenhuizen.nl/about/)|
 |121|Lionel Landwerlin|Intel|
 |128|Adam Jackson|Red Hat|
 |140|Marek Olšák|AMD|
@@ -75,4 +75,4 @@ I'd be remiss if I didn't also mention the people working on Mesa CI. There's no
 
 Thanks, CI team. You're awesome.
 
-According to a recent metric, the Mesa CI infrastructure only had a 0.6% accidental failure rate. That's pretty good considering how many thousands of jobs get run every day.
+According to a recent metric, the Mesa CI infrastructure only had a 0.6% accidental failure rate. That's pretty good considering how many thousands of jobs run every day.
