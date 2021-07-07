@@ -64,4 +64,6 @@ At the time of this post, this is what the top 10 reviewers managed to accomplis
 |176|Jason Ekstrand |
 |300|Dave Airlie |
 
-Summed up, that's over 1300 patches reviewed! For perspective, that's about 70% of the **total** number of patches that zink has received in the course of its existence.
+Summed up, that's over 1300 patches reviewed! For perspective, that's around 30% of all the patches in this release, and it's about 70% of the **total** number of patches that zink has received in the course of its existence.
+
+Looking at it another way though, this is over 1300 patches that other people wrote which were able to land because these people took the time to look over the proposed changes—to triple-check the parachutes, as it were.
