@@ -41,3 +41,13 @@ Too often on news sites (and in certain corporate metrics) you'll see something 
 The manager at the company sees this and thinks "I'll send this up the chain. We should poach Patches so we can have greater control over this project which underpins our entire business strategy. Also it'll make my powerpoint pie charts look rad."
 
 The casual reader sees this and says "Wow, Patches is awesome! Without Patches, I probably couldn't even play Fororantwatch on my Linux gaming desktop!"
+
+But how do the patches that Patches writes get merged into the release? Unless Patches works exclusively in one of the undermaintained areas of the project, in which case it's unlikely that their work is being widely used, the odds are that someone's pulling a huge lift on the review side to enable all of those patches into the repository.
+
+This is the job of the reviewer.
+
+## A Thanks
+As this Mesa release cycle starts to wind down, I hope that readers of this blog and news sites can take a moment to look past Patches McCodesAlot and see the people who make it possible for Patches to land so many damn patches.
+
+At the time of this post, this is what the top 10 reviewers managed to accomplish over the past few months:
+
