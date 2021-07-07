@@ -69,3 +69,10 @@ Summed up, that's over 1300 patches reviewed! For perspective, that's around 30%
 Looking at it another way though, this is over 1300 patches that other people wrote which were able to land because these people took the time to look over the proposed changes—to triple-check the parachutes, as it were.
 
 So thanks, Mesa reviewers. The project wouldn't exist without all of you (and your generous employers, who should be blasting these metrics in the press when they talk about being good Open Source citizens).
+
+## But Also
+I'd be remiss if I didn't also mention the people working on Mesa CI. There's no patch counts or review counts or anything to recognize everyone hard at work here, but CI is what keeps the triangles blasting out of your GPUs looking how they should.
+
+Thanks, CI team. You're awesome.
+
+According to a recent metric, the Mesa CI infrastructure only had a 0.6% accidental failure rate. That's pretty good considering how many thousands of jobs get run every day.
