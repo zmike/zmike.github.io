@@ -18,4 +18,8 @@ To that end, you've got your usual corporate powerpoint slide of community roles
 * reviewers
 * whatever other buzzwords are currently relevant
 
-In Mesa, the *maintainer* and *developer* roles are mostly synonymous
+In Mesa, the *maintainer* and *developer* roles are mostly synonymous among core contributors: these are the people who write the code that gets posted about on all the news sites.
+
+The *reviewer* is a bit more mysterious though. Who are reviewers, and what separates them from the others?
+
+## WD-40
