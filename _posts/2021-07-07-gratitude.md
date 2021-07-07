@@ -51,3 +51,17 @@ As this Mesa release cycle starts to wind down, I hope that readers of this blog
 
 At the time of this post, this is what the top 10 reviewers managed to accomplish over the past few months:
 
+|Number of Reviews|Reviewer Name|
+|---|---|
+|91|Erik Faye-Lund |
+|94|Samuel Pitoiset |
+|99|Alejandro Piñeiro |
+|115|Kenneth Graunke |
+|116|Bas Nieuwenhuizen |
+|121|Lionel Landwerlin |
+|128|Adam Jackson |
+|140|Marek Olšák |
+|176|Jason Ekstrand |
+|300|Dave Airlie |
+
+Summed up, that's over 1300 patches reviewed! For perspective, that's about 70% of the **total** number of patches that zink has received in the course of its existence.
