@@ -25,3 +25,4 @@ Let's check out what's happened just in July:
 * features.samplerAnisotropy
 * KHR_timeline_semaphores
 
+Also under the hood now is a [new 2D rasterizer from VMWare](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11969) which yields "a 2x to 3x performance improvement for 2D workloads".
