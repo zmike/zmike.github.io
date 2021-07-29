@@ -14,7 +14,7 @@ For today, this is a Lavapipe blog.
 ## What's New With Lavapipe?
 Lots.
 
-Let's check out what's happened just in July:
+Let's check out what **conformant** features were added just in July:
 * EXT_line_rasterization
 * EXT_vertex_input_dynamic_state
 * EXT_extended_dynamic_state2
