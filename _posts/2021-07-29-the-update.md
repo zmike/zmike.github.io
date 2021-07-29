@@ -9,7 +9,7 @@ Where did I go?
 
 My birthday passed recently, so I gifted myself a couple weeks off from blogging. Feels good.
 
-For today, this is a lavapipe blog.
+For today, this is a Lavapipe blog.
 
 ## What's New With Lavapipe?
 Lots.
@@ -26,3 +26,10 @@ Let's check out what's happened just in July:
 * KHR_timeline_semaphores
 
 Also under the hood now is a [new 2D rasterizer from VMWare](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11969) which yields "a 2x to 3x performance improvement for 2D workloads".
+
+## Why Aren't You Using Lavapipe Yet?
+Have a big Vulkan-using project? Do you constantly have to worry about breakages from all manner of patches being merged without testing? Can't afford or too lazy to set up and maintain actual hardware for testing?
+
+Why not Lavapipe?
+
+Seriously, why not? If there's features missing that you need for your project, open tickets so we know what to work on.
