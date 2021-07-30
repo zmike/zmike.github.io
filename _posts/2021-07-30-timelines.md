@@ -40,3 +40,15 @@ This was a todo item sitting on the list for a while because it was tricky to ha
 * the actual synchronization when threads are involved
 
 After some thought and deliberation about my life choices up to this point, I decided to tackle this implementation. The methodology I selected was to add a monotonic counter to the internal command buffer submission and then create a series of per-object timeline "links" which would serve to match the counter to the timeline identifier. This would enable each timeline semaphore to maintain a singly-linked list of links each time they were submitted, and the list could then be pruned at any given time—referenced against the internal counter—to update the "current" timeline id and then evaluate whether a specified wait condition had passed. In the case where the condition had not passed, the timeline link could also store a handle to the fence from the `llvmpipe` queue submission that could be waited on directly.
+
+Did it work?
+
+Almost on the first try, actually.
+
+But then I ran into a wall in CI while running piglit tests through zink.
+
+It turns out that the CTS tests are considerably less aggressive than the piglit ones for things like this: specifically, there don't appear to be any cases where a single timeline has 16 threads all trying to wait on it at different values, iterating thousands of times over the course of a couple seconds.
+
+Oops.
+
+The road to Vulkan 1.2 continues.
