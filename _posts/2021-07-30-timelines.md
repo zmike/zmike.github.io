@@ -37,4 +37,5 @@ Typically, semaphores are managed through signals which pass through the kernel 
 ## Lavapipe And Timelines
 This was a todo item sitting on the list for a while because it was tricky to handle. The most visible problems here were:
 * connecting timeline identifiers with queue submissions; timelines only need to be monotonic, not sequential, meaning that using something like a sliding array wouldn't be very efficient
-* 
+* the actual synchronization when threads are involved
+
