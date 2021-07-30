@@ -51,4 +51,6 @@ It turns out that the CTS tests are considerably less aggressive than the piglit
 
 Oops.
 
-The road to Vulkan 1.2 continues.
+But that's now taken care of, and conformance never felt so good.
+
+The road to Vulkan 1.2 continues!
