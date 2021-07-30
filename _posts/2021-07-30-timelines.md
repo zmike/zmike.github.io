@@ -34,3 +34,5 @@ A timeline semaphore is an object that can be used to signal and wait on specifi
 
 Typically, semaphores are managed through signals which pass through the kernel and hardware, meaning that "waiting" on a timeline is really just waiting on an ioctl (DRM_IOCTL_SYNCOBJ_TIMELINE_WAIT) to signal that the specified timeline id has occurred, which requires no additional host-side synchronization. Things get a bit trickier in software, however, as the kernel is not involved, so everything must be managed in the driver.
 
+## Lavapipe And Timelines
+This was a todo item sitting on the list for a while because it was tricky to handle.
