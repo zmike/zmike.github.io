@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## We Back
 
@@ -17,6 +17,4 @@ What games work for you?
 
 What games don't work?
 
-If you don't tell me, I'm not gonna test them all myself.
-
-
+I'm not gonna test them all myself, so get out there and start crashing.
