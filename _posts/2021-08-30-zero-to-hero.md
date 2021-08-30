@@ -11,7 +11,13 @@ With that said, even my parents are asking me what the deal is with this one res
 
 Performance isn't supposed to go down. Everyone knows this. The version numbers go up and so does the performance as long as it's not Javascript-based.
 
-So what's going on here?
+Enraged, I sprinted to my computer and searched for **tesseract game**, which gave me the entirely wrong result, but I eventually did manage to find the right one. I fired up zink-wip, certain that this would end up being some bug I'd already fixed.
+
+Unfortunately, this was not the case.
+
+[![tesseract-bad.png]({{site.url}}/assets/tesseract/tesseract-bad.png)]({{site.url}}/assets/tesseract/tesseract-bad.png)
+
+I vowed not to sleep, rebase, leave my office, or even run another application until this was resolved, so you can imagine how pleased I am to be writing this post after spending way too much time getting to the bottom of everything.
 
 ## Speculation Interlude
 Full disclosure: I didn't actually go and see why performance went down. I'm pretty sure it's just the result of having improved buffer mapping to be better in most cases, which ended up hurting this case.
@@ -19,4 +25,25 @@ Full disclosure: I didn't actually go and see why performance went down. I'm pre
 ## But Why
 ...is the performance so bad?
 
-This all comes down to a Gallium component called **vbuf**, used for translating vertex buffers and attributes to ones that drivers can support
+A quick profiling revealed that this was down to a Gallium component called **vbuf**, used for translating vertex buffers and attributes from the ones specified by the application to ones that drivers can actually support. The component itself is fine, the problem was that, ideally, it's not something you ever want to be hitting when you want performance.
+
+Consider the usual sequence of drawing a frame:
+* generate and upload vertex data
+* bind some descriptors
+* maybe throw in a query or two if you need some spice
+* draw
+* repeat until frame is done
+
+This is all great and normal, but what would happen—just hypothetically of course—if instead it looked like this:
+* generate and upload vertex data
+* stall and read vertex data
+* rewrite vertex data in another format and reupload
+* bind some descriptors
+* maybe throw in a query or two if you need some spice
+* draw
+* repeat until frame is done
+
+Suddenly the driver is now stalling multiple times per frame on top of doing lots of CPU work. Muh frames!
+
+Incidentally, this is (almost certainly) why performance appeared to have regressed: the vertex buffer is now device-local and can't be mapped directly, so it has to be copied to a new buffer before it can be read, which is even slower.
+
