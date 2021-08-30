@@ -58,7 +58,7 @@ Unlike cool hardware, AMD opts to not support features which might be less perfo
 ## Decomposition
 The vertex buffer format at work here was `R8G8B8_SNORM`, which is a perfectly cromulent format as long as you hate yourself. A shader would read this as a `vec4`, which, by the power of buffer robustness, gets translated to `vec4(x, y, z, 1.0)` because the `w` component is missing.
 
-The approach I took to solving this was to decompose the vertex attribute into three separate `R8_SNORM` attributes, as this single-component format is wimpy enough for AMD to handle. Thus, a vertex input state containing three separate attributes including this one would now contain five, as the original `R8G8B8_SNORM` one is split into three, each reading a single component at an offset to simulate the original values.
+The approach I took to solving this was to decompose the vertex attribute into three separate `R8_SNORM` attributes, as this single-component format is wimpy enough for AMD to handle. Thus, a vertex input state containing three separate attributes including this one would now contain five, as the original `R8G8B8_SNORM` one is split into three, each reading a single component at an offset to simulate the original attribute.
 
 The tricky part to this is that it requires a vertex shader prolog and variant in order to successfully split the shader's input in such a way that the read value is the same. It also requires a NIR pass. Let's check out the NIR pass since this blog has gone for way too long without seeing any real work:
 
