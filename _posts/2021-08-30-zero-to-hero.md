@@ -157,3 +157,8 @@ It turns out there's almost zero coverage for occlusion queries in Vulkan's CTS.
 A simple one-liner later (just kidding, this fucken thing took like 4 days to find) and, magically, things were happening:
 
 [![tesseract-fixed.png]({{site.url}}/assets/tesseract/tesseract-fixed.png)]({{site.url}}/assets/tesseract/tesseract-fixed.png)
+
+## Results.
+We did it.
+
+A big thanks to [Bas Nieuwenhuizen](https://basnieuwenhuizen.nl/) for consulting along the way even despite being so busy getting a [RADV raytracing MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/12592) up and, as always, preparing his next blog post.
