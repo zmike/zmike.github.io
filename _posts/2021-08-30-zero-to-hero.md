@@ -3,7 +3,7 @@ published: false
 ---
 ## The Struggle Continues
 
-Everyone's seen the [Phoronix benchmark numbers](https://www.phoronix.com/scan.php?page=article&item=zink-sub-alloc) by now, and though there seems to be a lot of confusion over how to calculate the percentage increase between "game does not run" and "game runs", it seems like a couple people out there at Big Triangle are starting to take us seriously.
+Everyone's seen the [Phoronix benchmark numbers](https://www.phoronix.com/scan.php?page=article&item=zink-sub-alloc) by now, and though there's a lot of confusion over how to calculate the percentage increase between "game does did not run a year ago" and "game runs", it seems like a couple people out there at Big Triangle are starting to take us seriously.
 
 With that said, even my parents are asking me what the deal is with this one result in particular:
 
@@ -20,7 +20,7 @@ Unfortunately, this was not the case.
 I vowed not to sleep, rebase, leave my office, or even run another application until this was resolved, so you can imagine how pleased I am to be writing this post after spending way too much time getting to the bottom of everything.
 
 ## Speculation Interlude
-Full disclosure: I didn't actually go and see why performance went down. I'm pretty sure it's just the result of having improved buffer mapping to be better in most cases, which ended up hurting this case.
+Full disclosure: I didn't actually check why performance went down. I'm pretty sure it's just the result of having improved buffer mapping to be better in most cases, which ended up hurting this case.
 
 ## But Why
 ...is the performance so bad?
