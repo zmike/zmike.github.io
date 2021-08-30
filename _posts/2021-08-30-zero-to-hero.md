@@ -43,7 +43,16 @@ This is all great and normal, but what would happen—just hypothetically of cou
 * draw
 * repeat until frame is done
 
-Suddenly the driver is now stalling multiple times per frame on top of doing lots of CPU work. Muh frames!
+Suddenly the driver is now stalling multiple times per frame on top of doing lots of CPU work!
 
 Incidentally, this is (almost certainly) why performance appeared to have regressed: the vertex buffer is now device-local and can't be mapped directly, so it has to be copied to a new buffer before it can be read, which is even slower.
 
+## Just AMD Problems
+
+**DISCLAIMER:** We're going deep into meme territory now, so let's all dial down the seriousness about a thousand notches before posting about how much I hate AMD or whatever.
+
+[![vertexattribmeme.png]({{site.url}}/assets/vertexattribmeme.png)]({{site.url}}/assets/vertexattribmeme.png)
+
+Unlike cool hardware, AMD opts to not support features which might be less performant. I assume this is in the hopes that developers will Make The Right Choice and not use those features, but obviously developers are gonna develop, and so it is that Tesseract-The-Game-But-Not-The-One-On-Steam uses 3-component vertex attributes that aren't supported by AMD hardware, necessitating the use of vbuf to translate them to 4-component attributes that can be safely used.
+
+## Decomposition
