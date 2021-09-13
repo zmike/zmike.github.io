@@ -11,7 +11,7 @@ I know what you're gonna say.
 
 That was then, before I set off on my journey to make the rest of [those zany Phoronix benchmark games](https://www.phoronix.com/scan.php?page=article&item=zink-sub-alloc) run instead of crashing or whatever.
 
-What do we got?
+What do we got left on that list anyway?
 
 ## Metro: Last Light Redux
 
@@ -59,10 +59,27 @@ Add some null checks...
 
 Fire up ASAN to fix a [random stack explosion](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/12829)...
 
-File a [piglit ticket](https://gitlab.freedesktop.org/mesa/piglit/-/issues/57) because two of the unit tests for the extension are bugged...
+File a [piglit ticket](https://gitlab.freedesktop.org/mesa/piglit/-/issues/57) because two of the eighty unit tests for the extension are bugged and these are quite literally the only unit tests available...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [![dow3.png]({{site.url}}/assets/dow3.png)]({{site.url}}/assets/dow3.png)
 
-Kapow, first try.
+Kapow, first try, expect it in zink-wip later today-ish.
 
-It's just that easy. If you disagree, you are nitpicking and biased.
+It's just that easy.
+
+If you disagree, you are nitpicking and biased.
