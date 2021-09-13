@@ -41,7 +41,7 @@ I bet you're wondering where this one is, huh.
 
 Easy as that, ju—Wait, **what**?
 
-This game *requires* bindless textures just to run? Is this a joke? Even fucking DOOM 2016, the final boss of OpenGL, doesn't *require* bindless textures.
+This game *requires* [ARB_bindless_texture](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_bindless_texture.txt) just to run? Is this a joke? Even fucking DOOM 2016, the final boss of OpenGL, doesn't *require* bindless textures.
 
 Fine.
 
