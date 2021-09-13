@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Zink Is Over: This Time I'm Serious.
 
@@ -9,7 +9,7 @@ I know what you're gonna say, and maybe I did just say zink was done a week or t
 
 I'm not saying I didn't.
 
-But that was practically last year at the speed that zink's codebase moves and its unrivaled developer community sits in my office eating cookies between Mesa builds, and it was also before I set off on my journey to make the rest of [those zany Phoronix benchmark games](https://www.phoronix.com/scan.php?page=article&item=zink-sub-alloc) run instead of crashing or whatever.
+But that was practically last year at the speed with which zink's codebase moves and its developer community sits in my office eating cookies between Mesa builds, and it was also before I set off on my journey to make the rest of [those zany Phoronix benchmark games](https://www.phoronix.com/scan.php?page=article&item=zink-sub-alloc) run instead of crashing or whatever.
 
 What do we got left on that list anyway?
 
