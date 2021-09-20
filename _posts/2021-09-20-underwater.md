@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## ES: But Why
 I got a request recently to fix up the [WebGL Aquarium](http://webglsamples.org/aquarium/aquarium.html) demo. I've had this bookmarked for a while since it's one of the only test cases for [GL_EXT_multisampled_render_to_texture](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_multisampled_render_to_texture.txt) I'm aware of, at least when running Chrome in EGL mode.
