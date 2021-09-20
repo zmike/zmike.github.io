@@ -13,7 +13,7 @@ Vulkan has similar mechanisms: `loadOp` and `storeOp` set to `VK_ATTACHMENT_LOAD
 
 Unfortunately, this doesn't quite work. 
 
-As RenderDoc master and Finder Of Bad Pixels Danylo Piliaiev was quick to point out, this approach will discard any previous data the texture had, resulting in bad pixels. Lots of bad pixels, in fact.
+As Danylo Piliaiev, RenderDoc master and Finder Of Bad Pixels, was quick to point out, this approach will discard any previous data the texture had, resulting in bad pixels. Lots of bad pixels, in fact.
 
 The solution, which I hate, is that the "transient" multisampled image now gets a full-texture draw before its "transient" renderpass to initialize it, then is loaded with `VK_ATTACHMENT_LOAD_OP_LOAD`, effectively making it not transient at all.
 
