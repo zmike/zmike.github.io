@@ -21,8 +21,6 @@ Sorry tilers.
 
 No frames for you.
 
-https://gfycat.com/ifr/HairyScalyGecko
-
 <iframe src='https://gfycat.com/ifr/HairyScalyGecko' frameborder='0' scrolling='no' allowfullscreen width='640' height='744'>aquarium.gif</iframe>
 
 But it does work and give solid performance, so I can't be too mad.
