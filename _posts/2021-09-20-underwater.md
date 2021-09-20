@@ -23,4 +23,4 @@ No frames for you.
 
 <iframe src="https://gfycat.com/ifr/HairyScalyGecko" frameborder="0" scrolling="no" allowfullscreen="allowfullscreen" width="640" height="744">aquarium.gif</iframe>
 
-But it does work and give solid performance, so I can't be too mad.
+But it does work and give solid performance (-20% or so while recording smh screen recorders git gud), so I can't be too mad.
