@@ -66,7 +66,7 @@ In NIR, bindless instructions come in two variants:
 These have their own unique semantics that I didn't bother to look into; I only need to do completely normal array derefs, so what I actually needed was just to rewrite them back into normal-er instructions.
 
 For the image intrinsics, that ended up being the following snippet:
-```
+```c
 nir_intrinsic_instr *instr = nir_instr_as_intrinsic(in);
 
 nir_intrinsic_op op;
@@ -119,7 +119,7 @@ In short, swap the intrinsic back to a regular image one, then rewrite the image
 
 The tex instruction is where things get trickier.
 
-```
+```c
 nir_variable *var = tex->sampler_dim == GLSL_SAMPLER_DIM_BUF ? bindless_buffer_array : bindless_texture_array;
 if (!var)
    var = create_bindless_texture(b->shader, tex);
@@ -133,7 +133,7 @@ This part is the same as the image rewrite: just rewriting the instruction as a 
 
 This part, however, is different:
 
-```
+```c
 unsigned needed_components = glsl_get_sampler_coordinate_components(glsl_without_array(var->type));
 unsigned c = nir_tex_instr_src_index(tex, nir_tex_src_coord);
 unsigned coord_components = nir_src_num_components(tex->src[c].src);
@@ -151,3 +151,39 @@ But wait...
 
 ## Shader I/O
 This was the tricky part. According to the spec, it now becomes legal to have an `image` or a `sampler` as an input or an output in a shader.
+
+But is it really, truly necessary to pass images between the shaders?
+
+No. No it isn't.
+
+```c
+nir_deref_instr *src_deref = nir_src_as_deref(instr->src[0]);
+nir_variable *var = nir_deref_instr_get_variable(src_deref);
+if (var->data.bindless)
+   return false;
+if (var->data.mode != nir_var_shader_in && var->data.mode != nir_var_shader_out)
+   return false;
+if (!glsl_type_is_image(var->type) && !glsl_type_is_sampler(var->type))
+   return false;
+
+var->type = glsl_int64_t_type();
+var->data.bindless = 1;
+b->cursor = nir_before_instr(in);
+nir_deref_instr *deref = nir_build_deref_var(b, var);
+if (instr->intrinsic == nir_intrinsic_load_deref) {
+    nir_ssa_def *def = nir_load_deref(b, deref);
+    nir_instr_rewrite_src_ssa(in, &instr->src[0], def);
+    nir_ssa_def_rewrite_uses(&instr->dest.ssa, def);
+} else {
+   nir_store_deref(b, deref, instr->src[1].ssa, nir_intrinsic_write_mask(instr));
+}
+nir_instr_remove(in);
+nir_instr_remove(&src_deref->instr);
+```
+
+Bindless shader i/o is really just passing array indices that masquerade as images. If they're rewritten back to integer types, that all goes away, and they become regular i/o that needs no additional handling.
+
+## Just This Once
+The translation to Vulkan made everything incredibly easy. I didn't need any special hacks or corner case behavior, and I didn't have to spend time reading code from other drivers to figure out what the hell I was doing wrong. Validation even works for it!
+
+Truly miraculous.
