@@ -34,7 +34,10 @@ At the implementation level, this actually amounts to three distinct features:
 * the ability to access these images from shaders
 * the ability to pass these images between shader stages as normal I/O
 
-In zink, I tackled these in the order I've listed, and it wouldn't have been (as) possible without one very special, very awful Vulkan extension.
+In zink, I tackled these in the order I've listed.
+
+## Handle Management
+This wouldn't have been (as) possible without one very special, very awful Vulkan extension.
 
 You knew this was coming.
 
@@ -52,3 +55,6 @@ With these, it becomes possible to implement bindless textures using the existin
 * return handle IDs to the `u_idalloc` pool once they are destroyed and the image is no longer in use
 
 This creates a cycle where a handle ID is allocated, an image is bound to that slot in the descriptor array, the image can be unbound, the handle ID is deleted, and then finally the ID is recycled, all while only binding and updating a single descriptor set as draws continue.
+
+## Shader Access
+Now that the images are accessible to the GPU in the bindless descriptor array, shaders will have to be updated to read them.
