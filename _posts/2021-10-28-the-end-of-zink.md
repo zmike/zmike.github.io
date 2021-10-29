@@ -20,4 +20,4 @@ Blog enthusiasts will recall all that time ago when [zink was over]({{site.url}}
 
 True blog connoisseurs will recall [when zink started to pull ahead of real GL drivers in features]({{site.url}}/a-brief-respite) in order to run Warhammer 40k: Dawn of War.
 
-But how many die-hard blog fans are here from the future and can remember when I posted 
+But how many die-hard blog fans are here from the future and can remember when I posted that **Bioshock Infinite** now runs on RADV?
