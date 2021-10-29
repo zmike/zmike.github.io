@@ -22,6 +22,6 @@ True blog connoisseurs will recall [when zink started to pull ahead of real GL d
 
 But how many die-hard blog fans are here from the future and can remember when I posted that **Bioshock Infinite** now runs on RADV instead of hanging?
 
-It's hard to overstate the amount of work that's gone into zink for this release.
+It's hard to overstate the amount of work that's gone into zink for this release. If you find a game or app* which doesn't run now, play the lottery. It's your day.
 
 [![bioshock.png]({{site.url}}/assets/bioshock.png)]({{site.url}}/assets/bioshock.png)
