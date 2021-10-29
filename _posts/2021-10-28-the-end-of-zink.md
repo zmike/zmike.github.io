@@ -22,6 +22,12 @@ True blog connoisseurs will recall [when zink started to pull ahead of real GL d
 
 But how many die-hard blog fans are here from the future and can remember when I posted that **Bioshock Infinite** now runs on RADV instead of hanging?
 
-It's hard to overstate the amount of work that's gone into zink for this release. If you find a game or app* which doesn't run now, play the lottery. It's your day.
+It's hard to overstate the amount of work that's gone into zink for this release. Over 400 patches amounted to ES 3.2, a suballocator, and a slew of random extensions to improve compatibility and performance across the board.
+
+If you find a game or app* which doesn't run on zink 21.3, play the lottery. It's your day.
+
+## Bioshock Infinite Now Runs On Zink
 
 [![bioshock.png]({{site.url}}/assets/bioshock.png)]({{site.url}}/assets/bioshock.png)
+
+As part of a joint venture with 
