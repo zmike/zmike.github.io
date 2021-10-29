@@ -16,8 +16,12 @@ Why is that?
 
 Because zink is pretty fast™ now. And it can run lots of stuff.
 
-Blog enthusiasts will recall all that time ago when [zink was over]({{site.url}}/zink-is-over) that I noted a number of Big Name™ games that zink could run, including **Metro: Last Light Redux** and **HITMAN (Agent 47's Deluxe Psychedelic Trip Edition)**.
+Blog enthusiasts will recall all that time ago when [zink was over]({{site.url}}/zink-is-over) that I noted a number of Big Name™ games that zink could now run, including **Metro: Last Light Redux** and **HITMAN (Agent 47's Deluxe Psychedelic Trip Edition)**.
 
 True blog connoisseurs will recall [when zink started to pull ahead of real GL drivers in features]({{site.url}}/a-brief-respite) in order to run Warhammer 40k: Dawn of War.
 
-But how many die-hard blog fans are here from the future and can remember when I posted that **Bioshock Infinite** now runs on RADV?
+But how many die-hard blog fans are here from the future and can remember when I posted that **Bioshock Infinite** now runs on RADV instead of hanging?
+
+It's hard to overstate the amount of work that's gone into zink for this release.
+
+[![bioshock.png]({{site.url}}/assets/bioshock.png)]({{site.url}}/assets/bioshock.png)
