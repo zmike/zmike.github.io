@@ -30,4 +30,21 @@ If you find a game or app* which doesn't run on zink 21.3, play the lottery. It'
 
 [![bioshock.png]({{site.url}}/assets/bioshock.png)]({{site.url}}/assets/bioshock.png)
 
-As part of a joint venture with 
+## Zink+RADV: New BFFs
+
+As part of a cross-training exercise, I've been *hanging around* with the hangmaster himself, the Baron of Black Screens, the Liege of Lost Sessions, Samuel Pitoiset. Together we've (but mostly him while I watch) been stamping out a colossal number of pathological hangs and crashes with zink on RADV.
+
+At present, zink on RADV has only around **200 failures in the GL 4.6 conformance suite**. It's not quite there yet, but considering the number was well over 1000 just a week ago, there's a lot of easy cleanup work that can be done here in both drivers to knock that down further.
+
+## Will 2022 Be The Year Of Zink Conformance?
+
+## What's Next?
+Bug fixes.
+
+Lots of bug fixes.
+
+Seriously, there's so, so many bug fixes coming.
+
+I'm planning to take December off entirely, and before then I have some fun surprises to unveil.
+
+For example: any guesses which Vulkan driver I'll be showing zink off on next? Hint: B I G F P S.
