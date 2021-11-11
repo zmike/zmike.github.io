@@ -25,3 +25,7 @@ Terrifying.
 The answer won't surprise you: `GL_QUADS`.
 
 Indeed, because zink is a driver relying on the Vulkan API, only the primitive types supported by Vulkan can be directly drawn. This means any app using `GL_QUADS` is going to have a very bad time.
+
+`glxgears` is exactly one of these apps, and (now that there's a ticket open) I was forced to take action.
+
+## Transquadmation
