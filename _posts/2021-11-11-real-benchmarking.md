@@ -29,4 +29,10 @@ Indeed, because zink is a driver relying on the Vulkan API, only the primitive t
 `glxgears` is exactly one of these apps, and (now that there's a ticket open) I was forced to take action.
 
 ## Transquadmation
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/13741
+The root of the problem here is that gears passes its vertices into GL to be drawn as a rectangle, but zink can only draw triangles. This (currently) results in doing a very non-performant readback of the index buffer before every draw call to convert the draw to a triangle-based one.
+
+A smart person might say "Why not just convert the vertices to triangles as you get them instead of waiting until they're in the buffer?"
+
+Thankfully, a smart person did say that and then [do the accompanying work](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/13741). The result is that finally, after all these years, zink can actually perform well in a real benchmark:
+
+[![happygears.png]({{site.url}}/assets/happygears.png)]({{site.url}}/assets/happygears.png)
