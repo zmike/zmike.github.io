@@ -36,3 +36,6 @@ A smart person might say "Why not just convert the vertices to triangles as you 
 Thankfully, a smart person did say that and then [do the accompanying work](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/13741). The result is that finally, after all these years, zink can actually perform well in a real benchmark:
 
 [![happygears.png]({{site.url}}/assets/happygears.png)]({{site.url}}/assets/happygears.png)
+
+## Stay Tuned
+For more exciting zink updates. You won't want to miss them.
