@@ -9,7 +9,7 @@ That the one true benchmark for graphics is `glxgears`. It's been the standard f
 
 Zink has gone through a couple phases of `glxgears` performance.
 
-Everyone remembers weird, doping `glxgears` that was getting illegal amounts of frames due to its misrendering:
+Everyone remembers weird `glxgears` that was getting illegal amounts of frames due to its misrendering:
 
 [![glxgears.png](https://gitlab.freedesktop.org/mesa/mesa/uploads/f32a4cae60c4dabb90400842f0940460/Screenshot_20200625_033438.png)](https://gitlab.freedesktop.org/mesa/mesa/uploads/f32a4cae60c4dabb90400842f0940460/Screenshot_20200625_033438.png)
 
