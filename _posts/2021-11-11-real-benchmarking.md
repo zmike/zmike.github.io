@@ -29,3 +29,4 @@ Indeed, because zink is a driver relying on the Vulkan API, only the primitive t
 `glxgears` is exactly one of these apps, and (now that there's a ticket open) I was forced to take action.
 
 ## Transquadmation
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/13741
