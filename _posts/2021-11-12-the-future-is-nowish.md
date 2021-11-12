@@ -5,7 +5,7 @@ published: false
 
 Zink can now run all display platform flavors of Weston (and possibly other compositors?). Expect it in zink-wip later today once it passes another round of my local CI.
 
-Here it is in DRM:
+Here it is in DRM running `weston-simple-egl` and `weston-simple-dmabuf-egl` all on zink:
 
 [![wayland-screenshot-2021-11-12_13-25-25.png]({{site.url}}/assets/wayland-screenshot-2021-11-12_13-25-25.png)]({{site.url}}/assets/wayland-screenshot-2021-11-12_13-25-25.png)
 
