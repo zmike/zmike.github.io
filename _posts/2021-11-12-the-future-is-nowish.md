@@ -3,7 +3,7 @@ published: false
 ---
 ## A Long Time Coming
 
-Zink can now run all display platform flavors of Weston (and possibly other compositors?).
+Zink can now run all display platform flavors of Weston (and possibly other compositors?). Expect it in zink-wip later today once it passes another round of my local CI.
 
 Here it is in DRM:
 
