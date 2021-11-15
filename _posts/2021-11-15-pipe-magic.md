@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Copper: It's A Thing (Sort of)
 
