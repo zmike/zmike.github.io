@@ -12,4 +12,8 @@ It's questionable to me whether anyone really knows how all the Gallium loader a
 
 It's a real disaster to have to work with, and ideally the eventual removal of classic drivers will allow it to be simplified so that mere humans like me can comprehend its majesty.
 
-Beyond all this, however, there's the notion that the DRI frontend is responsible for determining the size of the scanout buffer.
+Beyond all this, however, there's the notion that the DRI frontend is responsible for determining the size of the scanout buffer as well as various other attributes. The software path through this is nice and simple since there's no hardware to negotiate with, and the platform path exists.
+
+Currently, zink runs on the platform path, which means that the DRI frontend is what "runs" zink. It chooses the framebuffer size, manages resizes, and handles multisample resolve blits as needed for every frame that gets rendered.
+
+## 
