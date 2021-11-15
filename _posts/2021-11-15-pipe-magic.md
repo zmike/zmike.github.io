@@ -16,4 +16,4 @@ Beyond all this, however, there's the notion that the DRI frontend is responsibl
 
 Currently, zink runs on the platform path, which means that the DRI frontend is what "runs" zink. It chooses the framebuffer size, manages resizes, and handles multisample resolve blits as needed for every frame that gets rendered.
 
-## 
+## Too Many ~~Cooks~~Pipes
