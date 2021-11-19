@@ -75,7 +75,9 @@ This isn't an extensive benchmark, but here we go with that too:
 
 [![p2-dxvk.png]({{site.url}}/assets/p2-dxvk.png)]({{site.url}}/assets/p2-dxvk.png)
 
-Also around 600 FPS. I say "around" here because the variation is quite extreme for both Nine and DXVK based on slight changes in variable clock speeds because I didn't pin them: Nine ranges between 590-610 FPS, and DXVK is 590-620 FPS.
+Also around 600 FPS.
+
+I say "around" here because the variation is quite extreme for both Nine and DXVK based on slight changes in variable clock speeds because I didn't pin them: Nine ranges between 590-610 FPS, and DXVK is 590-620 FPS.
 
 So now there's two solid, open source methods for improving performance in these games over the normal GL version. But what if we go even deeper?
 
