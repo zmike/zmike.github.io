@@ -95,7 +95,7 @@ Here's some PowerTOP figures for the same Portal 2 timedemo:
 What's interesting here is that DXVK uses 90%+ CPU, while Nine is only using about 25%. This is a gap that's consistent across runs, and it likely explains why a number of people find that DXVK doesn't work on their systems: you still need some amount of CPU to run the actual game calculations, so if you're on older hardware, you might end up using all of your available CPU just on DXVK internals.
 
 ## GPU Usage?
-Got you covered. Here's a per-second poll from [radeontop](https://github.com/clbr/radeontop).
+Got you covered. Here's a per-second poll (one row per second) from [radeontop](https://github.com/clbr/radeontop).
 
 **DXVK:**
 
