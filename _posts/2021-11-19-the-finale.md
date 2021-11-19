@@ -38,7 +38,7 @@ This has been a long time in the making. After the original post, I knew that th
 
 Thus I enlisted the further help of Nine expert and image enthusiast, Axel Davy, to help smooth out the rough edges once I was done fingerpainting my way to victory.
 
-The result is [a simple wrapper](https://github.com/zmike/Xnine) which can be preloaded to run any DXVK-compatible (i.e., any of them that support `-vulkan`) Source Engine game on Nine—and obviously this won't work on NVIDIA at all.
+The result is [a simple wrapper](https://github.com/zmike/Xnine) which can be preloaded to run any DXVK-compatible (i.e., any of them that support `-vulkan`) Source Engine game on Nine—and obviously this won't work on NVIDIA blob at all so don't bother trying.
 
 In short:
 * clone that repo
