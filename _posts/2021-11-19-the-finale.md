@@ -36,7 +36,7 @@ But also, please benchmark it lots and tell me your findings. Again, just for ed
 ## How?
 This has been a long time in the making. After the original post, I knew that the goal here was to eventually be able to run these games without needing any kind of specialized Mesa build, since that's annoying and also breaks compatibility with running Nine for other purposes.
 
-Thus I enlisted the further help of Nine expert and image enthusiast, Axel Davy to help smooth out the rough edges once I was done fingerpainting around the edges.
+Thus I enlisted the further help of Nine expert and image enthusiast, Axel Davy, to help smooth out the rough edges once I was done fingerpainting around the edges.
 
 The result is [a simple wrapper](https://github.com/zmike/Xnine) which can be preloaded to run any DXVK-compatible (i.e., any of them that support `-vulkan`) game on Nine—and obviously this won't work on NVIDIA at all.
 
