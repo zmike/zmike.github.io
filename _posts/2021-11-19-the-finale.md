@@ -32,4 +32,4 @@ No more waiting, no new Mesa release required, you can just plug it in and test 
 ## How?
 This has been a long time in the making. After the original post, I knew that the goal here was to eventually be able to run these games without needing any kind of specialized Mesa build, since that's annoying and also breaks compatibility with running Nine for other purposes.
 
-Thus I enlisted the further help of Nine expert and Axel Davy
+Thus I enlisted the further help of Nine expert and image enthusiast, Axel Davy to help smooth out the rough edges once I was done fingerpainting around the edges.
