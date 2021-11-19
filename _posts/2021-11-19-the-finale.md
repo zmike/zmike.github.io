@@ -16,7 +16,7 @@ One of those things that's been a thorn in zink's side for a long time is PBO ha
 
 This is now fixed in the course of landing [compute PBO download support](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11984), which I [blogged about]({{site.url}}/backish) forever ago since it also yields a 2-10x performance improvement for a number of other cases *in all Gallium drivers*. Or at least the ones that enable it.
 
-CS:GO should now run out of the box in Mesa 22.0, and things like PCSX3 which do a lot of PBO downloading should also see huge improvements.
+CS:GO should now run out of the box in Mesa 22.0, and things like RPCS3 which do a lot of PBO downloading should also see huge improvements.
 
 That's all I've got here for zink, so now it's time once again...
 
