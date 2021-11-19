@@ -10,6 +10,8 @@ This will be the final SGC post for 2021. As such, it has to be a good one, does
 ## Zink Roundup
 It's been a wild year for zink. Does anybody even remember how many times I finished the project? I don't, but it's been at least a couple. Somehow there's still more to do though.
 
+I'll be updating zink-wip one final time later today with the latest Copper snapshot. This is going to be crashier than the usual zink-wip, but that's because zink-wip doesn't have nearly as much cool future-zink stuff as it used to these days. Nearly everything is already merged into mainline, or at least everything that's likely to help with general use, so just use that if you aren't specifically trying to test out Copper.
+
 One of those things that's been a thorn in zink's side for a long time is PBO handling, specifically for unsupported formats like ARGB/ABGR, ALPHA, LUMINANCE, and InTeNsItY. Vulkan has no analogs for any of these, and any app/game which tries to do texture upload or download from them with zink is going to have a very, very bad time, as has been the case with CS:GO, which would take [literal days to reach menus](https://gitlab.freedesktop.org/zmike/mesa/-/issues/89) due to performing fullscreen GL_LUMINANCE texture downloads.
 
 This is now fixed in the course of landing [compute PBO download support](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11984), which I [blogged about]({{site.url}}/backish) forever ago since it also yields a 2-10x performance improvement for a number of other cases *in all Gallium drivers*. Or at least the ones that enable it.
