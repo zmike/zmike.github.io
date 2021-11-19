@@ -18,7 +18,7 @@ CS:GO should now run out of the box in Mesa 22.0, and things like PCSX3 which do
 
 That's all I've got here for zink, so now it's time once again...
 
-##THIS IS NO LONGER A ZINK BLOG
+## THIS IS NO LONGER A ZINK BLOG
 That's right, it's happening. Change your hats, we're a Gallium blog again for the first time in nearly five months.
 
 Everyone remembers when I promised that you'd be able to [run native Linux D3D9 games out of the box]({{site.url}}/different-again) on the Nine state tracker. Well, I suppose that's a fancy way of saying Source Engine games, aka the ones Valve ships with native Linux ports, since probably nobody else has shipped any kind of native Linux app that uses the D3D9 API.
