@@ -47,7 +47,7 @@ In short:
 
 For Portal 2 (at present, though this won't always be the case), you'll also need to add `NINE_VHACKS=1` to work around some frogs that were accidentally added to the latest version of the game as a developer-only easter egg.
 
-Then just run the game normally, and if everything went right and you have Nine installed in one of the usual places, you should load up the game with Gallium Nine.
+Then just run the game normally, and if everything went right and you have Nine installed in one of the usual places, you should load up the game with Gallium Nine. More details on that in the repo's README.
 
 ## GPU Goes Brrr?
 Yes. Very brrr.
