@@ -54,13 +54,13 @@ Yes. Very brrr.
 
 Here's your normal GL performance from a simple Portal 2 benchmark:
 
-[![p2-togl.png]({{site.url}}/assets/p2-togl.png)]({{site.url}}/assets/p2-togl.png)
+[![p2-togl.png]({{site.url}}/assets/p2/p2-togl.png)]({{site.url}}/assets/p2/p2-togl.png)
 
 Around 400 FPS.
 
 Here's Gallium Nine:
 
-[![p2-nine.png]({{site.url}}/assets/p2-nine.png)]({{site.url}}/assets/p2-nine.png)
+[![p2-nine.png]({{site.url}}/assets/p2/p2-nine.png)]({{site.url}}/assets/p2/p2-nine.png)
 
 Around 600 FPS.
 
@@ -73,7 +73,7 @@ What about DXVK?
 
 This isn't an extensive benchmark, but here we go with that too:
 
-[![p2-dxvk.png]({{site.url}}/assets/p2-dxvk.png)]({{site.url}}/assets/p2-dxvk.png)
+[![p2-dxvk.png]({{site.url}}/assets/p2/p2-dxvk.png)]({{site.url}}/assets/p2/p2-dxvk.png)
 
 Also around 600 FPS.
 
