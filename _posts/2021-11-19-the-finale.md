@@ -33,3 +33,51 @@ No more waiting, no new Mesa release required, you can just plug it in and test 
 This has been a long time in the making. After the original post, I knew that the goal here was to eventually be able to run these games without needing any kind of specialized Mesa build, since that's annoying and also breaks compatibility with running Nine for other purposes.
 
 Thus I enlisted the further help of Nine expert and image enthusiast, Axel Davy to help smooth out the rough edges once I was done fingerpainting around the edges.
+
+The result is [a simple wrapper](https://github.com/zmike/Xnine) which can be preloaded to run any DXVK-compatible (i.e., any of them that support `-vulkan`) game on Nine—and obviously this won't work on NVIDIA at all.
+
+In short:
+* clone that repo
+* right click on `Properties` for e.g., Left 4 Dead 2
+* change the command line to `LD_PRELOAD=/path/to/Xnine/nine_sdl.so %command% -vulkan`
+
+For Portal 2 (at present, though this won't always be the case), you'll also need to add `NINE_VHACKS=1` to work around some frogs that were accidentally added to the latest version of the game as a developer-only easter egg.
+
+Then just run the game normally, and if everything went right and you have Nine installed in one of the usual places, you should load up the game with Gallium Nine.
+
+## GPU Goes Brrr?
+Yes. Very brrr.
+
+Here's your normal GL performance from a simple Portal 2 benchmark:
+
+[![p2-togl.png]({{site.url}}/assets/p2-togl.png)]({{site.url}}/assets/p2-togl.png)
+
+A little over 400 FPS.
+
+Here's Gallium Nine:
+
+[![p2-nine.png]({{site.url}}/assets/p2-nine.png)]({{site.url}}/assets/p2-nine.png)
+
+Around 600 FPS.
+
+A 50% improvement with the exact same GPU driver isn't too bad for a simple preload shim.
+
+## Can I Get A Side Of SHOTS FIRED With That?
+You got it.
+
+What about DXVK?
+
+This isn't an extensive benchmark, but here we go with that too:
+
+[![p2-dxvk.png]({{site.url}}/assets/p2-dxvk.png)]({{site.url}}/assets/p2-dxvk.png)
+
+Also around 600 FPS. I say "around" here because the variation is quite extreme for both Nine and DXVK based on slight changes in variable clock speeds: Nine ranges between 590-610 FPS, and DXVK is 590-620 FPS.
+
+So now there's two solid, open source methods for improving performance in these games over the normal GL version. But what if we go even deeper?
+
+What if we check out some *real* performance numbers?
+
+## Power Consumption
+If you've never checked out [PowerTOP](https://01.org/powertop/overview), it's a nice way to get an overview of what's using up system resources and consuming power.
+
+If you've never used it for benchmarking, don't worry, I took care of that too.
