@@ -129,7 +129,7 @@ Got you covered. Here's a per-second poll (one row per second) from [radeontop](
 |70.00%|65.83%|60.00%|57.50%|65.83%|61.67%|59.17%|24.17%|55.00%|54.17%|7.35% 598.42mb|1.60% 130.47mb|100.00% 0.875ghz|92.69% 1.946ghz|
 |70.00%|65.83%|60.00%|57.50%|65.83%|61.67%|59.17%|24.17%|55.00%|54.17%|7.35% 598.42mb|1.60% 130.47mb|100.00% 0.875ghz|92.69% 1.946ghz|
 
-Again, here we see a number of interesting things. DXVK consistently provokes slightly higher clock speeds (because I didn't pin them), which may explain why it skews slightly higher in the benchmark results. DXVK also uses nearly 2x more VRAM and nearly **5x more** GTT. On more modern hardware it's unlikely that this would matter since we all have more GPU memory than we can possibly use in an OpenGL game, but on older hardware—or in cases where memory usage might lead to power consumption that should be avoided—this could end up being significant.
+Again, here we see a number of interesting things. DXVK consistently provokes slightly higher clock speeds (because I didn't pin them), which may explain why it skews slightly higher in the benchmark results. DXVK also uses nearly 2x more VRAM and nearly **5x more** GTT. On more modern hardware it's unlikely that this would matter since we all have more GPU memory than we can possibly use in an OpenGL game, but on older hardware—or in cases where memory usage might lead to power consumption that should be avoided because we're running on battery—this could end up being significant.
 
 ## Conclusion
 Source Engine games run great on Linux. That's what we all care about at the end of the day, isn't it?
