@@ -134,7 +134,7 @@ Again, here we see a number of interesting things. DXVK consistently provokes sl
 ## Conclusion
 Source Engine games run great on Linux. That's what we all care about at the end of the day, isn't it?
 
-But also, if more Source Engine games get ported to DXVK, give them a try with Nine. Or just test the currently ported ones, Portal 2 and Left 4 Dead 2.
+But also, if more Source Engine games get ported to DXVK, give them a try with Nine. Or just test the currently ported ones, **Portal 2** and **Left 4 Dead 2**.
 
 I want data.
 
