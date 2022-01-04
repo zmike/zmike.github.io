@@ -1,0 +1,44 @@
+---
+published: false
+---
+## Chug-a-chug-a-chug-a-chug-a-chug-a
+
+It's a busy week here at SGC. There's emails to read, tickets to catch up on, code to unwrite. The usual. Except now I'm actually around to manage everything instead of ignoring it.
+
+Let's do a brief catchup of today's work items.
+
+## Sparse Textures
+I said this was done yesterday, but the main CTS case for the extension is broken, so I didn't adequately test it. Fortunately, Qiang Yu from AMD is on the case in addition to doing the original Gallium implementations for these extensions, and I was able to use a WIP patch to fix the test. And run it. And then run it again. And then run it in gdb. And then... And then...
+
+Anyway, it all passes now, and sparse texture support is good to go once Australia comes back from vacation.
+
+Also I fixed sparse buffer support, which I accidentally broke 6+ months ago but never noticed since only RADV implements these features and I have no games in my test list that use them.
+
+## Queries
+I hate queries. Everyone knows I hate queries. The query code is the worst code in the entire driver. If I never have to open `zink_query.c` again, I will still have opened it too many times for a single lifetime.
+
+But today I hucked myself back in yet again to try and stop a [very legitimate and legal replay of a Switch game](https://gitlab.freedesktop.org/mesa/mesa/-/issues/5669) from crashing. Everyone knows that anime is the real primary driver of all technology, so as soon as anyone files an anime-related ticket, all driver developers drop everything they're doing to solve it. Unless they're on vacation.
+
+In this case, the problem amounted to:
+* vulkan query pools have a maximum number of queries
+* exceeding this causes a crash
+* trying not to exceed it also causes a crash if the person writing the code is dumb
+* 2021 me was much dumber than 2022 me
+
+Rejoice, for you can now play all your weeb games on zink if for some reason that's where you're at in your life.
+
+But I'm not judging.
+
+## Source Games: Do More Of Them Run On Gallium Nine In 2022?
+
+Yes.
+
+I came back to the gift of a new CS:GO version which adds DXVK support, so now there's also Gallium Nine support. It works fine.
+
+[![csgo-nine.png]({{site.url}}/assets/csgo-nine.png)]({{site.url}}/assets/csgo-nine.png)
+
+Does it work better than other engines?
+
+I don't know, and I have real work to do, but surely someone will take an interest in benchmarking such things now that I've heroically [git added a 64bit wrapper](https://github.com/zmike/Xnine) to my repo that can be used for testing.
+
+A quick reminder that all Gallium Nine blog post references and testing happens with RadeonSI.
