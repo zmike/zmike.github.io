@@ -8,7 +8,7 @@ Today marks (at last) the [release](https://github.com/KhronosGroup/Vulkan-Docs/
 * [VK_EXT_primitives_generated_query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_primitives_generated_query.html)
 
 ## VK_EXT_graphics_pipeline_library
-This extension revolutionizes how PSOs can be managed by the driver, and it's the first step towards solving the dreaded stuttering that zink suffers from when attempting to play any sort of game. There's definitely going to be more posts from me on this in the future.
+This extension revolutionizes how PSOs can be managed by the application, and it's the first step towards solving the dreaded stuttering that zink suffers from when attempting to play any sort of game. There's definitely going to be more posts from me on this in the future.
 
 ## VK_EXT_primitives_generated_query
 Currently, zink has to do some awfulness internally to replicate the awfulness of `GL_PRIMITIVES_GENERATED`. With this query, at least some of that awfulness can be pushed down to the driver. And the spec, of course. You can't scrub this filth out of your soul.
