@@ -16,10 +16,10 @@ After completing a degree in Philosophy, I fell into a deep hole of Open Source 
 Also I tried Javascript once but never finished the project I was working on.
 
 ### Project Information
-* #zink on Freenode IRC
+* #zink on OFTC IRC
 * [zink tickets](https://gitlab.freedesktop.org/mesa/mesa/-/issues?scope=all&utf8=✓&state=opened&label_name[]=zink)
 * [zink merge requests](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests?scope=all&utf8=✓&state=opened&label_name[]=zink)
 
 ### Contact
-* zmike on Freenode IRC
+* zmike on OFTC IRC
 * [michael.blumenkrantz at gmail.com](mailto:michael.blumenkrantz at gmail.com)
