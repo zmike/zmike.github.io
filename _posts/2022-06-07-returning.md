@@ -100,3 +100,10 @@ This obviously hit a snag with the larger types (e.g., dvec3, dvec4) where there
 But hold on, Jason "I'm literally writing an NVIDIA compiler as I read your blog post" Ekstrand is probably thinking, what about even bigger types, like dmat3?
 
 I'm so glad you asked.
+
+The difference with a 64bit matrix type is that it's treated as an `array<dvec>` by NIR, which means that the access chain goes something like:
+* deref var
+* deref array (row/column)
+* load/store
+
+That intermediate step means indexing from a struct isn't going to work since the array index might not be constant.
