@@ -84,7 +84,7 @@ So with all this solved, there were only a couple issues remaining.
 
 How hard could it be?
 
-## FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+## FFFFFFFUUUUUUUUUUUU
 
 Anyway, so there were more issues, but really it was just two issues:
 * 64bit shader variable handling
@@ -107,3 +107,8 @@ The difference with a 64bit matrix type is that it's treated as an `array<dvec>`
 * load/store
 
 That intermediate step means indexing from a struct isn't going to work since the array index might not be constant.
+
+It's not going to work, right?
+
+[![anakin.png]({{site.url}}/assets/anakin.png)]({{site.url}}/assets/anakin.png)
+
