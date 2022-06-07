@@ -78,4 +78,4 @@ The second issue was a little trickier, but it mostly just amounted to forcing s
 
 Except there were other issues, because of course there were.
 
-Some of the optimization passes required for all this to work properly weren't handling atomic load/store ops correctly and were deleting loads that occurred after atomic stores. This spawned a [massive amount of discussion](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/16638) that culminated in some patches that might land someday.
+Some of the optimization passes required for all this to work properly weren't handling atomic load/store ops correctly and were deleting loads that occurred after atomic stores. This spawned a [massive amount of galaxy brain-level discussion](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/16638) that culminated in some patches that might land someday.
