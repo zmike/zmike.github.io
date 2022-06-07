@@ -19,7 +19,7 @@ Also in lavapipe-land, 1.3 conformance submissions are pending. While 1.2 confor
 ## Real Work
 On occasion I manage to get real work done. A couple weeks ago, in the course of working on turnip support, I discovered something terrible: Qualcomm has no 64bit shader support.
 
-This is different from old-time ANV, where 64bit support isn't in the hardware but is still handled correctly in the backend and so everything works even if I clumsily fumble some `dmat3` types into the GPU. On Qualcomm, such tomfoolery is Not Appreciated and will either crash or just fail altogether.
+This is different from old-time ANV, where 64bit support isn't in the hardware but is still handled correctly in the backend and so everything works even if I clumsily fumble some `dmat3` types into the GPU. On Qualcomm, such tomfoolery is Not Appreciated and will either fail or just crash altogether.
 
 So how well did 64bit -> 32bit conversions work in zink?
 
