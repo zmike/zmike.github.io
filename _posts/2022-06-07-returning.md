@@ -177,4 +177,4 @@ It's bad.
 
 Really bad.
 
-I'm not going to go deep into the changes required. They're terrible. The gist of it is that zink utilizes two mechanisms to handle XFB, and one is worse than the other. That one is the "manual emission" handler, in which the output of a variable is read back and 
+I'm not going to go deep into the changes required. They're terrible. The gist of it is that zink utilizes two mechanisms to handle XFB, and one is worse than the other. That one is the "manual emission" handler, in which the output of a variable is read back and then explicitly stored to an XFB output. This 
