@@ -46,3 +46,10 @@ Basically everything.
 
 Oops.
 
+## Fixing
+There's a lot of code involved in addressing all these issues, so rather than delving too deeply into it (you can see the MR [here](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/16669)), I'll go over the issues at a pseudo code level.
+
+Like a whiteboard section of an interview.
+
+Except useful.
+
