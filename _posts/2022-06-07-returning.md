@@ -114,7 +114,7 @@ It's not going to work, right?
 
 It turns out that if you use the phi, anything is possible.
 
-Here's a taste of how loads are handled:
+Here's a taste of how 64bit matrix loads are handled:
 
 ```c
 /* matrix types always come from array (row) derefs */
