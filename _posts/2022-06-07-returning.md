@@ -113,3 +113,55 @@ It's not going to work, right?
 [![anakin.png]({{site.url}}/assets/anakin.png)]({{site.url}}/assets/anakin.png)
 
 It turns out that if you use the phi, anything is possible.
+
+Here's a taste of how loads are handled:
+
+```c
+/* matrix types always come from array (row) derefs */
+assert(deref->deref_type == nir_deref_type_array);
+nir_deref_instr *var_deref = nir_deref_instr_parent(deref);
+/* let optimization clean up consts later */
+nir_ssa_def *index = deref->arr.index.ssa;
+/* this might be an indirect array index:
+ * - iterate over matrix columns
+ * - add if blocks for each column
+ * - phi the loads using the array index
+ */
+unsigned cols = glsl_get_matrix_columns(matrix);
+nir_ssa_def *dests[4];
+for (unsigned idx = 0; idx < cols; idx++) {
+   /* don't add an if for the final row: this will be handled in the else */
+   if (idx < cols - 1)
+      nir_push_if(&b, nir_ieq_imm(&b, index, idx));
+   unsigned vec_components = glsl_get_vector_elements(matrix);
+   /* always clamp dvec3 to 4 components */
+   if (vec_components == 3)
+      vec_components = 4;
+   unsigned start_component = idx * vec_components * 2;
+   /* struct member */
+   unsigned member = start_component / 4;
+   /* number of components remaining */
+   unsigned remaining = num_components;
+   /* component index */
+   unsigned comp_idx = 0;
+   for (unsigned i = 0; i < num_components; member++) {
+      assert(member < glsl_get_length(var_deref->type));
+      nir_deref_instr *strct = nir_build_deref_struct(&b, var_deref, member);
+      nir_ssa_def *load = nir_load_deref(&b, strct);
+      unsigned incr = MIN2(remaining, 4);
+      /* repack the loads to 64bit */
+      for (unsigned c = 0; c < incr / 2; c++, comp_idx++)
+         comp[comp_idx] = nir_pack_64_2x32(&b, nir_channels(&b, load, BITFIELD_RANGE(c * 2, 2)));
+      remaining -= incr;
+      i += incr;
+   }
+   dest = dests[idx] = nir_vec(&b, comp, intr->num_components);
+   if (idx < cols - 1)
+      nir_push_else(&b, NULL);
+}
+/* loop over all the if blocks that were made, pop them, and phi the loaded+packed results */
+for (unsigned idx = cols - 1; idx >= 1; idx--) {
+   nir_pop_if(&b, NULL);
+   dest = nir_if_phi(&b, dests[idx - 1], dest);
+}
+```
