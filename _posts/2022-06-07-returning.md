@@ -27,7 +27,7 @@ Not well.
 
 Very not well.
 
-## A Multitude Of Failures
+## A Plethora Of Failures
 Before I get into all the methods by which zink fails, let's talk about it at a conceptual level: what 64bit operations are needed here?
 
 There are two types of 64bit shader operations, `Int64` and `Float64`. At the API level, these correspond to doing 64bit integer and 64bit float operations respectively. At the functional level, however, they're a bit different. Due to how zink handles shader i/o, `Int64` is what determines support for 64bit descriptor interfaces as well as cross-stage interfaces. `Float64` is solely for handling ALU operations involving 64bit floating point values.
@@ -45,3 +45,4 @@ With that in mind, let's take a look at all the ways this failed:
 Basically everything.
 
 Oops.
+
