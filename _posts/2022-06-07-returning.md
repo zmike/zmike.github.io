@@ -90,4 +90,4 @@ Anyway, so there were more issues, but really it was just two issues:
 * 64bit shader variable handling
 * 64bit XFB handling
 
-Tackling the first issue first, the way I saw it, 64bit variables had to be rewritten into expanded (e.g., dvec2 -> vec4) types and then load/store operations had to be rewritten to split the values up and write to those types. This could be done in 
+Tackling the first issue first, the way I saw it, 64bit variables had to be rewritten into expanded (e.g., dvec2 -> vec4) types and then load/store operations had to be rewritten to split the values up and write to those types. My plan for this was:
