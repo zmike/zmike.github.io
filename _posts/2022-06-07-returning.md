@@ -165,3 +165,5 @@ for (unsigned idx = cols - 1; idx >= 1; idx--) {
    dest = nir_if_phi(&b, dests[idx - 1], dest);
 }
 ```
+
+I just saw Big Triangle reaching for a phone, probably to call the police for , so let's 
