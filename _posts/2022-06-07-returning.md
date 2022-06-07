@@ -177,4 +177,6 @@ It's bad.
 
 Really bad.
 
-I'm not going to go deep into the changes required. They're terrible. The gist of it is that zink utilizes two mechanisms to handle XFB, and one is worse than the other. That one is the "manual emission" handler, in which the output of a variable is read back and then explicitly stored to an XFB output. This 
+I'm not going to go deep into the changes required. They're terrible. The gist of it is that zink utilizes two mechanisms to handle XFB, and one is worse than the other. That one is the "manual emission" handler, in which the output of a variable is read back and then explicitly stored to an XFB output. This has to handle all the variable types (in spirv) for both the load and the store, and then it also has to untangle the abomination that is Gallium XFB handling, and it's just terrible.
+
+But it's done.
