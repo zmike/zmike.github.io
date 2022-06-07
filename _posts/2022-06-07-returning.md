@@ -23,3 +23,5 @@ This is different from old-time ANV, where 64bit support isn't in the hardware b
 
 So how well did 64bit -> 32bit conversions work in zink?
 
+Not well.
+
