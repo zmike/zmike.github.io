@@ -46,7 +46,7 @@ Basically everything.
 
 Oops.
 
-## Fixing
+## Fixing: Part One
 There's a lot of code involved in addressing all these issues, so rather than delving too deeply into it (you can see the MR [here](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/16669)), I'll go over the issues at a pseudo code level.
 
 Like a whiteboard section of an interview.
@@ -63,3 +63,17 @@ First, let's take a look at descriptor handling. This is:
 All of these are handled in two phases. Initially, the load/store operation is rewritten. This involves two steps:
 * rewrite the offset of the operation in terms of dwords rather than bytes (zink loads `array<uint>` variables)
 * rewrite 64bit operations to 2x32 if 64bit support is not present
+
+As expected, at least one of these was broken in various ways.
+
+Offset handling was, generally speaking, fine. I got something right.
+
+What I didn't get right, however, was the 64bit rewrites. While certain operations were being converted, I had (somehow) failed to catch the case of missing `Int64` support as a place where such conversions were required, and so the rewrites weren't being done. With that fixed, I discovered even more issues:
+* more 64bit operations were being added in the course of converting from 64bit to 32bit
+* non-scalar loads/stores broke lots of things
+
+The first issue was simple to fix: instead of doing manual bitshifts and casts, use NIR intrinsics like `nir_op_pack_64_2x32` to handle rewrites since these can be optimized out upon meeting a matching `nir_op_unpack_64_2x32` later on.
+
+The second issue was a little trickier, but it mostly just amounted to forcing scalarization during the rewrite process to avoid issues.
+
+Except there were other issues, because of course there were.
