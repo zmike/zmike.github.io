@@ -53,3 +53,13 @@ Like a whiteboard section of an interview.
 
 Except useful.
 
+First, let's take a look at descriptor handling. This is:
+* 64bit UBO loads
+* 64bit SSBO loads
+* 64bit SSBO stores
+* 64bit shared memory loads
+* 64bit shared memory stores
+
+All of these are handled in two phases. Initially, the load/store operation is rewritten. This involves two steps:
+* rewrite the offset of the operation in terms of dwords rather than bytes (zink loads `array<uint>` variables)
+* rewrite 64bit operations to 2x32 if 64bit support is not present
