@@ -72,7 +72,7 @@ What I didn't get right, however, was the 64bit rewrites. While certain operatio
 * more 64bit operations were being added in the course of converting from 64bit to 32bit
 * non-scalar loads/stores broke lots of things
 
-The first issue was simple to fix: instead of doing manual bitshifts and casts, use NIR intrinsics like `nir_op_pack_64_2x32` to handle rewrites since these can be optimized out upon meeting a matching `nir_op_unpack_64_2x32` later on.
+The first issue was simple to fix: instead of doing manual bitshifts and casts, use NIR intrinsics like `nir_op_pack_64_2x32` to handle rewrites since these can be [optimized out](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/16591) upon meeting a matching `nir_op_unpack_64_2x32` later on.
 
 The second issue was a little trickier, but it mostly just amounted to forcing scalarization during the rewrite process to avoid issues.
 
