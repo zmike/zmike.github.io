@@ -95,4 +95,8 @@ Tackling the first issue first, the way I saw it, 64bit variables had to be rewr
 * rewrite the type for a matching variable
 * rewrite the i/o for matching variable to use the new type
 
-This obviously hit a snag with the larger types (e.g., dvec4, dmatX) where there was more than a vec4 of expanded components. I ended up converting these to a struct containing vec4 members that could then be indexed based on the offset of the original load.
+This obviously hit a snag with the larger types (e.g., dvec3, dvec4) where there was more than a vec4 of expanded components. I ended up converting these to a struct containing vec4 members that could then be indexed based on the offset of the original load.
+
+But hold on, Jason "I'm literally writing an NVIDIA compiler as I read your blog post" Ekstrand is probably thinking, what about even bigger types, like dmat3?
+
+I'm so glad you asked.
