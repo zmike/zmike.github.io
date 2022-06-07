@@ -166,4 +166,15 @@ for (unsigned idx = cols - 1; idx >= 1; idx--) {
 }
 ```
 
-I just saw Big Triangle reaching for a phone, probably to call the police for , so let's 
+I just saw Big Triangle reaching for a phone, probably to call the police regarding illegal amounts of compiler horseplay, so let's move on so I can maybe finish this before I get hauled off.
+
+The only remaining issue now is
+
+## FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+Look, there's a reason why [entire blog posts](http://jason-blog.jlekstrand.net/2018/10/transform-feedback-is-terrible-so-why.html) are devoted to the awfulness of XFB.
+
+It's bad.
+
+Really bad.
+
+I'm not going to go deep into the changes required
