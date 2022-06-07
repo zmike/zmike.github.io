@@ -38,4 +38,10 @@ With that in mind, let's take a look at all the ways this failed:
 * 64bit SSBO stores
 * 64bit shared memory loads
 * 64bit shared memory stores
-* 
+* 64bit variable loads
+* 64bit variable stores
+* 64bit XFB stores
+
+Basically everything.
+
+Oops.
