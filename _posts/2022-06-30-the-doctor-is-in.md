@@ -137,3 +137,13 @@ So as we can see, in Lavapipe, where everything renders correctly, the locations
 Let's find out.
 
 RenderDoc, being the futuristic piece of software that it is, lets us make changes like these and test them out.
+
+Going back to the ANV capture and the vertex shader editing pane, I can change the locations in the shader and then compile it and run it:
+
+[![test.png]({{site.url}}/assets/renderdoc/test.png)]({{site.url}}/assets/renderdoc/test.png)
+
+Which, upon switching to the texture viewer yields this:
+
+[![fixed.png]({{site.url}}/assets/renderdoc/fixed.png)]({{site.url}}/assets/renderdoc/fixed.png)
+
+Hooray, it's fixed.
