@@ -12,3 +12,16 @@ Messages like, "Nice blog post. I'm sure you totally know how to use RenderDoc."
 I even got a message from Baldur "Dr. Render" Karlsson asking to see my RenderDoc operator's license. Which I definitely have. And it's not expired.
 
 I just, uh, don't have it on me right now, officer.
+
+But we can work something out, right?
+
+Right?
+
+## Community Service
+
+So I'm writing this post of my own free will, and in it we're going to take a look at a bug. Using RenderDoc.
+
+Like a tutorial, almost, but less useful.
+
+If you want a real tutorial, you should be contacting Danylo Piliaiev, Professor Emeritus at Render University, for his self-help guide. Or watch his [free zen meditation tutorial](https://www.youtube.com/watch?v=T2JQq1cxB1o&hd=1). Powerful stuff.
+
