@@ -142,7 +142,7 @@ Going back to the ANV capture and the vertex shader editing pane, I can change t
 
 [![test.png]({{site.url}}/assets/renderdoc/test.png)]({{site.url}}/assets/renderdoc/test.png)
 
-Which, upon switching to the texture viewer yields this:
+Which, upon switching to the texture viewer, yields this:
 
 [![fixed.png]({{site.url}}/assets/renderdoc/fixed.png)]({{site.url}}/assets/renderdoc/fixed.png)
 
