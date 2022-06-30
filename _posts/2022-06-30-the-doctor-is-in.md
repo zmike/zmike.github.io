@@ -112,3 +112,26 @@ This brings up the vertex shader, decompiled back to GLSL for readability, where
 
 [![io.png]({{site.url}}/assets/renderdoc/io.png)]({{site.url}}/assets/renderdoc/io.png)
 
+Happily, these are nicely organized such that there are 3 inputs and 3 outputs which match up with the fragment shader locations in the shader debugger from earlier, using locations 1, 2, 3. Having read through the shader, we see that each input location corresponds to the same output location. This means that broken vertex input data will yield broken vertex output data.
+
+Here's where the real Pro Gamer Move that I totally used at the time I was originally solving this issue comes into play. Notice that the input variables are named with a specific schema. `v0` is location 0. `v2`, however, is location 1, `v3` is location 2, and `v4` is location 3.
+
+Isn't that weird?
+
+We're all experts here, so we can agree that it's a little weird. The variables should probably be named `v0`, `v1`, `v2`, `v3`. That would make sense. I like things that make sense.
+
+In this scenario, we have our R E F E R E N C E driver, Lavapipe, which has zero bugs and if you find them they're your fault, so let's look at the vertex shader in the same draw call there:
+
+[![lavapipe-io.png]({{site.url}}/assets/renderdoc/lavapipe-io.png)]({{site.url}}/assets/renderdoc/lavapipe-io.png)
+
+O
+
+M 
+
+G
+
+I was right. On my own blog. Nobody saw this coming.
+
+So as we can see, in Lavapipe, where everything renders correctly, the locations do correspond to the variable names. Is this the problem?
+
+Let's find out.
