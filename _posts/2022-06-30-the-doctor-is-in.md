@@ -102,4 +102,4 @@ I'm going to do what's called a "Pro Gamer Move" here since I've taken Danylo Pi
 
 [![big.png]({{site.url}}/assets/renderdoc/big.png)]({{site.url}}/assets/renderdoc/big.png)
 
-These vertex inputs are too big. Probably. I don't have any proof that they're not supposed to be non-normalized floats, but probably they aren't.
+These vertex inputs are too big. Probably. I don't have any proof that they're not supposed to be non-normalized floats, but probably they aren't, because who uses non-normalized floats?
