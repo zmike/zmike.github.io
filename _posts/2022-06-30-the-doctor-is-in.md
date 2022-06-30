@@ -96,4 +96,10 @@ First, go back to the texture viewer and right click somewhere on that rubble he
 
 [![debug.png]({{site.url}}/assets/renderdoc/debug.png)]({{site.url}}/assets/renderdoc/debug.png)
 
-You're now in the shader debugger.
+You're now in the shader debugger. What an amazing piece of sofware this is that you can just *debug shaders*.
+
+I'm going to do what's called a "Pro Gamer Move" here since I've taken Danylo Piliaiev's executive seminar in which he describes optimal RenderDoc usage as doing "what my intuition tells me". Upon entering this view, I can see the shader variables being accessed, and I can immediately begin to speculate on a problem:
+
+[![big.png]({{site.url}}/assets/renderdoc/big.png)]({{site.url}}/assets/renderdoc/big.png)
+
+These vertex inputs are too big. Probably. I don't have any proof that they're not supposed to be non-normalized floats, but probably they aren't.
