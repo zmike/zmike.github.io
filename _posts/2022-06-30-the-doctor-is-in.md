@@ -104,7 +104,7 @@ I'm going to do what's called a "Pro Gamer Move" here since I've taken Danylo Pi
 
 These vertex inputs are too big. Probably. I don't have any proof that they're not supposed to be non-normalized floats, but probably they aren't, because who uses all non-normalized floats?
 
-Let's open up the vertex shader by going to the pipeline inspector view, clicking the VS bubble, then clicking Edit -> Decompile with SPIRV-Cross:
+Let's open up the vertex shader by going to the pipeline inspector view, clicking the VS bubble, then clicking Edit → Decompile with SPIRV-Cross:
 
 [![vs.png]({{site.url}}/assets/renderdoc/vs.png)]({{site.url}}/assets/renderdoc/vs.png)
 
