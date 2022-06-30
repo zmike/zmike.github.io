@@ -135,3 +135,5 @@ I was right. On my own blog. Nobody saw this coming.
 So as we can see, in Lavapipe, where everything renders correctly, the locations do correspond to the variable names. Is this the problem?
 
 Let's find out.
+
+RenderDoc, being the futuristic piece of software that it is, lets us make changes like these and test them out.
