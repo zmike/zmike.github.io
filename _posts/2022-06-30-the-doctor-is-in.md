@@ -63,3 +63,13 @@ Assuming, of course, that you are in one of these scenarios:
 * running on ANV with [this MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/17309) applied so the app doesn't crash
 * not running on Lavapipe since, obviously, this bug doesn't exist there (R E F E R E N C E)
 
+Running on Lavapipe, the interface looks more like this since Lavapipe has no bugs and all bugs disappear when running it:
+
+[![lavapipe.png]({{site.url}}/assets/renderdoc/lavapipe.png)]({{site.url}}/assets/renderdoc/lavapipe.png)
+
+Incredible. 
+
+If you're new to the blog, I've included a handy infographic to help you see the problem area in the ANV capture:
+
+[![bug.png]({{site.url}}/assets/renderdoc/bug.png)]({{site.url}}/assets/renderdoc/bug.png)
+
