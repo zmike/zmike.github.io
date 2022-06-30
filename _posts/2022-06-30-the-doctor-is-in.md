@@ -169,4 +169,4 @@ And, like magic, I solved the issue.
 
 But I didn't fix it.
 
-This isn't a tutorial or anything.
+This isn't a tutorial.
