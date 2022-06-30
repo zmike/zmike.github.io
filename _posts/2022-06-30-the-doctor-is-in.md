@@ -155,3 +155,18 @@ The formats here for the upper three attributes have also changed, which explain
 It wasn't like I actually stepped through the whole fragment shader to see which inputs were broken and determined that `oT6` in (broken) location 3 was coming into the shader with values far too large to ever produce a viable color output.
 
 That would be way less cool than making a wild conjecture that happened to be right.
+
+## Solutions
+This identified the problem, but it didn't solve it. Zink doesn't do its own assignment for vertex input locations and instead uses whatever values Gallium assigns, so the bug had to be somewhere down the stack.
+
+Given that the number of indices used in the draw call was somewhat unique, I was able to set a breakpoint to use with gdb, which let me:
+* inspect the shader to determine its id
+* step through the process of compiling it
+* discover that the location assignment problem was caused by a vertex attribute (`v1`) that was deleted early on without reserving a location
+* determine that `v1` should have reserved location 1, thus offsetting every subsequent vertex attribute by 1, which yields the correct rendering
+
+And, like magic, I solved the issue.
+
+But I didn't fix it.
+
+This isn't a tutorial or anything.
