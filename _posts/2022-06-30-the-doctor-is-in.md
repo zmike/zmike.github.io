@@ -84,7 +84,7 @@ I've expedited the process by locating a problem draw:
 
 This pile of rubble is obviously missing the correct color, so the hunt begins.
 
-With the draw call selected, I'm going to first check the vertex output data. If the draw isn't producing the right geometry, that's a problem.
+With the draw call selected, I'm going to first check the vertex output data in the mesh viewer. If the draw isn't producing the right geometry, that's a problem.
 
 [![geometry.png]({{site.url}}/assets/renderdoc/geometry.png)]({{site.url}}/assets/renderdoc/geometry.png)
 
