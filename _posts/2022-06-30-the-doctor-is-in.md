@@ -73,3 +73,6 @@ If you're new to the blog, I've included a handy infographic to help you see the
 
 [![bug.png]({{site.url}}/assets/renderdoc/bug.png)]({{site.url}}/assets/renderdoc/bug.png)
 
+That's all well and good, you might be saying, but how are you going to solve this problem?
+
+## Diving In
