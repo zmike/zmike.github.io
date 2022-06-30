@@ -53,3 +53,12 @@ In particular here, the `--loop` parameter will replay the frame infinitely, ena
 But this isn't a tutorial, so I'm gonna assume that once the trace starts playing at this point, it's easy enough for anyone following along to press F11 a couple times to select Vulkan and then press F12 to capture the frame.
 
 ## The Interface
+
+This is more or less what RenderDoc will look like once the trace is opened:
+
+[![app.png]({{site.url}}/assets/renderdoc/app.png)]({{site.url}}/assets/renderdoc/app.png)
+
+Assuming, of course, that you are either:
+* not running on ANV
+* running on ANV with [this MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/17309) applied so the app doesn't crash
+* not running on Lavapipe since, obviously, this bug doesn't exist there (R E F E R E N C E)
