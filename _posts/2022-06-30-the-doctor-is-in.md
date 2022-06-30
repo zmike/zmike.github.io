@@ -48,7 +48,7 @@ Moving along, if the case in question is a single frame apitrace, as is the case
 LD_PRELOAD=/usr/lib64/librenderdoc.so MESA_LOADER_DRIVER_OVERRIDE=zink glretrace --loop portal2.trace
 ```
 
-In particular here, the `--loop` parameter will replay the frame infinitely, enabling capture. There's also the need to use F11 to cycle through until the Vulkan window is selected. And also possibly disable GL support in RenderDoc so it doesn't get confused.
+In particular here, the `--loop` parameter will replay the frame infinitely, enabling capture. There's also the need to use F11 to cycle through until the Vulkan window is selected. And also possibly to disable GL support in RenderDoc so it doesn't get confused.
 
 But this isn't a tutorial, so I'm gonna assume that once the trace starts playing at this point, it's easy enough for anyone following along to press F11 a couple times to select Vulkan and then press F12 to capture the frame.
 
