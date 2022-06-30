@@ -171,4 +171,4 @@ But I didn't fix it.
 
 This isn't a tutorial.
 
-I'm only here so I don't get fined.
+I'm just here so I don't get fined.
