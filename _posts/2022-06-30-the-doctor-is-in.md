@@ -82,4 +82,12 @@ I've expedited the process slightly and located a problem draw:
 
 [![frame.png]({{site.url}}/assets/renderdoc/frame.png)]({{site.url}}/assets/renderdoc/frame.png)
 
-This is obviously missing the correct color, so the hunt begins.
+This pile of rubble is obviously missing the correct color, so the hunt begins.
+
+With the draw call selected, I'm going to first check the vertex output data. If the draw isn't producing the right geometry, that's a problem.
+
+[![geometry.png]({{site.url}}/assets/renderdoc/geometry.png)]({{site.url}}/assets/renderdoc/geometry.png)
+
+I've dragged the wireframe around a bit to try and get a good angle on it, but all I can really say is that it looks like a great pile of rubble. Looks good. A+ to whoever created it. Probably have some really smart people on payroll at a company like that.
+
+The geometry is fine, so the color output must be broken.
