@@ -146,4 +146,8 @@ Which, upon switching to the texture viewer yields this:
 
 [![fixed.png]({{site.url}}/assets/renderdoc/fixed.png)]({{site.url}}/assets/renderdoc/fixed.png)
 
-Hooray, it's fixed.
+Hooray, it's fixed. And if we switch back to the Vertex Input viewer in the pipeline inspector:
+
+[![inputs.png]({{site.url}}/assets/renderdoc/inputs.png)]({{site.url}}/assets/renderdoc/inputs.png)
+
+The formats here for the upper three attributes have also changed, which explains the problem.
