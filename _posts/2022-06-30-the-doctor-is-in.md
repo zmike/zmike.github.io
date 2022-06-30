@@ -154,7 +154,7 @@ The formats here for the upper three attributes have also changed, which explain
 
 It wasn't like I actually stepped through the whole fragment shader to see which inputs were broken and determined that `oT6` in (broken) location 3 was coming into the shader with values far too large to ever produce a viable color output.
 
-That would be way less cool than making a wild conjecture that happened to be right.
+That would be way less cool than making a wild conjecture that happened to be right like a real guru would do.
 
 ## Solutions
 This identified the problem, but it didn't solve it. Zink doesn't do its own assignment for vertex input locations and instead uses whatever values Gallium assigns, so the bug had to be somewhere down the stack.
