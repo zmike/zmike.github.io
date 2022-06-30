@@ -150,4 +150,8 @@ Hooray, it's fixed. And if we switch back to the Vertex Input viewer in the pipe
 
 [![inputs.png]({{site.url}}/assets/renderdoc/inputs.png)]({{site.url}}/assets/renderdoc/inputs.png)
 
-The formats here for the upper three attributes have also changed, which explains the problem.
+The formats here for the upper three attributes have also changed, which explains the problem. Also though there actually were non-normalized floats for some of the attributes, so my wild guess ended up only being partially right.
+
+It wasn't like I actually stepped through the whole fragment shader to see which inputs were broken and determined that `oT6` in (broken) location 3 was coming into the shader with values far too large to ever produce a viable color output.
+
+That would be way less cool than making a wild conjecture that happened to be right.
