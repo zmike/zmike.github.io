@@ -34,3 +34,22 @@ What's that? I skipped the part where I was supposed to describe how to get a ca
 Fine, fine, let's go back.
 
 ## RenderDoc + Zink: Not A HOWTO
+If you're not already a maestro of the most powerful graphics debugging tool on the planet, the process for capturing a frame on zink goes something like this:
+
+```
+LD_PRELOAD=/usr/lib64/librenderdoc.so MESA_LOADER_DRIVER_OVERRIDE=zink <executable>
+```
+
+I've been advised by my lawyer to state for the record that preloading the library in this manner is Not Officially Supported, and the GUI should be used whenever possible. But this isn't a tutorial, so you can read the RenderDoc documentation to set up the GUI capture.
+
+Moving along, if the case in question is a single frame apitrace, as is the case for this bug, there's some additional legwork required:
+
+```
+LD_PRELOAD=/usr/lib64/librenderdoc.so MESA_LOADER_DRIVER_OVERRIDE=zink glretrace --loop portal2.trace
+```
+
+In particular here, the `--loop` parameter will replay the frame infinitely, enabling capture. There's also the need to use F11 to cycle through until the Vulkan window is selected. And also possibly disable GL support in RenderDoc so it doesn't get confused.
+
+But this isn't a tutorial, so I'm gonna assume that once the trace starts playing at this point, it's easy enough for anyone following along to press F11 a couple times to select Vulkan and then press F12 to capture the frame.
+
+## The Interface
