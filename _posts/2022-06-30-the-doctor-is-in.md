@@ -138,7 +138,7 @@ Let's find out.
 
 RenderDoc, being the futuristic piece of software that it is, lets us make changes like these and test them out.
 
-Going back to the ANV capture and the vertex shader editing pane, I can change the locations in the shader and then compile it and run it:
+Going back to the ANV capture and the vertex shader editing pane, I can change the locations in the shader and then compile and run it:
 
 [![test.png]({{site.url}}/assets/renderdoc/test.png)]({{site.url}}/assets/renderdoc/test.png)
 
