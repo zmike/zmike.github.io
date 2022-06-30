@@ -21,7 +21,7 @@ Right?
 
 So I'm writing this post of my own free will, and in it we're going to take a look at [a real bug](https://gitlab.freedesktop.org/mesa/mesa/-/issues/6240). Using RenderDoc.
 
-Like a tutorial, almost, but less useful.
+Like a tutorial, but less useful.
 
 If you want a real tutorial, you should be contacting Danylo Piliaiev, Professor Emeritus at Render University, for his self-help guide. Or watch his [free zen meditation tutorial](https://www.youtube.com/watch?v=T2JQq1cxB1o&hd=1). Powerful stuff.
 
