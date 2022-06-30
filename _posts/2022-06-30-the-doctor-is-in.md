@@ -90,4 +90,10 @@ With the draw call selected, I'm going to first check the vertex output data. If
 
 I've dragged the wireframe around a bit to try and get a good angle on it, but all I can really say is that it looks like a great pile of rubble. Looks good. A+ to whoever created it. Probably have some really smart people on payroll at a company like that.
 
-The geometry is fine, so the color output must be broken.
+The geometry is fine, so the color output must be broken. Let's check that out.
+
+First, go back to the texture viewer and right click somewhere on that rubble heap. Second, click the Debug button at the bottom right.
+
+[![debug.png]({{site.url}}/assets/renderdoc/debug.png)]({{site.url}}/assets/renderdoc/debug.png)
+
+You're now in the shader debugger.
