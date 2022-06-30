@@ -78,4 +78,8 @@ That's all well and good, you might be saying, but how are you going to solve th
 ## Diving In
 The first step when employing this tool is to locate a draw call which exhibits the problem that you're attempting to solve. This can be done in the left pane by scrolling through the event list until the texture viewer displays a misrender.
 
-I've expedited the process slightly and located a problem frame:
+I've expedited the process slightly and located a problem draw:
+
+[![frame.png]({{site.url}}/assets/renderdoc/frame.png)]({{site.url}}/assets/renderdoc/frame.png)
+
+This is obviously missing the correct color, so the hunt begins.
