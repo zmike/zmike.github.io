@@ -7,7 +7,7 @@ You know what I'm about to talk about.
 
 You knew it as soon as you opened up the page.
 
-I've said I was done with it a number of times, but deep down we all knew it was a lie.
+I've said I was done with it a number of times, but deep down we all knew that was a lie.
 
 Let's talk about XFB.
 
