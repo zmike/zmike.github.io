@@ -17,3 +17,16 @@ For newcomers to the blog, Zink has two methods of emitting streamout info:
 * explicit emission, where the shader output variable is written and then XFB data is written later with its own explicit variables
 
 The former is obviously the better kind since it's simpler. But also it has another benefit: it doesn't need more variables. On the surface, it seems like this should just be the same as the first reason, namely that I don't need to run some 300 line giga-function to wrangle the XFB outputs after the shader has ended.
+
+There shouldn't be any other reason. I've got the shader. I tell it to write some XFB data. Everything works as expected.
+
+I know this.
+
+You know this.
+
+
+
+But then 
+
+VUID-StandaloneSpirv-Location-04916
+The Location decorations must be used on user-defined variables
