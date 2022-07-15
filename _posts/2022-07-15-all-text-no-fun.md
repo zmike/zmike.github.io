@@ -114,3 +114,7 @@ Each output variable is deconstructed into the number of 32-bit components that 
 In short, it has absolutely no relation to the actual shader variables, and matching them back up is a considerable amount of work.
 
 But this is XFB, so it was always going to be terrible no matter what.
+
+## Problems
+Going back to the location disaster again, you might be wondering where the problem lies.
+
