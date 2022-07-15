@@ -122,7 +122,9 @@ Let's break it down with some location analysis. According to GLSL rules, here's
 
 ```glsl
 struct TestStruct {
-   dmat3x4 a; <--this is effectively dvec3[4]; a dvec3 consumes 2 locations, so 4 * 2 is 8, so this consumes locations [0,7]
+   dmat3x4 a; <--this is effectively dvec3[4];
+                 a dvec3 consumes 2 locations
+                 so 4 * 2 is 8, so this consumes locations [0,7]
    double b; <--location 8
    float c; <--location 9
    dvec2 d; <--location 10
