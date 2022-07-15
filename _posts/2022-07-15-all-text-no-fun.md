@@ -247,3 +247,5 @@ This is an simple pass that does three things:
 The result is that it's much rarer to need explicit XFB emission, and it's generally easier to debug XFB problems involving shaders with struct blocks since the blocks will be eliminated.
 
 Now as long as Goku doesn't have any senzu beans remaining, I think this might actually be the last post I ever make about XFB.
+
+Stay tuned next week for a more interesting and exciting post. Maybe.
