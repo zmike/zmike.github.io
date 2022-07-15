@@ -35,4 +35,9 @@ And when we do consult the spec, this seemingly-benign restriction is imposed:
 > **VUID-StandaloneSpirv-Location-04916**
 >> The Location decorations must be used on user-defined variables
 
-So any user-defined variable must have a location. Seems fine. Until that restriction applies to the explicit XFB outputs.
+So any user-defined variable must have a location. Seems fine. Until that restriction applies to the explicit XFB outputs. The ones that are never counted as inter-stage IO and are eliminated by the Vulkan driver's compiler for all purposes except XFB. And since locations are consumed, the restrictions for locations apply: `maxVertexOutputComponents`, `maxTessellationEvaluationOutputComponents`, and `maxGeometryOutputComponents` restrict the maximum number of locations that can be used.
+
+And surely that would never be a problem.
+
+## Obviously.
+It's XFB, so obviously it's a problem.
