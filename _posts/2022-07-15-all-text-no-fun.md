@@ -24,9 +24,7 @@ I know this.
 
 You know this.
 
-
-
-But then 
+But then there's something we didn't consult, isn't there.
 
 VUID-StandaloneSpirv-Location-04916
 The Location decorations must be used on user-defined variables
