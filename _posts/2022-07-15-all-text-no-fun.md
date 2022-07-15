@@ -24,7 +24,15 @@ I know this.
 
 You know this.
 
-But then there's something we didn't consult, isn't there.
+But then there's someone we didn't consult, isn't there.
 
-VUID-StandaloneSpirv-Location-04916
-The Location decorations must be used on user-defined variables
+[![vulkan.png](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Vulkan_logo.svg/1024px-Vulkan_logo.svg.png)](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Vulkan_logo.svg/1024px-Vulkan_logo.svg.png)
+
+Obviously.
+
+And when we do consult the spec, this seemingly-benign restriction is imposed:
+
+> **VUID-StandaloneSpirv-Location-04916**
+>> The Location decorations must be used on user-defined variables
+
+So any user-defined variable must have a location. Seems fine. Until that restriction applies to the explicit XFB outputs.
