@@ -40,7 +40,7 @@ So any user-defined variable must have a location. Seems fine. Until that restri
 And surely that would never be a problem.
 
 ## Narrator: It was.
-It's XFB, so obviously it's a problem. The standard number of locations that can be relied upon for user variables is 32, which means a total of 128 components for XFB. CTS specifically hits this in the Dragonball Z region of the test suite (Enhanced Layouts, for those of you who don't speak GLCTS) with shaders that increase in complexity at a geometric rate.
+It's XFB, so obviously it's a problem. The standard number of locations that can be relied upon for user variables is 32, which means a total of 128 components can be used for XFB. CTS specifically hits this in the Dragonball Z region of the test suite (Enhanced Layouts, for those of you who don't speak GLCTS) with shaders that increase in complexity at a geometric rate.
 
 Let's take a look at one of the simpler ones from `KHR-Single-GL46.enhanced_layouts.xfb_struct_explicit_location`:
 
