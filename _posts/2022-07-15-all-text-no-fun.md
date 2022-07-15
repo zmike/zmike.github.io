@@ -150,7 +150,7 @@ There's a lot of ways to fix this.
 
 The "best" way to fix it would be to improve/overhaul the inlining detection to ensure that crazy types like this are always inlined.
 
-That's really hard to do though, and the inlining code is already ridiculously complex to the point where I'd prefer not to ever touch it again to avoid becoming the Vegeta in any future XFB battles.
+That's really hard to do though, and the inlining code is already ridiculously complex to the point where I'd prefer not to ever touch it again to avoid becoming Vegeta in any future XFB battles.
 
 The "easy" way to fix it would be to make the existing code work in this scenario without changing it. This is the approach I took, namely to decompose the struct before inlining so that the inline analysis has an easier time and can successfully inline all (or most) of the outputs.
 
