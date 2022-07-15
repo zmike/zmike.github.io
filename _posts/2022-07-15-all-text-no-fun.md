@@ -118,3 +118,34 @@ But this is XFB, so it was always going to be terrible no matter what.
 ## Problems
 Going back to the location disaster again, you might be wondering where the problem lies.
 
+Let's break it down with some location analysis. According to GLSL rules, here's how locations are assigned for the output variables:
+
+```glsl
+struct TestStruct {
+   dmat3x4 a; <--this is effectively dvec3[4]; a dvec3 consumes 2 locations, so 4 * 2 is 8, so this consumes locations [0,7]
+   double b; <--location 8
+   float c; <--location 9
+   dvec2 d; <--location 10
+};
+struct OuterStruct {
+    TestStruct inner_struct_a; <--locations [0,10]
+    TestStruct inner_struct_b; <--locations [11,21]
+};
+```
+
+In total, and assuming I did my calculations right, 22 locations are consumed by this struct.
+
+And this is zink, so point size must always be emitted, which means 23 locations are now consumed. This leaves `32 - 23 = 9` locations remaining for XFB.
+
+Given that XFB works at the component level with tight packing, this means a minimum of `2 * (3 * 4) + 2 + 1 + 2 * 2 = 31` components are needed for each struct, but there's two structs, which means it's 62 components. And ignoring all other rules for a moment, it's definitely true that locations are assigned in vec4 groupings, so a minimum of `ceil(62 / 4) = 16` locations are needed to do explicit emission of this type.
+
+But only 9 remain.
+
+Whoops.
+
+## Solutions?
+There's a lot of ways to fix this.
+
+The "best" way to fix it would be to improve/overhaul the inlining detection to ensure that crazy types like this are always inlined.
+
+That's really hard to do though, and the inlining code is already ridiculously complex to the point where I'd prefer not to ever touch it again.
