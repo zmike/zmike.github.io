@@ -165,4 +165,4 @@ float c2;
 dvec2 d2;
 ```
 
-Thus the block splitting pass was born.
+Thus the block splitting pass was created.
