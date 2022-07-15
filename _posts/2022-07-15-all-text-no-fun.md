@@ -149,3 +149,20 @@ There's a lot of ways to fix this.
 The "best" way to fix it would be to improve/overhaul the inlining detection to ensure that crazy types like this are always inlined.
 
 That's really hard to do though, and the inlining code is already ridiculously complex to the point where I'd prefer not to ever touch it again.
+
+The "easy" way to fix it would be to make the existing code work in this scenario without changing it. This is the approach I took, namely to decompose the struct before inlining so that the inline analysis has an easier time and can successfully inline all (or most) of the outputs.
+
+It's much simpler (and more accurate) to inline a shader that uses an output interface with no blocks like:
+
+```glsl
+dmat3x4 a;
+double b;
+float c;
+dvec2 d;
+dmat3x4 a2;
+double b2;
+float c2;
+dvec2 d2;
+```
+
+Thus the block splitting pass was born.
