@@ -22,7 +22,7 @@ The answer lies in an extension that has become much more widely adopted, [VK_KH
 
 And sometimes by significant margins.
 
-In minecraft, for example, you might see a 30-50% FPS increase. In a game like Tomb Raider (2013) it'll be closer to 10-20%.
+In Minecraft, for example, you might see a 30-50% FPS increase. In a game like Tomb Raider (2013) it'll be closer to 10-20%.
 
 But, most likely, there won't be any scenario in which FPS goes down.
 
