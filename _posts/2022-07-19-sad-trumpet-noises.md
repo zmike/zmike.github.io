@@ -26,6 +26,6 @@ In minecraft, for example, you might see a 30-50% FPS increase. In a game like T
 
 But, most likely, there won't be any scenario in which FPS goes down.
 
-So [wave farewell](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/17636) to the old code that I'll probably delete altogether in Mesa 22.3, and embrace the new code that just works better.
+So [wave farewell](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/17636) to the old code that I'll probably delete altogether in Mesa 22.3, and embrace the new code that just works better and has been undergoing heavy testing for the past year.
 
 Welcome to the future.
