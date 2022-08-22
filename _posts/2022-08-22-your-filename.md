@@ -15,7 +15,7 @@ But the overly-technical, word-heavy blog post still needs to be written, and no
 
 Speed: How does it work?
 
-## Descriptors
+## Descriptors: Recap
 
 I've blogged a lot about descriptors in the past. After years of pointlessly churning the codebase, a winner has emerged from the manager wars. Descriptor caching has been [deleted](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18051). It's gone, and laziness is the future. Huzzah.
 
@@ -33,3 +33,6 @@ To recap for those who haven't followed however many posts I've written on the t
 * do no other work
 
 Simple, yet surprisingly performant.
+
+## Descriptors: Faster
+We know that laziness is preferable to doing any kind of work. This is an indisputable fact. It's also (obviously) true in CPU performance: less work is better.
