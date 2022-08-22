@@ -1,7 +1,7 @@
 ---
 published: false
 ---
-## Sp33d
+## SP33D
 
 I was planning to write this Friday, but then it was Friday so I didn't.
 
@@ -24,7 +24,7 @@ To recap for those who haven't followed however many posts I've written on the t
   * uniforms
   * ubos
   * textures
-  * ssbos
+  * ssbosIt's free real estate.
   * images
   * bindless
 * bucket allocate tons of descriptor sets alongside each cmdbuf
@@ -55,4 +55,13 @@ Descriptor set allocation was another bottleneck. In order to avoid blowing out 
 
 Remember when I said that there were `N` descriptor pools for `N` cmdbufs? Obviously this was a lie. What I meant to say was there are `N * O` descriptor pools for `N` cmdbufs, where `O` is the number of times the descriptor pool has overflowed because it had to allocate more than 100 sets. In this scenario, the overflowed (full) descriptor pool is appended to an array which then gets freed upon cmdbuf reset. Since the pools are relatively small, this recycling operation is pretty fast.
 
-But it's still an operation. Which means it's doing work. And you know what I 
+But it's still an operation. Which means it's doing work. ~~And you know what I hate?~~ I mean, *You know what CPU performance hates*? Doing work. Yeah, that's it.
+
+So now instead of recycling these overflowed pools, zink just retains them and reuses them directly.
+
+[![memory-meme.png]({{site.url}}/assets/memory-meme.png)]({{site.url}}/assets/memory-meme.png)
+
+**Performance: enhanced.**
+
+## More SP33D
+Join me in the next blog post when I show how it's possible for anyone (even you!) to turn code into spaghetti using C++.
