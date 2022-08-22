@@ -51,7 +51,7 @@ Hash tables are slow. They require hashing, they require lookups, and why not ju
 
 **Performance: enhanced.**
 
-Descriptor set allocation was another bottleneck. In order to avoid blowing out heaps on [heap-based hardware](https://www.jlekstrand.net/jason/blog/2022/08/descriptors-are-hard/), I've capped descriptor pools to only contain 100 sets at a time. This means that even if a set isn't fully utilized, it's not consuming a huge amount of resources. It also means that allocation is faster when a cmdbuf (and thus its associated descriptor pools) gets reset.
+Descriptor set allocation was another bottleneck. In order to avoid blowing out heaps on [heap-based hardware](https://www.jlekstrand.net/jason/blog/2022/08/descriptors-are-hard/), I've capped descriptor pools to only contain 100 sets at a time. This means that even if a set isn't fully utilized, it's not consuming a huge amount of resources. It also means that allocation is faster when cmdbufs (and their associated descriptor pools) get reset.
 
 Remember when I said that there were `N` descriptor pools for `N` cmdbufs? Obviously this was a lie. What I meant to say was there are `N * O` descriptor pools for `N` cmdbufs, where `O` is the number of times the descriptor pool has overflowed because it had to allocate more than 100 sets. In this scenario, the overflowed (full) descriptor pool is appended to an array which then gets freed upon cmdbuf reset. Since the pools are relatively small, this recycling operation is pretty fast.
 
