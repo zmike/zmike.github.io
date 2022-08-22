@@ -3,7 +3,7 @@ published: false
 ---
 ## SP33D
 
-I was planning to write this Friday, but then it was Friday so I didn't.
+I was planning to write this Friday, but then it was Friday, so I didn't.
 
 You know how it is.
 
@@ -19,14 +19,14 @@ Speed: How does it work?
 
 I've blogged a lot about descriptors in the past. After years of pointlessly churning the codebase, a winner has emerged from the manager wars. Descriptor caching has been [deleted](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18051). It's gone, and laziness is the future. Huzzah.
 
-To recap for those who haven't followed however many posts I've written on the topic, the idea of "lazy" descriptors is to do the least amount of work as stupidly as possible:
+To recap for those who haven't followed however many treatises I've written on the topic, the idea of "lazy" descriptors is to do the least amount of work as stupidly as possible:
 * split descriptors into 6 sets:
   * uniforms
   * ubos
   * textures
-  * ssbosIt's free real estate.
+  * ssbos
   * images
-  * bindless
+  * bindless (free real estate)
 * bucket allocate tons of descriptor sets alongside each cmdbuf
 * do a [templated](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_descriptor_update_template.html) full set update any time a descriptor for a given type changes
 * bind new set
@@ -47,7 +47,7 @@ Historically, there have been two points of non-laziness when it comes to lazy d
 
 Descriptor sets are allocated from descriptor pools. Descriptor pools are allocated based on the pipeline layout. Pools are allocated onto the same struct that contains the cmdbuf, ensuring that the lifetimes match. Thus, for each pipeline layout, there are `N` descriptor pools, where `N` is the number of cmdbufs in use. Any time a new set must be allocated, the corresponding pool must be accessed. To access the the pool, the integer ID of the pipeline layout is used, as all the pools for a given cmdbuf are stored in a hash table.
 
-Hash tables are slow. They require hashing, they require lookups, and why not just use an array if the key is already an integer? It's a mystery, especially when there aren't thousands of items, so I switched to using an array in order to enable direct lookups.
+Hash tables are slow. They require hashing, they require lookups, and why not just use an array if the key is already an integer? It's a mystery, especially when there aren't thousands of hash table entries, so I switched to using an array in order to enable direct lookups.
 
 **Performance: enhanced.**
 
