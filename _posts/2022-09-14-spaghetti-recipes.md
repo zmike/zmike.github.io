@@ -16,10 +16,23 @@ $ ./vkoverhead -test 0 -output-only -duration 3
 28345
 ```
 
-Thus, I can see that I'm getting 28.3 million draws/second. Not too bad. What about AMDPRO?
+Thus, I can see that I'm getting 28.3 million draws/second. Not too bad. Let's check AMDPRO to get a little competition going.
 
 ```
 $ VK_ICD_FILENAMES=/home/zmike/amd_pro.json ./vkoverhead -test 0 -output-only -duration 3
 32889
 ```
 
+what
+
+[![mesa.png]({{site.url}}/assets/mesa.png)]({{site.url}}/assets/mesa.png)
+
+What.
+
+[![rotated_mesa.png]({{site.url}}/assets/rotated_mesa.png)]({{site.url}}/assets/rotated_mesa.png)
+
+WHAT.
+
+[![angry_mesa.png]({{site.url}}/assets/angry_mesa.png)]({{site.url}}/assets/angry_mesa.png)
+
+## 
