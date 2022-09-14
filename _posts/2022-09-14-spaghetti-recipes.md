@@ -35,4 +35,5 @@ WHAT.
 
 [![angry_mesa.png]({{site.url}}/assets/angry_mesa.png)]({{site.url}}/assets/angry_mesa.png)
 
-## 
+## It's Totally Cool
+...that AMDPRO is 15% faster than RADV. Yup, it's totally fine. No problems here, no sir, not with me, not even a little.
