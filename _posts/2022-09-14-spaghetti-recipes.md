@@ -86,3 +86,47 @@ $ ./vkoverhead -test 0 -output-only -duration 3
 [![2.png]({{site.url}}/assets/spaghetti/2.png)]({{site.url}}/assets/spaghetti/2.png)
 
 ## Now We're Cooking
+With `perf`, and I'm getting out another flamegraph, and it's better
+
+[![flush.png]({{site.url}}/assets/spaghetti/flush.png)]({{site.url}}/assets/spaghetti/flush.png)
+
+because of course it is. That draw packet emission is getting more time, the fat stortini is slimming down, and everything is great.
+
+But does anyone out there actually think I'm about to stop now? When I'm only up by a tenuous 36% from where I started, and my lead over AMDPRO is a barely-noticeable 17%?
+
+Take off your jacket, because I'm turning the heat of the burners up to high.
+
+Look at this eyesore
+
+[![bad.png]({{site.url}}/assets/spaghetti/bad.png)]({{site.url}}/assets/spaghetti/bad.png)
+
+I'm about to end [this function's](https://gitlab.freedesktop.org/mesa/mesa/-/blob/eef1511437ac6173dfd202b2fc581860d161c183/src/amd/vulkan/radv_cmd_buffer.c#L3421) whole career. By [inlining it](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18499/diffs?commit_id=6cfe62ac6b2dfa0d4a890ecbaec7070b881456e4).
+
+```
+$ ./vkoverhead -test 0 -output-only -duration 3
+41878
+```
+
+[![3.png]({{site.url}}/assets/spaghetti/3.png)]({{site.url}}/assets/spaghetti/3.png)
+
+## Finishing Touch
+When serving any sort of dish, it's important to add a garnish. And you know what *isn't* a fucking garnish?
+
+[![streamout.png]({{site.url}}/assets/spaghetti/streamout.png)]({{site.url}}/assets/spaghetti/streamout.png)
+
+[This thing](https://gitlab.freedesktop.org/mesa/mesa/-/blob/eef1511437ac6173dfd202b2fc581860d161c183/src/amd/vulkan/radv_cmd_buffer.c#L9371).
+
+So now [it's gone](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18499/diffs?commit_id=955f48dd24e6a6735c967c1d1df52d0ae2926692) and what is the performance at now?
+
+```
+$ ./vkoverhead -test 0 -output-only -duration 3
+44073
+```
+
+[![4.png]({{site.url}}/assets/spaghetti/4.png)]({{site.url}}/assets/spaghetti/4.png)
+
+Incredible. The flavor (of winning), the atmosphere (of being a winner), the experience (of being #1), are all unparalleled.
+
+This makes for a **55% increase in RADV's draw throughput** as well as a much more reasonable **30% lead over AMDPRO**.
+
+All from adding just the right amount of spaghetti.
