@@ -86,7 +86,7 @@ $ ./vkoverhead -test 0 -output-only -duration 3
 [![2.png]({{site.url}}/assets/spaghetti/2.png)]({{site.url}}/assets/spaghetti/2.png)
 
 ## Now We're Cooking
-With `perf`, and I'm getting out another flamegraph, and it's better
+...with `perf`, and I'm getting out another flamegraph, and it's better
 
 [![flush.png]({{site.url}}/assets/spaghetti/flush.png)]({{site.url}}/assets/spaghetti/flush.png)
 
