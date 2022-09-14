@@ -127,6 +127,6 @@ $ ./vkoverhead -test 0 -output-only -duration 3
 
 Incredible. The flavor (of winning), the atmosphere (of being a winner), the experience (of being #1), are all unparalleled.
 
-This makes for a **55% increase in RADV's draw throughput** as well as a much more reasonable **30% lead over AMDPRO**.
+[This](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18499) makes for a **55% increase in RADV's draw throughput** as well as a much more reasonable **30% lead over AMDPRO**.
 
 All from growing just the right amount of spaghetti.
