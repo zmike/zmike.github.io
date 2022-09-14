@@ -129,4 +129,4 @@ Incredible. The flavor (of winning), the atmosphere (of being a winner), the exp
 
 This makes for a **55% increase in RADV's draw throughput** as well as a much more reasonable **30% lead over AMDPRO**.
 
-All from adding just the right amount of spaghetti.
+All from growing just the right amount of spaghetti.
