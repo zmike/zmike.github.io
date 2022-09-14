@@ -114,7 +114,7 @@ When serving any sort of dish, it's important to add a garnish. And you know wha
 
 [![streamout.png]({{site.url}}/assets/spaghetti/streamout.png)]({{site.url}}/assets/spaghetti/streamout.png)
 
-[This thing](https://gitlab.freedesktop.org/mesa/mesa/-/blob/eef1511437ac6173dfd202b2fc581860d161c183/src/amd/vulkan/radv_cmd_buffer.c#L9371).
+[This thing](https://gitlab.freedesktop.org/mesa/mesa/-/blob/eef1511437ac6173dfd202b2fc581860d161c183/src/amd/vulkan/radv_cmd_buffer.c#L9371) in my debugoptimized build.
 
 So now [it's gone](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18499/diffs?commit_id=955f48dd24e6a6735c967c1d1df52d0ae2926692) and what is the performance at now?
 
