@@ -37,3 +37,6 @@ WHAT.
 
 ## It's Totally Cool
 ...that AMDPRO is 15% faster than RADV. Yup, it's totally fine. No problems here, no sir, not with me, not even a little.
+
+Cool as a cucumber over here.
+
