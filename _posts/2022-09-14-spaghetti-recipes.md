@@ -64,4 +64,8 @@ $ ./vkoverhead -test 0 -output-only -duration 3
 
 and then I'd be fine anyway since now RADV is up by 10%. Which is okay. It's not bad. Nothing to brag about, you know, just being up by such a tiny little amount over the competition, but it'll do.
 
+[![1.png]({{site.url}}/assets/spaghetti/1.png)]({{site.url}}/assets/spaghetti/1.png)
+
 Is what a responsible person would say.
+
+But here at SGC, responsibility flies out the window when performance is involved
