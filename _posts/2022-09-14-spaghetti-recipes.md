@@ -40,7 +40,7 @@ What.
 
 Cool as a cucumber.
 
-But if—and this is obviously just a hypothetical—If I were enraged and just recovering from a lengthy tantrum after seeing these results, I'd be looking at making some artisanal spaghetti. To do that, I'd be running `perf` on the `vkoverhead` case and then checking out a flamegraph, which might even happen to look something like this
+But if—and this is obviously just a hypothetical—If I were enraged and just recovering from a lengthy tantrum after seeing these results, I'd be looking at growing some artisanal spaghetti. To do that, I'd be running `perf` on the `vkoverhead` case and then checking out a flamegraph, which might even happen to look something like this
 
 [![base.png]({{site.url}}/assets/spaghetti/base.png)]({{site.url}}/assets/spaghetti/base.png)
 
