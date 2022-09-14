@@ -77,3 +77,12 @@ It's `perf` time again, and I've got another totally hypothetical flamegraph
 which is less consumed by the stupidity of those fat pieces of stortini I insalted above, but I'm not in the mood for stortini at all today. They gotta go. `radv_upload_graphics_shader_descriptors()` I got my eye on you and your little [radv_flush_constants()](https://gitlab.freedesktop.org/mesa/mesa/-/blob/eef1511437ac6173dfd202b2fc581860d161c183/src/amd/vulkan/radv_cmd_buffer.c#L3510) too. Why is `radv_flush_constants()` even showing up here? What's the deal with that? There's no constants to flush. I'm taking 'em out.
 
 Get the rolling pin, [flatten out the dough](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18499/diffs?commit_id=57aa00baac1945c6b19033b780398e7c57f42d84), and what happens?
+
+```
+$ ./vkoverhead -test 0 -output-only -duration 3
+38629
+```
+
+[![2.png]({{site.url}}/assets/spaghetti/2.png)]({{site.url}}/assets/spaghetti/2.png)
+
+## Now We're Cooking
