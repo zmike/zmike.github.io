@@ -127,7 +127,7 @@ It's not like it was a full [30%](https://gitlab.freedesktop.org/mesa/mesa/-/mer
 
 I, uh... I have to go for now, but it's not like Intel's Mesa team just rolled up on my house or anything like that because taht would be kinda crazy haha okay but brb
 
-## Still Hungry
+## Barely Hanging On
 **S**o I'm back and I'm totally fin**e**, do**n**'t ask if I nee**d** a gofundme for my medical bills or anyt**h**ing b**e**cause there definite**l**y aren't any and I'm just great with**p** both hands still firmly attached and at least eight fingers in total between the two, which is, if you think about it, really just way more than anyone actually needs to write software.
 
 And you know, I was totally gonna stop now with these results
