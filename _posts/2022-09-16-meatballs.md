@@ -130,3 +130,12 @@ I, uh... I have to go for now, but it's not like Intel's Mesa team just rolled u
 ## Still Hungry
 I'm back and I'm totally fine, don't ask if I need a gofundme for my medical bills or anything because there definitely aren't any and I'm just great with both hands still firmly attached and at least eight fingers in total between the two, which is, if you think about it, really just way more than anyone actually needs to write software.
 
+And you know, I was totally gonna stop now with these results
+
+```
+$ ./vkoverhead -test 0 -duration 3 -output-only
+59973
+```
+
+but haha you know I'm being told that I'd better keep going **or else** hah so we're just gonna uh gonna keep getting in there and seeing what we can find, if that's all right with everyone? Yeah? Cool? Great, so, uh, yeah, let's just check out another flamegraph real quick
+
