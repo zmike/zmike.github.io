@@ -84,6 +84,49 @@ The first step, as always, is to pull out my trusty `perf` and...
 
 Once again, I know what you're thinking.
 
-[![chopper/1.png]({{site.url}}/assets/chopper/1.png)]({{site.url}}/assets/chopper/1.png)
+[![1.png]({{site.url}}/assets/chopper/1.png)]({{site.url}}/assets/chopper/1.png)
 
 You're thinking that I can't just use `perf` and *profile* my way out real performance issues.
+
+But what if I showed you this from my Intel Icelake machine:
+
+```
+$ ./vkoverhead -test 0 -duration 3 -output-only
+44854
+```
+
+Does that seem like a good number? Something reasonable for the ancestor of all Mesa Vulkan driver? Let's check out a flamegraph.
+
+[![perf.png]({{site.url}}/assets/meatballs/perf.png)]({{site.url}}/assets/meatballs/perf.png)
+
+And now I'm going to tell you
+
+[![2.png]({{site.url}}/assets/chopper/2.png)]({{site.url}}/assets/chopper/2.png)
+
+that I can too use `perf` for everything, and profiling is both a legitimate and useful way to improve any and all kinds of performance.
+
+But looking at that graph, there's something obvious that stands out here. Why is [gfx11_emit_apply_pipe_flushes()](https://gitlab.freedesktop.org/mesa/mesa/-/blob/d5dedecfe7ee90cf220da75b5ac21d9f651294bf/src/intel/vulkan/genX_cmd_buffer.c#L1806) showing up twice?
+
+[![perfbad.png]({{site.url}}/assets/meatballs/perfbad.png)]({{site.url}}/assets/meatballs/perfbad.png)
+
+The answer may surprise you.
+
+Let's go back in time. I want everyone to pretend that it's early 2021 again. Photos are still being taken in black and white, nobody has toilet paper, and everything is generally worse. Vulkan is also worse because I haven't completed any extensions. Extensions like [VK_EXT_multi_draw](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_multi_draw.html), which I implemented for a number of Mesa drivers. Drivers like RADV. And Lavapipe.
+
+And ANV.
+
+You might see where I'm going with this.
+
+Yes, it was all the way back in [June of 2021](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11531) that I implemented this extension for ANV. And at the time, everything was worse, including the world's lack of our lord and savior, our premier optimizing tool, that project I'm going to keep plugging in my blog until the end of time, [vkoverhead](https://github.com/zmike/vkoverhead). Back then, the only way anyone could know how their driver performed at the CPU level was to use `drawoverhead` through zink.
+
+And zink wasn't as fast then as it is now; whoever was working on it back then was a total idiot who couldn't optimize his way out of a for loop.
+
+So it's not going to surprise anyone, and it's not like anyone would even be mad if they found out that in the course of those trivial, barely even noticeable changes to the driver, I also maybe sorta kinda [increased ANV's draw command recording overhead](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11531/diffs?commit_id=1e39f2c1994abb7183ebc05de29e11561c388eb5). But it's not like it was by any big amount or anything like that. I mean, it's not like _I_ was a total idiot back... back then... Well, it's not like I wouldn't have realized it even if I did accidentally nerf the driver that I relied upon for my daily use by an amount that was in any way significant, right?
+
+It's not like it was a full [30%](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18637/diffs?commit_id=38f0ed795ab526be20ace9f90dac938340f2b758) or anything like that.
+
+I, uh... I have to go for now, but it's not like Intel's Mesa team just rolled up on my house or anything like that because taht would be kinda crazy haha okay but brb
+
+## Still Hungry
+I'm back and I'm totally fine, don't ask if I need a gofundme for my medical bills or anything because there definitely aren't any and I'm just great with both hands still firmly attached and at least eight fingers in total between the two, which is, if you think about it, really just way more than anyone actually needs to write software.
+
