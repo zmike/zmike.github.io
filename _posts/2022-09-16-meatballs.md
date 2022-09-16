@@ -79,3 +79,8 @@ is
 ...and meatballs, because obviously, as an American, I'm obligated to add condiments to everything. Mainly melted cheese.
 
 In today's edition of WIMS, I'll be delving into the depths of Intel's Mesa Vulkan driver to see what kinds of spaghetti they're growing and how much of it I can eat before they catch me.
+
+The first step, as always, is to pull out my trusty `perf` and...
+
+Once again, I know what you're thinking.
+
