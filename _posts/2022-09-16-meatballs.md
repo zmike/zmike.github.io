@@ -125,7 +125,7 @@ So it's not going to surprise anyone, and it's not like anyone would even be mad
 
 It's not like it was a full [30%](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18637/diffs?commit_id=38f0ed795ab526be20ace9f90dac938340f2b758) or anything like that.
 
-I, uh... I have to go for now, but it's not like Intel's Mesa team just rolled up on my house or anything like that because taht would be kinda crazy haha okay but brb
+I, uh... I have to go for now, but it's not like Intel's entire Mesa team just rolled up on my house or anything like that because taht would be kinda crazy haha okay but brb
 
 ## Barely Hanging On
 **S**o I'm back and I'm totally fin**e**, do**n**'t ask if I nee**d** a gofundme for my medical bills or anyt**h**ing b**e**cause there definite**l**y aren't any and I'm just great with**p** both hands still firmly attached and at least eight fingers in total between the two, which is, if you think about it, really just way more than anyone actually needs to write software.
