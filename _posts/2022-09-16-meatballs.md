@@ -95,7 +95,7 @@ $ ./vkoverhead -test 0 -duration 3 -output-only
 44854
 ```
 
-Does that seem like a good number? Something reasonable for the ancestor of all Mesa Vulkan driver? Let's check out a flamegraph.
+Does that seem like a good number? Something reasonable for the ancestor of all Mesa Vulkan drivers? Let's check out a flamegraph.
 
 [![perf.png]({{site.url}}/assets/meatballs/perf.png)]({{site.url}}/assets/meatballs/perf.png)
 
