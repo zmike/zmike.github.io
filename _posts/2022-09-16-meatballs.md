@@ -61,4 +61,21 @@ I appreciate you.
 
 And so should everyone else.
 
-## 
+## But Now
+It's time for another round of
+
+where
+
+[![mesa.png]({{site.url}}/assets/mesa.png)]({{site.url}}/assets/mesa.png)
+
+is
+
+[![rotated_mesa.png]({{site.url}}/assets/rotated_mesa.png)]({{site.url}}/assets/rotated_mesa.png)
+
+**MY SPAGHETTI?**
+
+[![angry_mesa.png]({{site.url}}/assets/angry_mesa.png)]({{site.url}}/assets/angry_mesa.png)
+
+...and meatballs, because obviously, as an American, I'm obligated to add condiments to everything. Mainly melted cheese.
+
+In today's edition of WIMS, I'll be delving into the depths of Intel's Mesa Vulkan driver to see what kinds of spaghetti they're growing and how much of it I can eat before they catch me.
