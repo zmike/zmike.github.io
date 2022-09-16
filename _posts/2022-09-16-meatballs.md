@@ -128,7 +128,7 @@ It's not like it was a full [30%](https://gitlab.freedesktop.org/mesa/mesa/-/mer
 I, uh... I have to go for now, but it's not like Intel's entire Mesa team just rolled up on my house or anything like that because taht would be kinda crazy haha okay but brb
 
 ## Barely Hanging On
-**S**o I'm back and I'm totally fin**e**, do**n**'t ask if I nee**d** a gofundme for my medical bills or anyt**h**ing b**e**cause there definite**l**y aren't any and I'm just great with**p** both hands still firmly attached and at least eight fingers in total between the two, which is, if you think about it, really just way more than anyone actually needs to write software.
+`S`o I'm back and I'm totally fin`e`, do`n`'t ask if I nee`d` a gofundme for my medical bills or anyt`h`ing b`e`cause there definite`l`y aren't any and I'm just great with`p` both hands still firmly attached and at least eight fingers in total between the two, which is, if you think about it, really just way more than anyone actually needs to write software.
 
 And you know, I was totally gonna stop now with these new results
 
@@ -137,11 +137,11 @@ $ ./vkoverhead -test 0 -duration 3 -output-only
 59973
 ```
 
-but haha you know I'm being told that I'd better keep going **or else** hah so we're just gonna uh gonna keep getting in there and seeing what we can find, if that's all right with everyone? Yeah? Cool? Great, so, uh, yeah, let's just check out another flamegraph real quick
+but haha you know I'm being told that I'd better keep going `or else` hah so we're just gonna uh gonna keep getting in there and seeing what we can find, if that's all right with everyone? Yeah? Cool? Great, so, uh, yeah, let's just check out another flamegraph real quick
 
 [![perf2.png]({{site.url}}/assets/meatballs/perf2.png)]({{site.url}}/assets/meatballs/perf2.png)
 
-And that's looking just great. Yeah, it's really great, isn't it? It's not? Okay, well, we've got some options. Uh, yeah, lots of options. Not like **I need help** figuring out what they are or anything, since this is what I'm good at. But there's this big old [gfx11_cmd_buffer_flush_state](https://gitlab.freedesktop.org/mesa/mesa/-/blob/d5dedecfe7ee90cf220da75b5ac21d9f651294bf/src/intel/vulkan/genX_cmd_buffer.c#L3394) call sticking out like a sore thumb—and I've obviously still got two of those like everyone else—so let's see what we can do about that.
+And that's looking just great. Yeah, it's really great, isn't it? It's not? Okay, well, we've got some options. Uh, yeah, lots of options. Not like `I need help` figuring out what they are or anything, since this is what I'm good at. But there's this big old [gfx11_cmd_buffer_flush_state](https://gitlab.freedesktop.org/mesa/mesa/-/blob/d5dedecfe7ee90cf220da75b5ac21d9f651294bf/src/intel/vulkan/genX_cmd_buffer.c#L3394) call sticking out like a sore thumb—and I've obviously still got two of those like everyone else—so let's see what we can do about that.
 
 Yup, well, it's looking like [inlining those functions](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18637/diffs?commit_id=299dad5776c07898e26a7c10b3fafdbea2a2cd1a) is...
 
