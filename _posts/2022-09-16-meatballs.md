@@ -159,3 +159,5 @@ But it's improving performance!
 $ ./vkoverhead -test 0 -duration 3 -output-only
 71192
 ```
+
+And that's great, isn't it? Yeah? Oh, okay, so we're done? Yeah, no, that's great, that's really great. I'm glad we could come to an understanding. 
