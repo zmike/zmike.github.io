@@ -111,7 +111,7 @@ But looking at that graph, there's something obvious that stands out here. Why i
 
 The answer may surprise you.
 
-Let's go back in time. I want everyone to pretend that it's early 2021 again. Photos are still being taken in black and white by hipsters, nobody has toilet paper, and everything is generally worse. Vulkan is also worse because I haven't completed any extensions. Extensions like [VK_EXT_multi_draw](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_multi_draw.html), which I implemented for a number of Mesa drivers. Drivers like RADV. And Lavapipe.
+Let's go back in time. I want everyone to pretend that it's early 2021 again. Photos are still being taken in black and white by hipsters, nobody has toilet paper, and everything is generally worse. Vulkan is also worse because I haven't shipped any of my extensions. Extensions like [VK_EXT_multi_draw](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_multi_draw.html), which I implemented for a number of Mesa drivers. Drivers like RADV. And Lavapipe.
 
 And ANV.
 
