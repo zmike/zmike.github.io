@@ -160,7 +160,15 @@ $ ./vkoverhead -test 0 -duration 3 -output-only
 71192
 ```
 
-And that's great, isn't it? Yeah? Oh, okay, so we're done? Yeah, no, that's great, that's really great. I'm glad we could come to an understanding. No, no, it was no trouble. No, I don't think we'll need to do this again, either. Learned a lot today. Just learning all around.
+And that's great, isn't it? An extra **60%+ draw throughput on ANV**? Yeah? Oh, okay, so we're done? Yeah, no, that's great, that's really great. I'm glad we could come to an understanding. No, no, it was no trouble. No, I don't think we'll need to do this again, either. Learned a lot today. Just learning all around.
 
 ## Results
 Well, we made it through that—not like there was anything special or unusual happening today, just an ordinary turn of phrase—and everything's fine.
+
+[![5.png]({{site.url}}/assets/chopper/5.png)]({{site.url}}/assets/chopper/5.png)
+
+But what does this mean for real-world performance results, you're asking?
+
+[![6.png]({{site.url}}/assets/chopper/6.png)]({{site.url}}/assets/chopper/6.png)
+
+I'm just micro-optimizing for the benchmarks that I write, not saying **this will double your Cyberpunk 2077 FPS**.
