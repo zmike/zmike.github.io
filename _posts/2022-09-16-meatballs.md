@@ -84,3 +84,6 @@ The first step, as always, is to pull out my trusty `perf` and...
 
 Once again, I know what you're thinking.
 
+[![chopper/1.png]({{site.url}}/assets/chopper/1.png)]({{site.url}}/assets/chopper/1.png)
+
+You're thinking that I can't just use `perf` and *profile* my way out real performance issues.
