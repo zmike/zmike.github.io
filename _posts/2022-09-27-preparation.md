@@ -28,6 +28,6 @@ Seeing mega CPU usage? [Not](https://gitlab.freedesktop.org/mesa/mesa/-/merge_re
 
 Your game/emulator randomly freezes for a few seconds on startup? I've [heroically](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18198) made the PBO download ubershaders compile without blocking. Also there's new, optimized variants that perform even better.
 
-What's that? Zink's still unusable because of all the shader compilation stuttering? [Blammo](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18197), your compute shaders are now precompiling in the background.
+What's that? Zink is still unusable for gaming because of all the shader compilation stuttering? [Blammo](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18197), your compute shaders are now precompiling in the background.
 
 Oh, but you're *still* seeing stuttering because of shader compiles? Not for long, because I'veOH SHIT KHRONOS IS HERE I'M SORRY I DIDN'T THINK IT'D BE A BIG DEAL TO
