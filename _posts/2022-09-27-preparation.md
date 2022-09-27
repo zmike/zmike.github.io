@@ -22,7 +22,7 @@ I said it.
 ## No Memes
 Could not be more serious.
 
-Don't believe me? Bam, have another 20-30% performance on Turnip I "quietly" [merged](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18358) a month ago. And also some amount of improvement on Intel that I haven't quantified yet. Who could've guessed that enabling compression on images would have benefits?!
+Don't believe me? Bam, have another 20-30% performance on Turnip I "quietly" [merged](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18358) a month ago. And also some amount of improvement on Intel that I haven't quantified yet. Who could've guessed that enabling compression on images would have benefits?
 
 Seeing mega CPU usage? [Not](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18135) if I've [got](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18637) [anything](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18364) to [say](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18499) about [that](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18786). Still more to come here too.
 
