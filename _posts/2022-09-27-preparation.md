@@ -13,7 +13,7 @@ Well, if you've been following prominent news sites, you might not think there's
 
 Big news.
 
-I'm throwing down the gauntlet.
+With XDC next week, I'm throwing down the gauntlet.
 
 Mesa 22.3 is going to be the **BIG PERF RELEASE**.
 
