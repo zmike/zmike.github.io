@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## It Must Be Said
 
