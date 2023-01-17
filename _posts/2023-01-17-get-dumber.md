@@ -185,7 +185,7 @@ vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
   76, descriptor_1image,                                  137810,       100.0%
 ```
 
-Somehow, with no changes to my environment, I've just gained a couple percentage points of performance on the pre-patch run and lost a couple on the post-patch run by doing nothing but opening a new SSH connection.
+Somehow, with no changes to my environment aside from being in a different SSH session, I've just gained a couple percentage points of performance on the pre-patch run and lost a couple on the post-patch run.
 
 ## Second Opinion
 
