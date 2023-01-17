@@ -189,7 +189,7 @@ Somehow, with no changes to my environment aside from being in a different SSH s
 
 ## Second Opinion
 
-It's clear to me that GCC (and computers) can't be trusted. I know what everyone reading this post is now thinking: Why are you still using that antiquated trash compiler instead of the awesome new Clang that does everything better always?
+It's clear to me that GCC (and computers) can't be trusted. I know what everyone reading this post is now thinking: Why are you still using that antiquated trash compiler instead of the awesome new Clang that does all the things better always?
 
 Well.
 
