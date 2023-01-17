@@ -71,9 +71,13 @@ Obviously this is a descriptor updating case, and upon opening up the code for t
 
 ```c
 static ALWAYS_INLINE void
-write_image_descriptor(unsigned *dst, unsigned size, VkDescriptorType descriptor_type, const struct radv_image_view *iview)
+write_image_descriptor(unsigned *dst, unsigned size, VkDescriptorType descriptor_type, const VkDescriptorImageInfo *image_info)
 {
-   const union radv_descriptor *descriptor;
+   struct radv_image_view *iview = NULL;
+   union radv_descriptor *descriptor;
+
+   if (image_info)
+      iview = radv_image_view_from_handle(image_info->imageView);
 
    if (!iview) {
       memset(dst, 0, size);
@@ -92,3 +96,5 @@ write_image_descriptor(unsigned *dst, unsigned size, VkDescriptorType descriptor
 ```
 
 It seems simple enough. Nothing too terrible here.
+
+##
