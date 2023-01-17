@@ -125,3 +125,7 @@ And *surely* the compiler (GCC 12.2.1) wouldn't fuck this up, right?
 
 [![inline-meme.png]({{site.url}}/assets/inline-meme.png)]({{site.url}}/assets/inline-meme.png)
 
+Which would mean that, hypothetically, if I were to *force* the compiler (GCC 12.2.1) to use the right `memcpy` size then it would have no effect.
+
+**Right?**
+
