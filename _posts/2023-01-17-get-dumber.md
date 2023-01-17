@@ -27,5 +27,33 @@ Let's take a look!
 
 Some time ago, avid blog followers will recall that I created [vkoverhead](https://github.com/zmike/vkoverhead/) for evaluating CPU overhead in Vulkan drivers. Intel and NVIDIA have both contributed since its inception, which has no relevance but I'm sneaking it in as today's fun fact because nobody will read the middle of this paragraph. Using vkoverhead, I've found something very strange on RADV. Something bizarre. Something terrifying.
 
-**debugoptimized builds of Mesa are faster than release builds for some cases**.
+**debugoptimized builds of Mesa are (significantly) faster than release builds for some cases**.
+
+Here's an example.
+
+debugoptimized:
+```
+$ ./vkoverhead -test 76  -duration 5
+vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
+	* descriptor numbers are reported as thousands of operations per second
+	* percentages for descriptor cases are relative to 'descriptor_noop'
+  76, descriptor_1image,                                  157308,       100.0%
+```
+
+release:
+```
+$ ./vkoverhead -test 76  -duration 5
+vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
+	* descriptor numbers are reported as thousands of operations per second
+	* percentages for descriptor cases are relative to 'descriptor_noop'
+  76, descriptor_1image,                                  135309,       100.0%
+```
+
+[![stupidity-start.png]({{site.url}}/assets/stupidity-start.png)]({{site.url}}/assets/stupidity-start.png)
+
+This is where we are now.
+
+## How?
+
+That's a good question, and for the answer I'm going to turn it over to the blog's compiler correspondent, [Azathoth](https://en.wikipedia.org/wiki/Azathoth):
 
