@@ -163,4 +163,54 @@ Right?
 
 Except hold on.
 
-In the course of writing this post, my SSH session to my test machine was terminated, and I had to restart
+In the course of writing this post, my SSH session to my test machine was terminated, and I had to reconnect. Just for posterity, let's run the same pre/post patch driver through vkoverhead again to be thorough.
+
+pre-patch, release build:
+```
+$ ./vkoverhead -test 76  -duration 10
+vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
+	* descriptor numbers are reported as thousands of operations per second
+	* percentages for descriptor cases are relative to 'descriptor_noop'
+  76, descriptor_1image,                                  136943,       100.0%
+```
+
+post-patch, release build:
+```
+$ ./vkoverhead -test 76  -duration 10
+vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
+	* descriptor numbers are reported as thousands of operations per second
+	* percentages for descriptor cases are relative to 'descriptor_noop'
+  76, descriptor_1image,                                  137810,       100.0%
+```
+
+Somehow I've just gained a couple percentage points of performance on the pre-patch run and lost a couple on the post-patch run by doing nothing but opening a new SSH connection.
+
+## Second Opinion
+
+It's clear to me that GCC (and computers) can't be trusted. I know what everyone reading this post is now thinking: Why are you still using that antiquated trash compiler instead of the awesome new Clang that does everything better always?
+
+Well.
+
+I'm sure you can see where this is going.
+
+If I fire up Clang builds of Mesa for debugoptimized and release configurations (same CFLAGS etc), I get these results.
+
+debugoptimized:
+```
+$ ./vkoverhead -test 76  -duration 10
+vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
+	* descriptor numbers are reported as thousands of operations per second
+	* percentages for descriptor cases are relative to 'descriptor_noop'
+  76, descriptor_1image,                                  112629,       100.0%
+```
+
+release:
+```
+$ ./vkoverhead -test 76  -duration 10
+vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
+	* descriptor numbers are reported as thousands of operations per second
+	* percentages for descriptor cases are relative to 'descriptor_noop'
+  76, descriptor_1image,                                  132820,       100.0%
+```
+
+At least something makes sense there.
