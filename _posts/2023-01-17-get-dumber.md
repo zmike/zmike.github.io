@@ -55,7 +55,7 @@ This is where we are now.
 
 ## How?
 
-That's a good question, and for the answer I'm going to turn it over to the blog's compiler expert, [Azathoth](https://en.wikipedia.org/wiki/Azathoth):
+That's a good question, and for the answer I'm going to turn it over to the blog's compiler expert, [Mr. Azathoth](https://en.wikipedia.org/wiki/Azathoth):
 
 [![azathoth.png]({{site.url}}/assets/azathoth.png)]({{site.url}}/assets/azathoth.png)
 
@@ -97,4 +97,28 @@ write_image_descriptor(unsigned *dst, unsigned size, VkDescriptorType descriptor
 
 It seems simple enough. Nothing too terrible here.
 
-##
+## This Is Where It Gets Stupid
+In the execution of this test case, the iterated callstack will look something like:
+
+```
+radv_UpdateDescriptorSets ->
+radv_update_descriptor_sets_impl (inlined) ->
+write_image_descriptor_impl (inlined) ->
+write_image_descriptor (inlined)
+```
+
+That's a lot of inlining.
+
+Typically inlining isn't a problem when used properly. It makes things faster (citation needed) in some cases (citation needed). Note the caveats.
+
+One thing of note in the above code snippet is that `memcpy` is called with a variable `size` parameter. This isn't ideal since it prevents the compiler from making certain assumptions about—What's that, Mr. Azathoth? It's not variable, you say? It's always writing 32 bytes, you say?
+
+```c
+case VK_DESCRIPTOR_TYPE_STORAGE_IMAGE:
+   write_image_descriptor_impl(device, cmd_buffer, 32, ptr, buffer_list,
+                               writeset->descriptorType, writeset->pImageInfo + j);
+```
+
+Wow, thanks, Mr. Azathoth, I totally would've missed that!
+
+And *surely* the compiler (GCC 12.2.1) wouldn't fuck this up, right?
