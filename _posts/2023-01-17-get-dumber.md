@@ -237,3 +237,4 @@ vkoverhead running on AMD Radeon RX 5700 XT:
   76, descriptor_1image,                                  151691,       100.0%
 ```
 
+[![stupid.gifv](https://i.imgur.com/EUhql7P.gifv)](https://i.imgur.com/EUhql7P.gifv)
