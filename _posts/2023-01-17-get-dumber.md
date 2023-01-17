@@ -122,3 +122,6 @@ case VK_DESCRIPTOR_TYPE_STORAGE_IMAGE:
 Wow, thanks, Mr. Azathoth, I totally would've missed that!
 
 And *surely* the compiler (GCC 12.2.1) wouldn't fuck this up, right?
+
+[![inline-meme.png]({{site.url}}/assets/inline-meme.png)]({{site.url}}/assets/inline-meme.png)
+
