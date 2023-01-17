@@ -159,6 +159,8 @@ vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
 
 ## That's A Win
 
+Many, many runs of vkoverhead confirm the results, which means that's a solid win.
+
 Right?
 
 Except hold on.
