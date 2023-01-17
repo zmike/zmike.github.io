@@ -62,3 +62,33 @@ That's a good question, and for the answer I'm going to turn it over to the blog
 Thanks, champ.
 
 As we can see, I'm about to meddle with dark forces beyond the limits of human comprehension, so anyone who values their sanity should escape while they still can.
+
+Let's take a look at a debugoptimized flamegraph to check out what sort of cosmic horror we're delving into.
+
+[![stupid-perf.png]({{site.url}}/assets/stupid-perf.png)]({{site.url}}/assets/stupid-perf.png)
+
+Obviously this is a descriptor updating case, and upon opening up the code for the final function, this is what our eyes will refuse to see:
+
+```c
+static ALWAYS_INLINE void
+write_image_descriptor(unsigned *dst, unsigned size, VkDescriptorType descriptor_type, const struct radv_image_view *iview)
+{
+   const union radv_descriptor *descriptor;
+
+   if (!iview) {
+      memset(dst, 0, size);
+      return;
+   }
+
+   if (descriptor_type == VK_DESCRIPTOR_TYPE_STORAGE_IMAGE) {
+      descriptor = &iview->storage_descriptor;
+   } else {
+      descriptor = &iview->descriptor;
+   }
+   assert(size > 0);
+
+   memcpy(dst, descriptor, size);
+}
+```
+
+It seems simple enough. Nothing too terrible here.
