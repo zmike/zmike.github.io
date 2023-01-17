@@ -55,7 +55,7 @@ This is where we are now.
 
 ## How?
 
-That's a good question, and for the answer I'm going to turn it over to the blog's compiler expert, [Mr. Azathoth](https://en.wikipedia.org/wiki/Azathoth):
+That's a good question, and for the answer I'm going to turn it over to the blog's new compiler expert, [Mr. Azathoth](https://en.wikipedia.org/wiki/Azathoth):
 
 [![azathoth.png]({{site.url}}/assets/azathoth.png)]({{site.url}}/assets/azathoth.png)
 
