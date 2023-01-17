@@ -61,4 +61,4 @@ That's a good question, and for the answer I'm going to turn it over to the blog
 
 Thanks, champ.
 
-Clearly I'm about to meddle with dark forces beyond the limits of human comprehension, so anyone who values their sanity should escape while they still can.
+As we can see, I'm about to meddle with dark forces beyond the limits of human comprehension, so anyone who values their sanity should escape while they still can.
