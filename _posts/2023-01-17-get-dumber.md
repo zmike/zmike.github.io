@@ -33,7 +33,7 @@ Here's an example.
 
 debugoptimized:
 ```
-$ ./vkoverhead -test 76  -duration 5
+$ ./vkoverhead -test 76  -duration 10
 vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
 	* descriptor numbers are reported as thousands of operations per second
 	* percentages for descriptor cases are relative to 'descriptor_noop'
@@ -42,7 +42,7 @@ vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
 
 release:
 ```
-$ ./vkoverhead -test 76  -duration 5
+$ ./vkoverhead -test 76  -duration 10
 vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
 	* descriptor numbers are reported as thousands of operations per second
 	* percentages for descriptor cases are relative to 'descriptor_noop'
@@ -129,3 +129,32 @@ Which would mean that, hypothetically, if I were to *force* the compiler (GCC 12
 
 **Right?**
 
+```c
+static ALWAYS_INLINE void
+write_image_descriptor(unsigned *dst, unsigned size, VkDescriptorType descriptor_type, const struct radv_image_view *iview)
+{
+   if (!iview) {
+      memset(dst, 0, size);
+      return;
+   }
+
+   if (descriptor_type == VK_DESCRIPTOR_TYPE_STORAGE_IMAGE) {
+      memcpy(dst, &iview->storage_descriptor, 32);
+   } else {
+      if (size == 64)
+         memcpy(dst, &iview->descriptor, 64);
+      else
+         memcpy(dst, &iview->descriptor, size);
+   }
+}
+```
+
+```
+$ ./vkoverhead -test 76  -duration 10
+vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
+	* descriptor numbers are reported as thousands of operations per second
+	* percentages for descriptor cases are relative to 'descriptor_noop'
+  76, descriptor_1image,                                  141299,       100.0%
+```
+
+##
