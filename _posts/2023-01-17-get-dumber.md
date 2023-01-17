@@ -213,4 +213,27 @@ vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
   76, descriptor_1image,                                  132820,       100.0%
 ```
 
-At least something makes sense there.
+At least something makes sense there. Now what about a release build with the above changes?
+
+```
+$ ./vkoverhead -test 76  -duration 10
+vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
+	* descriptor numbers are reported as thousands of operations per second
+	* percentages for descriptor cases are relative to 'descriptor_noop'
+  76, descriptor_1image,                                  127761,       100.0%
+```
+
+According to Clang this makes performance worse, but also the performance is just worse overall?
+
+## Final Thoughts
+
+Just to see what happens, let's check out AMDPRO:
+
+```
+$ VK_ICD_FILENAMES=/home/zmike/amd_icd64.json ./vkoverhead -test 76 -duration 10
+vkoverhead running on AMD Radeon RX 5700 XT:
+	* descriptor numbers are reported as thousands of operations per second
+	* percentages for descriptor cases are relative to 'descriptor_noop'
+  76, descriptor_1image,                                  151691,       100.0%
+```
+
