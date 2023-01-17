@@ -55,5 +55,10 @@ This is where we are now.
 
 ## How?
 
-That's a good question, and for the answer I'm going to turn it over to the blog's compiler correspondent, [Azathoth](https://en.wikipedia.org/wiki/Azathoth):
+That's a good question, and for the answer I'm going to turn it over to the blog's compiler expert, [Azathoth](https://en.wikipedia.org/wiki/Azathoth):
 
+[![azathoth.png]({{site.url}}/assets/azathoth.png)]({{site.url}}/assets/azathoth.png)
+
+Thanks, champ.
+
+Clearly I'm about to meddle with dark forces beyond the limits of human comprehension, so anyone who values their sanity should escape while they still can.
