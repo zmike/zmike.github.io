@@ -225,7 +225,7 @@ vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
   76, descriptor_1image,                                  127761,       100.0%
 ```
 
-According to Clang this makes performance worse, but also the performance is just worse overall?
+According to Clang this makes performance worse, but also the performance is just worse overall?!?
 
 ## Final Thoughts
 
