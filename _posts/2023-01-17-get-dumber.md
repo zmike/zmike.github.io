@@ -157,4 +157,10 @@ vkoverhead running on AMD Radeon RX 5700 XT (RADV NAVI10):
   76, descriptor_1image,                                  141299,       100.0%
 ```
 
-##
+## That's A Win
+
+Right?
+
+Except hold on.
+
+In the course of writing this post, my SSH session to my test machine was terminated, and I had to restart
