@@ -27,4 +27,5 @@ Let's take a look!
 
 Some time ago, avid blog followers will recall that I created [vkoverhead](https://github.com/zmike/vkoverhead/) for evaluating CPU overhead in Vulkan drivers. Intel and NVIDIA have both contributed since its inception, which has no relevance but I'm sneaking it in as today's fun fact because nobody will read the middle of this paragraph. Using vkoverhead, I've found something very strange on RADV. Something bizarre. Something terrifying.
 
-**debugoptimized builds of Mesa are faster than release builds**.
+**debugoptimized builds of Mesa are faster than release builds for some cases**.
+
