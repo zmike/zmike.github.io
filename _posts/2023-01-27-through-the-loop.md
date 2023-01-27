@@ -170,3 +170,14 @@ By now, the man, the myth, @themaister, Hans-Kristian Arntzen had finished fixin
 
 The catch? It doesn't have any way to print per-pipeline compile timings during a replay, nor does it have a way to sort pipeline hashes based on compile times.
 
+Either I was going to have to write some C++ to add this functionality to Fossilize, or I was going to have to get creative. Thus I found myself writing out this construct:
+
+```bash
+for x in $(fossilize-list --tag 6 dota2.foz); do
+	echo "PIPELINE $x"
+    RADV_PERFTEST=gpl fossilize-replay --pipeline-hash $x ~/dota2.foz 2>&1|grep COMPILE
+done
+```
+
+I'd previously added some in-driver printfs to output compile times for the fast-link pipelines, so this gave me a file with the pipeline hash on one line and the compile timing on the next. I could then sort this and figure out some outliers to extract, yielding `slow.foz`, a fast-link that consistently took longer than 0.1ms.
+
