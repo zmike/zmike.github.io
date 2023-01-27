@@ -158,6 +158,8 @@ And so the problem was solved. I went to Dan Ginsberg, who I'm sure everyone kno
 
 Dan looked at me. Looked at the numbers I showed him. Shook his head a single time.
 
+It shook me.
+
 I don't know what I was thinking.
 
 In my defense, a 20,000% speedup is usually enough to call it quits on a given project. In this case, however, I had the shadow of a competitor looming overhead.
