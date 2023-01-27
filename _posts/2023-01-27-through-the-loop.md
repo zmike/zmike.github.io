@@ -31,7 +31,7 @@ Typically, this is utilized in applications through the following process:
 In this way, no draw is blocked by a pipeline creation, and optimized pipelines are still used for the majority of GPU operations.
 
 ## But Why...
-...would I care about this if I have Fossilize and a brand new gaming supercomputer with 256 cores running at 12GHz?
+...would I care about this if I have Fossilize and a brand new gaming supercomputer with 256 cores all running at 12GHz?
 
 I know you're wondering, and the answer is simple: not everyone has these things.
 
