@@ -158,7 +158,9 @@ And so the problem was solved. I went to Dan Ginsberg, who I'm sure everyone kno
 
 Dan looked at me. Looked at the numbers I showed him. Shook his head a single time.
 
-I don't know what I was thinking. In my defense, a 20,000% speedup is usually enough to call it quits on a given project. In this case, however, I had the shadow of a competitor looming overhead.
+I don't know what I was thinking.
+
+In my defense, a 20,000% speedup is usually enough to call it quits on a given project. In this case, however, I had the shadow of a competitor looming overhead.
 
 While RADV was now down to 0.05-0.11ms for a fast-link, NVIDIA can apparently do this consistently in 0.02ms.
 
