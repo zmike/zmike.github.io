@@ -234,12 +234,18 @@ This means in the very near future, you can fire up `RADV_PERFTEST=gpl` and run 
 This means you can write apps relying on fast-linking and be assured that your users will not see stuttering.
 
 ### If You're A Driver Developer...
-So far, there aren't many drivers out there that implement GPL with true fast-linking. Aside from (a near-future version of) RADV, I'm reasonably certain the only driver that both advertises fast-linking and actually has "fast"-linking is NVIDIA.
+So far, there aren't many drivers out there that implement GPL with true fast-linking. Aside from (a near-future version of) RADV, I'm reasonably certain the only driver that both advertises fast-linking and actually has fast linking is NVIDIA.
 
-If you're from one of those companies that has yet to take the plunge and implement GPL, or if you've implemented it and decided to advertise the fast-linking feature without actually being "fast", here's some key takeaways from a week in GPL optimization:
+If you're from one of those companies that has yet to take the plunge and implement GPL, or if you've implemented it and decided to advertise the fast-linking feature without actually being fast, here's some key takeaways from a week in GPL optimization:
 * Ensure you aren't compiling any shaders at link-time
 * Ensure you aren't creating any shaders at link-time
 * Avoid adding fast-link pipelines to any sort of shader cache
 * Profile your fast-link pipeline creation
 
-You might be thinking that profiling a single operation like this is tricky, and it's hard to get 
+You might be thinking that profiling a single operation like this is tricky, and it's hard to get good results from a single `fossilize-replay` that also compiles multiple library pipelines.
+
+Never fear, [vkoverhead](https://github.com/zmike/vkoverhead/) is here to save the day.
+
+You thought I wouldn't plug it again, but here we are. In the very near future (ideally later today), vkoverhead will have some cases that isolate GPL fast-linking that should be useful for anyone looking to go from "fast" to fast.
+
+There's no big secret about it, and there's no architectural limitations on speed. It just takes a little bit of elbow grease and some profiling.
