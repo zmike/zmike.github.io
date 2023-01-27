@@ -26,7 +26,7 @@ Typically, this is utilized in applications through the following process:
 * create pipeline libraries from shaders during game startup or load screen
 * wait until pipeline is needed at draw-time
 * fast-link final pipeline and use for draw
-* background compile an optimized pipeline for future use
+* background compile an optimized version of the same pipeline for future use
 
 In this way, no draw is blocked by a pipeline creation, and optimized pipelines are still used for the majority of GPU operations.
 
