@@ -104,3 +104,7 @@ Yes, those are all "fast"-linked pipeline compile times in nanoseconds.
 
 Yes, half of those are taking more than 10ms.
 
+[![pastamaker.jpg]({{site.url}}/assets/pastamaker.jpg)]({{site.url}}/assets/pastamaker.jpg)
+
+## First Steps
+The first step is always admitting that you have a problem, but I don't have a problem. I'm fine. Cool as can be, and my therapists agree.
