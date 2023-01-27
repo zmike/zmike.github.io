@@ -184,7 +184,7 @@ done
 
 I'd previously added some in-driver printfs to output compile times for the fast-link pipelines, so this gave me a file with the pipeline hash on one line and the compile timing on the next. I could then sort this and figure out some outliers to extract, yielding `slow.foz`, a fast-link that consistently took longer than 0.1ms.
 
-I took this to Samuel, and we put our `perf`s together. Immediately, he spotted another issue: `SHA1Transform()` was taking up a considerable amount of CPU time. This was occurring because the fast-linked pipelines were being added to the shader cache for reuse.
+I took this to Samuel, and we put our `perf`s together. Immediately, he spotted another bottleneck: `SHA1Transform()` was taking up a considerable amount of CPU time. This was occurring because the fast-linked pipelines were being added to the shader cache for reuse.
 
 But what's the point of adding an unoptimized, fast-linked pipeline to a cache when it *should* take less time to just fast-link and return?
 
