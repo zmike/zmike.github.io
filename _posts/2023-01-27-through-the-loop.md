@@ -223,4 +223,13 @@ Like a true graphics hero, that hack was delivered just in time for me to run it
 [![final.png]({{site.url}}/assets/fastlink/final.png)]({{site.url}}/assets/fastlink/final.png)
 
 ## We Did It
-Thanks to Hans-Kristian enabling us and Samuel doing a lot of heavy and unsafe lifting, we hit our target time of 0.02ms
+Thanks to Hans-Kristian enabling us and Samuel doing a lot of heavy and unsafe lifting, we hit our target time of 0.02ms, which is a 50,000% improvement from where things started.
+
+What does this mean?
+
+### If You're A User...
+This means in the very near future, you can fire up `RADV_PERFTEST=gpl` and run DOTA2 (or zink) without any kind of shader pre-caching and still have zero stuttering.
+
+### If You're A Game Developer...
+This means you can write apps relying on fast-linking and be assured that your users will not see stuttering.
+
