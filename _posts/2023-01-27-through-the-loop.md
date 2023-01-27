@@ -151,4 +151,7 @@ COMPILE 50614
 COMPILE 54316
 ```
 
+Do my eyes deceive me or is that a *20,000% speedup* from a single patch?!
 
+## It Is
+And so the problem was solved. 
