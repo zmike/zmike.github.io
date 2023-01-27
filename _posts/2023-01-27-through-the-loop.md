@@ -133,3 +133,22 @@ This was a complex problem to solve, and I had lots of other things to do (so ma
 Some of you know his name, and others just know him as "that RADV guy", but Samuel Pitoiset is the real deal when it comes to driver development. He can crank out an entire extension implementation in less time than it takes me to write one of these long-winded, benchmark-number-free introductions to a blog post, and when I told him we had a huge problem, he dropped\* everything and jumped on board.\
 \* and when I say "dropped" I mean he finished fixing another Halo Infinite hang in the time it took me to explain the problem
 
+With lightning speed, Samuel reworked pipeline creation to not do that thing I didn't want it to do. Because doing any kind of compiling when the driver is instead supposed to be "fast" is bad. Really bad.
+
+How did that affect my numbers?
+
+By now I was tired of dealing with the 32bit nonsense of Tomb Raider and had put all my eggs in the proverbial DOTA2 basket, so I again fired up a round, went to jungle, and checked my debug prints.
+
+```
+COMPILE 55699
+COMPILE 55998
+COMPILE 58016
+COMPILE 56825
+COMPILE 60288
+COMPILE 110663
+COMPILE 59679
+COMPILE 50614
+COMPILE 54316
+```
+
+
