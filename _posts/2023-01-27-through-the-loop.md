@@ -154,7 +154,7 @@ COMPILE 54316
 Do my eyes deceive me or is that a *20,000% speedup* from a single patch?!
 
 ## Problem Solved
-And so the problem was solved. I went to Dan Ginsberg, who I'm sure everyone knows as the author of [this incredible blog post about GPL](https://www.khronos.org/blog/reducing-draw-time-hitching-with-vk-ext-graphics-pipeline-library), and I showed him the improvements and our new timings, and I asked what he thought about the performance now.
+And so the problem was solved. I went to Dan Ginsburg, who I'm sure everyone knows as the author of [this incredible blog post about GPL](https://www.khronos.org/blog/reducing-draw-time-hitching-with-vk-ext-graphics-pipeline-library), and I showed him the improvements and our new timings, and I asked what he thought about the performance now.
 
 Dan looked at me. Looked at the numbers I showed him. Shook his head a single time.
 
