@@ -44,3 +44,10 @@ Some games don't use Fossilize, which means there's no pre-compile. In these sit
 The former option here gives us load times that remind us of the original Skyrim release. The latter probably yields stuttering.
 
 Thus, `VK_EXT_graphics_pipeline_library` (henceforth GPL) with fast-linking.
+
+## The Obvious Problem
+What does the "fast" in fast-linking really mean?
+
+How fast is "fast"?
+
+These are great questions that nobody knows the answer to.
