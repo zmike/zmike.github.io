@@ -11,4 +11,6 @@ But today we're going to move away from those dangerous, addictivive synthetic b
 
 Pipeline compile speed in the current year? Why should anyone care when we have great tools like [Fossilize](https://github.com/ValveSoftware/Fossilize/) that can precompile everything for a game over the course of several hours to ensure games have no stuttering?
 
-It turns out there's at least one type of pipeline compile that still matters going forward. Specifically, I'm talking about fast-linked pipelines using [VK_EXT_graphics_pipeline_library](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_graphics_pipeline_library.html). 
+It turns out there's at least one type of pipeline compile that still matters going forward. Specifically, I'm talking about fast-linked pipelines using [VK_EXT_graphics_pipeline_library](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_graphics_pipeline_library.html).
+
+Let's get some exposition under our belts before we get to the spaghetti.
