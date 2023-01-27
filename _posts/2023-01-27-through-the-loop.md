@@ -162,3 +162,11 @@ I don't know what I was thinking. In my defense, a 20,000% speedup is usually en
 
 While RADV was now down to 0.05-0.11ms for a fast-link, NVIDIA can apparently do this consistently in 0.02ms.
 
+That's pretty fast.
+
+So I went to Samuel, and we put our `perf`s together.
+
+By now, the man, the myth, @themaister, Hans-Kristian Arntzen had finished fixing every Fossilize bug that had ever existed, which meant I could now capture and replay GPL pipelines from DOTA2. Fossilize also has another cool feature: it allows for extraction of single pipelines from a larger .foz file, which is great for evaluating performance.
+
+The catch? It doesn't have any way to print per-pipeline compile timings during a replay, nor does it have a way to sort pipeline hashes based on compile times.
+
