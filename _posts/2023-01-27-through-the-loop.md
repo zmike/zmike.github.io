@@ -197,6 +197,23 @@ A post-Samuel flamegraph showed a few immediate issues:
 
 First, and easiest, a [huge memset](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/20947). Get this thing out of here.
 
+Now `slow.foz` was fast-linking in 0.06-0.07ms. Where was the flamegraph at on this?
+
 [![post-memset.png]({{site.url}}/assets/fastlink/post-memset.png)]({{site.url}}/assets/fastlink/post-memset.png)
 
-This left the obvious: What in the 
+This left the obvious question: What was going on with still creating a shader?!
+
+It turns out this particular pipeline was being created without a fragment shader, and that shader was being generated during the fast-link process. Incredible coverage testing.
+
+Fixing this proved trickier, and it still remains tricky. An unsolved problem.
+
+However.
+
+```
+<zmike> can you get me a hack that I can use for that foz ?
+* zmike just needs to get numbers for the blog
+<hakzsam> hmm
+<hakzsam> I'm trying
+```
+
+Like a true graphics hero, that hack was delivered just in time for me to run it through the blogginator.
