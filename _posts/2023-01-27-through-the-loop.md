@@ -232,7 +232,7 @@ Thanks to Hans-Kristian enabling us and Samuel doing a lot of heavy and unsafe l
 What does this mean?
 
 ### If You're A User...
-This means in the very near future, you can fire up `RADV_PERFTEST=gpl` and run DOTA2 (or zink) without any kind of shader pre-caching and still have zero stuttering.
+This means in the very near future, you can fire up `RADV_PERFTEST=gpl` and run DOTA2 (or zink) on RADV without any kind of shader pre-caching and still have zero stuttering.
 
 ### If You're A Game Developer...
 This means you can write apps relying on fast-linking and be assured that your users will not see stuttering.
