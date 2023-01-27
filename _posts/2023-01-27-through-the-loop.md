@@ -107,4 +107,10 @@ Yes, half of those are taking more than 10ms.
 [![pastamaker.jpg]({{site.url}}/assets/pastamaker.jpg)]({{site.url}}/assets/pastamaker.jpg)
 
 ## First Steps
-The first step is always admitting that you have a problem, but I don't have a problem. I'm fine. Cool as can be, and my therapists agree.
+The first step is always admitting that you have a problem, but I don't have a problem. I'm fine. Not upset at all. Don't read more into it.
+
+As mentioned above, we have great tools in the Vulkan ecosystem like [Fossilize](https://github.com/ValveSoftware/Fossilize/) to capture pipelines and replay them outside of applications. This was going to be a great help.
+
+I thought.
+
+I fired up a 32bit build of Fossilize, set it to run on Tomb Raider, and immediately it exploded.
