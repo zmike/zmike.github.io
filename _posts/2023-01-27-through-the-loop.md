@@ -20,7 +20,7 @@ All my readers are graphics experts. It won't come as any surprise when I say th
 
 Some of you experts, however, have been so deep into getting those green triangles on the screen to pass various unit tests that you might not be fully aware of the fast-linking property of `VK_EXT_graphics_pipeline_library`.
 
-In general, everyone knows that compiling shaders during gameplay is (usually) bad. This is (usually) what causes stuttering: the compilation of a pipeline takes longer than the available time to draw the frame, and rendering blocks until it completes. The fast-linking property of `VK_EXT_graphics_pipeline_library` changes this paradigm by enabling pipelines, e.g., for shader variants, to be created fast enough to avoid stuttering.
+In general, compiling shaders during gameplay is (usually) bad. This is (usually) what causes stuttering: the compilation of a pipeline takes longer than the available time to draw the frame, and rendering blocks until it completes. The fast-linking property of `VK_EXT_graphics_pipeline_library` changes this paradigm by enabling pipelines, e.g., for shader variants, to be created fast enough to avoid stuttering.
 
 Typically, this is utilized in applications through the following process:
 * create pipeline libraries from shaders during game startup or load screen
