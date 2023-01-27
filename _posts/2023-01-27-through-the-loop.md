@@ -86,7 +86,7 @@ Obviously.
 
 And just as obviously I had to get a second opinion on this, which is why I took my testing over to the only game I know which uses GPL with fast-link: ~~[3D Pinball: Space Cadet](https://apps.microsoft.com/store/detail/3d-pinball---space-cadet/9MT92DXZJ11R)~~ DOTA 2!
 
-Naturally it would be DOTA2, along with other Source Engine 2 games, that uses this functionality.
+Naturally it would be DOTA2, along with any other Source Engine 2 game, that uses this functionality.
 
 Thus, I fired up my game, and faster than I could scream **MID OR MEEPO** into my mic, I saw the unthinkable spewing out in my console:
 
