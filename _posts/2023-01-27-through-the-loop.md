@@ -121,7 +121,7 @@ Zink has, historically, been the final boss for everything Vulkan-related, so I 
 
 That's right.
 
-Friend of the blog, artisanal bit-wrangler, and a developer whose only speed is `-O3 -ffast-math`, [Hans-Kristian Arntzen](https://themaister.net) took my hand-waving and pointing and churned out a masterpiece in less time than it took RADV to "fast-link" some of those pipelines.
+Friend of the blog, artisanal bit-wrangler, and a developer whose only speed is `-O3 -ffast-math`, [Hans-Kristian Arntzen](https://themaister.net) took my hand-waving, unintelligible gibbering, and pointing in the wrong direction and churned out a masterpiece in less time than it took RADV to "fast-link" some of those pipelines.
 
 While I waited, I was working at the picosecond-level with `perf` to isolate the biggest bottleneck in fast-linking.
 
