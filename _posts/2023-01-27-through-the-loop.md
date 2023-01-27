@@ -218,5 +218,9 @@ However.
 
 Like a true graphics hero, that hack was delivered just in time for me to run it through the blogginator. What kinds of gains would be had from this untested mystery patch?
 
-`slow.foz` was now down to 0.03 ms (30546 ns).
+`slow.foz` was now down to 0.023 ms (23566 ns).
 
+[![final.png]({{site.url}}/assets/fastlink/final.png)]({{site.url}}/assets/fastlink/final.png)
+
+## We Did It
+Thanks to Hans-Kristian enabling us and Samuel doing a lot of heavy and unsafe lifting, we hit our target time of 0.02ms
