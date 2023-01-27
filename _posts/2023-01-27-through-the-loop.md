@@ -114,3 +114,4 @@ As mentioned above, we have great tools in the Vulkan ecosystem like [Fossilize]
 I thought.
 
 I fired up a 32bit build of Fossilize, set it to run on Tomb Raider, and immediately it exploded.
+
