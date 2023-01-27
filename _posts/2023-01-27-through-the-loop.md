@@ -131,7 +131,7 @@ My caveman-like, tool-less hunt yielded immediate results: `nir_shader_clone` [d
 This was a complex problem to solve, and I had lots of other things to do (so many things), which meant I needed to call in another friend of the blog to take over while I did all the things I had to do.
 
 Some of you know his name, and others just know him as "that RADV guy", but Samuel Pitoiset is the real deal when it comes to driver development. He can crank out an entire extension implementation in less time than it takes me to write one of these long-winded, benchmark-number-free introductions to a blog post, and when I told him we had a huge problem, he dropped\* everything and jumped on board.\
-\* and when I say "dropped" I mean he finished fixing another Halo Infinite hang in the time it took me to explain the problem
+\* and when I say "dropped" I mean he finished finding and fixing another Halo Infinite hang in the time it took me to explain the problem
 
 With lightning speed, Samuel reworked pipeline creation to not do that thing I didn't want it to do. Because doing any kind of compiling when the driver is instead supposed to be "fast" is bad. Really bad.
 
