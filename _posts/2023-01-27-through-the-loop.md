@@ -117,4 +117,15 @@ I fired up a 32bit build of Fossilize, set it to run on Tomb Raider, and immedia
 
 [![fastlink-works.png]({{site.url}}/assets/fastlink/fastlink-works.png)]({{site.url}}/assets/fastlink/fastlink-works.png)
 
+Zink has, historically, been the final boss for everything Vulkan-related, so I was unsurprised by this turn of events. I [filed an issue](https://github.com/ValveSoftware/Fossilize/issues/213), [finger-painted ineffectually](https://github.com/ValveSoftware/Fossilize/pull/214), and then gave up because I had called in the expert.
+
+That's right.
+
+Friend of the blog, graphics cod, and a developer whose only speed is `-O3 -ffast-math`, [Hans-Kristian Arntzen](https://themaister.net) took my hand-waving and pointing and churned out a masterpiece in less time than it took RADV to "fast-link" some of those pipelines.
+
+While I waited, I was working at the picosecond-level with `perf` to isolate the biggest bottleneck in fast-linking.
+
+## Fast-linking: Stop Compiling.
+My caveman-like, tool-less hunt yielded immediate results: `nir_shader_clone` [during fast-link](https://gitlab.freedesktop.org/mesa/mesa/-/blob/b97fee432c23435bc6c6ef3f27af54c2538cc36b/src/amd/vulkan/radv_pipeline.c#L3123) was taking an absurd amount of time, and then also the shaders were being compiled at this point.
+
 
