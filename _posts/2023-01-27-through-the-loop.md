@@ -154,10 +154,11 @@ COMPILE 54316
 Do my eyes deceive me or is that a *20,000% speedup* from a single patch?!
 
 ## Problem Solved
-And so the problem was solved. I went to Dan Ginsberg, who I'm sure everyone knows as the author of [this incredible blog post about GPL](https://www.khronos.org/blog/reducing-draw-time-hitching-with-vk-ext-graphics-pipeline-library), and I showed him the improvements and our new timings, and I asked if he thought this was good enough.
+And so the problem was solved. I went to Dan Ginsberg, who I'm sure everyone knows as the author of [this incredible blog post about GPL](https://www.khronos.org/blog/reducing-draw-time-hitching-with-vk-ext-graphics-pipeline-library), and I showed him the improvements and our new timings, and I asked what he thought about the performance now.
 
 Dan looked at me. Looked at the numbers I showed him. Shook his head one time.
 
 I don't know what I was thinking. In my defense, a 20,000% speedup is usually enough to call it quits on a given project. In this case, however, I had the shadow of a competitor looming overhead.
 
 While RADV was now down to 0.05-0.1ms for a fast-link, NVIDIA can apparently do this consistently in 0.02ms.
+
