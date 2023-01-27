@@ -227,7 +227,7 @@ Like a true graphics hero, that hack was delivered just in time for me to run it
 [![final.png]({{site.url}}/assets/fastlink/final.png)]({{site.url}}/assets/fastlink/final.png)
 
 ## We Did It
-Thanks to Hans-Kristian enabling us and Samuel doing a lot of heavy and unsafe lifting, we hit our target time of 0.02ms, which is a 50,000% improvement from where things started.
+Thanks to Hans-Kristian enabling us and Samuel doing a lot of heavy and unsafe lifting while I sucked wind on the sidelines, we hit our target time of 0.02ms, which is a 50,000% improvement from where things started.
 
 What does this mean?
 
