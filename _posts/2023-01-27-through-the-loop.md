@@ -164,8 +164,7 @@ While RADV was now down to 0.05-0.11ms for a fast-link, NVIDIA can apparently do
 
 That's pretty fast.
 
-So I went to Samuel, and we put our `perf`s together.
-
+## Even Faster
 By now, the man, the myth, @themaister, Hans-Kristian Arntzen had finished fixing every Fossilize bug that had ever existed, which meant I could now capture and replay GPL pipelines from DOTA2. Fossilize also has another cool feature: it allows for extraction of single pipelines from a larger .foz file, which is great for evaluating performance.
 
 The catch? It doesn't have any way to print per-pipeline compile timings during a replay, nor does it have a way to sort pipeline hashes based on compile times.
@@ -175,9 +174,14 @@ Either I was going to have to write some C++ to add this functionality to Fossil
 ```bash
 for x in $(fossilize-list --tag 6 dota2.foz); do
 	echo "PIPELINE $x"
-    RADV_PERFTEST=gpl fossilize-replay --pipeline-hash $x ~/dota2.foz 2>&1|grep COMPILE
+    RADV_PERFTEST=gpl fossilize-replay --pipeline-hash $x dota2.foz 2>&1|grep COMPILE
 done
 ```
 
 I'd previously added some in-driver printfs to output compile times for the fast-link pipelines, so this gave me a file with the pipeline hash on one line and the compile timing on the next. I could then sort this and figure out some outliers to extract, yielding `slow.foz`, a fast-link that consistently took longer than 0.1ms.
 
+So I went to Samuel, and we put our `perf`s together. Immediately, he spotted another issue: `SHA1Transform()` was taking up a considerable amount of CPU time. This was occurring because the fast-linked pipelines were being added to the shader cache for reuse.
+
+But what's the point of adding an unoptimized, fast-linked pipeline to a cache when it *should* take less time to just fast-link and return?
+
+Blammo, another lightning-fast patch from Samuel, and fast-linked pipelines were no longer being considered for cache entries, cutting off even more compile time.
