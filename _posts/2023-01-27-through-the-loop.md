@@ -128,4 +128,4 @@ While I waited, I was working at the picosecond-level with `perf` to isolate the
 ## Fast-linking: Stop Compiling.
 My caveman-like, tool-less hunt yielded immediate results: `nir_shader_clone` [during fast-link](https://gitlab.freedesktop.org/mesa/mesa/-/blob/b97fee432c23435bc6c6ef3f27af54c2538cc36b/src/amd/vulkan/radv_pipeline.c#L3123) was taking an absurd amount of time, and then also the shaders were being compiled at this point.
 
-
+This was a complex problem to solve, and I had lots of other things to do (so many things), which meant I needed to call in another friend of the blog.
