@@ -250,7 +250,7 @@ You might be thinking that profiling a single operation like this is tricky, and
 
 Never fear, [vkoverhead](https://github.com/zmike/vkoverhead/) is here to save the day.
 
-You thought I wouldn't plug it again, but here we are. In the very near future (ideally later today), vkoverhead will have some cases that isolate GPL fast-linking that should be useful for anyone looking to go from "fast" to fast.
+You thought I wouldn't plug it again, but here we are. In the very near future (ideally later today), vkoverhead will have some cases that isolate GPL fast-linking. This should prove useful for anyone looking to go from "fast" to fast.
 
 There's no big secret about it, and there's no architectural limitations on speed. It just takes a little bit of elbow grease and some profiling.
 
