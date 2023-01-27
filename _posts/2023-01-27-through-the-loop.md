@@ -115,3 +115,6 @@ I thought.
 
 I fired up a 32bit build of Fossilize, set it to run on Tomb Raider, and immediately it exploded.
 
+[![fastlink-works.png]({{site.url}}/assets/fastlink/fastlink-works.png)]({{site.url}}/assets/fastlink/fastlink-works.png)
+
+
