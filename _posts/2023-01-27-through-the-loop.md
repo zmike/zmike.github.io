@@ -101,3 +101,6 @@ COMPILE 10738436
 ```
 
 Yes, those are all "fast"-linked pipeline compile times in nanoseconds.
+
+Yes, half of those are taking more than 10ms.
+
