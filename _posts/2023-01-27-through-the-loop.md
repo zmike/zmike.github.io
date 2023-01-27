@@ -185,3 +185,7 @@ So I went to Samuel, and we put our `perf`s together. Immediately, he spotted an
 But what's the point of adding an unoptimized, fast-linked pipeline to a cache when it *should* take less time to just fast-link and return?
 
 Blammo, another lightning-fast patch from Samuel, and fast-linked pipelines were no longer being considered for cache entries, cutting off even more compile time.
+
+`slow.foz` was now consistently down to 0.07-0.08ms.
+
+## 
