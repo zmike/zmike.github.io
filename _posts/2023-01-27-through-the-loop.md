@@ -56,6 +56,32 @@ Given that RADV is in the process of bringing up GPL for general use, and given 
 
 [![eyeofsauron.jpg]({{site.url}}/assets/eyeofsauron.jpg)]({{site.url}}/assets/eyeofsauron.jpg)
 
-Uh-oh.
+## Uh-oh
+Obviously we wouldn't be advertising fast-linking on RADV if it wasn't fast.
 
-## 
+Obviously.
+
+It goes without saying that we care about performance. No credible driver developer would advertise a performance-related feature if it wasn't performant.
+
+**RIGHT?**
+
+And it's not like I tried running Tomb Raider on zink and discovered that the so-called "fast"-link pipelines were being created at a non-fast speed. That would be insane to even consider—I mean, it's literally in the name of the feature, so if using it caused the game to stutter, or if, for example, I was seeing "fast"-link pipelines being created in **10ms+**...
+
+[![mesa.png]({{site.url}}/assets/mesa.png)]({{site.url}}/assets/mesa.png)
+
+Surely I didn't see that though.
+
+[![rotated_mesa.png]({{site.url}}/assets/rotated_mesa.png)]({{site.url}}/assets/rotated_mesa.png)
+
+Surely I didn't see **fast**-link pipelines taking more than an entire frame's worth of time to create.
+
+## It's Fine
+Long-time readers know that this is fine. I'm unperturbed by seeing numbers like this, and I can just file a ticket and move on with my life like a normal per—
+
+[![angry_mesa.png]({{site.url}}/assets/angry_mesa.png)]({{site.url}}/assets/angry_mesa.png)
+
+OBVIOUSLY I CAN'T.
+
+Obviously.
+
+And just as obviously I had to get a second opinion on this, which is why I took my testing over to the only game I know which uses GPL with fast-link: 
