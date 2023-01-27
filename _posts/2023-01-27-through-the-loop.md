@@ -205,7 +205,7 @@ Now `slow.foz` was fast-linking in 0.06-0.07ms. Where was the flamegraph at on t
 
 [![post-memset.png]({{site.url}}/assets/fastlink/post-memset.png)]({{site.url}}/assets/fastlink/post-memset.png)
 
-This left the obvious question: What was going on with still creating a shader?!
+Now the obvious question: What was going on with still creating a shader?!
 
 It turns out this particular pipeline was being created without a fragment shader, and that shader was being generated during the fast-link process. Incredible coverage testing from an incredible game.
 
