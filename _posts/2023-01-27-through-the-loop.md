@@ -255,6 +255,6 @@ You thought I wouldn't plug it again, but here we are. In the very near future (
 There's no big secret about being truly fast, and there's no architectural limitations on speed. It just takes a little bit of elbow grease and some profiling.
 
 ## But Also
-The goal is to move GPL out of `RADV_PERFTEST` with Mesa 23.1. There's still some functional work to be done, but we're not done optimizing here either.
+The goal is to move GPL out of `RADV_PERFTEST` with Mesa 23.1 to enable it by default. There's still some functional work to be done, but we're not done optimizing here either.
 
 I won't rest until I can say with confidence that RADV has the fastest fast-link in the world, or my name isn't Spaghetti Good Code.
