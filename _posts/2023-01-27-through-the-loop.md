@@ -50,4 +50,6 @@ What does the "fast" in fast-linking really mean?
 
 How fast is "fast"?
 
-These are great questions that nobody knows the answer to.
+These are great questions that nobody knows the answer to. The only limitation here is that "fast" has to be "fast enough" to avoid stuttering.
+
+Given that RADV is in the process of bringing up GPL for general use, and given that Zink is relying on fast-linking to eliminate compile stuttering, I thought I'd take out my perf magnifying glass and see what I found.
