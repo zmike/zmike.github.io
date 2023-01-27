@@ -137,7 +137,7 @@ With lightning speed, Samuel reworked pipeline creation to not do that thing I d
 
 How did that affect my numbers?
 
-By now I was tired of dealing with the 32bit nonsense of Tomb Raider and had put all my eggs in the proverbial DOTA2 basket, so I again fired up a round, went to AFK in jungle, and checked my debug prints.
+By now I was tired of dealing with the 32bit nonsense of Tomb Raider and had put all my eggs in the proverbial DOTA2 basket, so I again fired up a round, went to AFK in jungle, and checked my debug prints while my team raged in voice.
 
 ```
 COMPILE 55699
