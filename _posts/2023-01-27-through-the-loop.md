@@ -233,3 +233,13 @@ This means in the very near future, you can fire up `RADV_PERFTEST=gpl` and run 
 ### If You're A Game Developer...
 This means you can write apps relying on fast-linking and be assured that your users will not see stuttering.
 
+### If You're A Driver Developer...
+So far, there aren't many drivers out there that implement GPL with true fast-linking. Aside from (a near-future version of) RADV, I'm reasonably certain the only driver that both advertises fast-linking and actually has "fast"-linking is NVIDIA.
+
+If you're from one of those companies that has yet to take the plunge and implement GPL, or if you've implemented it and decided to advertise the fast-linking feature without actually being "fast", here's some key takeaways from a week in GPL optimization:
+* Ensure you aren't compiling any shaders at link-time
+* Ensure you aren't creating any shaders at link-time
+* Avoid adding fast-link pipelines to any sort of shader cache
+* Profile your fast-link pipeline creation
+
+You might be thinking that profiling a single operation like this is tricky, and it's hard to get 
