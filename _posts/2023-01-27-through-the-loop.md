@@ -84,4 +84,4 @@ OBVIOUSLY I CAN'T.
 
 Obviously.
 
-And just as obviously I had to get a second opinion on this, which is why I took my testing over to the only game I know which uses GPL with fast-link: 
+And just as obviously I had to get a second opinion on this, which is why I took my testing over to the only game I know which uses GPL with fast-link: ~~[3D Pinball: Space Cadet](https://apps.microsoft.com/store/detail/3d-pinball---space-cadet/9MT92DXZJ11R)~~
