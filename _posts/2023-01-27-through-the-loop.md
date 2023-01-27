@@ -115,7 +115,7 @@ I thought.
 
 I fired up a 32bit build of Fossilize, set it to run on Tomb Raider, and immediately it exploded.
 
-[![fastlink-works.png]({{site.url}}/assets/fastlink/fastlink-works.png)]({{site.url}}/assets/fastlink/fastlink-works.png)
+[![fossilize-works.png]({{site.url}}/assets/fastlink/fossilize-works.png)]({{site.url}}/assets/fastlink/fossilize-works.png)
 
 Zink has, historically, been the final boss for everything Vulkan-related, so I was unsurprised by this turn of events. I [filed an issue](https://github.com/ValveSoftware/Fossilize/issues/213), [finger-painted ineffectually](https://github.com/ValveSoftware/Fossilize/pull/214), and then gave up because I had called in the expert.
 
