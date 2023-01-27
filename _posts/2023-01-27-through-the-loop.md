@@ -13,4 +13,8 @@ Pipeline compile speed in the current year? Why should anyone care when we have 
 
 It turns out there's at least one type of pipeline compile that still matters going forward. Specifically, I'm talking about fast-linked pipelines using [VK_EXT_graphics_pipeline_library](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_graphics_pipeline_library.html).
 
-Let's get some exposition under our belts before we get to the spaghetti.
+Let's get an appetizer going, some exposition under our belts before we get to the spaghetti we're all craving.
+
+## Pipelines: They're In Your Games
+All my readers are graphics experts. It won't come as any surprise when I say that a **pipeline** is a program containing shaders which is used by the GPU. And you all know how `VK_EXT_graphics_pipeline_library` enables compiling partial pipelines into libraries that can then be combined into a full pipeline. None of you need a refresher on this, and we all acknowledge that I'm just padding out the word count of this post for posterity.
+
