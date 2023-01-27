@@ -252,7 +252,7 @@ Never fear, [vkoverhead](https://github.com/zmike/vkoverhead/) is here to save t
 
 You thought I wouldn't plug it again, but here we are. In the very near future (ideally later today), vkoverhead will have some cases that isolate GPL fast-linking. This should prove useful for anyone looking to go from "fast" to fast.
 
-There's no big secret about it, and there's no architectural limitations on speed. It just takes a little bit of elbow grease and some profiling.
+There's no big secret about being truly fast, and there's no architectural limitations on speed. It just takes a little bit of elbow grease and some profiling.
 
 ## But Also
 The goal is to move GPL out of `RADV_PERFTEST` with Mesa 23.1. There's still some functional work to be done, but we're not done optimizing here either.
