@@ -173,7 +173,7 @@ By now, the man, the myth, [@themaister](https://themaister.net), Hans-Kristian 
 
 The catch? It doesn't have any way to print per-pipeline compile timings during a replay, nor does it have a way to sort pipeline hashes based on compile times.
 
-Either I was going to have to write some C++ to add this functionality to Fossilize, or I was going to have to get creative. Thus I found myself writing out this construct:
+Either I was going to have to write some C++ to add this functionality to Fossilize, or I was going to have to get creative. With my Chromium PTSD in mind, I found myself writing out this construct:
 
 ```bash
 for x in $(fossilize-list --tag 6 dota2.foz); do
