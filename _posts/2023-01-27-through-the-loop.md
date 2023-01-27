@@ -235,7 +235,7 @@ What does this mean?
 This means in the very near future, you can fire up `RADV_PERFTEST=gpl` and run DOTA2 (or zink) on RADV without any kind of shader pre-caching and still have zero stuttering.
 
 ### If You're A Game Developer...
-This means you can write apps relying on fast-linking and be assured that your users will not see stuttering.
+This means you can write apps relying on fast-linking and be assured that your users will not see stuttering on RADV.
 
 ### If You're A Driver Developer...
 So far, there aren't many drivers out there that implement GPL with true fast-linking. Aside from (a near-future version of) RADV, I'm reasonably certain the only driver that both advertises fast-linking and actually has fast linking is NVIDIA.
