@@ -188,4 +188,15 @@ Blammo, another lightning-fast patch from Samuel, and fast-linked pipelines were
 
 `slow.foz` was now consistently down to 0.07-0.08ms.
 
-## 
+## Are We There Yet?
+No.
+
+A post-Samuel flamegraph showed a few immediate issues:
+
+[![memset.png]({{site.url}}/assets/fastlink/memset.png)]({{site.url}}/assets/fastlink/memset.png)
+
+First, and easiest, a [huge memset](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/20947). Get this thing out of here.
+
+[![post-memset.png]({{site.url}}/assets/fastlink/post-memset.png)]({{site.url}}/assets/fastlink/post-memset.png)
+
+This left the obvious: What in the 
