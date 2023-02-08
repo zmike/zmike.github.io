@@ -155,7 +155,7 @@ What it doesn't mean is that I've fixed hitching for Tomb Raider (2013).
 
 At present, it's not possible to fix this using Vulkan. There is simply no way to precompile separate tessellation shaders, and so I again will say that the use of SSO is [why the fps is bad](https://gitlab.freedesktop.org/mesa/mesa/-/issues/8223).
 
-But the above-described handling does eliminate hitching caused by simple instances of SSO, which mitigates *some* of the hitching in Tomb Raider (2013). I'm not aware of other games that use this functionality, but if there are any, hopefully they don't use tessellation and are smoothed out by [this MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21197)*.
-* Note: `ZINK_DESCRIPTORS=db` is currently required to enable this functionality
+But the above-described handling does eliminate hitching caused by simple instances of SSO, which mitigates *some* of the hitching in Tomb Raider (2013). I'm not aware of other games that use this functionality, but if there are any, hopefully they don't use tessellation and are smoothed out by [this MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21197)\*.\
+\* Note: `ZINK_DESCRIPTORS=db` is currently required to enable this functionality
 
-We're getting there.
+Gaming on Zink: We're getting there.
