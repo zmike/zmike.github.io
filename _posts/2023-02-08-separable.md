@@ -3,13 +3,15 @@ published: false
 ---
 ## Another Milestone
 
-A while ago, I blogged about how zink was leveraging `VK_EXT_graphics_pipeline_library` to avoid mid-frame shader compilation, AKA stuttering. This was all good and accurate, in that the code existed, it worked, and when the right paths were taken, there was no mid-frame shader compiling.
+A while ago, I blogged about how zink was leveraging `VK_EXT_graphics_pipeline_library` to avoid mid-frame shader compilation, AKA stuttering. This was all good and accurate in that the code existed, it worked, and when the right paths were taken, there was no mid-frame shader compiling.
 
 The problem, of course, is that these paths were never taken. Who could have guessed: there were bugs.
 
 These bugs are now fixed, however, and so there should be **no more stuttering ever with zink**.
 
 Period.
+
+If you don't believe me, run your games with `MESA_SHADER_CACHE_DISABLE=true` and report back.
 
 ## Except
 There's this little extension I hate called [ARB_separate_shader_objects](https://registry.khronos.org/OpenGL/extensions/ARB/ARB_separate_shader_objects.txt). It allows shaders to be created *separately* and then linked together at runtime in a performant manner that doesn't stutter.
@@ -137,4 +139,22 @@ After a number of iterations on the concept, I settled on having a union in the 
 * draw with separable `zink_gfx_program`
 * when `zink_gfx_program` is ready, replace separable object with real object
 
-In this way, the precompiled SSO shaders can be fast-linked like a regular pipeline to avoid stuttering, and the bespoke descriptor update path will be taken using more or less the same mechanics as the normal path.
+In this way, the precompiled SSO shaders can be fast-linked like a regular pipeline to avoid stuttering, and the bespoke descriptor update path will be taken using more or less the same mechanics as the normal path to guarantee matching performance. Any non-shader-variant pipeline state changes can be handled without any new code, and everything "just works".
+
+## I Lied, This Is The Real Tricky Part
+Especially clever experts have been reading up until this point with six or seven eyebrows raised with the following thought in mind.
+
+> Doesn't Tomb Raider (2013) use tessellation shaders?
+
+Why yes. Yes, Tomb Raider (2013) *does* use tessellation shaders, and yes, it *does* only use them for drawing hair effects.
+
+No, GPL **cannot** do separate pipeline libraries for tessellation shaders. Or geometry shaders, for that matter.
+
+## What Does This Mean?
+What it doesn't mean is that I've fixed stuttering for Tomb Raider (2013).
+
+At present, it's not possible to fix this using Vulkan. There is simply no way to precompile separate tessellation shaders, and so I again will say that the use of SSO is [why the fps is bad](https://gitlab.freedesktop.org/mesa/mesa/-/issues/8223).
+
+But the above-described handling does eliminate stuttering caused by simple instances of SSO, which mitigates *some* of the stuttering in Tomb Raider (2013). I'm not aware of other games that use this functionality, but if there are any, hopefully they don't use tessellation and are smoothed out by [this MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21197).
+
+We're getting there.
