@@ -130,7 +130,7 @@ But shaders are only half the equation, which means entirely novel and fascinati
 The blog post might go on infinitely if I actually did all that, so instead I've turned to our lord and savior, [VK_EXT_descriptor_buffer](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_descriptor_buffer.html). This allows me to reuse most of the existing descriptor buffer code for creating layouts, and then I can just write my descriptor data to an arbitrary bound buffer rather than create new pools/sets/templates.
 
 ## The Tricky Part
-As an executive user of descriptors, nothing there poses the slightest challenge. The hard part of SSO handling is the actual pipeline management. Because all the precompiles are done per-shader in threads, there's no reusable objects for caching with shader variants. These shaders can have exactly one variant, the default, and anything else is effectively not possible.
+As an executive user of descriptors, nothing described above poses the slightest challenge. The hard part of SSO handling is the actual pipeline management. Because all the precompiles are done per-shader in threads, there's no reusable objects for caching with shader variants. These shaders can have exactly one variant, the default, and anything else is effectively not possible.
 
 After a number of iterations on the concept, I settled on having a union in the `zink_gfx_program` struct which omits all of the mechanics for managing shader variants. The "separable" `zink_gfx_program` object functions like this:
 * app binds SSO program
