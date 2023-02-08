@@ -3,18 +3,18 @@ published: false
 ---
 ## Another Milestone
 
-A while ago, I blogged about how zink was leveraging `VK_EXT_graphics_pipeline_library` to avoid mid-frame shader compilation, AKA stuttering. This was all good and accurate in that the code existed, it worked, and when the right paths were taken, there was no mid-frame shader compiling.
+A while ago, I blogged about how zink was leveraging `VK_EXT_graphics_pipeline_library` to avoid mid-frame shader compilation, AKA hitching. This was all good and accurate in that the code existed, it worked, and when the right paths were taken, there was no mid-frame shader compiling.
 
 The problem, of course, is that these paths were never taken. Who could have guessed: there were bugs.
 
-These bugs are [now fixed](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21169), however, and so there should be **no more mid-frame stuttering ever with zink**.
+These bugs are [now fixed](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21169), however, and so there should be **no more mid-frame hitching ever with zink**.
 
 Period.
 
 If you don't believe me, run your games with `MESA_SHADER_CACHE_DISABLE=true` and report back.
 
 ## Except
-There's this little extension I hate called [ARB_separate_shader_objects](https://registry.khronos.org/OpenGL/extensions/ARB/ARB_separate_shader_objects.txt). It allows shaders to be created *separately* and then linked together at runtime in a performant manner that doesn't stutter.
+There's this little extension I hate called [ARB_separate_shader_objects](https://registry.khronos.org/OpenGL/extensions/ARB/ARB_separate_shader_objects.txt). It allows shaders to be created *separately* and then linked together at runtime in a performant manner that doesn't hitch.
 
 If you're thinking this sounds a lot like GPL fast-linking, you're not wrong.
 
@@ -29,12 +29,12 @@ Let's think about how this would work. GPL allows for splitting up the pipeline 
 * fragment shader
 * multisample/blend
 
-Zink already uses this for normal shader programs. It creates partial pipeline libraries that look like this:
+Zink already uses this for normal shader programs. It creates partial pipeline libraries organized like this:
 * vertex/input assembly
 * all shaders
 * multisample/blend
 
-The `all shaders` library is generated asynchronously during load screens, the other two are generated on-demand, and the whole thing gets fast-linked together so quickly that there is (now) zero stuttering.
+The `all shaders` library is generated asynchronously during load screens, the other two are generated on-demand, and the whole thing gets fast-linked together so quickly that there is (now) zero hitching.
 
 Logically, supporting SSO from here should just mean expanding `all shaders` to a pair of pipeline libraries that can be created asynchronously:
 * vertex shader
@@ -57,12 +57,12 @@ Zink, atop sane drivers, uses six descriptor sets:
 * storage images
 * bindless descriptors
 
-This is nice since it keeps the codepaths for handling each set working at a descriptor-type level, making it easy to abstract while remaining performant*.\
-* according to me
+This is nice since it keeps the codepaths for handling each set working at a descriptor-type level, making it easy to abstract while remaining performant\*.\
+\* according to me
 
 When doing the pipeline library split above, however, this is not possible. The infinite wisdom of the GPL spec allows for independent sets between libraries, which is to say that library A can use set X, library B can use set Y, and the resulting pipeline will use sets X and Y.
 
-But it doesn't provide for any sort of merging of sets, which means that zink's entire descriptor architecture is effectively incompatible with GPL.
+But it doesn't provide for any sort of merging of sets, which means that zink's entire descriptor architecture is effectively incompatible with this use of GPL.
 
 ## And That's Fine
 Totally fine. I wanted to write some brand new, bespoke, easily-breakable descriptor code anyway, and this gives me the perfect excuse to orphan some breathtakingly smart code in a way that will never be detected by CI.
@@ -139,7 +139,7 @@ After a number of iterations on the concept, I settled on having a union in the 
 * draw with separable `zink_gfx_program`
 * when `zink_gfx_program` is ready, replace separable object with real object
 
-In this way, the precompiled SSO shaders can be fast-linked like a regular pipeline to avoid stuttering, and the bespoke descriptor update path will be taken using more or less the same mechanics as the normal path to guarantee matching performance. Any non-shader-variant pipeline state changes can be handled without any new code, and everything "just works".
+In this way, the precompiled SSO shaders can be fast-linked like a regular pipeline to avoid hitching, and the bespoke descriptor update path will be taken using more or less the same mechanics as the normal path to guarantee matching performance. Any non-shader-variant pipeline state changes can be handled without any new code, and everything "just works".
 
 ## I Lied, This Is The Real Tricky Part
 Especially clever experts have been reading up until this point with six or seven eyebrows raised with the following thought in mind.
@@ -151,11 +151,11 @@ Why yes. Yes, Tomb Raider (2013) *does* use tessellation shaders, and yes, it *d
 No, GPL **cannot** do separate pipeline libraries for tessellation shaders. Or geometry shaders, for that matter.
 
 ## What Does This Mean?
-What it doesn't mean is that I've fixed stuttering for Tomb Raider (2013).
+What it doesn't mean is that I've fixed hitching for Tomb Raider (2013).
 
 At present, it's not possible to fix this using Vulkan. There is simply no way to precompile separate tessellation shaders, and so I again will say that the use of SSO is [why the fps is bad](https://gitlab.freedesktop.org/mesa/mesa/-/issues/8223).
 
-But the above-described handling does eliminate stuttering caused by simple instances of SSO, which mitigates *some* of the stuttering in Tomb Raider (2013). I'm not aware of other games that use this functionality, but if there are any, hopefully they don't use tessellation and are smoothed out by [this MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21197)*.
+But the above-described handling does eliminate hitching caused by simple instances of SSO, which mitigates *some* of the hitching in Tomb Raider (2013). I'm not aware of other games that use this functionality, but if there are any, hopefully they don't use tessellation and are smoothed out by [this MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21197)*.
 * Note: `ZINK_DESCRIPTORS=db` is currently required to enable this functionality
 
 We're getting there.
