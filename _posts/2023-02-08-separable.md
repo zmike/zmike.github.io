@@ -130,3 +130,11 @@ The blog post might go on infinitely if I actually did all that, so instead I've
 ## The Tricky Part
 As an executive user of descriptors, nothing there poses the slightest challenge. The hard part of SSO handling is the actual pipeline management. Because all the precompiles are done per-shader in threads, there's no reusable objects for caching with shader variants. These shaders can have exactly one variant, the default, and anything else is effectively not possible.
 
+After a number of iterations on the concept, I settled on having a union in the `zink_gfx_program` struct which omits all of the mechanics for managing shader variants. The "separable" `zink_gfx_program` object functions like this:
+* app binds SSO program
+* create separable `zink_gfx_program` when possible
+* trigger async creation of normal `zink_gfx_program`
+* draw with separable `zink_gfx_program`
+* when `zink_gfx_program` is ready, replace separable object with real object
+
+In this way, the precompiled SSO shaders can be fast-linked like a regular pipeline to avoid stuttering, and the bespoke descriptor update path will be taken using more or less the same mechanics as the normal path.
