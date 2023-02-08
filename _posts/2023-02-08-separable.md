@@ -16,4 +16,6 @@ There's this little extension I hate called [ARB_separate_shader_objects](https:
 
 If you're thinking this sounds a lot like GPL fast-linking, you're not wrong.
 
-If 
+If, however, you've noticed the obvious flaw in this thinking, you're also not wrong.
+
+## 
