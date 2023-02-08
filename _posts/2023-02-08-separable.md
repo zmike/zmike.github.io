@@ -159,3 +159,8 @@ But the above-described handling does eliminate hitching caused by simple instan
 \* Note: `ZINK_DESCRIPTORS=db` is currently required to enable this functionality
 
 Gaming on Zink: We're getting there.
+
+## Bonus Content
+Notable RADV developer and pixel enthusiast Samuel Pitoiset doesn't blog, but he's just put up a [MR that enables shader caching with GPL](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21198).
+
+Test it and report back.
