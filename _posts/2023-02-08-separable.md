@@ -65,7 +65,7 @@ When doing the pipeline library split above, however, this is not possible. The 
 But it doesn't provide for any sort of merging of sets, which means that zink's entire descriptor architecture is effectively incompatible with this use of GPL.
 
 ## And That's Fine
-Totally fine. I wanted to write some brand new, bespoke, easily-breakable descriptor code anyway, and this gives me the perfect excuse to orphan some breathtakingly smart code in a way that will never be detected by CI.
+I wanted to write some brand new, bespoke, easily-breakable descriptor code anyway, and this gives me the perfect excuse to orphan some breathtakingly smart code in a way that will never be detected by CI.
 
 What GPL requires is a new descriptor layout that looks more like this:
 * vertex shader descriptors
@@ -75,9 +75,9 @@ What GPL requires is a new descriptor layout that looks more like this:
 * null
 * bindless descriptors
 
-Note that leaving null sets here enables the bindless set to remain bound between SSO pipelines and regular pipelines, and no changes whatsoever need to be made to anything related to bindless. If there's one thing I don't want to touch (but am definitely going to fingerpaint all over within the next day or two), it's bindless descriptor handling.
+Note that leaving null sets here enables the bindless set to remain bound between SSO pipelines and regular pipelines, and no changes whatsoever need to be made to anything related to bindless. If there's one thing I don't want to touch (but will definitely fingerpaint all over within the next day or two), it's bindless descriptor handling.
 
-The first step is to create new shader variants and modify the descriptor info for the corresponding variables. The set index needs to be updated as above, and then the bindings also need to be updated.
+The first step of this latest Vulkan Descriptor Management Blog Post is to create new shader variants and modify the descriptor info for the corresponding variables. The set index needs to be updated as above, and then the bindings also need to be updated.
 
 Yes, normally descriptor bindings are also calculated based on the descriptor-typing, which helps keep binding values low, but for SSO they have to be adjusted so that all descriptors for a shader can exist happily in a given set regardless of how many there are. This leads to the following awfulness:
 
