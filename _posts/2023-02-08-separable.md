@@ -7,7 +7,7 @@ A while ago, I blogged about how zink was leveraging `VK_EXT_graphics_pipeline_l
 
 The problem, of course, is that these paths were never taken. Who could have guessed: there were bugs.
 
-These bugs are now fixed, however, and so there should be **no more stuttering ever with zink**.
+These bugs are [now fixed](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21169), however, and so there should be **no more mid-frame stuttering ever with zink**.
 
 Period.
 
@@ -155,6 +155,7 @@ What it doesn't mean is that I've fixed stuttering for Tomb Raider (2013).
 
 At present, it's not possible to fix this using Vulkan. There is simply no way to precompile separate tessellation shaders, and so I again will say that the use of SSO is [why the fps is bad](https://gitlab.freedesktop.org/mesa/mesa/-/issues/8223).
 
-But the above-described handling does eliminate stuttering caused by simple instances of SSO, which mitigates *some* of the stuttering in Tomb Raider (2013). I'm not aware of other games that use this functionality, but if there are any, hopefully they don't use tessellation and are smoothed out by [this MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21197).
+But the above-described handling does eliminate stuttering caused by simple instances of SSO, which mitigates *some* of the stuttering in Tomb Raider (2013). I'm not aware of other games that use this functionality, but if there are any, hopefully they don't use tessellation and are smoothed out by [this MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21197)*.
+* Note: `ZINK_DESCRIPTORS=db` is currently required to enable this functionality
 
 We're getting there.
