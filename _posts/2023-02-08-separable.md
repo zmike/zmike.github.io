@@ -134,10 +134,10 @@ As a veteran user of descriptors and member-with-voting-rights of the Vulkan Des
 
 After a number of iterations on the concept, I settled on having a union in the `zink_gfx_program` struct which omits all of the mechanics for managing shader variants. The "separable" `zink_gfx_program` object functions like this:
 * app binds SSO program
-* create separable `zink_gfx_program` when possible
-* trigger async creation of normal `zink_gfx_program`
-* draw with separable `zink_gfx_program`
-* when `zink_gfx_program` is ready, replace separable object with real object
+* create separable `zink_gfx_program` stub when possible
+* trigger async creation of real `zink_gfx_program`
+* draw with separable `zink_gfx_program` stub
+* when real `zink_gfx_program` is ready, replace separable object with real object
 
 In this way, the precompiled SSO shaders can be fast-linked like a regular pipeline to avoid hitching, and the bespoke descriptor update path will be taken using more or less the same mechanics as the normal path to guarantee matching performance. Any non-shader-variant pipeline state changes can be handled without any new code, and everything "just works".
 
