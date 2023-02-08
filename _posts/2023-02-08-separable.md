@@ -161,6 +161,6 @@ But the above-described handling does eliminate hitching caused by simple instan
 Gaming on Zink: We're getting there.
 
 ## Bonus Content
-Notable RADV developer and pixel enthusiast Samuel Pitoiset doesn't blog, but he's just put up a [MR that enables shader caching with GPL](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21198).
+Notable RADV developer and pixel enthusiast Samuel Pitoiset doesn't blog, but he's just put up a [MR that enables non-GPL pipeline caching with RADV_PERFTEST=gpl](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/21198).
 
 Test it and report back.
