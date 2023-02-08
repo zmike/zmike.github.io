@@ -75,3 +75,50 @@ What GPL requires is a new descriptor layout that looks more like this:
 
 Note that leaving null sets here enables the bindless set to remain bound between SSO pipelines and regular pipelines, and no changes whatsoever need to be made to anything related to bindless. If there's one thing I don't want to touch (but am definitely going to fingerpaint all over within the next day or two), it's bindless descriptor handling.
 
+The first step is to create new shader variants and modify the descriptor info for the corresponding variables. The set index needs to be updated as above, and then the bindings also need to be updated.
+
+Yes, normally descriptor bindings are also calculated based on the descriptor-typing, which helps keep binding values low, but for SSO they have to be adjusted so that all descriptors for a shader can exist happily in a given set regardless of how many there are. This leads to the following awfulness:
+
+```c
+void
+zink_descriptor_shader_get_binding_offsets(const struct zink_shader *shader, unsigned *offsets)
+{
+   offsets[ZINK_DESCRIPTOR_TYPE_UBO] = 0;
+   offsets[ZINK_DESCRIPTOR_TYPE_SAMPLER_VIEW] = shader->bindings[ZINK_DESCRIPTOR_TYPE_UBO][shader->num_bindings[ZINK_DESCRIPTOR_TYPE_UBO] - 1].binding + 1;
+   offsets[ZINK_DESCRIPTOR_TYPE_SSBO] = offsets[ZINK_DESCRIPTOR_TYPE_SAMPLER_VIEW] + shader->bindings[ZINK_DESCRIPTOR_TYPE_SAMPLER_VIEW][shader->num_bindings[ZINK_DESCRIPTOR_TYPE_SAMPLER_VIEW] - 1].binding + 1;
+   offsets[ZINK_DESCRIPTOR_TYPE_IMAGE] = offsets[ZINK_DESCRIPTOR_TYPE_SSBO] + shader->bindings[ZINK_DESCRIPTOR_TYPE_SSBO][shader->num_bindings[ZINK_DESCRIPTOR_TYPE_SSBO] - 1].binding + 1;
+}
+```
+
+Given a shader, an array of per-set offsets is passed in, which then gets initialized based on the highest binding counts of previous sets to avoid collisions. These offsets are then appplied in a shader pass that looks like this:
+
+```c
+int set = nir->info.stage == MESA_SHADER_FRAGMENT;
+unsigned offsets[4];
+zink_descriptor_shader_get_binding_offsets(zs, offsets);
+nir_foreach_variable_with_modes(var, nir, nir_var_mem_ubo | nir_var_mem_ssbo | nir_var_uniform | nir_var_image) {
+   if (var->data.bindless)
+      continue;
+   var->data.descriptor_set = set;
+   switch (var->data.mode) {
+   case nir_var_mem_ubo:
+         var->data.binding = !!var->data.driver_location;
+         break;
+   case nir_var_uniform:
+      if (glsl_type_is_sampler(glsl_without_array(var->type)))
+         var->data.binding += offsets[1];
+      break;
+   case nir_var_mem_ssbo:
+      var->data.binding += offsets[2];
+      break;
+   case nir_var_image:
+      var->data.binding += offsets[3];
+      break;
+   default: break;
+   }
+}
+```
+
+The one stupid here is that `nir_var_uniform` includes actual uniform-type variables, so those have to be ignored.
+
+With this done, a shader can be considered SSO-capable.
