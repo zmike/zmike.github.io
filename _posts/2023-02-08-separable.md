@@ -121,4 +121,8 @@ nir_foreach_variable_with_modes(var, nir, nir_var_mem_ubo | nir_var_mem_ssbo | n
 
 The one stupid here is that `nir_var_uniform` includes actual uniform-type variables, so those have to be ignored.
 
-With this done, a shader can be considered SSO-capable.
+With this done, a shader's descriptors can be considered SSO-capable.
+
+But shaders are only half the equation, which means entirely novel and fascinating code has to be written to create `VkDescriptorLayout` objects, and `VkDescriptorSet` objects, and of course there's `VkDescriptorPool`, not to mention `VkDescriptorUpdateTemplate`...
+
+The blog post might go on infinitely if I actually did all that, so instead I've turned to our lord and savior, [VK_EXT_descriptor_buffer](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_descriptor_buffer.html). This allows me to reuse most of the existing descriptor buffer code for creating layouts, and then I can just write my descriptor data to an arbitrary bound buffer rather than create new pools/sets/templates.
