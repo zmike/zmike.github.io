@@ -39,3 +39,39 @@ Logically, supporting SSO from here should just mean expanding `all shaders` to 
 * fragment shader
 
 This pair of shader libraries can then be fast-linked into the `all shaders` intermediate library, and the usual codepaths can then be taken.
+
+It should be that easy.
+
+Right?
+
+## Obviously Not
+Because descriptors exist. And while we all hoped I'd be able to make it a year without writing Yet Another Blog Post About Vulkan Descriptor Models, we all knew it was only a matter of time before I succumbed to the inevitable.
+
+Zink, atop sane drivers, uses six descriptor sets:
+* uniforms
+* UBOs
+* samplers
+* SSBOs
+* storage images
+* bindless descriptors
+
+This is nice since it keeps the codepaths for handling each set working at a descriptor-type level, making it easy to abstract while remaining performant*.\
+* according to me
+
+When doing the pipeline library split above, however, this is not possible. The infinite wisdom of the GPL spec allows for independent sets between libraries, which is to say that library A can use set X, library B can use set Y, and the resulting pipeline will use sets X and Y.
+
+But it doesn't provide for any sort of merging of sets, which means that zink's entire descriptor architecture is effectively incompatible with GPL.
+
+## And That's Fine
+Totally fine. I wanted to write some brand new, bespoke, easily-breakable descriptor code anyway, and this gives me the perfect excuse to orphan some breathtakingly smart code in a way that will never be detected by CI.
+
+What GPL requires is a new descriptor layout that looks more like this:
+* vertex shader descriptors
+* fragment shader descriptors
+* null
+* null
+* null
+* bindless descriptors
+
+Note that leaving null sets here enables the bindless set to remain bound between SSO pipelines and regular pipelines, and no changes whatsoever need to be made to anything related to bindless. If there's one thing I don't want to touch (but am definitely going to fingerpaint all over within the next day or two), it's bindless descriptor handling.
+
