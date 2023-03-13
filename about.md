@@ -23,3 +23,4 @@ Also I tried Javascript once but never finished the project I was working on.
 ### Contact
 * zmike on OFTC IRC
 * [michael.blumenkrantz at gmail.com](mailto:michael.blumenkrantz at gmail.com)
+* [My twitter](https://twitter.com/discomfitor)
