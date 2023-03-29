@@ -9,6 +9,8 @@ My name is Mike Blumenkrantz, and I do code super good. Eventually. I heard that
 
 Everything here is written based on my current understandings of topics, and I won't be going back to edit if I've made mistakes (though I'm certainly interested in hearing about them if I've made any!). Similarly, code snippets posted may not reflect code that eventually gets merged, as I'm just blogging while I solve problems.
 
+At present, I work for Valve Corporation. They do games super good.
+
 ### More Information
 
 After completing a degree in Philosophy, I fell into a deep hole of Open Source contributions and have been trying to escape ever since. I've done work on EFL/Enlightenment, the Servo browser, Wayland protocol specifications, ccache, and Mesa drivers among other things.
