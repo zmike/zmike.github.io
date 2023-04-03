@@ -128,7 +128,7 @@ Now we're getting somewhere.
 
 But again, SGC enthusiasts have standards, and a simple 33% improvement from where things started is hardly worth mentioning here, so I apologize for wasting time.
 
-It's easy to keep finding these patterns:
+Continuing, it's easy to keep finding these patterns:
 
 ```
 n1: 64055264 0x57583BB: create_slab (ralloc.c:759)
