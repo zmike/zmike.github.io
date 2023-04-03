@@ -33,13 +33,13 @@ The process for this is simple: capture a (long) trace from a game and then run 
 
 The game in this case is, of course, Tomb Raider (2013), the home of our triangle princess. Starting a new game runs through a lot of intro cinematics and loads a lot of assets, and the memory usage is explosive. See what I did there? Yeah, jokes. On a Monday. Whew I need a vacation.
 
-But this is where I started:
+This is where I started:
 
 [![leak.png]({{site.url}}/assets/mem/leak.png)]({{site.url}}/assets/mem/leak.png)
 
 2.4 GiB memory allocated by the driver. In a modern, 64bit process, where we can make full use of the 64GiB memory in the device, this is not a problem and we can pretend to be a web browser using this much for a single tab. But here, from an era when memory management was important and everyone didn't have 128GiB memory available, that's not going to fly.
 
-## 🤔
+## Hm 🤔
 Initial analysis yielded the following pattern:
 
 ```
@@ -68,8 +68,8 @@ But I caught it, and it was [so minor](https://gitlab.freedesktop.org/mesa/mesa/
 
 This sort of thing will be fixed when zink is rewritten in Rust\*.
 
-## 🤔🤔
-Actual bugs fixed, what does memory utilization look like now?
+## Hm. 🤔🤔
+With an actual bug fixed, what does memory utilization look like now?
 
 [![baseline.png]({{site.url}}/assets/mem/baseline.png)]({{site.url}}/assets/mem/baseline.png)
 
