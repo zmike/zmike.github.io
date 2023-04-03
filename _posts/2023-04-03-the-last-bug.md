@@ -177,4 +177,13 @@ What happens if I apply that fix too?
 
 That's *another* 51.7% improvement.
 
-Overall a **79.9% reduction in memory usage**.
+Overall a **79.9% reduction in memory usage**. I'd expect similar (or greater?) savings for all games.
+
+The MR is [up now](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22266), and I expect it should be merged soon™.
+
+## Q&A
+**Doesn't this negatively affect performance?**\
+No.
+
+**But doesn't using more memory improve performance?**\
+No.
