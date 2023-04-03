@@ -112,7 +112,7 @@ It turns out that nothing is ever new, and all problems have been solved before.
 ## Serializing
 Serialized NIR is much more compact than object-form NIR. The memory footprint is an order of magnitude smaller, which begs the question why would anyone ever store NIR structs in memory.
 
-And I don't have an answer. One might try to make the argument that it makes shader variant creation easier, but then, it also needs to be said that shader variants require the NIR to be cloned anyway, which deserialization already does. There's `shader_info`, but that's small, unchanging, and can be easily copied. I think it's just convenience. And that's fine.
+I don't have an answer. One might try to make the argument that it makes shader variant creation easier, but then, it also needs to be said that shader variants require the NIR to be cloned anyway, which deserialization already (functionally) does. There's `shader_info`, but that's small, unchanging, and can be easily copied. I think it's just convenience. And that's fine.
 
 But it's not fine for me or zink.
 
@@ -126,7 +126,7 @@ Down another 500MiB to 1.6GiB total. That's another 24% reduction.
 
 Now we're getting somewhere.
 
-But again, SGC enthusiasts have standards, and a simple 33% improvement from where things started is hardly something worth mentioning.
+But again, SGC enthusiasts have standards, and a simple 33% improvement from where things started is hardly worth mentioning here, so I apologize for wasting time.
 
 It's easy to keep finding these patterns:
 
