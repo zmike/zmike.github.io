@@ -127,3 +127,54 @@ Down another 500MiB to 1.6GiB total. That's another 24% reduction.
 Now we're getting somewhere.
 
 But again, SGC enthusiasts have standards, and a simple 33% improvement from where things started is hardly something worth mentioning.
+
+It's easy to keep finding these patterns:
+
+```
+n1: 64055264 0x57583BB: create_slab (ralloc.c:759)
+n2: 64055264 0x5758579: gc_alloc_size (ralloc.c:789)
+n6: 61664176 0x575868C: gc_zalloc_size (ralloc.c:814)
+n2: 22299104 0x5F88CE6: nir_alu_instr_create (nir.c:696)
+n1: 19814432 0x60B3804: read_alu (nir_serialize.c:905)
+n1: 19814432 0x60B6713: read_instr (nir_serialize.c:1787)
+n1: 19814432 0x60B69BD: read_block (nir_serialize.c:1856)
+n1: 19814432 0x60B6D6A: read_cf_node (nir_serialize.c:1949)
+n2: 19814432 0x60B6EA0: read_cf_list (nir_serialize.c:1976)
+n1: 19195888 0x60B708A: read_function_impl (nir_serialize.c:2012)
+n1: 19195888 0x60B7C2A: nir_deserialize (nir_serialize.c:2219)
+n2: 19195888 0x67E754A: zink_shader_deserialize (zink_compiler.c:4820)
+n2: 19195888 0x6901899: zink_create_gfx_program (zink_program.c:1041)
+n1: 17921504 0x6901C6C: create_linked_separable_job (zink_program.c:1105)
+n1: 17921504 0x57647B7: util_queue_thread_func (u_queue.c:309)
+n1: 17921504 0x57CD7BC: impl_thrd_routine (threads_posix.c:67)
+n1: 17921504 0x4DDB14C: start_thread (in /usr/lib64/libc.so.6)
+n0: 17921504 0x4E5BBB3: clone (in /usr/lib64/libc.so.6)
+```
+
+This one is from the NIR copy that happens when linking shaders. Simple enough to compress.
+
+New graph:
+
+[![secondmem.png]({{site.url}}/assets/mem/secondmem.png)]({{site.url}}/assets/mem/secondmem.png)
+
+An *additional* 37.5% reduction to 1.0GiB? That's not too shabby. Now we're looking at an overall 58% reduction in memory utilization. This is the kind of improvement that SGC readers have come to expect.
+
+## S 🚀 A 🚀 M 🚀 U 🚀 E 🚀 L
+
+But wait! I was doing all this last week. And the start of this post was [a really long time ago]({{site.url}}/the-last-bug/), but wasn't there [something else]({{site.url}}/oom/) causing high memory utilization last week?
+
+That's right, these graphs are still being hit by the now-fixed RADV shader IR ballooning.
+
+What happens
+
+[![4.png]({{site.url}}/assets/spaghetti/4.png)]({{site.url}}/assets/spaghetti/4.png)
+
+What happens if I apply that fix too?
+
+[![final.png]({{site.url}}/assets/mem/final.png)]({{site.url}}/assets/mem/final.png)
+
+482.7MiB total memory usage.
+
+That's *another* 51.7% improvement.
+
+Overall a **79.9% reduction in memory usage**.
