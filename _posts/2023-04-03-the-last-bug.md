@@ -31,7 +31,7 @@ Judging by recent bug reports and the prevalance on 32bit games, it's pretty bad
 
 The process for this is simple: capture a (long) trace from a game and then run it through massif. [Sound familiar]({{site.url}}/oom/)?
 
-The game in this case, of course, Tomb Raider (2013), the home of our glorious triangle princess. Starting a new game runs through a lot of intro cinematics and loads a lot of assets, and the memory usage is explosive. See what I did there? Yeah, jokes. On a Monday. Whew I need a vacation.
+The game in this case is, of course, Tomb Raider (2013), the home of our triangle princess. Starting a new game runs through a lot of intro cinematics and loads a lot of assets, and the memory usage is explosive. See what I did there? Yeah, jokes. On a Monday. Whew I need a vacation.
 
 But this is where I started:
 
