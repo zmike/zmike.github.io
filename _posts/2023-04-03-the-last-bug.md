@@ -187,3 +187,6 @@ No.
 
 **But doesn't using more memory improve performance?**\
 No.
+
+**What will I do with the rest of my 256GiB RAM?**\
+Open two more browser tabs.
