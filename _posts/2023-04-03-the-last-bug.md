@@ -157,7 +157,7 @@ New graph:
 
 [![secondmem.png]({{site.url}}/assets/mem/secondmem.png)]({{site.url}}/assets/mem/secondmem.png)
 
-An *additional* 37.5% reduction to 1.0GiB? That's not too shabby. Now we're looking at an overall 58% reduction in memory utilization. This is the kind of improvement that SGC readers have come to expect.
+An additional 37.5% reduction to 1.0GiB? That's not too shabby. Now we're looking at an overall 58% reduction in memory utilization. This is the kind of improvement that SGC readers have come to expect.
 
 ## S 🚀 A 🚀 M 🚀 U 🚀 E 🚀 L
 
@@ -165,7 +165,7 @@ But wait! I was doing all this last week. And the start of this post was [a real
 
 That's right, these graphs are still being hit by the now-fixed RADV shader IR ballooning.
 
-What happens
+What hap
 
 [![4.png]({{site.url}}/assets/spaghetti/4.png)]({{site.url}}/assets/spaghetti/4.png)
 
