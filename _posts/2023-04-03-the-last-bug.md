@@ -62,4 +62,20 @@ Looking at the code, I found an obvious issue: when I [implemented precompile fo
 
 This is commonly called a leak.
 
-It wasn't caught before now because it *only* effects
+It wasn't caught before now because it *only* affects Tomb Raider and a handful of unit tests.
+
+But I caught it, and it was [so minor](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22175) that I already ("quietly") landed the fix without anyone noticing.
+
+This sort of thing will be fixed when zink is rewritten in Rust\*.
+
+## 🤔🤔
+Actual bugs fixed, what does memory utilization look like now?
+
+[![baseline.png]({{site.url}}/assets/mem/baseline.png)]({{site.url}}/assets/mem/baseline.png)
+
+Down 300MiB to 2.1GiB. A 12.5% reduction. Not that exciting.
+
+Certainly nothing that would warrant a SGC blog post.
+
+My readers have standards.
+
