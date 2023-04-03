@@ -22,7 +22,7 @@ OpenGL core profile version string: 4.6 (Core Profile) Mesa 20.3.0-devel (git-b2
 OpenGL core profile shading language version string: 4.60
 ```
 
-It's been about three months since I jumped into the project to learn more about graphics drivers, and zink has now gone from supporting GL 3.0 to GL 4.6 and GLES 3.2 compatibility*. Currently I'm at a [91% pass rate on piglit tests]({{site.url}}/assets/new3/index.html) while forcing ANV to do unsupported fp64 ops, which seems like a pretty good result.
+It's been about three months since I jumped into the project to learn more about graphics drivers, and zink has now gone from supporting GL 3.0 to GL 4.6 and GLES 3.2 compatibility*. Currently I'm at a [91% pass rate on piglit tests]({{site.url}}/assets/new3.tbz2) while forcing ANV to do unsupported fp64 ops, which seems like a pretty good result.
 
 **in my branch*
 
