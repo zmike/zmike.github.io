@@ -79,3 +79,51 @@ Certainly nothing that would warrant a SGC blog post.
 
 My readers have standards.
 
+[![2.png]({{site.url}}/assets/spaghetti/2.png)]({{site.url}}/assets/spaghetti/2.png)
+
+Time to expand some expandables.
+
+Here's another common pattern in the massif output:
+```
+n4: 317700704 0x57570DA: ralloc_size (ralloc.c:117)
+n1: 226637184 0x57583BB: create_slab (ralloc.c:759)
+n3: 226637184 0x5758579: gc_alloc_size (ralloc.c:789)
+n6: 215583536 0x575868C: gc_zalloc_size (ralloc.c:814)
+n7: 91059504 0x5F88CE6: nir_alu_instr_create (nir.c:696)
+n4: 35399104 0x5F90C49: nir_build_alu2 (nir_builder.c:162)
+n0: 12115376 in 29 places, all below massif's threshold (1.00%)
+n1: 11690848 0x67C90F1: nir_iadd (nir_builder_opcodes.h:1309)
+n2: 11690848 0x67CB493: nir_iadd_imm (nir_builder.h:719)
+n1: 6074016 0x67D691C: remove_bo_access_instr (zink_compiler.c:2013)
+n1: 6074016 0x67C89A9: nir_shader_instructions_pass (nir_builder.h:88)
+n1: 6074016 0x67D6DB2: remove_bo_access (zink_compiler.c:2044)
+n1: 6074016 0x67E4827: zink_shader_create (zink_compiler.c:4409)
+n1: 6074016 0x690443E: zink_create_gfx_shader_state (zink_program.c:1885)
+n1: 6074016 0x623484B: util_live_shader_cache_get (u_live_shader_cache.c:141)
+n1: 6074016 0x69044CC: zink_create_cached_shader_state (zink_program.c:1900)
+```
+
+This is some `ralloc` usage from zink's shader creation. In short, the in-memory shader IR is...
+
+Hold on. [Doesn't this sound familiar]({{site.url}}/oom/)?
+
+It turns out that nothing is ever new, and all problems have been solved before. By applying the exact same solution, we're gonna start to see some big movement in these numbers.
+
+## Serializing
+Serialized NIR is much more compact than object-form NIR. The memory footprint is an order of magnitude smaller, which begs the question why would anyone ever store NIR structs in memory.
+
+And I don't have an answer. One might try to make the argument that it makes shader variant creation easier, but then, it also needs to be said that shader variants require the NIR to be cloned anyway, which deserialization already does. There's `shader_info`, but that's small, unchanging, and can be easily copied. I think it's just convenience. And that's fine.
+
+But it's not fine for me or zink.
+
+Thus, I began converting all the NIR objects I was keeping around (and there's *lots*) to serialized form. The first task was tackling `zink_shader::nir`, the object that exists for every shader created in the driver. How much would this help?
+
+[![firstmem.png]({{site.url}}/assets/mem/firstmem.png)]({{site.url}}/assets/mem/firstmem.png)
+
+Down another 500MiB to 1.6GiB total. That's another 24% reduction.
+
+[![3.png]({{site.url}}/assets/spaghetti/3.png)]({{site.url}}/assets/spaghetti/3.png)
+
+Now we're getting somewhere.
+
+But again, SGC enthusiasts have standards, and a simple 33% improvement from where things started is hardly something worth mentioning.
