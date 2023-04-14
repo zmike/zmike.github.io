@@ -40,7 +40,7 @@ or
   ◦ if the output is declared in a mesh shader as an OpTypeArray with an Element Type equivalent
 to the OpType* declaration of the input, and neither is a structure member; or
   ◦ if the input is decorated with PerVertexKHR, and is declared in a fragment shader as an
-1240OpTypeArray with an Element Type equivalent to the OpType* declaration of the output, and
+OpTypeArray with an Element Type equivalent to the OpType* declaration of the output, and
 neither the input nor the output is a structure member; or
   ◦ if in any other case they are declared with an equivalent OpType* declaration.
 • If both are structures and every member has an interface match.
@@ -86,7 +86,7 @@ Alright, so it's not in the test plan, but I can add it, and that's not a proble
 
 [![clown/5.png]({{site.url}}/assets/clown/5.png)]({{site.url}}/assets/clown/5.png)
 
-It's more broken than [AMD's VK_EXT_robustness2 handling](https://github.com/GPUOpen-Drivers/AMDVLK/issues/321), but I'm sure it'll be easy to fix.
+It's more broken than [AMD's VK_EXT_robustness2 handling](https://gitlab.freedesktop.org/mesa/mesa/-/issues/8812), but I'm sure it'll be easy to fix.
 
 [![clown/6.png]({{site.url}}/assets/clown/6.png)]({{site.url}}/assets/clown/6.png)
 
