@@ -220,7 +220,7 @@ Tada, now the shaders are broken.
 Hopefully there will be some, but at present I've had to work around this issue in zink by creating multiple separate shader variants with different locations to ensure everything matches up.
 
 ## Fixing
-I made an attempt at fixing this, but it was unsuccessful. I then contacted the great Mesa compiler sage, Timothy Arceri, and he provided me with a history lesson from The Before Times. Apparently this NIR pass was originally written for GLSL and lived in mesa/st. Then Vulkan drivers wanted to use it, so it was moved to common code. And because all pipelines were monolithic and could do link-time optimizations, there were no problems.
+I made an attempt at fixing this, but it was unsuccessful. I then contacted the great Mesa compiler sage, Timothy Arceri, and he provided me with a history lesson from The Before Times. Apparently this NIR pass was originally written for GLSL and lived in mesa/st. Then Vulkan drivers wanted to use it, so it was moved to common code. Since all pipelines were monolithic and could do link-time optimizations, there were no problems.
 
 But now LTO isn't always possible, and so we are here.
 
