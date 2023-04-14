@@ -13,6 +13,8 @@ With that said, I'm looking at ways to bring comments back. I've seen a number o
 
 If anyone has other ideas, [post here](https://github.com/zmike/zmike.github.io/pull/1) about it.
 
+EDIT: Thanks to a [brilliant suggestion](https://github.com/zmike/zmike.github.io/pull/1#issuecomment-1508645281) by the *other* Rhys Perry, I've activated [giscus](https://giscus.app/) for comments. Took about 2 mins. Does it work? We'll see.
+
 ## Main Topic
 After this boring procedural opening, let's get to something exciting that nobody blogs about: shader linking.
 
