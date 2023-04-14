@@ -139,13 +139,19 @@ void main()
 
 We expect that the vertex attribute color will propagate through to the fragment output color, and that's what happens.
 
+Vertex shader outputs:
+* `o_color`, driver_location=0
+
+Fragment shader inputs:
+* `i_color`, driver_location=0
+
 Let's modify it slightly:
 
 ```glsl
 vertex shader
 layout(location = 0) in highp vec4 i_color;
 layout(location = 0) out highp vec2 o_color;
-layout(location = 1) out highp vec2 o_color2;
+layout(location = 2) out highp vec2 o_color2;
 void main()
 {
    gl_Position = vec4(some value);
@@ -154,13 +160,21 @@ void main()
 
 fragment shader
 layout(location = 0) in highp vec2 i_color;
-layout(location = 1) in highp vec2 i_color2;
+layout(location = 2) in highp vec2 i_color2;
 layout(location = 0) out highp vec4 o_color;
 void main()
 {
     o_color = vec4(i_color.xy, i_color2.xy);
 }
 ```
+
+Vertex shader outputs:
+* `o_color`, driver_location=0
+* `o_color2`, driver_location=1
+
+Fragment shader inputs:
+* `i_color`, driver_location=0
+* `i_color2`, driver_location=1
 
 No problems yet.
 
@@ -192,13 +206,13 @@ void main()
 In a monolithic pipeline this works just fine: `lol` is optimized out during linking since it isn't read by the fragment shader, and location indices are then assigned correctly. But in unlinked shader objects (and with non-LTO EXT_graphics_pipeline_library), there is no linking. Which means `lol` isn't optimized out. And what happens once `nir_assign_io_var_locations` is run?
 
 Vertex shader outputs:
-* `o_color`, location=0
-* `lol`, location=1
-* `o_color2`, location=2
+* `o_color`, driver_location=0
+* `lol`, driver_location=1
+* `o_color2`, driver_location=2
 
 Fragment shader inputs:
-* `o_color`, location=0
-* `o_color2`, location=1
+* `i_color`, driver_location=0
+* `i_color2`, driver_location=1
 
 Tada, now the shaders are broken.
 
