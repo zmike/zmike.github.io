@@ -64,3 +64,8 @@ But what happens if pipelines go away?
 ## Uh-oh
 Everyone saw this coming as soon as the blog loaded. With shader objects, it now becomes possible to create unlinked shaders with mismatched outputs. The shader code is correct still, the Vulkan API usage to create the shaders is correct, but is the execution still going to be correct?
 
+[![cts.png]({{site.url}}/assets/cts.png)]({{site.url}}/assets/cts.png)
+
+Right. CTS. So let's check...
+
+Okay, 
