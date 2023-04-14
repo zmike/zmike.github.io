@@ -102,7 +102,7 @@ The Vulkan drivers affected by this issue:
 * Lavapipe
 * Turnip
 
-Basically everyone except ANV. But also maybe ANV since the extension isn't implemented there.
+Basically everyone except ANV. But also maybe ANV since the extension isn't implemented there. And probably all the proprietary drivers too since there's no CTS.
 
 Great.
 
