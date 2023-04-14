@@ -55,7 +55,7 @@ Today's topic is this one line a short ways below:
 
 `Shaders can declare and write to output variables that are not declared or read by the subsequent stage.`
 
-This allows e.g., a vertex shader to write an output variable that a fragment shader doesn't read. Nobody has ever seen a problem with this in Vulkan. The reason is *pipelines*. Yes, that concept about which Khronos has recently made [questionable statements](https://www.khronos.org/blog/you-can-use-vulkan-without-pipelines-today), courtesy of Nintendo, based on the new [VK_EXT_shader_object](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_shader_object.html) extension. In a pipeline, all the shaders get *linked*, which means the compiler can delete these unused variables. Or, if not delete, then it can at least use the explicit location info for variables to ensure that I/O is matched up properly.
+This allows e.g., a vertex shader to write an output variable that a fragment shader doesn't read. Nobody has ever seen a problem with this in Vulkan. The reason is *pipelines*. Yes, that concept about which Khronos has recently made [questionable statements](https://www.khronos.org/blog/you-can-use-vulkan-without-pipelines-today), courtesy of Nintendo, based on the new [VK_EXT_shader_object](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_shader_object.html) extension. In a (monolithic) pipeline, all the shaders get *linked*, which means the compiler can delete these unused variables. Or, if not delete, then it can at least use the explicit location info for variables to ensure that I/O is matched up properly.
 
 And because of pipelines, everything works great.
 
