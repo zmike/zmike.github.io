@@ -203,7 +203,7 @@ void main()
 }
 ```
 
-In a monolithic pipeline this works just fine: `lol` is optimized out during linking since it isn't read by the fragment shader, and location indices are then assigned correctly. But in unlinked shader objects (and with non-LTO EXT_graphics_pipeline_library), there is no linking. Which means `lol` isn't optimized out. And what happens once `nir_assign_io_var_locations` is run?
+In a linked pipeline this works just fine: `lol` is optimized out during linking since it isn't read by the fragment shader, and location indices are then assigned correctly. But in unlinked shader objects (and with non-LTO EXT_graphics_pipeline_library), there is no linking. Which means `lol` isn't optimized out. And what happens once `nir_assign_io_var_locations` is run?
 
 Vertex shader outputs:
 * `o_color`, driver_location=0
