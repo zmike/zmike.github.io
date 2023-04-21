@@ -48,7 +48,7 @@ I know what you're thinking: Mike, you're not gonna get me again. You can't tric
 
 [![amdvlk1.png]({{site.url}}/assets/amdvlk1.png)]({{site.url}}/assets/amdvlk1.png)
 
-Incredible, they're finally supporting that one extension [I've been saying]({{site.url}}/sp33d2) is crucial to having good performance. Isn't that ama—
+Incredible, they're finally supporting that one extension [I've been saying]({{site.url}}/sp33d2) is crucial for having good performance. Isn't that ama—
 
 [![amdvlk2.png]({{site.url}}/assets/amdvlk2.png)]({{site.url}}/assets/amdvlk2.png)
 
