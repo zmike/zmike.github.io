@@ -36,4 +36,22 @@ I realize the latter suggestion seems meme-adjacent, but so long as you're on Me
 You can't run a full desktop on zink yet, but you can now play most games at native-ish performance.
 
 ## Lastly
-I've made mention of Big Triangle a number of times on the blog. 
+I've made mention of Big Triangle a number of times on the blog. Everyone's had a good chuckle, and we're all friends, so we know it's an inside joke.
+
+But what if I told you I was serious each and every time I said it?
+
+What if Big Triangle really does exist?
+
+I know what you're thinking: Mike, you're not gonna get me again. You can't trick me this time. I've seen this coming for—
+
+**CHECK OUT THESE AMDVLK RELEASE NOTES!**
+
+[![amdvlk1.png]({{site.url}}/assets/amdvlk1.png)]({{site.url}}/assets/amdvlk1.png)
+
+Incredible, they're finally supporting that one extension [I've been saying]({{site.url}}/sp33d2) is crucial to having good performance. Isn't that ama—
+
+[![amdvlk2.png]({{site.url}}/assets/amdvlk2.png)]({{site.url}}/assets/amdvlk2.png)
+
+And they've even added an app profile for zink! I assume they're going to be slowly rolling out all the features zink needs in a controlled manner since zink is a known good-citizen when it comes to behaving within the boundaries of—
+
+[![amdvlk3.png]({{site.url}}/assets/amdvlk3.png)]({{site.url}}/assets/amdvlk3.png)
