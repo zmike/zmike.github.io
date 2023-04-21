@@ -55,3 +55,7 @@ Incredible, they're finally supporting that one extension [I've been saying]({{s
 And they've even added an app profile for zink! I assume they're going to be slowly rolling out all the features zink needs in a controlled manner since zink is a known good-citizen when it comes to behaving within the boundaries of—
 
 [![amdvlk3.png]({{site.url}}/assets/amdvlk3.png)]({{site.url}}/assets/amdvlk3.png)
+
+...
+
+[![7.png]({{site.url}}/assets/clown/7.png)]({{site.url}}/assets/clown/7.png)
