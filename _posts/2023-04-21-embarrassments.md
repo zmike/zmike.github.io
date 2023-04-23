@@ -9,7 +9,7 @@ This time I decided to try out a shiny new Intel Arc A770 that was left by my fo
 
 The Dota2 performance? Surprisingly good. I was getting 100+ FPS in all the places I expected to have good perf and 4-5 FPS in all the places I expected to have bad perf.
 
-The GL performace? Also surprisingly good\*. Some quick screenshots:
+The GL performance? Also surprisingly good\*. Some quick screenshots:
 
 DOOM 2016 on Iris:
 
