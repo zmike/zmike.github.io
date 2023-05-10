@@ -61,4 +61,7 @@ And when a problem appears that cannot be mitigated with any of the above, we mu
 
 * `validation` enables VVL at runtime, which will (hopefully) explain how I fucked up
 
-If this doesn't fix your problem, 
+If this doesn't fix your problem,
+
+## Step 5: Acceptance
+You should still file a ticket if you find an issue. But if any of the above provided some additional info, providing that can reduce the time it takes to resolve that issue.
