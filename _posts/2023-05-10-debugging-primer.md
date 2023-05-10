@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Release Pending
 
@@ -7,7 +7,7 @@ If nothing goes wrong, Mesa 23.1 will ship in the next few hours, which means th
 
 And it's a [big one]({{site.url}}/branched/).
 
-Since I'm expecting lots of people will be testing zink for the first time now that it should be usable for most things, I thought it would be useful to have a post about debugging zink. Or maybe not debugging but issue reporting. That sounds right.
+Since I'm expecting lots of people will be testing zink for the first time now that it should be usable for most things, I thought it would be useful to have a post about debugging zink. Or maybe not debugging but issue reporting. Yeah that sounds right.
 
 ## How2Debug
 Zink is a complex driver. It has many components:
@@ -18,7 +18,7 @@ Zink is a complex driver. It has many components:
 * ntv compiler
 * Vulkan driver underneath
 
-There are many systems at play when zink is running, any malfunctions in any of them may lead to bugs. If you encounter a bug, there are a number of steps you can take to try mitigating its effect or diagnosing it.
+There are many systems at play when zink is running, and malfunctions in any of them may lead to bugs. If you encounter a bug, there are a number of steps you can take to try mitigating its effect or diagnosing it.
 
 Let's dig in.
 
@@ -39,12 +39,12 @@ Zink tries a lot of optimizations. Sometimes they can cause problems. One of the
 `mesa_glthread=false GALLIUM_THREAD=0 ZINK_DEBUG=flushsync,noreorder,norp MESA_LOADER_DRIVER_OVERRIDE=zink <command>`
 
 * `noreorder` disables command reordering, which will probably fix any issue
-* `norp` disables renderpass optimization, which is only enabled by default on tiling GPUs so it's definitely not affecting anyone reading this
+* `norp` disables renderpass optimization, which is only enabled by default on tiling GPUs so it's definitely not impacting anyone reading this
 
-If none of the above affects your problem, then ~~you're probably screwed~~it's time to move on to the next step.
+If none of the above affects your problem, then ~~you're probably screwed~~ it's time to move on to the next step.
 
 ## Step 3: Synchronization
-Zink tries to obey Vulkan synchronization rules. Sometimes these rules are difficult to understand and confusing to implement. One of the first steps I take when I encounter an issue that isn't fixed by the above is to ~~cry a lot~~check out ~~[this blog post](https://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/)~~the synchronization. Manually inspecting this is hard, so there's only a big hammer:
+Zink tries to obey Vulkan synchronization rules. Sometimes these rules are difficult to understand and confusing to implement. One of the first steps I take when I encounter an issue that isn't fixed by the above is to ~~cry a lot~~ check out ~~[this blog post](https://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/)~~ the synchronization. Manually inspecting this is ~~impossible~~ hard, so there's only a big hammer:
 
 `mesa_glthread=false GALLIUM_THREAD=0 ZINK_DEBUG=flushsync,noreorder,norp,sync MESA_LOADER_DRIVER_OVERRIDE=zink <command>`
 
@@ -55,7 +55,7 @@ If none of the above affects your problem, then I totally have more ideas, and I
 ## Step 4: Pray
 Zink tries to conform to Vulkan API rules. Sometimes these rules are obfuscated by a trillion Valid Usage statements that nobody has time to read or the mental capacity to comprehend in their totality.
 
-And when a problem appears that cannot be mitigated with any of the above, we must pray to our lord and savior, the [Vulkan Validation Layer](https://github.com/KhronosGroup/Vulkan-ValidationLayers/) for guidance:
+And when a problem appears that cannot be mitigated with any of the above, we must pray to our lord and savior the [Vulkan Validation Layer](https://github.com/KhronosGroup/Vulkan-ValidationLayers/) for guidance:
 
 `mesa_glthread=false GALLIUM_THREAD=0 ZINK_DEBUG=flushsync,noreorder,norp,sync,validation MESA_LOADER_DRIVER_OVERRIDE=zink <command>`
 
@@ -64,4 +64,4 @@ And when a problem appears that cannot be mitigated with any of the above, we mu
 If this doesn't fix your problem,
 
 ## Step 5: Acceptance
-You should still file a ticket if you find an issue. But if any of the above provided some additional info, providing that can reduce the time it takes to resolve that issue.
+You should file a ticket if you find an issue. But if any of the above provided some additional info, providing that can reduce the time it takes to resolve that issue.
