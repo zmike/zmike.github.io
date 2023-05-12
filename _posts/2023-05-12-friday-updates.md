@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 # Team Updates
 A number of members of my team at Valve don't blog, and I like to bring visibility to their work when I can. Here's a quick roundup of what some of them have been doing, in no particular order.
