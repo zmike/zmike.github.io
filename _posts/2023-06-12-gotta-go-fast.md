@@ -47,14 +47,14 @@ Let's see what's going on with perf:
 
 And, just at a glance, the problem area:
 
-[![et-legacy.png]({{site.url}}/assets/et-legacy.png)]({{site.url}}/assets/et-legacy.png)
+[![et-problem.png]({{site.url}}/assets/et-problem.png)]({{site.url}}/assets/et-problem.png)
 
 Well that's not great.
 
 # ET Phone Faster
 Taking out a magnifying glass, this resolves into some more definite problem areas:
 
-[![et-legacy2.png]({{site.url}}/assets/et-legacy2.png)]({{site.url}}/assets/et-legacy2.png)
+[![et-problem2.png]({{site.url}}/assets/et-problem2.png)]({{site.url}}/assets/et-problem2.png)
 * PS epilog lookup (AKA dynamic blend)
 * some other stuff
 
