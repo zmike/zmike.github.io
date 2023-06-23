@@ -47,5 +47,34 @@ As I've been tracking in [this issue](https://gitlab.freedesktop.org/mesa/mesa/-
 
 For those of you unwilling to sort through your memorized table of frame timings, an application rendering at 60 fps must render frames in 16,666,667 nanoseconds.
 
-This is over 400 times faster.
+That's is over 400 times faster.
+
+To enumerate the slow points I found at a high level:
+* `vkGetPhysicalDeviceSurfaceCapabilitiesKHR` is doing unlimited X11 roundtrips
+* present is doing X11 roundtrips
+* WSI common code is redoing (relatively) expensive ops on every acquire/present
+
+Again, these aren't things that affect most apps/games, but when the frametime diff is 100,000ns vs 40,000ns, these add up to a majority of that difference.
+
+## Brass Tacks: Surface Geometry
+Going in order, part of the problem is the split nature of zink's WSI handling. The Gallium DRI frontend runs in a different thread from the zink driver thread, and it has its own integration with the API state tracker. This is fine for other drivers, as it lets relatively expensive WSI operations (e.g., display server roundtrips) occur without impeding the driver thread.
+
+But how does this work with zink?
+
+Zink uses the kopper interface, which is just a bridge between the Gallium DRI frontend and Vulkan WSI. In short, when DRI would directly call through to acquire/present, it instead handwaves some API methods at zink to maybe do the same thing.
+
+One of these operations is updating the drawable geometry to determine the sizing of the framebuffer. In VK parlance, this is the image extents returned by `vkGetPhysicalDeviceSurfaceCapabilitiesKHR`.
+
+Now, looking at the other side, usually the DRI frontend (e.g., with RadeonSI) uses X11 configure notify events to determine the geometry, which lets it work asynchronously without roundtripping. Unfortunately, this doesn't work so well for zink, as there's no guarantee the underlying Vulkan driver will have the same idea of geometry. Thus, any time geometry is updated, the DRI frontend has to call through to zink, which has to call through to Vulkan, which then returns the geometry.
+
+And if the Vulkan driver performs a display server roundtrip to get that geometry, it becomes very slow at extreme framerates.
+
+The solution here is obvious: make Mesa's WSI avoid roundtrips when polling geometry. This doesn't fix non-Mesa drivers, but it does provide a substantial (~10%) boost to performance for the ones affected.
+
+## Brass Tacks: Presentation
+Another big difference between Gallium DRI and VK WSI is present handling.
+
+In DRI, presentation happens.
+
+In VK WSI, the event queue is flushed, and then presentation happens, then the result of presentation is waited on and checked, and the value is returned to the driver.
 
