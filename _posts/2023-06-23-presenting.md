@@ -1,9 +1,9 @@
 ---
-published: false
+published: true
 ---
 # When perf Is Too Slow
 
-Keen-eyed readers of the blog will have noticed over the past couple weeks will have noticed an obvious omission in my furious benchmark-related handwaving.
+Keen-eyed readers of the blog will have noticed over the past couple weeks an obvious omission in my furious benchmark-related handwaving.
 
 I didn't mention glmark2.
 
@@ -23,7 +23,7 @@ I set out to investigate this using the case with the biggest perf delta, which 
 
 Brutal.
 
-Naturally I went to my standby for profiling `perf`. I found some stuff, and I fixed it all, and surprise surprise the numbers didn't change. Clearly there was some blocking going on that was affecting perf. Could the flamegraph tools for `perf` highlight this issue for me?
+Naturally I went to my standby for profiling, `perf`. I found some stuff, and I fixed it all, and surprise surprise the numbers didn't change. Clearly there was some blocking going on that was affecting the frames. Could the flamegraph tools for `perf` highlight this issue for me?
 
 No.
 
@@ -47,7 +47,7 @@ As I've been tracking in [this issue](https://gitlab.freedesktop.org/mesa/mesa/-
 
 For those of you unwilling to sort through your memorized table of frame timings, an application rendering at 60 fps must render frames in 16,666,667 nanoseconds.
 
-That's is over 400 times faster.
+glmark2 is over 400 times faster.
 
 To enumerate the slow points I found at a high level:
 * `vkGetPhysicalDeviceSurfaceCapabilitiesKHR` is doing unlimited X11 roundtrips
@@ -86,12 +86,12 @@ Yes, but also no. On one hand, certain returns are important so the app can dete
 
 So I deleted it.
 
-That was another ~60% perf boost.
+That was a ~60% perf boost.
 
 ## Brass Tacks: Reducing Redundant WSI Operations
 The final frontier of WSI perf is syncfile operations. TL;DR Vulkan WSI is explicit, which means there's a file descriptor fence passed back and forth between kernel and application to signal when a swapchain image can be used/reused, and all of these operations have costs. These costs aren't typically visible to applications, but when 4000ns can be a 10% performance boost, they start to become noticeable.
 
-Now one thing to note here is that the DRI frontend uses implicit sync, which means drivers are allowed to do some tricks to avoid extra operations related to swapchain fencing. VK WSI, however, uses explicit sync, which means all these tricks are ~~totally legal~~NOT AT ALL LEGAL. This means that, in a sense, VK WSI will always be slightly slower. Probably less than 10,000ns per frame, but, again, this is significant when running at extreme framerates.
+Now one thing to note here is that the DRI frontend uses implicit sync, which means drivers are allowed to do some tricks to avoid extra operations related to swapchain fencing. VK WSI, however, uses explicit sync, which means all these tricks are ~~still totally legal~~NOT AT ALL LEGAL. This means that, in a sense, VK WSI will always be slightly slower. Probably less than 10,000ns per frame, but, again, this is significant when running at extreme framerates.
 
 The only operation I could sensibly eliminate from the presentation path was the dmabuf semaphore export. Semaphores are automatically reset after they are signaled, so this means there's no need to continually export the same semaphore for every present.
 
@@ -105,7 +105,7 @@ VK WSI always uses three images.
 Switching to four swapchain images for this exe uncapped the perf a bit further.
 
 # Results
-Nobody's expecting any huge gains here, but that's obviously a lie since the only reason anyone reads my blog is for the huge gains.
+Nobody's expecting any huge gains here, but that's obviously a lie since the only reason anyone comes to SGC is for the huge gains.
 
 And huge gains there are.
 
