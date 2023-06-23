@@ -18,8 +18,8 @@ The thing about glmark2 is it's just a CPU benchmark of drivers at this point. N
 Yes, tens of thousands.
 
 I set out to investigate this using the case with the biggest perf delta, which was `build:use-vbo=true`:
-* **RadeonSI** - 23,000fps
-* **Zink** - 10,000fps
+* **RadeonSI** - 25,318fps
+* **Zink** - 10,419fps
 
 Brutal.
 
@@ -76,5 +76,46 @@ Another big difference between Gallium DRI and VK WSI is present handling.
 
 In DRI, presentation happens.
 
-In VK WSI, the event queue is flushed, and then presentation happens, then the result of presentation is waited on and checked, and the value is returned to the driver.
+In VK WSI, the event queue is flushed, and then presentation happens, then the result of presentation is waited on and checked, and the value is returned to the app.
 
+It's a subtle difference, but I'm sure my genius-level readers can pick up on it.
+
+The reasoning for the discrepancy is clear: [vkQueuePresentKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkQueuePresentKHR.html) has a return value, which means it *can* return values to indicate various failure/suboptimal modes. But is this a good idea?
+
+Yes, but also no. On one hand, certain returns are important so the app can determine when to reallocate the swapchain or make other, related changes. On the other hand, doing all this extra work impacts WSI performance by a substantial amount, and none of it is truly useful to applications since the same values can be returned by acquire.
+
+So I deleted it.
+
+That was another ~60% perf boost.
+
+## Brass Tacks: Reducing Redundant WSI Operations
+The final frontier of WSI perf is syncfile operations. TL;DR Vulkan WSI is explicit, which means there's a file descriptor fence passed back and forth between kernel and application to signal when a swapchain image can be used/reused, and all of these operations have costs. These costs aren't typically visible to applications, but when 4000ns can be a 10% performance boost, they start to become noticeable.
+
+Now one thing to note here is that the DRI frontend uses implicit sync, which means drivers are allowed to do some tricks to avoid extra operations related to swapchain fencing. VK WSI, however, uses explicit sync, which means all these tricks are ~~totally legal~~NOT AT ALL LEGAL. This means that, in a sense, VK WSI will always be slightly slower. Probably less than 10,000ns per frame, but, again, this is significant when running at extreme framerates.
+
+The only operation I could sensibly eliminate from the presentation path was the dmabuf semaphore export. Semaphores are automatically reset after they are signaled, so this means there's no need to continually export the same semaphore for every present.
+
+[![honest-work.png]({{site.url}}/assets/honest-work.png)]({{site.url}}/assets/honest-work.png)
+
+## Brass Tacks: Also Swapchain Size
+The DRI frontend uses a swapchain size of four images when using IMMEDIATE and the swap mode returned by the server is 'flip'.
+
+VK WSI always uses three images.
+
+Switching to four swapchain images for this exe uncapped the perf a bit further.
+
+# Results
+Nobody's expecting any huge gains here, but that's obviously a lie since the only reason anyone reads my blog is for the huge gains.
+
+And huge gains there are.
+
+My new glmark2 results:
+* **RadeonSI** - 25,318fps
+* **Zink** - 16,998fps
+
+Still nowhere near caught up, but this cuts roughly 40,000ns (~40%) off zink's frametime, which is big enough to qualify for a mention.
+
+# Unethical Gains
+These changes are still a bit experimental. I've tested them locally and gotten good results without issues in all scenarios, but that doesn't mean they're "correct". VK WSI is used by a lot of applications in a lot of ways, so it's possible there's scenarios I haven't considered.
+
+If you're interested in testing, the [MR is here](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23835).
