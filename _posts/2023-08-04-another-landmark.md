@@ -13,7 +13,7 @@ Truly a masterpiece that's impossible to improve upon; don't @ me.
 
 # But Now
 
-Time has passed. Almost a year, some would say. It's time to evaluate the veracity of that slide.
+Time has passed. Almost a year, some would say. Is that slide still accurate?
 
 # For Those Of You Not Following Closely
 
