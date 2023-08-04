@@ -15,6 +15,8 @@ Truly a masterpiece that's impossible to improve upon; don't @ me.
 
 Time has passed. Almost a year, some would say. Is that slide still accurate?
 
+Anyone who knows anything about journalism knows that the answer to all rhetorical questions on the internet is always the same.
+
 # For Those Of You Not Following Closely
 
 A couple weeks ago, Collabora's Igor Torrente [put up an MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/24222) that slid under the rader for most people. Not me, of course, because as a responsible maintainer I carefully review every character in every line of code in every file for every patch in every MR tagged with my driver(s).
