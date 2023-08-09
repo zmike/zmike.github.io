@@ -96,4 +96,4 @@ impl main {
 }
 ```
 
-The latter form here is called "lowered" i/o.
+The latter form here is called "lowered" i/o: the derefs for explicit variables have been lowered to intrinsics corresponding to the operation being performed.
