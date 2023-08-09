@@ -122,4 +122,12 @@ I'll save the details of this for some deep dive posts to pad out my monthly blo
 
 The short answer, for that one person who is actively eyeballs-deep in zink shader refactoring, is that it shouldn't have any effect whatsoever. The zink passes that use explicit derefs for i/o are mostly at the end of the compilation chain, and derefs will have been added back in time to avoid needing to touch anything there.
 
-Since this refactor is a tough concept to grasp, I'm providing some flowcharts since it's been far too long since the blog has seen any.
+Since this refactor is a tough concept to grasp, I'm providing some flowcharts since it's been far too long since the blog has seen any. This is a basic overview of the zink shader compilation process:
+
+[![](https://mermaid.ink/img/pako:eNpdkUFLAzEQhf_KkKN0KXjMQaEVvdQibqmC8TDtTtdhk-wym12opf_dbGKxOKfwvhd48-ak9m1FSqs-YKAHxlrQFeOt8RDn4-YTiuIOPIuGp1W5gmXrOrYkmUc98W_2TTSgtTy4jCYpsfVmq2FB7GsoHUrIOKqJ9h3LqOH9cXEPb-z3lHGSk2EcbINew1IoBnzhjiz7X1dmV7Z5CrrdrK_5_JJydww0bavhldD-W-UCkzMIo68t9Rp2Mo3xaqYciUOuYlmn6Y9R4YscGaXjs0JpjDL-HH04hLY8-r3SQQaaqaGr_rpV-oC2jypVHFp5zu2nI5x_AOpxgAI?type=png)](https://mermaid.live/edit#pako:eNpdkUFLAzEQhf_KkKN0KXjMQaEVvdQibqmC8TDtTtdhk-wym12opf_dbGKxOKfwvhd48-ak9m1FSqs-YKAHxlrQFeOt8RDn4-YTiuIOPIuGp1W5gmXrOrYkmUc98W_2TTSgtTy4jCYpsfVmq2FB7GsoHUrIOKqJ9h3LqOH9cXEPb-z3lHGSk2EcbINew1IoBnzhjiz7X1dmV7Z5CrrdrK_5_JJydww0bavhldD-W-UCkzMIo68t9Rp2Mo3xaqYciUOuYlmn6Y9R4YscGaXjs0JpjDL-HH04hLY8-r3SQQaaqaGr_rpV-oC2jypVHFp5zu2nI5x_AOpxgAI)
+
+It's a simple process that anyone can understand.
+
+This is the new process side-by-side with the old one for comparison:
+
+[![](https://mermaid.ink/img/pako:eNp9km9P2zAQxr_KyS8nqkh76RdDI-VPtFIq2rENgiInObpTHTu62GEF8d1xbSpQte1eWfd7_Nh67p5FY1sUUgxOOZySWrPqJuPn0kCou0_3MJl8AUMs4Xy2nEFuu540cuKhH_kTmU0QKK3JdwntWpHNVzcSTpDMGpadYpdw6EY69MSjhJ9nJ8fwg0yDB7e1fUSuyO4tpr6rk2RPoozxgdaesbLeVeEblfuN1aiYVK1xkMH6SXHL2-wCPdPgqBmyBast8pDc_m8Q36hVs6mcrfBPr6khF391aRnhzSk7-55_K-bnkM-KxbRYrr7O81O4Pqj03l_M3tMqBigcXI3I8Avd8b8TO71NLPYiHb3eKCMhZwzzXFCPmsxbqIl9kGVxrjer-Uee7Ydabx3ulkPCNSp9MPk9jEoXYjLrGHTNuyqNOBIdcqeoDbv1vLtTihBph6WQ4dgq3pSiNC9Bp7yzy61phHTs8Uj4vn1fRSEflB5CF1tyli_TssadfXkF9sLmGg?type=png)](https://mermaid.live/edit#pako:eNp9km9P2zAQxr_KyS8nqkh76RdDI-VPtFIq2rENgiInObpTHTu62GEF8d1xbSpQte1eWfd7_Nh67p5FY1sUUgxOOZySWrPqJuPn0kCou0_3MJl8AUMs4Xy2nEFuu540cuKhH_kTmU0QKK3JdwntWpHNVzcSTpDMGpadYpdw6EY69MSjhJ9nJ8fwg0yDB7e1fUSuyO4tpr6rk2RPoozxgdaesbLeVeEblfuN1aiYVK1xkMH6SXHL2-wCPdPgqBmyBast8pDc_m8Q36hVs6mcrfBPr6khF391aRnhzSk7-55_K-bnkM-KxbRYrr7O81O4Pqj03l_M3tMqBigcXI3I8Avd8b8TO71NLPYiHb3eKCMhZwzzXFCPmsxbqIl9kGVxrjer-Uee7Ydabx3ulkPCNSp9MPk9jEoXYjLrGHTNuyqNOBIdcqeoDbv1vLtTihBph6WQ4dgq3pSiNC9Bp7yzy61phHTs8Uj4vn1fRSEflB5CF1tyli_TssadfXkF9sLmGg)
