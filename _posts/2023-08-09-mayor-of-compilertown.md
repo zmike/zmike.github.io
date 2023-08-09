@@ -96,14 +96,14 @@ impl main {
 }
 ```
 
-The latter form here is called "lowered" i/o: the derefs for explicit variables have been lowered to intrinsics corresponding to the operation being performed. Such excitement, many detail.
+The latter form here is called "lowered" i/o: the derefs for explicit variables have been lowered to intrinsics corresponding to the operations being performed. Such excitement, many detail.
 
 # Change Is Bad
 
-With few exceptions, every mesa driver uses lowered i/o. Zink is one of those exceptions, and the reasons behind it are simple:
+With few exceptions, every mesa driver uses lowered i/o. Zink is one of those exceptions, and the reasons are simple:
 * spirv requires explicit variable derefs
 * using lowered i/o would take a lot of work
-* there's literally no benefit to using lowered i/o
+* there's literally no benefit to using lowered i/o in zink
 
 It's a tough choice, but if I had to pick one of these as the "main" reason why I haven't done the move, my response would be yes.
 
@@ -111,9 +111,9 @@ With that said, I'm extremely disgruntled to announce that I have completed the 
 
 Hooray.
 
-The reasoning behind this Sisyphean undertaking which has cost me the past couple weeks along with what shreds of sanity previously remained within this mortal shell are two:
+The reasoning behind this Sisyphean undertaking which has cost me the past couple weeks along with what shreds of sanity previously remained within this mortal shell:
 * I've really wanted to delete some [unbelievably gross code](https://gitlab.freedesktop.org/mesa/mesa/-/blob/f71d43ecfb882cd5d777b8a39e0769c40c15b03d/src/gallium/drivers/zink/nir_to_spirv/nir_to_spirv.c#L1704) for [a while](https://gitlab.freedesktop.org/mesa/mesa/-/issues/7045)
-* in theory there will someday be this [magical new linker](https://gitlab.freedesktop.org/mesa/mesa/-/issues/8841) that infamous graphics mad scientist Marek Olšák has been working on since the before-times, which will require the use of lowered i/o
+* in theory there will someday be this [magical new linker](https://gitlab.freedesktop.org/mesa/mesa/-/issues/8841) that infamous graphics mad scientist Marek Olšák has been working on since the before-times, and this will require the use of lowered i/o
 
 It's a tough choice, but if I had to pick one of these as the "main" reason why I have done the move, my response would be yes.
 
@@ -122,12 +122,12 @@ I'll save the details of this for some deep dive posts to pad out my monthly blo
 
 The short answer, for that one person who is actively eyeballs-deep in zink shader refactoring, is that it shouldn't have any effect whatsoever. The zink passes that use explicit derefs for i/o are mostly at the end of the compilation chain, and derefs will have been added back in time to avoid needing to touch anything there.
 
-Since this refactor is a tough concept to grasp, I'm providing some flowcharts since it's been far too long since the blog has seen any. This is a basic overview of the zink shader compilation process:
+This refactor may a tough concept to grasp, so I'm providing some flowcharts since it's been far too long since the blog has seen any. Here is a basic overview of the zink shader compilation process:
 
 [![](https://mermaid.ink/img/pako:eNpdkUFLAzEQhf_KkKN0KXjMQaEVvdQibqmC8TDtTtdhk-wym12opf_dbGKxOKfwvhd48-ak9m1FSqs-YKAHxlrQFeOt8RDn4-YTiuIOPIuGp1W5gmXrOrYkmUc98W_2TTSgtTy4jCYpsfVmq2FB7GsoHUrIOKqJ9h3LqOH9cXEPb-z3lHGSk2EcbINew1IoBnzhjiz7X1dmV7Z5CrrdrK_5_JJydww0bavhldD-W-UCkzMIo68t9Rp2Mo3xaqYciUOuYlmn6Y9R4YscGaXjs0JpjDL-HH04hLY8-r3SQQaaqaGr_rpV-oC2jypVHFp5zu2nI5x_AOpxgAI?type=png)](https://mermaid.live/edit#pako:eNpdkUFLAzEQhf_KkKN0KXjMQaEVvdQibqmC8TDtTtdhk-wym12opf_dbGKxOKfwvhd48-ak9m1FSqs-YKAHxlrQFeOt8RDn4-YTiuIOPIuGp1W5gmXrOrYkmUc98W_2TTSgtTy4jCYpsfVmq2FB7GsoHUrIOKqJ9h3LqOH9cXEPb-z3lHGSk2EcbINew1IoBnzhjiz7X1dmV7Z5CrrdrK_5_JJydww0bavhldD-W-UCkzMIo68t9Rp2Mo3xaqYciUOuYlmn6Y9R4YscGaXjs0JpjDL-HH04hLY8-r3SQQaaqaGr_rpV-oC2jypVHFp5zu2nI5x_AOpxgAI)
 
 It's a simple process that anyone can understand.
 
-This is the new process side-by-side with the old one for comparison:
+This is the old process side-by-side with the new one for comparison:
 
 [![](https://mermaid.ink/img/pako:eNp9km9P2zAQxr_KyS8nqkh76RdDI-VPtFIq2rENgiInObpTHTu62GEF8d1xbSpQte1eWfd7_Nh67p5FY1sUUgxOOZySWrPqJuPn0kCou0_3MJl8AUMs4Xy2nEFuu540cuKhH_kTmU0QKK3JdwntWpHNVzcSTpDMGpadYpdw6EY69MSjhJ9nJ8fwg0yDB7e1fUSuyO4tpr6rk2RPoozxgdaesbLeVeEblfuN1aiYVK1xkMH6SXHL2-wCPdPgqBmyBast8pDc_m8Q36hVs6mcrfBPr6khF391aRnhzSk7-55_K-bnkM-KxbRYrr7O81O4Pqj03l_M3tMqBigcXI3I8Avd8b8TO71NLPYiHb3eKCMhZwzzXFCPmsxbqIl9kGVxrjer-Uee7Ydabx3ulkPCNSp9MPk9jEoXYjLrGHTNuyqNOBIdcqeoDbv1vLtTihBph6WQ4dgq3pSiNC9Bp7yzy61phHTs8Uj4vn1fRSEflB5CF1tyli_TssadfXkF9sLmGg?type=png)](https://mermaid.live/edit#pako:eNp9km9P2zAQxr_KyS8nqkh76RdDI-VPtFIq2rENgiInObpTHTu62GEF8d1xbSpQte1eWfd7_Nh67p5FY1sUUgxOOZySWrPqJuPn0kCou0_3MJl8AUMs4Xy2nEFuu540cuKhH_kTmU0QKK3JdwntWpHNVzcSTpDMGpadYpdw6EY69MSjhJ9nJ8fwg0yDB7e1fUSuyO4tpr6rk2RPoozxgdaesbLeVeEblfuN1aiYVK1xkMH6SXHL2-wCPdPgqBmyBast8pDc_m8Q36hVs6mcrfBPr6khF391aRnhzSk7-55_K-bnkM-KxbRYrr7O81O4Pqj03l_M3tMqBigcXI3I8Avd8b8TO71NLPYiHb3eKCMhZwzzXFCPmsxbqIl9kGVxrjer-Uee7Ydabx3ulkPCNSp9MPk9jEoXYjLrGHTNuyqNOBIdcqeoDbv1vLtTihBph6WQ4dgq3pSiNC9Bp7yzy61phHTs8Uj4vn1fRSEflB5CF1tyli_TssadfXkF9sLmGg)
