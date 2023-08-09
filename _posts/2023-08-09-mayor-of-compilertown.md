@@ -1,7 +1,7 @@
 ---
 published: false
 ---
-## A New Look
+# New Topic
 
 As every one of my big brained readers knows, zink runs on top of vulkan. As you also know, vulkan uses spirv for its shaders. This means, in general, compiler-y stuff in zink tries to stay as close to spirv mechanics as possible.
 
@@ -96,4 +96,30 @@ impl main {
 }
 ```
 
-The latter form here is called "lowered" i/o: the derefs for explicit variables have been lowered to intrinsics corresponding to the operation being performed.
+The latter form here is called "lowered" i/o: the derefs for explicit variables have been lowered to intrinsics corresponding to the operation being performed. Such excitement, many detail.
+
+# Change Is Bad
+
+With few exceptions, every mesa driver uses lowered i/o. Zink is one of those exceptions, and the reasons behind it are simple:
+* spirv requires explicit variable derefs
+* using lowered i/o would take a lot of work
+* there's literally no benefit to using lowered i/o
+
+It's a tough choice, but if I had to pick one of these as the "main" reason why I haven't done the move, my response would be yes.
+
+With that said, I'm extremely disgruntled to announce that I have completed the transition to lowered i/o.
+
+Hooray.
+
+The reasoning behind this Sisyphean undertaking which has cost me the past couple weeks along with what shreds of sanity previously remained within this mortal shell are two:
+* I've really wanted to delete some [unbelievably gross code](https://gitlab.freedesktop.org/mesa/mesa/-/blob/f71d43ecfb882cd5d777b8a39e0769c40c15b03d/src/gallium/drivers/zink/nir_to_spirv/nir_to_spirv.c#L1704) for [a while](https://gitlab.freedesktop.org/mesa/mesa/-/issues/7045)
+* in theory there will someday be this [magical new linker](https://gitlab.freedesktop.org/mesa/mesa/-/issues/8841) that infamous graphics mad scientist Marek Olšák has been working on since the before-times, which will require the use of lowered i/o
+
+It's a tough choice, but if I had to pick one of these as the "main" reason why I have done the move, my response would be yes.
+
+# Before And After
+I'll save the details of this for some deep dive posts to pad out my monthly blog counter. For now, let's take a look at the overview: how does this affect "shader stuff" in zink?
+
+The short answer, for that one person who is actively eyeballs-deep in zink shader refactoring, is that it shouldn't have any effect whatsoever. The zink passes that use explicit derefs for i/o are mostly at the end of the compilation chain, and derefs will have been added back in time to avoid needing to touch anything there.
+
+Since this refactor is a tough concept to grasp, I'm providing some flowcharts since it's been far too long since the blog has seen any.
