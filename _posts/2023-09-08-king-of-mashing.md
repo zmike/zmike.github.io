@@ -45,6 +45,29 @@ The debug process for this issue was, in contrast to the capture process, much s
 
 I've been hesitant to share such pro strats on the blog before, but SGC has been around for long enough now that even when the copycats start vlogging about my tech and showing off the frame data, everyone will recognize where it came from. All I ask is that you post clips of tournament pop offs.
 
-Using my code controller, I was able to perform a `light code -> light code -> debug -> heavy code -> compile -> block -> post meme -> reboot -> heavy code -> heavy code` combo for an easy W.
+Using my code controller, I was able to perform a `debug -> light code -> light code -> debug -> heavy code -> compile -> block -> post meme -> reboot -> heavy code -> heavy code` combo for an easy W.
 
-To break it down, 
+To break down this advanced sequence, a small `debug` reveals that the issue is a render area clamped to 1024x1024 on a 1920x1080 frame. Since I have every line of the codebase memorized (zink main don't @ me) it was instantly obvious that some poking was in order.
+
+Vulkan has this pair of (awful) VUs:
+
+```
+VUID-VkRenderingInfo-pNext-06079
+If the pNext chain does not contain VkDeviceGroupRenderPassBeginInfo or its deviceRenderAreaCount member is equal to 0, the width of the imageView member of any element of pColorAttachments, pDepthAttachment, or pStencilAttachment that is not VK_NULL_HANDLE must be greater than or equal to renderArea.offset.x + renderArea.extent.width
+
+VUID-VkRenderingInfo-pNext-06080
+If the pNext chain does not contain VkDeviceGroupRenderPassBeginInfo or its deviceRenderAreaCount member is equal to 0, the height of the imageView member of any element of pColorAttachments, pDepthAttachment, or pStencilAttachment that is not VK_NULL_HANDLE must be greater than or equal to renderArea.offset.y + renderArea.extent.height
+```
+
+which don't match up at all to GL's ability to throw whatever size framebuffer attachments at the GPU and have things come out fine. A long time ago I wrote [this MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/16947) to clamp framebuffer size to the smallest attachment. But in this particular case, there are three framebuffer attachments:
+* 1920x1080
+* UNUSED
+* 1920x1080
+
+The unused attachment ends up clamping the framebuffer to a smaller region to avoid violating spec, and this breaks rendering. Some `light code` pokes to skip clamping for NULL attachments open up the combo. Another quick `debug` doesn't show the issue as being resolved, which means it's time for some `heavy code`: checking for unused attachments in the fragment shader during renderpass start.
+
+Naturally this triggers a full tree `compile`, which is a `block`ing operation that gives me enough time to execute a `post meme` for style points. The downside is that I'm using an AMD system, so as soon as I try to run the new code it hangs and I nail a `reboot` to launch it into orbit.
+
+I'm not looking for a record-setting juggle, so I finish off my combo with a pair of `heavy code` finishers to hack in attachment write tracking the TC renderpass optimization and then [plumb it through the rest of my stack](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25121) so unused attachments will skip all renderpass-related operations.
+
+Problem solved, and all without having to play any games.
