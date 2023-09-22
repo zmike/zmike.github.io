@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 # Remember Way Back When...
 
@@ -28,8 +28,8 @@ Let's look at those cases now to fill up some more page space and time travel cl
 * `submit_noop` submits nothing. There's no semaphores, no cmdbufs, it just submits and returns in order to provide a baseline
 * `submit_50noop` submits nothing 50 times, which is to say it passes 50x `VkSubmitInfo` structs to `vkQueueSubmit` (or the 2 versions if sync2 is supported)
 * `submit_1cmdbuf` submits a single cmdbuf. In theory this should be slower than the noop case, but I hate computers and obviously this isn't true at all
-* `submit_50cmdbuf` submits 50 cmdbufs. In theory this should be slower than the single cmdbuf case, and, thankfully, this one particular time in which we have expectations of how computers work does match our expectations, and the numbers are lower
-* `submit_50cmdbuf_50submit` submits 50 cmdbufs in 50 submits for a total of 50 cmdbufs per `vkQueueSubmit` call. This is the slowest test, you would think, and I thought that too, and the longer this explanation goes on the more you start to wonder if computers really do work at all like you expect or if this is going to upset you, but it's Friday, and I don't have anywhere to be except the gym, so I could keep delaying the inevitable for a while longer, but I do have to get to the gym so sure, this is totally gonna be way slower than all the other tests
+* `submit_50cmdbuf` submits 50 cmdbufs. In theory this should be slower than the single cmdbuf case, and, thankfully, this one particular time in which we have expectations of how computers work does match our expectations
+* `submit_50cmdbuf_50submit` submits 50 cmdbufs in 50 submits for a total of 50 cmdbufs per `vkQueueSubmit` call. This is the slowest test, you would think, and I thought that too, and the longer this explanation goes on the more you start to wonder if computers really do work at all like you expect or if this is going to upset you, but it's Friday, and I don't have anywhere to be except the gym, so I could keep delaying the inevitable for a while longer, but I do have to get to the gym, so sure, this is totally gonna be way slower than all the other tests, trust me™
 
 It's a great series of tests which showcase some driver pain points. Specifically it shows how slow submit can be.
 
@@ -75,7 +75,7 @@ for (uint32_t i = 0; i < submitCount; i++) {
 }
 ```
 
-Tremendous. It's worth mentioning that not only is this splitting the batched submits into individual ones, each submit also allocates a struct to contain the submit info so that the drivers can use the same interface. So not only is this increasing the kernel overhead by submitting more work there, it's also increasing memory bandwidth.
+Tremendous. It's worth mentioning that not only is this splitting the batched submits into individual ones, each submit also allocates a struct to contain the submit info so that the drivers can use the same interface. So it's increasing the kernel overhead by performing multiple submits and also increasing memory allocations.
 
 # Fast Forward
 We've all been here before on SGC, and I really do need to get to the gym, so I'm authorizing a one-time fast forward to the results of optimizing this:
@@ -134,7 +134,7 @@ Intel DG2:
   44, submit_50cmdbuf_50submit,                             702,          0.7%
 ```
 
-5000% faster for #41 and a big 🤕 for #44.
+5000% faster for #41 and a big 🤕 for #44 because Intel.
 
 
 Turnip A740:
