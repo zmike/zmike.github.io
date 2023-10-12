@@ -40,6 +40,9 @@ Since the dawn of time, experts have tried to obtain traces from games with rend
 
 This affects (at least) `Wolfenstein: The Old Blood` and `DOOM2016`, but the problem has been identified, and a fix is on the way.
 
+## Zink: Exploring New Display Systems
+After a number of universally-reviled hacks, Zink should now work fine in both Wayland and Surfaceless EGL configurations.
+
 # The Real Post
 Any other, lesser blogger would've saved this for another post in order to maximize their posting frequency metric, but here at SGC the readers get a full meal with every post even when they don't have enough time to digest it all at once. Since I'm not going to XDC this year, consider this the thing I might have given a presentation on.
 
@@ -118,3 +121,5 @@ The solution I've [settled on](https://gitlab.freedesktop.org/mesa/mesa/-/merge_
 For it to really work to its fullest potential in zink, unfortunately, requires [VK_EXT_host_image_copy](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_host_image_copy.html) to avoid further staging copies, and nobody implements this yet in mesa main (except Lavapipe, though also there's this [ANV MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/24276)). But someday more drivers will support this, and then it'll be great.
 
 As far as non-tiler performance gains from this work, it's hard to say definitively whether they'll be noticeable. Texture uploads during loading screens are typically intermixed with shader compilation, so there's little TC execution to unblock, but any game which uses texture streaming may see some slight latency improvements.
+
+The only remaining future work here is to further enable unsynchronized texture uploads in zink by adding a special cmdbuf for unsynchronized uploads to handle the non-HIC case. Otherwise performance should be pretty solid across the board.
