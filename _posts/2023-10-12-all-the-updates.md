@@ -67,3 +67,33 @@ There are (currently) three methods by which TC can perform texture uploads:
 
 Eagle-eyed readers will notice that I've already handled the "problem" case described above; in order to avoid splitting renderpasses, I've written some handling which rewrites texture uploads into a sequence of N asynchronous buffer2image copies, where N is either 1 or `$height` depending on whether the source data's stride matches the image's stride. In the case where N is not 1, this can result in e.g., 4096 copy operations being enqueued for a 4096x4096 texture atlas. Even in the case where N is 1, it still adds an extra full copy of the texture data. While this is still more optimal than splitting a renderpass, it's not *optimal* in the absolute sense.
 
+You can see where this is going.
+
+# TC Execution: Define Optimal
+Optimal Threaded Context execution is the state when the GL frontend is recording commands while the driver thread is deserializing those commands into hardware-specific instructions to submit to the GPU. Visually, it looks like this Halloween-themed diagram:
+
+[![ideal.png]({{site.url}}/assets/async_texture/ideal.png)]({{site.url}}/assets/async_texture/ideal.png)
+
+Ignoring the small-upload case, the current state of texture uploading looks like one of the following Halloween-themed diagrams:
+
+* the sequenced upload case will have more work, so the driver thread will run a bit longer than it otherwise would, resulting in the GL frontend waiting a bit longer than it otherwise would for completion
+
+[![copies.png]({{site.url}}/assets/async_texture/copies.png)]({{site.url}}/assets/async_texture/copies.png)
+
+* the sync upload case creates a bubble in TC execution
+
+[![sync.png]({{site.url}}/assets/async_texture/sync.png)]({{site.url}}/assets/async_texture/sync.png)
+
+# Solve For P
+To maintain maximum performance, TC needs to be processing commands asynchronously in the driver thread while the GL frontend continues to record commands for processing. Thus, to maintain maximum performance during texture uploads, the texture upload needs to occur (without copies) while the driver thread continues executing.
+
+Looking at this problem from a different perspective, the case that needs to be avoided at all costs is the case where the GL frontend syncs TC execution. The reason why this sync is in place is to avoid accidentally uploading data to an `in-use` image, which would cause unpredictable (but definitely wrong) output. In this context, `in-use` can be defined as an image which is either:
+* enqueued in a TC batch for execution
+* enqueued/active in a GPU submission
+
+These two cases are similar but different and require different solutions based on a desired outcome. To figure this out, let's examine the most common problem case. In games, the most common scenario for texture uploading is something like this:
+* create staging image
+* upload texture data to staging image
+* draw to scene while sampling staging image
+* delete staging image
+
