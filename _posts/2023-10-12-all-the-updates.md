@@ -91,9 +91,30 @@ Looking at this problem from a different perspective, the case that needs to be 
 * enqueued in a TC batch for execution
 * enqueued/active in a GPU submission
 
-These two cases are similar but different and require different solutions based on a desired outcome. To figure this out, let's examine the most common problem case. In games, the most common scenario for texture uploading is something like this:
+On the plus side, `pipe_context::is_resource_busy` exists to query the second of these. On the minus side, while TC has some usage tracking for buffers, it has nothing for images, and adding such tracking in a performant manner is challenging.
+
+To figure out a solution for TC image tracking, let's examine the most common problem case. In games, the most common scenario for texture uploading is something like this:
 * create staging image
 * upload texture data to staging image
 * draw to scene while sampling staging image
 * delete staging image
 
+For such a case, it'd be simple to add a `seen` flag to `struct threaded_resource` and pass the conditional if the flag is false. Since it's simple enough to evaluate when an image has been seen in TC, this would suffice. Unfortunately, such a naive (don't @ me about diacritics) implementation ignores another common pattern:
+* create staging image
+* upload texture data to staging image
+* draw to scene while sampling staging image
+* cache staging image for reuse
+* render frame
+* upload texture data to staging image
+* draw to scene while sampling staging image
+* cache staging image for reuse
+* render frame
+* ...
+
+For this scenario, the staging image is reused, requiring a bit more tracking in order to accurately determine that it can be safely used for uploads.
+
+The solution I've [settled on](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25624) is to use a derivative of zink's resource tracking. This adds an ID for the last-used batch to the resource, which can then be checked during uploads. When the image is determined idle, the texture data is passed directly to the driver for an unsynchronized upload similar to how unsynchronized buffer uploads work. It's simple and hasn't shown any definitive performance overhead in my testing.
+
+For it to really work to its fullest potential in zink, unfortunately, it requires [VK_EXT_host_image_copy](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_host_image_copy.html) to avoid further staging copies, and nobody implements this yet in mesa main (except Lavapipe, though also there's this [ANV MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/24276)). But someday more drivers will support this, and then it'll be great.
+
+As far as other performance gains from this work, it's hard to say definitively whether they'll be noticeable should other drivers plug in their own support. Texture uploads during loading screens are typically intermixed with shader compilation, so there's little TC execution to unblock, but any game which uses texture streaming may see some slight latency improvements.
