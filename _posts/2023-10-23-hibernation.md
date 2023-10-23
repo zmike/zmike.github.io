@@ -3,7 +3,7 @@ published: false
 ---
 # Almost That Time Again
 
-As readers are no doubt aware by now, SGC goes into hibernation beginning around November, and that time is nearly upon us once more. To cap out another glorious year of ~~shitposting~~blogging, I'll be attempting to put up a newsworthy post every day.
+As readers are no doubt aware by now, SGC goes into hibernation beginning around November, and that time is nearly upon us once more. To cap out another glorious year of ~~shitposting~~highly technical and informative blogging, I'll be attempting to put up a newsworthy post every day.
 
 This is **Day 1**.
 
