@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 # Your Bug Has Already Been Solved
 
