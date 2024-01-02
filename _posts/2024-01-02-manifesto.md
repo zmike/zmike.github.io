@@ -29,25 +29,29 @@ I am the chair.
 # Revolution.
 Now is the time to rise up, my friends. We must take back the triangles—those big and small, success green and failure red, all of them together. We must take them and we must fight. No longer will our goals remain the mere unfulfilled dreams of our basement-dwelling forebearers!
 
-**OpenGL 10.0 by 2025!**
+* **OpenGL 10.0 by 2025!**
 
-**OpenGL ES 6.0 by 2030!**
+* **Compatibility Profile shall be renamed 'SLOW MODE'**
 
-**Depth values shall be uniformly scaled!**
+* **OpenGL ES shall retroactively convert to a YEAR-MONTH versioning scheme with quarterly releases!**
 
-**XFB shall be outlawed!**
+* **Depth values shall be uniformly scaled!**
 
-**Linux game ports shall no longer link to LLVM!**
+* **XFB shall be outlawed!**
 
-**Coherent API error messages shall be printed!**
+* **Linux game ports shall no longer link to LLVM!**
 
-**Vendors which cannot ship functional Windows GL drivers shall ship Zink!**
+* **Coherent API error messages shall be printed!**
 
-**Native GL drivers on mobile platforms shall be outlawed!**
+* **Vendors which cannot ship functional Windows GL drivers shall ship Zink!**
 
-**gl_PointSize shall be replaced by the constant '1.0' in all cases!**
+* **Native GL drivers on mobile platforms shall be outlawed!**
 
-**All bug reports shall contain at least one quality meme in the OP as a form of spam prevention!**
+* **gl_PointSize shall be replaced by the constant '1.0' in all cases!**
+
+* **GLX shall be deleted and forgotten!**
+
+* **All bug reports shall contain at least one quality meme in the OP as a form of spam prevention!**
 
 Rise up and join me, your new GL/ES chair, in the glorious revolution!
 
