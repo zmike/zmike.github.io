@@ -9,7 +9,7 @@ My name is Mike Blumenkrantz, and I do code super good. Eventually. I heard that
 
 Everything here is written based on my current understandings of topics, and I won't be going back to edit if I've made mistakes (though I'm certainly interested in hearing about them if I've made any!). Similarly, code snippets posted may not reflect code that eventually gets merged, as I'm just blogging while I solve problems.
 
-At present, I work for Valve Corporation. They do games super good.
+At present, I work for Valve Corporation. They do games super good. They aren't represented by anything here, and neither is anyone else I may work for or represent in other capacities.
 
 ### More Information
 
