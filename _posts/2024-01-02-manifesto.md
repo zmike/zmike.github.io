@@ -51,5 +51,7 @@ Now is the time to rise up, my friends. We must take back the triangles—those 
 
 Rise up and join me, your new GL/ES chair, in the glorious revolution!
 
-# Disclaimer
-Obviously this is all a joke (except the part where I'm the 🪑, that's 100% real), but I still gotta put a big fucking disclaimer here because otherwise I'm gonna be in biiiiig trouble if someone takes any of this seriously.
+# DISCLAIMER
+Obviously this is all a joke (except the part where I'm the 🪑, that's 100% real), but I still gotta put a disclaimer here because otherwise I'm gonna be in biiiiig trouble if this gets taken seriously.
+
+More updates when I finish digging out of my titanic backlog.
