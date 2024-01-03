@@ -58,6 +58,6 @@ Now is the time to rise up, my friends. We must take back the triangles—those 
 Rise up and join me, your new GL/ES chair, in the glorious revolution!
 
 # DISCLAIMER
-Obviously this is all a joke (except the part where I'm the 🪑, that's 100% real af), but I still gotta put a disclaimer here because otherwise I'm gonna be in biiiiig trouble if this gets taken seriously.
+Obviously this is all a joke (except the part where I'm the 🪑, that's [100% real af](https://www.khronos.org/about/working-group-officers/)), but I still gotta put a disclaimer here because otherwise I'm gonna be in biiiiig trouble if this gets taken seriously.
 
 Happy New Year. I missed you.
