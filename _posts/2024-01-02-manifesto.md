@@ -51,6 +51,8 @@ Now is the time to rise up, my friends. We must take back the triangles—those 
 
 * **gl_PointSize shall be replaced by the constant '1.0' in all cases!**
 
+* **Mesh and ray-tracing extensions from NVIDIA shall become core functionality!**
+
 * **GLX shall be deleted and forgotten!**
 
 * **All bug reports shall contain at least one quality meme in the OP as a form of spam prevention!**
