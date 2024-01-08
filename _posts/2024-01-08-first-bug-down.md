@@ -63,3 +63,19 @@ if (!batch->has_work) {
 Now this is a real puzzler, because if you know what you're doing as a developer, you shouldn't be reaching this spot. This is the penalty box where I put all the developers who *don't* know what they're doing, the spot where I push up my massive James Webb Space Telescope glasses and say, "No, ackchuahlly you don't want to flush right now." Because you only reach this spot if you trigger a flush when there's nothing to flush.
 
 OR DO YOU?
+
+For hahas, I noped out the first part of that conditional, ensuring that all flushes would translate to queue submits, and magically the bug went away. It was a miracle. Until I tried to think through what must be happening for that to have any effect.
+
+# Synchronization: You Cannot Escape
+The reason this was especially puzzling is the call sequence was:
+* end-of-frame flush
+* present
+* glFenceSync flush
+
+which means the last flush was optimized out, instead returning the fence from the end-of-frame flush. And these *should* be identical in terms of operations the app would want to wait on.
+
+Except that there's a present in there, and technically that's a queue submission, and *technically* something might want to know if the submit for that has completed?
+
+Why yes, that *is* stupid, but here at SGC, stupidity is our sustenance.
+
+Anyway, I [blasted out](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/26935) a quick fix, and now you can all go play your favorite chess sim on your favorite driver again.
