@@ -5,7 +5,7 @@ published: false
 
 It's been a slow start to the year, by which I mean I've been buried under an absolute deluge of all the things you can imagine and then also a blizzard. The literal kind, not the kind that used to make great games.
 
-Anyway, in my capacity as CEO of OpenGL, it's not all fun and specs. Sometimes I gotta do Real Work. The number one source of Real Work, as always, is ~~my old code~~ the mesa bug tracker.
+Anyway, it's not all fun and specs in my capacity as CEO of OpenGL. Sometimes I gotta do Real Work. The number one source of Real Work, as always, is ~~my old code~~ the mesa bug tracker.
 
 Unfortunately, the thing is completely overloaded with NVIDIA bugs right now, so it was slim pickins.
 
