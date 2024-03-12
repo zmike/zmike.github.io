@@ -1,3 +1,6 @@
+---
+published: true
+---
 # March.
 
 I've had a few things I was going to blog about over the past month, but then news sites picked them up and I lost motivation because there's only so many hours in a day that anyone wants to spend reading things that aren't specification texts. Yeah, that's my life now.
