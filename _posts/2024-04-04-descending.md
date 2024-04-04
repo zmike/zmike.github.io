@@ -27,4 +27,8 @@ The list goes on, and longtime followers of the blog are nodding to themselves a
 Then it started to get crazy.
 
 # Locations, How Do They Work?
-It's obvious that I have no idea since I keep talking about them. But if I did, I'd probably be doing something smarter. Like not spending however many hours it's about to take me to finish this post.
+I'm a genius, so obviously I know how this all works. That's why I'm writing this blog. Right?
+
+[![smart-or-blogger.png]({{site.url}}/assets/smart-or-blogger.png)]({{site.url}}/assets/smart-or-blogger.png)
+
+Right. 
