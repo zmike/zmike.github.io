@@ -31,4 +31,5 @@ I'm a genius, so obviously I know how this all works. That's why I'm writing thi
 
 [![smart-or-blogger.png]({{site.url}}/assets/smart-or-blogger.png)]({{site.url}}/assets/smart-or-blogger.png)
 
-Right. 
+Right. Good. So Samuel comes to me, and he hits me with [this absolute brainbuster](https://gitlab.freedesktop.org/mesa/mesa/-/issues/10809) of an issue. An issue so tough that I have to perform an internet search to find a credible authority on the topic. I found this amazing and informative [site]({{site.url}}/adventures-in-linking) that exactly described the issue Samuel had posted. I followed the staggering intellect of the formidable author and blah blah blah yeah obviously the only person I'd find writing about an issue I have to solve is past-me who was too fucking lazy to actually solve it.
+
