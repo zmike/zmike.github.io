@@ -204,7 +204,7 @@ I don't have any more jokes here. It didn't work good. A lot of things went boom
 But eventually, over weeks, it started working.
 
 # The Deepest Depths
-Other than verifying everything still works, I haven't tested much. If you're feeling brave, try out [the MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/28580) with dependencies (or wait for rebase) and tell me how the perf looks. So far, all I've seen is about a 600% improvement across the board.
+Other than verifying everything still works, I haven't tested much. If you're feeling brave, try out [the MR](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/28580) with dependencies (or wait for rebase) and tell me how the perf looks. So far, all I've seen is about a 6000% improvement across the board.
 
 Finally, it's over.
   
