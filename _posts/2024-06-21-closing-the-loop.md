@@ -20,7 +20,7 @@ GStreameur here does the classic `memcpy PIXEL_PACK_BUFFER texture upload -> glR
 
 This results in blocking at both ends of the transcode pipeline. A better choice, for Mesa's current state of optimization, would've been to do `glTexImage -> glGetTexImage`. This would leverage all the work that I did however many years ago in [this post]({{site.url}}/backish/) for PBO downloads using compute shaders.
 
-With a few copy/pasted lines and a sprinkle of magical SGC dust (massive compute-based PBO shaders), the flamegraph becomes:
+Still, this is the future, so Mesa must adapt. With a few copy/pasted lines and a sprinkle of magical SGC dust (massive compute-based PBO shaders), the flamegraph becomes:
 
 [![readpixyay.png]({{site.url}}/assets/readpixyay.png)]({{site.url}}/assets/readpixyay.png)
 
