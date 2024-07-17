@@ -1,3 +1,8 @@
+---
+layout: post
+title: Long Road To DRIL
+published: true
+---
 # I'm Cookin
 
 Lot of stuff happening. I can't talk about much of it yet, but trust me when I say the following:
