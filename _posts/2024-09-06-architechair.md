@@ -55,4 +55,4 @@ At the least, I think it's now possible to work on WSI in Mesa and have some ide
 
 I've been cooking. I mean like [*really* cooking](https://www.youtube.com/watch?v=QrGrOK8oZG8). Expect big things related to the number **3** later this month.
 
-\* UPDATE: At the counsel of my legal team, I've been advised to mention that no part of this post, blog, or site has any association with, bearing on, or endorsement from **Half Life 3**.
+\* UPDATE: At the urging of my legal team, I've been advised to mention that no part of this post, blog, or site has any association with, bearing on, or endorsement from **Half Life 3**.
