@@ -1,7 +1,7 @@
 # Rejection
 It's hard. Nobody likes that feeling, especially after putting in a bunch of work, double-especially when that work is on a Wayland protocol.
 
-That's right, the target of today's wayland-protocols governance update: [NACKs](https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/341).
+That's right, the target of today's wayland-protocols governance update: NACKs.
 
 A NACK is intended to mean something like:
 > this idea does not belong in wayland-protocols for `[technical reason]`
@@ -16,7 +16,7 @@ There's been a lot of confusion over this concept over the years, specifically a
 I'm glad you asked.
 
 # Definition
-I've put up a [comprehensive proposal](to reform and define the NACK). The short of it is:
+I've put up a [comprehensive proposal](https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/341) to reform and define the NACK. The short of it is:
 * Only people in [this file](https://gitlab.freedesktop.org/wayland/wayland-protocols/-/blob/main/MEMBERS.md) can NACK a protocol
 * NACKs can only be used for extreme circumstances to block a protocol which does not belong in wayland-protocols
 * NACKs now carry consequences if they are used improperly, including the potential removal of anyone using them improperly
