@@ -37,6 +37,7 @@ I've [already written](https://github.com/HansKristian-Work/vkd3d-proton/pull/21
 * [ANV](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/31384)
 * [Lavapipe](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/31386)
 * [RADV](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/31383)
+* [Turnip](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/31388)
 * other drivers soon
 
 
