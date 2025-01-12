@@ -8,7 +8,7 @@ In any case, I didn't fix it last year, so I dusted it off the other day and got
 
 The first step is always a flamegraph, and as expected, I got a hit:
 
-[![queryperf.png]({{site.url}}/assets/everspace/queryperf.png)]({{site.url}}/everspace/queryperf.png)
+[![queryperf.png]({{site.url}}/assets/everspace/queryperf.png)]({{site.url}}/assets/everspace/queryperf.png)
 
 Huge bottlenecking when checking query results, specifically in semaphore waits. What's going on here?
 
@@ -22,7 +22,7 @@ Bottleneck uncorked and performance fixed. Right?
 
 The perf is still pretty bad. It's time to check in with the doctor. Looking through some of the renderpasses reveals all kinds of begin/end tomfoolery. Paring this down, renderpasses are being split for layout changes to toggle feedback loops:
 
-[![feedback.png]({{site.url}}/assets/everspace/feedback.png)]({{site.url}}/everspace/feedback.png)
+[![feedback.png]({{site.url}}/assets/everspace/feedback.png)]({{site.url}}/assets/everspace/feedback.png)
 
 The game is rendering to one miplevel of a framebuffer attachment while sampling from another miplevel of the same image. This breaks zink's heuristic for detecting implicit feedback loops. [Improvements here](https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/32950) tighten up that detection to flatten out the renderpasses.
 
