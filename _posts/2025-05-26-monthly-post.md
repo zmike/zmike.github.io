@@ -8,7 +8,7 @@ Way back in March of '25, I was doing work that I could talk about publicly, and
 
 So as I was saying, I expected to merge this right after the 25.1 branchpoint back around mid-April, which would have allowed me to keep my train of thought and momentum. Sadly this did not come to pass, and as a result I've forgotten most of the key points of that blog post (and related memes). But I still have this:
 
-[![pipe_surface.png]({{site.url}}/assets/pipe_surface.png)]({{site.url}}/assets/pipe_surface.png)
+[![pipe-surface.png]({{site.url}}/assets/pipe-surface.png)]({{site.url}}/assets/pipe-surface.png)
 
 # But Hwhy?
 
