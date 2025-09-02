@@ -28,11 +28,11 @@ Chrome is the web browser, and, statistically, everyone uses it. It ships on des
 
 In the past, Chrome defaulted to using GL, which made testing easy. Now, however, `--disable-features=Vulkan` is needed to return to the comfort of an API so reliable it no longer receives versioned updates. Looking at an apitrace of Chrome, I saw a disturbing rendering pattern that went something like this:
 
-* <draw some element on a page using multisampled FBO1>
-* <resolve FBO1 to texture1>
-* <composite texture1 onto larger FBO2/texture2>
-* <composite texture2 onto even larger, multisampled FBO3>
-* <resolve FBO3 to swapchain>
+* draw some element on a page using multisampled FBO1
+* resolve FBO1 to texture1
+* composite texture1 onto larger FBO2/texture2
+* composite texture2 onto even larger, multisampled FBO3
+* resolve FBO3 to swapchain
 * present
 
 In this case, zink would correctly inline the FBO3/swapchain resolve at the end, but the intermediate multisampled rendering on `FBO1` would pay the full performance penalty of storing the multisampled image data and then loading it again for the separate resolve operation.
