@@ -42,7 +42,7 @@ But as flexible and powerful as descriptor heap is, there are some annoying case
 This also applies to border colors, which has its own [note in the proposal](https://docs.vulkan.org/features/latest/features/proposals/VK_EXT_descriptor_heap.html#_why_is_there_an_explicit_custom_border_color_registration). At an objective, high-view level, it's awesome to have such fine-grained control over the hardware. Then again, it's one more thing the driver is no longer managing.
 
 # I Don't Have A Better Solution
-That's certainly the takeaway here. I'm not saying go back to 1.0 descriptors. Nobody should do that. I'm not saying stick with descriptor buffers either. Descriptor heap has been under development since before I could legally drive, and I'm certainly not smarter than everyone who worked on it.
+That's certainly the takeaway here. I'm not saying go back to 1.0 descriptors. Nobody should do that. I'm not saying stick with descriptor buffers either. Descriptor heap has been under development since before I could legally drive, and I'm certainly not smarter than everyone (or anyone, most likely) who worked on it.
 
 Maybe this is the best we'll get. Maybe the future of descriptors really is micromanaging every byte of device memory and material stored within because we haven't read every blog post in existence and don't trust driver developers to make our shit run good. Maybe OpenGL, with its drivers that "just worked" under the hood (with the caveat that you, the developer, can't be an idiot), wasn't what we all wanted.
 
