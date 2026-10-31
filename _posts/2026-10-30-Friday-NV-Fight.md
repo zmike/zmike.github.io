@@ -51,7 +51,7 @@ Then use the resulting buffer for an indirect draw.
 
 # Power Overwhelming
 
-**SPECviewperf 2020**
+## SPECviewperf 2020
 
 | viewset | tests | native (best) | zink | zink / native |
 |---|---:|---:|---:|---:|
@@ -65,7 +65,7 @@ Then use the resulting buffer for an indirect draw.
 
 **Geomean:** 2.194 over 59 tests.
 
-**SPECviewperf 15**
+## SPECviewperf 15
 
 | viewset | tests | native (best) | zink | zink / native |
 |---|---:|---:|---:|---:|
@@ -78,9 +78,9 @@ Then use the resulting buffer for an indirect draw.
 | snx-05 | 8 | 45.29 | 68.90 | 1.52 |
 | solidworks-08 | 8 | 55.28 | 67.52 | 1.22 |
 
-- **Geomean:** 1.332 over 64 tests.
+**Geomean:** 1.332 over 64 tests.
 
-**Superposition**
+## Superposition
 
 | preset | native | zink | zink / native |
 |---|---:|---:|---:|
